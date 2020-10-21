@@ -19,5 +19,14 @@
                 </div>
             </div>
         </div>
+        <section class="content col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 @endsection

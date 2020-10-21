@@ -10,7 +10,7 @@ class FlightController extends Controller
     public function index(){
         $curl = curl_init();
         curl_setopt_array($curl,[
-            CURLOPT_URL=>"https://rapidapi.p.rapidapi.com/GetPricesAPI/StartFlightSearch.aspx?lapinfant=0&child=0&city2=NYC&date1=2020-10-20&youth=0&flightType=1&adults=1&cabin=5&infant=0&city1=LAX&seniors=0&date2=2021-01-02&islive=true",
+            CURLOPT_URL=>"https://rapidapi.p.rapidapi.com/GetPricesAPI/StartFlightSearch.aspx?lapinfant=0&child=0&city2=NYC&date1=2021-01-01&youth=0&flightType=1&adults=2&cabin=5&infant=0&city1=LAX&seniors=0&date2=2021-01-02&islive=true",
             CURLOPT_RETURNTRANSFER=>true,
             CURLOPT_FOLLOWLOCATION=>true,
             CURLOPT_ENCODING=>" ",
@@ -37,7 +37,7 @@ class FlightController extends Controller
     public function getPrices(){
         $curl = curl_init();
         curl_setopt_array($curl,[
-            CURLOPT_URL=>"https://rapidapi.p.rapidapi.com/GetPricesAPI/GetPrices.aspx?SearchID=ap-AVh52GhOct2IAeeR",
+            CURLOPT_URL=>"https://rapidapi.p.rapidapi.com/GetPricesAPI/GetPrices.aspx?SearchID=ap-nkDdCpd2hfTSHHYT",
             CURLOPT_RETURNTRANSFER=>true,
             CURLOPT_FOLLOWLOCATION=>true,
             CURLOPT_ENCODING=>" ",
