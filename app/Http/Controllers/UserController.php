@@ -12,4 +12,8 @@ class UserController extends Controller
         $users = User::orderBy('id','desc')->paginate(5);
         return view('admin.index',compact('users'));
     }
+    //View User
+    public function viewUser(User $user){
+        return view('admin.view',compact('user'));
+    }
 }

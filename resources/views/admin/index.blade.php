@@ -43,12 +43,34 @@
                                     @forelse($users as $user)
                                         <tr>
                                             <td>{{$count++}}</td>
-                                            <td>{{$user->name.' '.$user->lastName}}</td>
+                                            <td>
+                                                <a href="{{url("user/$user->id")}}">
+                                                    {{$user->name.' '.$user->lastName}}
+                                                </a>
+                                            </td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone}}</td>
                                             <td>{{$user->role->role}}</td>
                                             <td>
-                                                
+                                                <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-cogs"></i>Action
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li class="dropdown-item text-info">
+                                                        <a href="{{url("user/$user->id")}}">
+                                                            <i class="fa fa-eye"></i>
+                                                            View User
+                                                        </a>
+                                                    </li>
+                                                    <li class="dropdown-item text-success">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit
+                                                    </li>
+                                                    <li class="dropdown-item text-danger">
+                                                        <i class="fa fa-trash"></i>
+                                                        Delete
+                                                    </li>
+                                                </ul>
                                             </td>
                                         </tr>
                                     @empty

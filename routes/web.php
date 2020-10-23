@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/home',[App\Http\Controllers\HomeController::class,'index'])->name('home');
 //Users
 Route::get('/users',[App\Http\Controllers\UserController::class,'index'])->name('users');
+Route::get('/user/{user}',[\App\Http\Controllers\UserController::class,'viewUser'])->name('viewUser');
 //
 Route::get('/flight',[\App\Http\Controllers\FlightController::class,'index'])->name('flight');
 Route::get('/prices',[\App\Http\Controllers\FlightController::class,'getPrices'])->name('prices');
