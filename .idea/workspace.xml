@@ -11,12 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FlightController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FlightController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +189,9 @@
       <workItem from="1603112549402" duration="15265000" />
       <workItem from="1603168671641" duration="1378000" />
       <workItem from="1603182617311" duration="2690000" />
-      <workItem from="1603274356693" duration="67000" />
+      <workItem from="1603274356693" duration="3603000" />
+      <workItem from="1603422984388" duration="408000" />
+      <workItem from="1603468450730" duration="841000" />
     </task>
     <servers />
   </component>
@@ -218,10 +218,10 @@
       <screen x="0" y="27" width="1600" height="819" />
     </state>
     <state x="395" y="98" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.819@0.27.1600.819" timestamp="1603039316722" />
-    <state x="583" y="194" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603219592815">
+    <state x="583" y="194" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603423393076">
       <screen x="0" y="27" width="1600" height="819" />
     </state>
-    <state x="583" y="194" width="424" height="491" key="FileChooserDialogImpl/0.27.1600.819@0.27.1600.819" timestamp="1603219592815" />
+    <state x="583" y="194" width="424" height="491" key="FileChooserDialogImpl/0.27.1600.819@0.27.1600.819" timestamp="1603423393076" />
     <state x="538" y="156" width="513" height="568" key="NewPhpClassDialog" timestamp="1603187661629">
       <screen x="0" y="27" width="1600" height="819" />
     </state>
