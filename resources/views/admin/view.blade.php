@@ -72,6 +72,66 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-9">
+                        <div class="col-md-12">
+                            <div class="card card-white card-tabs">
+                                <div class="card-header p-0 pt-0">
+                                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">
+                                                Update
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#showActivity" class="nav-link" id="custom-activity-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
+                                                Activity
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content" id="custom-tabs-one-tabContent">
+                                        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home">
+                                            <div class="card card-white">
+                                                <div class="col-md-12">
+                                                    <form method="post" class="form-horizontal">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label class="" for="name">Name</label>
+                                                            <input type="text" name="name" class="form-control" value="{{$user->name}}" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" for="lastName">Last Name</label>
+                                                            <input type="text" name="lastName" class="form-control" value="{{$user->lastName}}" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" for="email">Email</label>
+                                                            <input type="text" name="email" class="form-control" value="{{$user->email}}" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" for="phone">Email</label>
+                                                            <input type="text" name="phone" class="form-control" value="{{$user->phone}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" for="email">Email</label>
+                                                            <input type="text" name="email" class="form-control" value="{{$user->role->role}}" readonly>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade show" id="showActivity" role="tabpanel" aria-labelledby="custom-activity-tab">
+                                            <div class="card card-white">
+                                                <div class="col-md-12">
+                                                    <div class="tab-pane" id="timeline"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
