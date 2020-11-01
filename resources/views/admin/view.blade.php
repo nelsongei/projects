@@ -56,7 +56,7 @@
                             <div class="card-body">
                                 <strong>Name:</strong>
                                 <p class="text-muted">
-                                    <i class="fa fa-envelope-open text-pink"></i>
+                                    <i class="fa fa-user text-pink"></i>
                                     {{$user->name.' '.$user->lastName}}
                                 </p>
                                 <strong>Email:</strong>
@@ -96,25 +96,26 @@
                                                 <div class="col-md-12">
                                                     <form method="post" class="form-horizontal">
                                                         @csrf
+                                                        <input type="hidden" name="id" value="{{$user->id}}">
                                                         <div class="form-group">
-                                                            <label class="" for="name">Name</label>
-                                                            <input type="text" name="name" class="form-control" value="{{$user->name}}" readonly>
+                                                            <label class="col-form-label" for="name">Name</label>
+                                                            <input type="text" name="name" id="name" class="form-control" value="{{$user->name}}" readonly>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="" for="lastName">Last Name</label>
-                                                            <input type="text" name="lastName" class="form-control" value="{{$user->lastName}}" readonly>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="" for="email">Email</label>
-                                                            <input type="text" name="email" class="form-control" value="{{$user->email}}" readonly>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="" for="phone">Email</label>
-                                                            <input type="text" name="phone" class="form-control" value="{{$user->phone}}">
+                                                            <label class="col-form-label" for="lastName">Last Name</label>
+                                                            <input type="text" name="lastName" id="lastName" class="form-control" value="{{$user->lastName}}" readonly>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="" for="email">Email</label>
-                                                            <input type="text" name="email" class="form-control" value="{{$user->role->role}}" readonly>
+                                                            <input type="text" name="email" id="email" class="form-control" value="{{$user->email}}" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" for="phone">Phone</label>
+                                                            <input type="text" name="phone" id="phone" class="form-control" value="{{$user->phone}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="" for="role">Role</label>
+                                                            <input type="text" name="email" id="role" class="form-control" value="{{$user->role->role}}" readonly>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -123,7 +124,7 @@
                                         <div class="tab-pane fade show" id="showActivity" role="tabpanel" aria-labelledby="custom-activity-tab">
                                             <div class="card card-white">
                                                 <div class="col-md-12">
-                                                    <div class="tab-pane" id="timeline"></div>
+                                                    <div class="tab-pane" id="timeline">yea</div>
                                                 </div>
                                             </div>
                                         </div>
