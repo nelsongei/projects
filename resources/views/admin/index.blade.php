@@ -32,16 +32,18 @@
                                 </div>
                                 <table class="table table-bordered table-striped">
                                     <thead>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone No.</th>
-                                    <th>Role</th>
-                                    <th>Action</th>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone No.</th>
+                                        <th>Role</th>
+                                        <th>Action</th>
+                                    </tr>
                                     </thead>
                                     <?php $count =1;?>
                                     <tbody>
-                                    @forelse($users as $user)
+                                    @foreach($users as $user)
                                         <tr>
                                             <td>{{$count++}}</td>
                                             <td>
@@ -74,8 +76,7 @@
                                                 </ul>
                                             </td>
                                         </tr>
-                                    @empty
-                                    @endforelse
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
