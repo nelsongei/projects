@@ -11,10 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/51391ecf-2c60-4de6-9ef5-182c31485b29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/51391ecf-2c60-4de6-9ef5-182c31485b29.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_24_041130_create_activity_logs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_24_041130_create_activity_logs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ActivityLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ActivityLog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +197,7 @@
       <workItem from="1603468450730" duration="11362000" />
       <workItem from="1603687168663" duration="57000" />
       <workItem from="1603992317272" duration="69000" />
-      <workItem from="1604249124645" duration="1306000" />
+      <workItem from="1604249124645" duration="3561000" />
     </task>
     <servers />
   </component>
@@ -237,9 +240,9 @@
       <screen x="0" y="27" width="1600" height="819" />
     </state>
     <state x="464" y="193" key="run.anything.popup/0.27.1600.819@0.27.1600.819" timestamp="1603114150869" />
-    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup" timestamp="1603131852094">
+    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup" timestamp="1604251085141">
       <screen x="0" y="27" width="1600" height="819" />
     </state>
-    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup/0.27.1600.819@0.27.1600.819" timestamp="1603131852094" />
+    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup/0.27.1600.819@0.27.1600.819" timestamp="1604251085141" />
   </component>
 </project>

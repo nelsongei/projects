@@ -16,4 +16,7 @@ class UserController extends Controller
     public function viewUser(User $user){
         return view('admin.view',compact('user'));
     }
+    public function profile(User $user){
+        return view('admin.profile',compact('user'));
+    }
 }
