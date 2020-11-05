@@ -92,6 +92,25 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-telegram fa-fw"></i>
+                            <p>
+                                Communication
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('/mails')}}" class="nav-link">
+                                    <p class="ml-3">
+                                        <i class="nav-icon fa fa-envelope-open"></i>
+                                        Multiple Emails
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-plug fa-fw"></i>
                             <p>
                                 Administration
