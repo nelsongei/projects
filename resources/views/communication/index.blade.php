@@ -61,6 +61,66 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-body p-0">
+                                <div class="mailbox-controls">
+{{--                                    Todo webhooks and send mails with attachments--}}
+                                    <button type="button" class="btn btn-default btn-sm checkbox-inline">
+                                        <i class="fa fa-square"></i>
+                                    </button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-sm">
+                                            <i class="fa fa-check-circle"></i>
+                                        </button>
+                                        <button type="button" class="btn bg-white btn-sm">
+                                            <i class="fa fa-reply-all"></i>
+                                        </button>
+                                    </div>
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <i class="fa fa-circle-o"></i>
+                                    </button>
+                                    <div class="float-right">
+                                        1-50/200
+                                        <div class="btn btn-group">
+                                            <button type="button" class="btn btn-sm btn-default">
+                                                <i class="fa fa-chevron-left"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-default">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive mailbox-messages">
+                                    <table class="table table-hover table-bordered table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="icheck-primary">
+                                                        <input type="checkbox" id="check1">
+                                                        <label for="check1"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="mailbox-star">
+                                                    <a href="#">
+                                                        <i class="fa fa-star text-warning fa-lg"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="mailbox-name">
+                                                    <a href="#">Nelson Sammy</a>
+                                                </td>
+                                                <td class="mailbox-messages">
+                                                    <b>Subject</b> Trying to fetch data using webhooks
+                                                </td>
+                                                <td class="mailbox-attachment"></td>
+                                                <td class="mailbox-date">1 min ago</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
