@@ -13,5 +13,6 @@ class EmailController extends Controller
     }
     public function send(){
         $users = User::all();
+
     }
 }

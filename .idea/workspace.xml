@@ -27,8 +27,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Whatsapp.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_19_111354_create_whatsapps_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/communication/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +171,7 @@
       <path value="$PROJECT_DIR$/vendor/consoletvs/charts" />
       <path value="$PROJECT_DIR$/vendor/chartisan/php" />
       <path value="$PROJECT_DIR$/vendor/realrashid/sweet-alert" />
+      <path value="$PROJECT_DIR$/vendor/twilio/sdk" />
     </include_path>
   </component>
   <component name="ProjectId" id="1j3i5jpYq621PWoU4WG1v7njnpk" />
@@ -220,7 +229,11 @@
       <workItem from="1604633394988" duration="2055000" />
       <workItem from="1605265201861" duration="589000" />
       <workItem from="1605416880092" duration="96000" />
-      <workItem from="1605595877953" duration="2636000" />
+      <workItem from="1605595877953" duration="4552000" />
+      <workItem from="1605607855887" duration="589000" />
+      <workItem from="1605767672279" duration="294000" />
+      <workItem from="1605780958285" duration="85000" />
+      <workItem from="1605784283227" duration="2934000" />
     </task>
     <servers />
   </component>

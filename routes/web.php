@@ -31,3 +31,5 @@ Route::get('/mails',[App\Http\Controllers\EmailController::class,'index'])->name
 //
 Route::get('/flight',[\App\Http\Controllers\FlightController::class,'index'])->name('flight');
 Route::get('/prices',[\App\Http\Controllers\FlightController::class,'getPrices'])->name('prices');
+//Whatsapp
+Route::get('/whatsapp',[App\Http\Controllers\WhatsappController::class,'send'])->name('whatsapp');
