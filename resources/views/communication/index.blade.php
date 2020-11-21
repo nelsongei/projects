@@ -143,7 +143,13 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="email">Email</label>
-                                    <input type="text" name="email" id="email" class="form-control">
+                                    <select name="email" class="form-control" id="email">
+                                        @if(isset($users))
+                                            @foreach($users as $user)
+                                                <option value="{{$user->id}}">{{$user->email}}</option>
+                                            @endforeach
+                                            @endif
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="cc">CC</label>

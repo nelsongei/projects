@@ -85,5 +85,54 @@
                 </div>
             </div>
         </section>
+        <div class="modal fade" id="addNewUser">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Add User</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            X
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" action="{{url('')}}">
+                            @csrf
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="name">First Name</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="image">Last Name</label>
+                                    <input type="file" class="form-control" id="image" name="image">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="role_id">Last Name</label>
+                                    <select name="role_id" class="form-control" id="role_id">
+                                        @if(isset($roles))
+                                            @foreach($roles as $role)
+                                                <option value="{{$role->id}}">{{$role->role}}</option>
+                                            @endforeach
+                                            @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

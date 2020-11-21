@@ -110,6 +110,14 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{url('/mails')}}" class="nav-link">
+                                    <p class="ml-3">
+                                        <i class="nav-icon fa fa-whatsapp"></i>
+                                        WhatsApp
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
