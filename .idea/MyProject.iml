@@ -125,5 +125,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="machakos" />
     <orderEntry type="module" module-name="AdminLTE-3.0.5" />
+    <orderEntry type="library" name="bootstrap.bundle" level="application" />
+    <orderEntry type="library" name="bootstrap-select" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery-1.11.1" level="application" />
   </component>
 </module>

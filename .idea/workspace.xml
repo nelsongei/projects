@@ -27,8 +27,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/sweetalert.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/sweetalert/alert.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/communication/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +233,7 @@
       <workItem from="1605780958285" duration="85000" />
       <workItem from="1605784283227" duration="2934000" />
       <workItem from="1605853628781" duration="54000" />
-      <workItem from="1605951703403" duration="773000" />
+      <workItem from="1605951703403" duration="9748000" />
     </task>
     <servers />
   </component>

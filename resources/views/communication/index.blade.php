@@ -27,7 +27,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="#" class="btn btn-dark btn-block mb-3">Compose</a>
+                        <a href="#" class="btn btn-dark btn-block mb-3" data-toggle="modal" data-target="#sendEmail">
+                            <i class="fa fa-plus fa-1x">&nbsp;Compose</i>
+                        </a>
                         <div class="card card-white card-outline">
                             <div class="card-body p-0">
                                 <ul class="nav nav-pills flex-column">
@@ -98,7 +100,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div class="icheck-primary">
+                                                    <div class="iCheck-primary">
                                                         <input type="checkbox" id="check1">
                                                         <label for="check1"></label>
                                                     </div>
@@ -126,5 +128,58 @@
                 </div>
             </div>
         </section>
+        <div class="modal fade" id="sendEmail">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Send Mail</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            X
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" action="{{url('/')}}">
+                            @csrf
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="email">Email</label>
+                                    <input type="text" name="email" id="email" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="cc">CC</label>
+                                    <select class="form-control" id="cc" name="cc" multiple>
+                                        <option>1</option>
+                                        <option>1</option>
+                                        <option>1</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label" for="subject">Subject</label>
+                                    <input type="text" name="subject" class="form-control" id="subject">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label" for="body">Body</label>
+                                    <textarea class="form-control" rows="5" cols="3" id="body" name="body"></textarea>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label" for="file">Attachment</label>
+                                    <input type="file" class="form-control" name="file" id="file" multiple>
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus"></i>
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
