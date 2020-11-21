@@ -27,14 +27,78 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/sweetalert.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/vendor/sweetalert/alert.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2-bootstrap4-theme/select2-bootstrap4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2-bootstrap4-theme/select2-bootstrap4.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/css/select2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/css/select2.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/af.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/az.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/bg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/bn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/bs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/build.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/cs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/dsb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/el.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/en.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/es.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/et.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/eu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/fa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/fi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/fr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/gl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/he.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/hi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/hr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/hsb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/hu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/hy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/id.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/it.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ja.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ka.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/km.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ko.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/lt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/lv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/mk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/nb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ne.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/nl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/pl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/pt-BR.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/pt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ro.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/ru.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/sk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/sl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/sq.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/sr-Cyrl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/sr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/sv.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/th.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/tk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/tr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/uk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/vi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/zh-CN.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/i18n/zh-TW.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/select2.full.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/select2.full.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/select2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/resources/select2/js/select2.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/communication/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +297,7 @@
       <workItem from="1605780958285" duration="85000" />
       <workItem from="1605784283227" duration="2934000" />
       <workItem from="1605853628781" duration="54000" />
-      <workItem from="1605951703403" duration="9748000" />
+      <workItem from="1605951703403" duration="12236000" />
     </task>
     <servers />
   </component>

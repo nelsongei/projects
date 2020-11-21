@@ -147,11 +147,15 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="cc">CC</label>
-                                    <select class="form-control" id="cc" name="cc" multiple>
-                                        <option>1</option>
-                                        <option>1</option>
-                                        <option>1</option>
-                                    </select>
+                                    <div class="select2-success">
+                                        <select class="select2" id="cc" name="cc" multiple="multiple" data-dropdown-css-class="select2-success" style="width: 100%">
+                                            @if(isset($users))
+                                                @foreach($users as $user)
+                                                    <option value="{{$user->id}}">{{$user->email}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="col-form-label" for="subject">Subject</label>

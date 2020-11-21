@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{{asset('resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('resources/dist/css/adminlte.min.css')}}">
+    <!--Select2 CSS-->
+    <link rel="stylesheet" href="{{asset('resources/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('resources/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!--My Styles-->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <!-- Google Font: Source Sans Pro -->
@@ -163,5 +166,14 @@
 <script src="{{asset('resources/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('resources/dist/js/demo.js')}}"></script>
+<script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
+<script type="text/javascript">
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+</script>
 </body>
 </html>

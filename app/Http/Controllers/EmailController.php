@@ -11,7 +11,8 @@ class EmailController extends Controller
 {
     //
     public function index(){
-        return view('communication.index');
+        $users = User::all();
+        return view('communication.index',compact('users'));
     }
     public function send(Request $request){
         $data = $request->validate([
