@@ -30,7 +30,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -236,7 +235,7 @@
       <workItem from="1606205158886" duration="3746000" />
       <workItem from="1606318971810" duration="171000" />
       <workItem from="1606395243858" duration="1210000" />
-      <workItem from="1606399410070" duration="2829000" />
+      <workItem from="1606399410070" duration="6411000" />
     </task>
     <servers />
   </component>
@@ -276,6 +275,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="445" y="60" width="700" height="759" key="#PHP" timestamp="1606406298917">
+      <screen x="0" y="27" width="1600" height="819" />
+    </state>
+    <state x="445" y="60" width="700" height="759" key="#PHP/0.27.1600.819@0.27.1600.819" timestamp="1606406298917" />
     <state x="395" y="98" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605978853431">
       <screen x="0" y="27" width="1600" height="819" />
     </state>

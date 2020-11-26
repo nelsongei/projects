@@ -69,10 +69,10 @@
                                                         <i class="fa fa-edit"></i>
                                                         Edit
                                                     </li>
-                                                    <li class="dropdown-item text-danger">
+                                                    <a class="dropdown-item text-danger" href='{{url("/user/delete/$user->id")}}' onclick="return confirm('Are you sure you want to click')">
                                                         <i class="fa fa-trash"></i>
                                                         Delete
-                                                    </li>
+                                                    </a>
                                                 </ul>
                                             </td>
                                         </tr>
@@ -88,6 +88,43 @@
                                                     <div class="modal-body">
                                                         <form method="post" class="form-horizontal" action="{{url('/user/update')}}">
                                                             @csrf
+                                                            <div class="row">
+                                                                <input type="hidden" name="id" value="{{$user->id}}">
+                                                                <div class="form-group col-md-6">
+                                                                    <label class="col-form-label" for="name">First Name</label>
+                                                                    <input type="text" class="form-control" id="name" name="name" value="{{$user->name}}">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label class="col-form-label" for="lastName">Last Name</label>
+                                                                    <input type="text" class="form-control" id="lastName" name="lastName" value="{{$user->lastName}}">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label class="col-form-label" for="phone">Phone</label>
+                                                                    <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone}}">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label class="col-form-label" for="email">Email</label>
+                                                                    <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label class="col-form-label" for="role_id">Role</label>
+                                                                    <select name="role_id" class="form-control" id="role_id">
+                                                                        @if(isset($roles))
+                                                                            @foreach($roles as $role)
+                                                                                <option value="{{$role->id}}">{{$role->role}}</option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer justify-content-between">
+                                                                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">
+                                                                    <i class="fa fa-close"></i>Close
+                                                                </button>
+                                                                <button type="submit" class="btn btn-success btn-sm">
+                                                                    <i class="fa fa-plus"></i>Update User
+                                                                </button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -143,10 +180,10 @@
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-between">
-                                <button class="btn btn-info" type="button" data-dismiss="modal">
+                                <button class="btn btn-info btn-sm" type="button" data-dismiss="modal">
                                     <i class="fa fa-close"></i>Close
                                 </button>
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success btn-sm">
                                     <i class="fa fa-plus"></i>Add User
                                 </button>
                             </div>

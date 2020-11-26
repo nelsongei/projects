@@ -25,6 +25,7 @@ class UserController extends Controller
     public function profile(User $user){
         return view('admin.profile',compact('user'));
     }
+    //Add User
     public function addUser(Request $request){
         $validator = Validator::make($request->all(),[
             'email'=>'required | unique:users,email'
@@ -62,10 +63,11 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+    //Edit User
     public function editUser(Request $request){
         $id = $request->input('id');
         $validator = Validator::make($request->all(),[
-           'email'=>'required | unique:email,users,'.$id
+           'email'=>'required | unique:users,email,'.$id
         ]);
         if ($validator->fails()){
             Alert::error("Failed,Check Email");
@@ -95,5 +97,23 @@ class UserController extends Controller
             Alert::warning('Failed','To Update user');
             return redirect()->back();
         }
+    }
+    //Delete User
+    public function deleteUser($user){
+        $delete = User::findOrFail($user)->delete();
+        if ($delete){
+            $userId = Auth::user()->id;
+            $activity = 'Deleted user';
+            //record Activity
+            $activityLog = new ActivityLog();
+            $activityLog->user_id = $userId;
+            $activityLog->activity = $activity;
+            $activityLog->save();
+            Alert::info("Success,User has been deleted");
+        }
+        else{
+            Alert::warning("Failed,Failed to delete");
+        }
+        return redirect()->back();
     }
 }

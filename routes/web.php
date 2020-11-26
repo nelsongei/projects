@@ -28,7 +28,9 @@ Route::get('/users',[App\Http\Controllers\UserController::class,'index'])->name(
 Route::get('/user/{user}',[App\Http\Controllers\UserController::class,'viewUser'])->name('viewUser');
 Route::get('/profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile');
 Route::post('/user/add',[App\Http\Controllers\UserController::class,'addUser'])->name('/user/add');
-Route::post('/user/update',[App\Http\Controllers\UsersController::class,'editUser'])->name('/user/update');
+Route::post('/user/update',[App\Http\Controllers\UserController::class,'editUser'])->name('/user/update');
+Route::get('/user/delete/{user}',[App\Http\Controllers\UserController::class,'deleteUser'])->name('/user/delete/{user}');
+
 //
 Route::get('/mails',[App\Http\Controllers\EmailController::class,'index'])->name('mails');
 Route::get('/mail/send',[App\Http\Controllers\EmailController::class,'send'])->name('/mail/send');
