@@ -65,7 +65,7 @@
                                                             View User
                                                         </a>
                                                     </li>
-                                                    <li class="dropdown-item text-success">
+                                                    <li class="dropdown-item text-success" data-toggle="modal" data-target="#editUser{{$user->id}}">
                                                         <i class="fa fa-edit"></i>
                                                         Edit
                                                     </li>
@@ -76,6 +76,23 @@
                                                 </ul>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="editUser{{$user->id}}">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Update User<span class="badge badge-success badge-dark">{{$user->id}}</span></h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            X
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="post" class="form-horizontal" action="{{url('/user/update')}}">
+                                                            @csrf
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -95,7 +112,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="{{url('')}}">
+                        <form class="form-horizontal" action="{{url('/user/add')}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -115,11 +132,7 @@
                                     <input type="text" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="col-form-label" for="image">Last Name</label>
-                                    <input type="file" class="form-control" id="image" name="image">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-form-label" for="role_id">Last Name</label>
+                                    <label class="col-form-label" for="role_id">Role</label>
                                     <select name="role_id" class="form-control" id="role_id">
                                         @if(isset($roles))
                                             @foreach($roles as $role)
@@ -128,6 +141,14 @@
                                             @endif
                                     </select>
                                 </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button class="btn btn-info" type="button" data-dismiss="modal">
+                                    <i class="fa fa-close"></i>Close
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus"></i>Add User
+                                </button>
                             </div>
                         </form>
                     </div>

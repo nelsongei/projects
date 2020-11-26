@@ -30,8 +30,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/communication/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +230,13 @@
       <workItem from="1605780958285" duration="85000" />
       <workItem from="1605784283227" duration="2934000" />
       <workItem from="1605853628781" duration="54000" />
-      <workItem from="1605951703403" duration="15141000" />
+      <workItem from="1605951703403" duration="17426000" />
+      <workItem from="1606033002872" duration="354000" />
+      <workItem from="1606125865256" duration="11000" />
+      <workItem from="1606205158886" duration="3746000" />
+      <workItem from="1606318971810" duration="171000" />
+      <workItem from="1606395243858" duration="1210000" />
+      <workItem from="1606399410070" duration="2829000" />
     </task>
     <servers />
   </component>

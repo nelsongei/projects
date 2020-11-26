@@ -147,6 +147,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{url('/logout')}}" class="nav-link">
+                            <i class="nav-icon fa fa-power-off"></i>
+                            <p>
+                                Logout
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -175,6 +183,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('resources/dist/js/demo.js')}}"></script>
 <script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
+<!--Sweet alerts-->
+@include('sweetalert::alert')
 <script type="text/javascript">
     $('.select2').select2()
 
