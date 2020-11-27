@@ -69,11 +69,14 @@
                                                         <i class="fa fa-edit"></i>
                                                         Edit
                                                     </li>
+                                                    @if(\Illuminate\Support\Facades\Auth::user()->id ==$user->id)
+                                                    @else
                                                     <a class="dropdown-item text-danger" href='{{url("/user/delete/$user->id")}}' onclick="return confirm('Are you sure you want to click')">
                                                         <i class="fa fa-trash"></i>
                                                         Delete
                                                     </a>
-                                                </ul>
+                                                    @endif
+                                                </ul>.app
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="editUser{{$user->id}}">
