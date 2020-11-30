@@ -36,21 +36,21 @@ class EmailController extends Controller
         foreach (($ccs = $request->cc) as $cc){
             ($cc);
         }
-//        foreach(($url = $request->file) as $file){
-//            ($file);
+//        foreach(($url = $request->file('img_file')) as $file){
+//            dd($file);
 //        }
         $emailData = array(
             'email'=>$data['email'],
             'subject'=>$data['subject'],
             'cc'=>$data['cc'],
-            'img_file'=>$data['file'],
+            'img_file'=>$data['img_file'],
             'body'=>$data['body']
         );
         view()->share(compact('emailData'));
         $url = $request->file('file');
 //        dd ($url);
-        $file = $request->file('file');
-        dd ($file);
+        $file = $request->file('img_file');
+//        dd ($file);
         Mail::send('communication.mail',$emailData,function ($message) use ($data,$url,$cc,$file){
             $email = $data['email'];
             $subject = $data['subject'];
