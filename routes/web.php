@@ -33,7 +33,8 @@ Route::get('/user/delete/{user}',[App\Http\Controllers\UserController::class,'de
 
 //
 Route::get('/mails',[App\Http\Controllers\EmailController::class,'index'])->name('mails');
-Route::get('/mail/send',[App\Http\Controllers\EmailController::class,'send'])->name('/mail/send');
+//Route::post('/mail/send',[App\Http\Controllers\EmailController::class,'send'])->name('/mail/send');
+Route::post('/mail/send',[App\Http\Controllers\EmailController::class,'sendEmail'])->name('/mail/send');
 //
 Route::get('/flight',[App\Http\Controllers\FlightController::class,'index'])->name('flight');
 Route::get('/prices',[App\Http\Controllers\FlightController::class,'getPrices'])->name('prices');

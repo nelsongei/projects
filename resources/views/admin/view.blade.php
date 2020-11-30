@@ -87,6 +87,11 @@
                                                 Activity
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="#updatePassword" class="nav-link" id="custom-password-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
+                                                Update Password
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
@@ -122,9 +127,60 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade show" id="showActivity" role="tabpanel" aria-labelledby="custom-activity-tab">
+                                            <div class="col-md-12">
+                                                <div class="card card-white">
+                                                    <div class="card-body overflow-auto">
+                                                        <div class="col-md-12 text-right">
+                                                            @if(count($user->activity))
+                                                                <p class="mr-3">
+                                                                    <a href="#" onclick="return confirm('Are you sure you want to clear logs')">
+                                                                        <span>
+                                                                            <i class="fa fa-trash text-danger"> Clear Logs</i>
+                                                                        </span>
+                                                                    </a>
+                                                                </p>
+                                                            @endif
+                                                        </div>
+                                                        <div class="tab-pane" id="timeline">
+                                                            <div class="timeline timeline-inverse">
+                                                                @forelse($user->activity as $activityLog)
+                                                                    <div>
+                                                                        <i class="fa fa-history fa-fw bg-pink"></i>
+                                                                        <div class="timeline-item bg-white">
+                                                                            <h3 class="timeline-header">
+                                                                                <span class="text-primary">{{$activityLog->created_at->diffForHumans()}}</span>
+                                                                            </h3>
+                                                                            <div class="timeline-body">
+                                                                                <div class="row">
+                                                                                    <dt class="col-sm-3">Activity: </dt>
+                                                                                    <dd class="col-sm-3">
+                                                                                        {{$activityLog->user->name.' '.$activityLog->activity}}
+                                                                                    </dd>
+                                                                                    <dd class="col-sm-6">
+                                                                                        {{$activityLog->user->email}}
+                                                                                    </dd>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @empty
+                                                                    <p class="text-success text-center">No Logs</p>
+                                                                @endforelse
+                                                                @if (count($user->activity)>0)
+                                                                        <div class="mt5">
+                                                                            <i class="fa fa-clock bg-success"></i>
+                                                                        </div>
+                                                                    @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade show" id="updatePassword" role="tabpanel" aria-labelledby="custom-password-tab">
                                             <div class="card card-white">
                                                 <div class="col-md-12">
-                                                    <div class="tab-pane" id="timeline">yea</div>
+
                                                 </div>
                                             </div>
                                         </div>

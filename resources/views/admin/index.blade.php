@@ -76,7 +76,7 @@
                                                         Delete
                                                     </a>
                                                     @endif
-                                                </ul>.app
+                                                </ul>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="editUser{{$user->id}}">

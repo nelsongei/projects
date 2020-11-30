@@ -54,7 +54,9 @@
                                 <h3 class="card-title">Inbox</h3>
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" placeholder="Search Inbox">
+                                        <label>
+                                            <input type="text" class="form-control" placeholder="Search Inbox">
+                                        </label>
                                         <div class="input-group-append">
                                             <div class="btn btn-dark">
                                                 <i class="fa fa-search"></i>
@@ -63,6 +65,16 @@
                                     </div>
                                 </div>
                             </div>
+                            @if(count($errors)>0)
+                                @foreach($errors->all() as $error)
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        {{$error}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endforeach
+                            @endif
                             <div class="card-body p-0">
                                 <div class="mailbox-controls">
 {{--                                    Todo webhooks and send mails with attachments--}}
@@ -138,7 +150,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="{{url('/')}}">
+                        <form class="form-horizontal" action="{{url('/mail/send')}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -146,7 +158,7 @@
                                     <select name="email" class="form-control" id="email">
                                         @if(isset($users))
                                             @foreach($users as $user)
-                                                <option value="{{$user->id}}">{{$user->email}}</option>
+                                                <option>{{$user->email}}</option>
                                             @endforeach
                                             @endif
                                     </select>
@@ -154,10 +166,10 @@
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="cc">CC</label>
                                     <div class="select2-success">
-                                        <select class="select2" id="cc" name="cc" multiple="multiple" data-dropdown-css-class="select2-success" style="width: 100%">
+                                        <select class="select2" id="cc" name="cc[]" multiple="multiple" data-dropdown-css-class="select2-success" style="width: 100%">
                                             @if(isset($users))
                                                 @foreach($users as $user)
-                                                    <option value="{{$user->id}}">{{$user->email}}</option>
+                                                    <option>{{$user->email}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -172,8 +184,8 @@
                                     <textarea class="form-control" rows="5" cols="3" id="body" name="body"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label class="col-form-label" for="file">Attachment</label>
-                                    <input type="file" class="form-control" name="file" id="file" multiple>
+                                    <label class="col-form-label" for="img_file">Attachment</label>
+                                    <input type="file" class="form-control" name="img_file[]" id="file" multiple>
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-between">
