@@ -8,6 +8,10 @@ use  Twilio\Rest\Client;
 class WhatsappController extends Controller
 {
     //
+    public function index()
+    {
+        return view('communication.whatsapp');
+    }
     public function send(){
 //        $sid    = "AC21ff7fa305bbd58e66824259fe8983be";
 //        $token  = "c9c3f9973b936d6ac5a2b1ff4e86274f";

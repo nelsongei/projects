@@ -42,6 +42,13 @@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="fa fa-envelope"></i>Sent
+                                            <span class="badge bg-success float-right">1</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="fa fa-trash"></i>Trash
+                                            <span class="badge bg-gradient-red float-right">2</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -150,7 +157,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="{{url('/mail/send')}}" method="post">
+                        <form class="form-horizontal" action="{{url('/mail/send')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -184,16 +191,16 @@
                                     <textarea class="form-control" rows="5" cols="3" id="body" name="body"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label class="col-form-label" for="img_file">Attachment</label>
+                                    <label class="col-form-label" for="img_file">Attachment(You are able to send > 1: Max Size:2048)</label>
                                     <input type="file" class="form-control" name="img_file[]" id="img_file" multiple>
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-info" data-dismiss="modal">
+                                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">
                                     <i class="fa fa-times"></i>
                                     Close
                                 </button>
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success btn-sm">
                                     <i class="fa fa-plus"></i>
                                     Send
                                 </button>

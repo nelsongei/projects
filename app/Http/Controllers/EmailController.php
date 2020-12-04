@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Email;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Mail;
-use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ActivityLog;
 
 class EmailController extends Controller
 {
@@ -31,29 +32,45 @@ class EmailController extends Controller
             'img_file'=>$data['img_file']
             );
         view()->share(compact('emailData'));
-//        $url = request()->file('img_file');
-        $sendMail = \Mail::send('communication.mail',$emailData,function($message) use($request, $data){
-//            $url = $request->file('img_file')->store('Attachments','public');
-//            $attachmentURL = "https://localhost/MyProject/public/storage".$url;
+        $url = $request->file('img_file');
+        $sendMail = Mail::send('communication.mail',$emailData,function($message) use($data,$url){
             $email=$data['email'];
             $subject = $data['subject'];
             $cc = $data['cc'];
             $message->to($email);
             $message->cc($cc);
             $message->subject($subject);
-//            $message->attach($attachmentURL
-////                $url->getRealPath(),array(
-////                    'as'=>$url->getClientOriginalName(),
-////                    'mime'=>$url->getMimeType()
-////                )
-//            );
+            foreach ($url as $fileAttach){
+                $message->attach(
+                    $fileAttach->getRealPath(),array(
+                        'as'=>$fileAttach->getClientOriginalName(),
+                        'mime'=>$fileAttach->getMimeType()
+                    )
+                );
+            }
             $message->from(env('MAIL_USERNAME'));
         });
         if ($sendMail){
-            Alert::success('Success','success');
+            toast('Failed to send Email','warning','top-right');
+//            Alert::warning('Failed','Sorry Something Went Wrong');
         }
         else{
-            Alert::error('Error');
+            $email = new Email();
+//            $email->email = $request->email;
+//            $email->cc = $request->cc;
+//            $email->subject = $request->subject;
+//            $email->message = $request->message;
+//            $email->img_file = $request->img_file;
+//            $email->save();
+
+            $userId = Auth::user()->id;
+            $activity = "Send Email";
+            //Record
+            $activityLog = new ActivityLog();
+            $activityLog->user_id = $userId;
+            $activityLog->activity = $activity;
+            $activityLog->save();
+            toast('Email Has Been Send successfully','Success','top-right');
         }
         return redirect()->back();
     }

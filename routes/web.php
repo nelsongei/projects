@@ -39,6 +39,7 @@ Route::post('/mail/send',[App\Http\Controllers\EmailController::class,'sendEmail
 Route::get('/flight',[App\Http\Controllers\FlightController::class,'index'])->name('flight');
 Route::get('/prices',[App\Http\Controllers\FlightController::class,'getPrices'])->name('prices');
 //Whatsapp
-Route::get('/whatsapp',[App\Http\Controllers\WhatsappController::class,'send'])->name('whatsapp');
+Route::get('/whatsapp',[App\Http\Controllers\WhatsappController::class,'index'])->name('whatsapp');
+Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'send'])->name('whatsapp/send');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
