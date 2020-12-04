@@ -27,8 +27,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ReceiveMailController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/ReceiveMail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/datatables.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_03_113018_create_receive_mails_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_04_075048_create_webhook_calls_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_05_154752_create_emails_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_05_154752_create_emails_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/communication/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/communication/mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/mail.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +178,7 @@
       <path value="$PROJECT_DIR$/vendor/realrashid/sweet-alert" />
       <path value="$PROJECT_DIR$/vendor/twilio/sdk" />
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-webhook-client" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1j3i5jpYq621PWoU4WG1v7njnpk" />
@@ -192,11 +206,20 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.ReceiveMailController">
+    <configuration name="ReceiveMailController" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Http\Controllers\ReceiveMailController" file="$PROJECT_DIR$/app/Http/Controllers/ReceiveMailController.php" scope="Class" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.ReceiveMailController" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -244,7 +267,14 @@
       <workItem from="1606627554374" duration="310000" />
       <workItem from="1606719513570" duration="30000" />
       <workItem from="1606725319994" duration="10905000" />
-      <workItem from="1606755156332" duration="609000" />
+      <workItem from="1606755156332" duration="1228000" />
+      <workItem from="1606796387860" duration="92000" />
+      <workItem from="1606838562625" duration="548000" />
+      <workItem from="1606851498175" duration="1262000" />
+      <workItem from="1606879023878" duration="1428000" />
+      <workItem from="1606937585774" duration="605000" />
+      <workItem from="1606986270389" duration="9316000" />
+      <workItem from="1607052712314" duration="3241000" />
     </task>
     <servers />
   </component>
@@ -328,9 +358,9 @@
       <screen x="0" y="27" width="1600" height="819" />
     </state>
     <state x="464" y="193" key="run.anything.popup/0.27.1600.819@0.27.1600.819" timestamp="1605978548910" />
-    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup" timestamp="1604251085141">
+    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup" timestamp="1606879499954">
       <screen x="0" y="27" width="1600" height="819" />
     </state>
-    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup/0.27.1600.819@0.27.1600.819" timestamp="1604251085141" />
+    <state x="463" y="167" width="672" height="678" key="search.everywhere.popup/0.27.1600.819@0.27.1600.819" timestamp="1606879499954" />
   </component>
 </project>

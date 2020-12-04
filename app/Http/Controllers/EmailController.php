@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Mail;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -17,62 +17,44 @@ class EmailController extends Controller
     }
     public function sendEmail(Request $request){
         $data = $request->validate([
-            'email'=>['email','required'],
-            'cc'=>['required'],
-            'subject'=>['required'],
-            'body'=>['required'],
-            'img_file'=>['max:2048']
+            'email'=>'required','email',
+            'cc'=>'required',
+            'subject'=>'required',
+            'body'=>'required',
+            'img_file'=>'max:2048'
         ]);
-////        dd([$request->cc]);
-//        $data = Validator::make($request->all(),[
-//            'email'=>'email',
-//        ]);
-//        if ($data->fails()){
-//            Alert::error('Input all fields');
-//            return redirect()->back();
-//        }
-        //Looping CC Emails
-//        dd ($request->cc);
-        foreach (($ccs = $request->cc) as $cc){
-            ($cc);
-        }
-//        foreach(($url = $request->file('img_file')) as $file){
-//            dd($file);
-//        }
         $emailData = array(
             'email'=>$data['email'],
-            'subject'=>$data['subject'],
             'cc'=>$data['cc'],
-            'img_file'=>$data['img_file'],
-            'body'=>$data['body']
-        );
+            'subject'=>$data['subject'],
+            'body'=>$data['body'],
+            'img_file'=>$data['img_file']
+            );
         view()->share(compact('emailData'));
-        $url = $request->file('file');
-//        dd ($url);
-        $file = $request->file('img_file');
-//        dd ($file);
-        Mail::send('communication.mail',$emailData,function ($message) use ($data,$url,$cc,$file){
-            $email = $data['email'];
+//        $url = request()->file('img_file');
+        $sendMail = \Mail::send('communication.mail',$emailData,function($message) use($request, $data){
+//            $url = $request->file('img_file')->store('Attachments','public');
+//            $attachmentURL = "https://localhost/MyProject/public/storage".$url;
+            $email=$data['email'];
             $subject = $data['subject'];
+            $cc = $data['cc'];
             $message->to($email);
-            $message->subject($subject);
             $message->cc($cc);
-//            foreach ($file as $files){
-//                $message->attach(
-//                    $files->getRealPath(),array(
-//                        'as'=>$files->getClientOriginalName(),
-//                        'mime'=>$files->getMimeType()
-//                    )
-//                );
-//            }
-            $message->attach([
-                $file->getRealPath(),array(
-                    'as'=>$file->getClientOriginalName(),
-                    'mime'=>$file->getMimeType()
-                )
-            ]);
-            $message->from(env('MAIL_FROM_NAME'));
+            $message->subject($subject);
+//            $message->attach($attachmentURL
+////                $url->getRealPath(),array(
+////                    'as'=>$url->getClientOriginalName(),
+////                    'mime'=>$url->getMimeType()
+////                )
+//            );
+            $message->from(env('MAIL_USERNAME'));
         });
-        return redirect()->back;
+        if ($sendMail){
+            Alert::success('Success','success');
+        }
+        else{
+            Alert::error('Error');
+        }
+        return redirect()->back();
     }
 }

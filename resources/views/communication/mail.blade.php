@@ -9,5 +9,6 @@
 </head>
 <body>
     <h1>Testing Email</h1>
+    {{$emailData['body']}}
 </body>
 </html>

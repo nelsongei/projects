@@ -20,7 +20,8 @@
         "laravel/ui": "^3.0",
         "realrashid/sweet-alert": "^3.1",
         "spatie/laravel-webhook-client": "^2.7",
-        "twilio/sdk": "^6.13"
+        "twilio/sdk": "^6.13",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

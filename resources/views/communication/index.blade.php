@@ -185,7 +185,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="col-form-label" for="img_file">Attachment</label>
-                                    <input type="file" class="form-control" name="img_file[]" id="file" multiple>
+                                    <input type="file" class="form-control" name="img_file[]" id="img_file" multiple>
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-between">
