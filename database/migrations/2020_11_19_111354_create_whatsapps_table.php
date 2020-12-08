@@ -15,6 +15,8 @@ class CreateWhatsappsTable extends Migration
     {
         Schema::create('whatsapps', function (Blueprint $table) {
             $table->id();
+            $table->string('phoneNumber', )->nullable();
+            $table->text('message');
             $table->timestamps();
         });
     }

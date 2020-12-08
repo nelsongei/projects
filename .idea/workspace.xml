@@ -28,13 +28,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Email.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Email.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_05_154752_create_emails_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_05_154752_create_emails_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_19_111354_create_whatsapps_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_19_111354_create_whatsapps_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/communication/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/communication/mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/mail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/communication/whatsapp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/whatsapp.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,6 +272,7 @@
       <workItem from="1607143240355" duration="1231000" />
       <workItem from="1607328624761" duration="8828000" />
       <workItem from="1607404918766" duration="3263000" />
+      <workItem from="1607408461404" duration="11190000" />
     </task>
     <servers />
   </component>

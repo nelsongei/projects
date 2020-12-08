@@ -26,8 +26,8 @@ class WhatsappController extends Controller
 //            );
 //
 //        print($message->sid);
-        $id = "AC21ff7fa305bbd58e66824259fe8983be";
-        $token = "c9c3f9973b936d6ac5a2b1ff4e86274f";
+        $id = getenv("TWILIO_ACCOUNT_SID");
+        $token = getenv("TWILIO_AUTH_TOKEN");
         $twilio = new Client($id,$token);
         for ($i = 0;$i<5;$i++){
             $messages = $twilio->messages

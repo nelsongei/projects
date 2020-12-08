@@ -15,7 +15,7 @@ class UserController extends Controller
     //
     public function index(){
         $roles = Role::all();
-        $users = User::orderBy('id','desc')->simplePaginate(2);
+        $users = User::orderBy('id','asc')->simplePaginate(2);
         return view('admin.index',compact('users','roles'));
     }
     //View User

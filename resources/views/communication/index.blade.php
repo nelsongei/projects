@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Emails and Attachments</h1>
+                        <h1 class="m-0 text-pink"><i class="fa fa-google-plus-circle"></i>Emails and Attachments</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -132,7 +132,7 @@
                                                         @foreach($email->cc as $cc)
                                                             <dd style="format: none">{{$cc}}</dd>
                                                             @endforeach
-                                                    </td>
+                             c                       </td>
                                                     <td class="mailbox-messages">
                                                         <b>{{$email->subject}}</b> {{$email->body}}
                                                     </td>
