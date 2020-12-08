@@ -15,7 +15,7 @@ class UserController extends Controller
     //
     public function index(){
         $roles = Role::all();
-        $users = User::orderBy('id','desc')->paginate(5);
+        $users = User::orderBy('id','desc')->simplePaginate(2);
         return view('admin.index',compact('users','roles'));
     }
     //View User
@@ -55,11 +55,11 @@ class UserController extends Controller
             $logs->activity = $activity;
             $logs->save();
 
-            Alert::success('Success','User Has been Created');
+            toast('User has been created','success','top-right');
             return redirect()->back();
         }
         else{
-            Alert::warning('Error','Sorry Something went wrong');
+            toast('Sorry Something went wrong','warning','top-right');
             return redirect()->back();
         }
     }
@@ -90,7 +90,7 @@ class UserController extends Controller
             $activityLog->activity = $activity;
             $activityLog->save();
 
-            Alert::success("Updated User");
+            toast('User Has been updated','success','top-right');
             return redirect()->back();
         }
         else{
@@ -109,10 +109,10 @@ class UserController extends Controller
             $activityLog->user_id = $userId;
             $activityLog->activity = $activity;
             $activityLog->save();
-            Alert::info("Success,User has been deleted");
+            toast('Success! User has been deleted','warning','top-right');
         }
         else{
-            Alert::warning("Failed,Failed to delete");
+            toast('Failed to delete the user','error','top-right');
         }
         return redirect()->back();
     }

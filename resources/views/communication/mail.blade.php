@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Testing Email</h1>
+    <h1>{{$emailData['subject']}}</h1>
     {{$emailData['body']}}
 </body>
 </html>

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Email extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'cc'=>'array',
+        'img_file'=>'array'
+    ];
 }

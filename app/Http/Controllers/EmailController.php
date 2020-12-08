@@ -14,7 +14,8 @@ class EmailController extends Controller
     //
     public function index(){
         $users = User::all();
-        return view('communication.index',compact('users'));
+        $emails = Email::all();
+        return view('communication.index',compact('users','emails'));
     }
     public function sendEmail(Request $request){
         $data = $request->validate([
@@ -52,17 +53,16 @@ class EmailController extends Controller
         });
         if ($sendMail){
             toast('Failed to send Email','warning','top-right');
-//            Alert::warning('Failed','Sorry Something Went Wrong');
         }
         else{
             $email = new Email();
-//            $email->email = $request->email;
-//            $email->cc = $request->cc;
-//            $email->subject = $request->subject;
-//            $email->message = $request->message;
-//            $email->img_file = $request->img_file;
-//            $email->save();
-
+            $email->email = request('email');
+            $email->cc = request('cc');
+            $email->subject = request('subject');
+            $email->body = request('body');
+            $email->img_file = request('img_file');
+            $email->save();
+            //
             $userId = Auth::user()->id;
             $activity = "Send Email";
             //Record
@@ -70,7 +70,7 @@ class EmailController extends Controller
             $activityLog->user_id = $userId;
             $activityLog->activity = $activity;
             $activityLog->save();
-            toast('Email Has Been Send successfully','Success','top-right');
+            toast('Email Has Been Send successfully','success','top-right');
         }
         return redirect()->back();
     }

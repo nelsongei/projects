@@ -27,57 +27,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/all.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/all.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/brands.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/brands.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/fontawesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/fontawesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/regular.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/regular.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/solid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/solid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/svg-with-js.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/svg-with-js.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/v4-shims.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/css/v4-shims.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-brands-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-brands-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-brands-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-brands-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-brands-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-regular-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-regular-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-regular-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-regular-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-solid-900.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-solid-900.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-solid-900.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/fontawesome-free/webfonts/fa-solid-900.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2-theme-bootstrap-4/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2-theme-bootstrap-4/bootstrap-4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2-theme-bootstrap-4/bootstrap-4.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2-theme-bootstrap-4/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2/sweetalert2.all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2/sweetalert2.all.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2/sweetalert2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2/sweetalert2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2/sweetalert2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/resources/sweetalert2/sweetalert2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/communication/whatsapp.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87fceddd-d4d0-4422-8578-0ebf3da147e8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87fceddd-d4d0-4422-8578-0ebf3da147e8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WhatsappController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Email.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Email.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_05_154752_create_emails_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_05_154752_create_emails_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_04_075048_create_webhook_calls_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/RolesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RolesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/communication/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/communication/mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/communication/mail.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,7 +269,10 @@
       <workItem from="1606986270389" duration="9316000" />
       <workItem from="1607052712314" duration="3241000" />
       <workItem from="1607076284374" duration="470000" />
-      <workItem from="1607102801610" duration="12608000" />
+      <workItem from="1607102801610" duration="13712000" />
+      <workItem from="1607143240355" duration="1231000" />
+      <workItem from="1607328624761" duration="8828000" />
+      <workItem from="1607404918766" duration="3263000" />
     </task>
     <servers />
   </component>
@@ -360,10 +320,18 @@
       <screen x="0" y="27" width="1600" height="819" />
     </state>
     <state x="395" y="98" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.819@0.27.1600.819" timestamp="1605978853431" />
+    <state x="135" y="136" width="1330" height="600" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog" timestamp="1607407913303">
+      <screen x="0" y="27" width="1600" height="819" />
+    </state>
+    <state x="135" y="136" width="1330" height="600" key="#com.intellij.featureStatistics.actions.ShowFeatureUsageStatisticsDialog/0.27.1600.819@0.27.1600.819" timestamp="1607407913303" />
     <state x="503" y="238" width="583" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606755823099">
       <screen x="0" y="27" width="1600" height="819" />
     </state>
     <state x="503" y="238" width="583" height="403" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1600.819@0.27.1600.819" timestamp="1606755823099" />
+    <state x="483" y="173" width="624" height="533" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1607407186019">
+      <screen x="0" y="27" width="1600" height="819" />
+    </state>
+    <state x="483" y="173" width="624" height="533" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.1600.819@0.27.1600.819" timestamp="1607407186019" />
     <state x="583" y="194" width="424" height="491" key="FileChooserDialogImpl" timestamp="1605416994853">
       <screen x="0" y="27" width="1600" height="819" />
     </state>
@@ -384,6 +352,10 @@
       <screen x="0" y="27" width="1600" height="819" />
     </state>
     <state width="1554" height="198" key="GridCell.Tab.0.right/0.27.1600.819@0.27.1600.819" timestamp="1604645526874" />
+    <state x="383" y="182" width="824" height="515" key="IDE.errors.dialog" timestamp="1607406923735">
+      <screen x="0" y="27" width="1600" height="819" />
+    </state>
+    <state x="383" y="182" width="824" height="515" key="IDE.errors.dialog/0.27.1600.819@0.27.1600.819" timestamp="1607406923735" />
     <state x="538" y="156" width="513" height="568" key="NewPhpClassDialog" timestamp="1603187661629">
       <screen x="0" y="27" width="1600" height="819" />
     </state>

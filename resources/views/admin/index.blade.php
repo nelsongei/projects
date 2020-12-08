@@ -136,6 +136,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="col-md-12 mt-4">
+                                    {{$users->links()}}
+                                </div>
                             </div>
                         </div>
                     </div>

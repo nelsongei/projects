@@ -116,29 +116,35 @@
                                 </div>
                                 <div class="table-responsive mailbox-messages">
                                     <table class="table table-hover table-bordered table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="iCheck-primary">
-                                                        <input type="checkbox" id="check1">
-                                                        <label for="check1"></label>
-                                                    </div>
-                                                </td>
-                                                <td class="mailbox-star">
-                                                    <a href="#">
-                                                        <i class="fa fa-star text-warning fa-lg"></i>
-                                                    </a>
-                                                </td>
-                                                <td class="mailbox-name">
-                                                    <a href="#">Nelson Sammy</a>
-                                                </td>
-                                                <td class="mailbox-messages">
-                                                    <b>Subject</b> Trying to fetch data using webhooks
-                                                </td>
-                                                <td class="mailbox-attachment"></td>
-                                                <td class="mailbox-date">1 min ago</td>
-                                            </tr>
-                                        </tbody>
+                                        @foreach($emails as $email)
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="iCheck-primary">
+                                                            <input type="checkbox" id="check1">
+                                                            <label for="check1"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td class="mailbox-name">
+                                                        <a href="#">{{$email->email}}</a>
+                                                    </td>
+                                                    <td class="mailbox-name">
+                                                        @foreach($email->cc as $cc)
+                                                            <dd style="format: none">{{$cc}}</dd>
+                                                            @endforeach
+                                                    </td>
+                                                    <td class="mailbox-messages">
+                                                        <b>{{$email->subject}}</b> {{$email->body}}
+                                                    </td>
+                                                    <td class="mailbox-attachment">
+                                                        @if($email->img_file != Null)
+                                                            <i class="fa fa-paperclip"></i>
+                                                        @endif
+                                                    </td>
+                                                    <td class="mailbox-date">{{$email->created_at->diffForHumans()}}</td>
+                                                </tr>
+                                            </tbody>
+                                            @endforeach
                                     </table>
                                 </div>
                             </div>
