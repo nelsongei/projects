@@ -130,9 +130,9 @@
                                                     </td>
                                                     <td class="mailbox-name">
                                                         @foreach($email->cc as $cc)
-                                                            <dd style="format: none">{{$cc}}</dd>
+                                                            <dd>{{$cc}}</dd>
                                                             @endforeach
-                             c                       </td>
+                                                    </td>
                                                     <td class="mailbox-messages">
                                                         <b>{{$email->subject}}</b> {{$email->body}}
                                                     </td>
@@ -197,7 +197,7 @@
                                     <textarea class="form-control" rows="5" cols="3" id="body" name="body"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label class="col-form-label" for="img_file">Attachment(You are able to send > 1: Max Size:2048)</label>
+                                    <label class="col-form-label" for="img_file">Attachment(You are able to send > 1: Max Size:2048MB)</label>
                                     <input type="file" class="form-control" name="img_file[]" id="img_file" multiple>
                                 </div>
                             </div>
