@@ -60,6 +60,7 @@ class EmailController extends Controller
             $email->cc = request('cc');
             $email->subject = request('subject');
             $email->body = request('body');
+//            ToDo make sure file is saved to db
             $email->img_file = request('img_file');
             $email->save();
             //

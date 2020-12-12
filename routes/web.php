@@ -41,5 +41,7 @@ Route::get('/prices',[App\Http\Controllers\FlightController::class,'getPrices'])
 //Whatsapp
 Route::get('/whatsapp',[App\Http\Controllers\WhatsappController::class,'index'])->name('whatsapp');
 Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'send'])->name('whatsapp/send');
+//Projects
+Route::get('projects',[App\Http\Controllers\ProjectController::class,'index'])->name('projects');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

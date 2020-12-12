@@ -11,7 +11,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('resources/plugins/fontawesome-free/css/all.min.css')}}">
 
     <!--Tinymce library-->
     <script src="{{asset('resources/tinymce/tinymce.min.js')}}"></script>
@@ -62,7 +62,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item {{\Illuminate\Support\Facades\Request::path() === '/home' ? 'current_page_item': ''}}">
                         <a href="{{url('/home')}}" class="nav-link">
-                            <i class="nav-icon fa fa-tachometer"></i>
+                            <i class="nav-icon fa fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
                             </p>
@@ -70,7 +70,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-plane fa-fw"></i>
+                            <i class="nav-icon fa fa-project-diagram fa-fw"></i>
                             <p>
                                 Project Management
                                 <i class="right fa fa-angle-left"></i>
@@ -78,9 +78,9 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{url('/projects')}}" class="nav-link">
                                     <p class="ml-3">
-                                        <i class="nav-icon fa fa-thermometer-1"></i>
+                                        <i class="nav-icon fa fa-tag"></i>
                                         Projects
                                     </p>
                                 </a>
@@ -88,7 +88,7 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <p class="ml-3">
-                                        <i class="nav-icon fa fa-pencil"></i>
+                                        <i class="nav-icon fa fa-pen"></i>
                                         Management
                                     </p>
                                 </a>
@@ -97,7 +97,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-telegram fa-fw"></i>
+                            <i class="nav-icon fa fa-phone fa-fw"></i>
                             <p>
                                 Communication
                                 <i class="right fa fa-angle-left"></i>
@@ -115,7 +115,7 @@
                             <li class="nav-item">
                                 <a href="{{url('/whatsapp')}}" class="nav-link">
                                     <p class="ml-3">
-                                        <i class="nav-icon fa fa-whatsapp"></i>
+                                        <i class="nav-icon fa fa-comment"></i>
                                         WhatsApp
                                     </p>
                                 </a>
@@ -173,6 +173,7 @@
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
 </div>
+<script src="{{ asset('js/app.js') }}" defer></script>
 <!-- jQuery -->
 <script src="{{asset('resources/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -193,7 +194,9 @@
 
     //Initialize Select2 Elements
     $('.select2bs4').select2({
-        theme: 'bootstrap4'
+        theme: 'bootstrap4',
+        closeOnSelect: false,
+        allowClear: true
     })
 </script>
 </body>

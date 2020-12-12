@@ -154,7 +154,7 @@
             </div>
         </section>
         <div class="modal fade" id="sendEmail">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title">Send Mail</h3>
@@ -194,7 +194,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="col-form-label" for="body">Body</label>
-                                    <textarea class="form-control" rows="5" cols="3" id="body" name="body"></textarea>
+                                    <textarea class="form-control" id="body" rows="2" cols="1" name="body"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="col-form-label" for="img_file">Attachment(You are able to send > 1: Max Size:2048MB)</label>
