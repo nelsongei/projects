@@ -166,4 +166,21 @@ class UserController extends Controller
         }
         return redirect()->back();
     }
+    //Clear Activity Logs
+    public function clearAdminLog($user): \Illuminate\Http\RedirectResponse
+    {
+        $delete = ActivityLog::where('user_id',$user)->delete();
+        if ($delete){
+            $users = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' Has Cleared Logs'
+            ];
+            $users->notify(new UserNotification($details));
+            toast('Activity Logs have been cleared','success','top-right');
+        }
+        else{
+            toast('Failed to delete Logs','info','top-right');
+        }
+        return redirect()->back();
+    }
 }

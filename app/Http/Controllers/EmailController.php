@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Email;
 use App\Models\User;
+use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
 use Mail;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +73,12 @@ class EmailController extends Controller
             $activityLog->user_id = $userId;
             $activityLog->activity = $activity;
             $activityLog->save();
+
+            $users = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' Has Send an Email'
+            ];
+            $users->notify(new UserNotification($details));
             toast('Email Has Been Send successfully','success','top-right');
         }
         return redirect()->back();

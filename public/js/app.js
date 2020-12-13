@@ -41266,9 +41266,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "col-md-12 float-sm-left" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card card-outline card-white" }, [
+          _c("div", { staticClass: "card-body" }, [
             _c(
               "button",
               {
@@ -41289,7 +41289,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "row mt-3" }, [
               _c("div", { staticClass: "col-4" }, [
                 _c("div", { staticClass: "p-2 card card-success" }, [
-                  _c("h3", [_vm._v("Initiation")])
+                  _c("h3", [_vm._v("Initiations")])
                 ])
               ]),
               _vm._v(" "),

@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/user/markAsRead', function () {
-//    auth()->user()->unreadNotifications->markAsRead();
-//    return redirect()->back();
-//})->name('user/markAsRead');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -31,11 +30,11 @@ Route::get('/profile',[App\Http\Controllers\UserController::class,'profile'])->n
 Route::post('/user/add',[App\Http\Controllers\UserController::class,'addUser'])->name('/user/add');
 Route::post('/user/update',[App\Http\Controllers\UserController::class,'editUser'])->name('/user/update');
 Route::get('/user/delete/{user}',[App\Http\Controllers\UserController::class,'deleteUser'])->name('/user/delete/{user}');
-Route::get('userRead',[App\Http\Controllers\UserController::class,'userActivity'])->name('userRead');
+Route::get('/userRead',[App\Http\Controllers\UserController::class,'userActivity'])->name('userRead');
+Route::get('/user/clearLogs/{user}',[App\Http\Controllers\UserController::class,'clearAdminLog'])->name('/user/clearLogs');
 
 //
 Route::get('/mails',[App\Http\Controllers\EmailController::class,'index'])->name('mails');
-//Route::post('/mail/send',[App\Http\Controllers\EmailController::class,'send'])->name('/mail/send');
 Route::post('/mail/send',[App\Http\Controllers\EmailController::class,'sendEmail'])->name('/mail/send');
 //
 Route::get('/flight',[App\Http\Controllers\FlightController::class,'index'])->name('flight');
@@ -46,5 +45,6 @@ Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'sen
 //Projects
 Route::get('projects',[App\Http\Controllers\ProjectController::class,'index'])->name('projects');
 Route::post('/project/add',[App\Http\Controllers\ProjectController::class,'addProject'])->name('project/add');
+Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'viewProject'])->name('viewProject');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

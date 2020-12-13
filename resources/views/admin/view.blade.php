@@ -133,7 +133,7 @@
                                                         <div class="col-md-12 text-right">
                                                             @if(count($user->activity))
                                                                 <p class="mr-3">
-                                                                    <a href="#" onclick="return confirm('Are you sure you want to clear logs')">
+                                                                    <a href="clearLogs/{{$user['id']}}" onclick="return confirm('Are you sure you want to clear logs')">
                                                                         <span>
                                                                             <i class="fa fa-trash text-danger"> Clear Logs</i>
                                                                         </span>

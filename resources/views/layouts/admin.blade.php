@@ -48,7 +48,9 @@
                     <span class="badge badge-success badge-sm navbar-badge push-right">{{auth()->user()->unreadNotifications->count()}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-item dropdown-header">You have {{auth()->user()->unreadNotifications->count()}} Un Read Notification</span>
+                    <span class="dropdown-item dropdown-header text-dark">
+                        You have <span class="badge bg-success badge-pill">{{auth()->user()->unreadNotifications->count()}}</span> Un Read Notification
+                    </span>
                     <div class="dropdown-divider"></div>
                     @if((auth()->user()->unreadNotifications->count())>0)
                         <a href="{{url('userRead')}}" class="text-center">Mark all as Read</a>
@@ -60,6 +62,9 @@
                             <span class="float-left text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
                         </a>
                         @endforeach
+                    <span class="dropdown-item dropdown-footer">
+                        See All Notifications
+                    </span>
                 </div>
             </li>
         </ul>
@@ -195,7 +200,7 @@
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
 </div>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
 <!-- jQuery -->
 <script src="{{asset('resources/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->

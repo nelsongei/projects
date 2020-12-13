@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="card">
-            <div class="card-body">
-                <div class="col-md-12 float-sm-left">
+        <div class="col-md-12">
+            <div class="card card-outline card-white">
+                <div class="card-body">
                     <button href="#" class="btn btn-success btn-sm" data-toggle="modal">
                         <i class="fa fa-times"></i>Add Project
                     </button>
@@ -12,7 +12,7 @@
                     <div class="row mt-3">
                         <div class="col-4">
                             <div class="p-2 card card-success">
-                                <h3>Initiation</h3>
+                                <h3>Initiations</h3>
                             </div>
                         </div>
                         <div class="col-4">

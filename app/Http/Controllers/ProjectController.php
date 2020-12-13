@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\ActivityLog;
 use App\Models\Project;
 use App\Models\User;
+use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -20,6 +22,15 @@ class ProjectController extends Controller
     //Add Project
     public function addProject(): \Illuminate\Http\RedirectResponse
     {
+        $validator = Validator::make(request()->all(),[
+            'user_id'=>'required',
+            'project'=>'required',
+            'description'=>'required'
+        ]);
+        if ($validator->fails()){
+            toast('All Fields are Required','warning','top-right');
+            return redirect()->back();
+        }
         $project = new Project();
         $project->user_id = request('user_id');
         $project->project = request('project');
@@ -35,11 +46,21 @@ class ProjectController extends Controller
             $activityLog->user_id = $userId;
             $activityLog->activity = $activity;
             $activityLog->save();
+            //Notification
+            $users = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' Has Added a project'
+            ];
+            $users->notify(new UserNotification($details));
             toast('Project added','success','top-right');
         }
         else{
             toast('Error! something went wrong','warning','top-right');
         }
         return redirect()->back();
+    }
+    //View Project
+    public function viewProject(Project $project){
+        return view('project.view',compact('project'));
     }
 }

@@ -11,7 +11,25 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="shortcut icon" href="{{asset('resources/settings/fav-icon.PNG')}}" type="image/png">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{asset('resources/plugins/fontawesome-free/css/all.min.css')}}">
 
+    <!--Tinymce library-->
+{{--    <script src="{{asset('resources/tinymce/tinymce.min.js')}}"></script>--}}
+<!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('resources/dist/css/adminlte.min.css')}}">
+    <!--Sweet Alert-->
+    <link rel="stylesheet" href="{{asset('resources/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+    <!--Select2 CSS-->
+    <link rel="stylesheet" href="{{asset('resources/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('resources/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -76,5 +94,18 @@
             @yield('content')
         </main>
     </div>
+    <!-- jQuery -->
+    <script src="{{asset('resources/plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    {{--<script src="{{asset('resources/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>--}}
+    <!-- DataTables -->
+    <script src="{{asset('resources/plugins/datatables/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('resources/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('resources/dist/js/adminlte.min.js')}}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{asset('resources/dist/js/demo.js')}}"></script>
+    <script src="{{asset('resources/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
 </body>
 </html>
