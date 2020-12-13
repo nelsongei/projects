@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ActivityLog;
 use App\Models\Role;
 use App\Models\User;
+use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -56,7 +57,11 @@ class UserController extends Controller
             $logs->user_id = $userId;
             $logs->activity = $activity;
             $logs->save();
-
+            $users = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' Has added a user'
+            ];
+            $users->notify(new UserNotification($details));
             toast('User has been created','success','top-right');
             return redirect()->back();
         }
@@ -93,6 +98,11 @@ class UserController extends Controller
             $activityLog->activity = $activity;
             $activityLog->save();
 
+            $users = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' Has Updated '.request()->name
+            ];
+            $users->notify(new UserNotification($details));
             toast('User Has been updated','success','top-right');
             return redirect()->back();
         }
@@ -113,6 +123,12 @@ class UserController extends Controller
             $activityLog->user_id = $userId;
             $activityLog->activity = $activity;
             $activityLog->save();
+            //Notification
+            $users  = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' has deleted a user'
+            ];
+            $users->notify(new UserNotification($details));
             toast('Success! User has been deleted','warning','top-right');
         }
         else{
@@ -138,6 +154,15 @@ class UserController extends Controller
         }
         else{
             toast('Failed to update the profile','error','top-right');
+        }
+        return redirect()->back();
+    }
+    //Read Notification
+    public function userActivity(): \Illuminate\Http\RedirectResponse
+    {
+        $readNotification = Auth::user()->unreadNotifications->markAsRead();
+        if ($readNotification){
+            toast('You have read all notifications','info','top-right');
         }
         return redirect()->back();
     }

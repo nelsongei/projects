@@ -17,7 +17,8 @@ class EmailController extends Controller
         $emails = Email::all();
         return view('communication.index',compact('users','emails'));
     }
-    public function sendEmail(Request $request){
+    public function sendEmail(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $data = $request->validate([
             'email'=>'required','email',
             'cc'=>'required',

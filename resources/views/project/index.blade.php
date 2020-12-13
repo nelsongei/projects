@@ -48,11 +48,11 @@
                                         @foreach($projects as $project)
                                             <tr>
                                                 <td>{{$count++}}</td>
-                                                <td>{{$project->$project}}</td>
+                                                <td>{{$project->project}}</td>
                                                 <td>
-                                                    @foreach($project->user as $users)
-                                                        <dd>{{$users}}</dd>
-                                                    @endforeach
+                                                    @foreach($project->user as $userName)
+                                                        <dd>{{$userName->user->name}}</dd>
+                                                        @endforeach
                                                 </td>
                                                 <td>{{$project->description}}</td>
                                             </tr>
@@ -75,22 +75,22 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" class="form-horizontal" action="{{url('/send')}}">
+                        <form method="post" class="form-horizontal" action="{{url('/project/add')}}">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="user_id">Assign To</label>
                                     <select class="select2bs4" id="user_id" name="user_id[]" multiple="multiple" data-dropdown-css-class="select2-success">
-                                        @if (isset($users))
-                                            @foreach($users as $user)
-                                                <option value="{{$user->id}}">{{$user->name.' '.$user->lastName}}</option>
-                                                @endforeach
+                                        @if(!is_array($users) || !is_object($users))
+                                            @foreach($users  as $user)
+                                                <option>{{$user->name.' '.$user->lastName}}</option>
+                                            @endforeach
                                         @endif
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="col-form-label" for="project">Project Name</label>
-                                    <input type="text" class="form-control" name="project">
+                                    <input type="text" class="form-control" name="project" id="project">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="col-form-label" for="description">Description</label>

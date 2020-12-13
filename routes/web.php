@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/user/markAsRead', function () {
+//    auth()->user()->unreadNotifications->markAsRead();
+//    return redirect()->back();
+//})->name('user/markAsRead');
 
 Auth::routes();
 
@@ -30,6 +31,7 @@ Route::get('/profile',[App\Http\Controllers\UserController::class,'profile'])->n
 Route::post('/user/add',[App\Http\Controllers\UserController::class,'addUser'])->name('/user/add');
 Route::post('/user/update',[App\Http\Controllers\UserController::class,'editUser'])->name('/user/update');
 Route::get('/user/delete/{user}',[App\Http\Controllers\UserController::class,'deleteUser'])->name('/user/delete/{user}');
+Route::get('userRead',[App\Http\Controllers\UserController::class,'userActivity'])->name('userRead');
 
 //
 Route::get('/mails',[App\Http\Controllers\EmailController::class,'index'])->name('mails');
@@ -43,5 +45,6 @@ Route::get('/whatsapp',[App\Http\Controllers\WhatsappController::class,'index'])
 Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'send'])->name('whatsapp/send');
 //Projects
 Route::get('projects',[App\Http\Controllers\ProjectController::class,'index'])->name('projects');
+Route::post('/project/add',[App\Http\Controllers\ProjectController::class,'addProject'])->name('project/add');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

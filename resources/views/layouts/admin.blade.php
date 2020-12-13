@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('resources/plugins/fontawesome-free/css/all.min.css')}}">
 
     <!--Tinymce library-->
-    <script src="{{asset('resources/tinymce/tinymce.min.js')}}"></script>
+{{--    <script src="{{asset('resources/tinymce/tinymce.min.js')}}"></script>--}}
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
@@ -39,6 +39,28 @@
                 <a class="nav-link" data-widget="pushmenu" href="#">
                     <i class="fa fa-bars"></i>
                 </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell fa-2x"></i>
+                    <span class="badge badge-success badge-sm navbar-badge push-right">{{auth()->user()->unreadNotifications->count()}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">You have {{auth()->user()->unreadNotifications->count()}} Un Read Notification</span>
+                    <div class="dropdown-divider"></div>
+                    @if((auth()->user()->unreadNotifications->count())>0)
+                        <a href="{{url('userRead')}}" class="text-center">Mark all as Read</a>
+                    @endif
+                    @foreach (auth()->user()->unreadNotifications as $notification)
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-bell mr-0"></i>
+                            {{$notification->data['data']}}
+                            <span class="float-left text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
+                        </a>
+                        @endforeach
+                </div>
             </li>
         </ul>
     </nav>
@@ -173,11 +195,11 @@
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
 </div>
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <!-- jQuery -->
 <script src="{{asset('resources/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{asset('resources/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{{--<script src="{{asset('resources/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>--}}
 <!-- DataTables -->
 <script src="{{asset('resources/plugins/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('resources/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>

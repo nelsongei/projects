@@ -27,7 +27,7 @@
                     <div class="col-md-3 col-sm-6 col-12">
                         <div class="info-box bg-info">
                             <span class="info-box-icon">
-                                <i class="fa fa-user-o"></i>
+                                <i class="fa fa-user"></i>
                             </span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Users</span>
@@ -46,10 +46,10 @@
                     <div class="col-md-3 col-sm-6 col-12">
                         <div class="info-box bg-pink">
                             <span class="info-box-icon">
-                                <i class="fa fa-telegram"></i>
+                                <i class="fa fa-project-diagram"></i>
                             </span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Flights</span>
+                                <span class="info-box-text">Projects</span>
                                 <span class="info-box-number">{{$users}}</span>
                                 <div class="progress">
                                     <div class="progress-bar" style="width: 100%"></div>
