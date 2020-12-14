@@ -69,7 +69,7 @@
                                                             <i class="fa fa-edit"></i>
                                                             Edit
                                                         </li>
-                                                        <a class="dropdown-item text-danger" href='{{url("/user/delete/$project->id")}}' onclick="return confirm('Are you sure you want to click')">
+                                                        <a class="dropdown-item text-danger" href='{{url("/project/delete/$project->id")}}' onclick="return confirm('Are you sure you want to click')">
                                                             <i class="fa fa-trash"></i>
                                                             Delete
                                                         </a>
@@ -86,9 +86,10 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form method="post" class="form-horizontal" action="{{url('/project/add')}}">
+                                                            <form method="post" class="form-horizontal" action="{{url('/project/update')}}">
                                                                 @csrf
                                                                 <div class="row">
+                                                                    <input type="hidden" name="id" value="{{$project->id}}">
                                                                     <div class="form-group col-md-6">
                                                                         <label class="col-form-label" for="user_id">Assign To</label>
                                                                         <select class="form-control" id="user_id" name="user_id">
@@ -101,7 +102,7 @@
                                                                     </div>
                                                                     <div class="form-group col-md-6">
                                                                         <label class="col-form-label" for="project">Project Name</label>
-                                                                        <input type="text" class="form-control" name="project" id="project">
+                                                                        <input type="text" class="form-control" name="project" id="project" value="{{$project->project}}">
                                                                     </div>
                                                                     <div class="form-group col-md-12">
                                                                         <label class="col-form-label" for="description">Description</label>
@@ -114,8 +115,7 @@
                                                                         Close
                                                                     </button>
                                                                     <button type="submit" class="btn btn-success btn-sm">
-                                                                        <i class="fa fa-plus"></i>
-                                                                        Send
+                                                                        Update
                                                                     </button>
                                                                 </div>
                                                             </form>
@@ -170,8 +170,7 @@
                                     Close
                                 </button>
                                 <button type="submit" class="btn btn-success btn-sm">
-                                    <i class="fa fa-plus"></i>
-                                    Send
+                                    Add Project
                                 </button>
                             </div>
                         </form>

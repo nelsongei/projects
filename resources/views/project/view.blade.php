@@ -28,14 +28,16 @@
                 </div>
             </div>
         </div>
-        <div id="app">
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <example-component></example-component>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="app">
+                            <example-component></example-component>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </div>
     @endsection

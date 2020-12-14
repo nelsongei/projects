@@ -46,5 +46,7 @@ Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'sen
 Route::get('projects',[App\Http\Controllers\ProjectController::class,'index'])->name('projects');
 Route::post('/project/add',[App\Http\Controllers\ProjectController::class,'addProject'])->name('project/add');
 Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'viewProject'])->name('viewProject');
+Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
+Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

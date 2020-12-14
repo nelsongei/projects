@@ -49,7 +49,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span class="dropdown-item dropdown-header text-dark">
-                        You have <span class="badge bg-success badge-pill">{{auth()->user()->unreadNotifications->count()}}</span> Un Read Notification
+                        <span class="badge bg-success badge-pill">{{auth()->user()->unreadNotifications->count()}}</span> New Notification
                     </span>
                     <div class="dropdown-divider"></div>
                     @if((auth()->user()->unreadNotifications->count())>0)
