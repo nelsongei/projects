@@ -116,23 +116,25 @@
             },
         data () {
             return {
-                newTask: "",
-                arrBackLog:[
-                    {name: 'Test Signal'},
-                    {name: 'Design Dashboard'},
-                    {name: 'Router'},
-                ],
-                arrProg:[],
-                arrTested:[],
-                arrDone: []
+                cards: [],
+                tasks: [],
+                cardId:'',
+                taskId:'',
                 }
         },
+        created() {
+            this.getCards();
+        },
         methods: {
-            add(){
-                if(this.newTask){
-                    this.arrBackLog.push({name:this.newTask})
-                    this.newTask ="";
-                }
+            getCards: function (url) {
+                var page_url = url || 'https://127.0.0.1/MyProject/public/cards';
+                fetch(page_url)
+                .then(res=>res.json())
+                .then(res=>{
+                    this.cards = res.data;
+
+                })
+
             }
         }
     }

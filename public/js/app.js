@@ -2027,27 +2027,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      newTask: "",
-      arrBackLog: [{
-        name: 'Test Signal'
-      }, {
-        name: 'Design Dashboard'
-      }, {
-        name: 'Router'
-      }],
-      arrProg: [],
-      arrTested: [],
-      arrDone: []
+      cards: [],
+      tasks: [],
+      cardId: '',
+      taskId: ''
     };
   },
+  created: function created() {
+    this.getCards();
+  },
   methods: {
-    add: function add() {
-      if (this.newTask) {
-        this.arrBackLog.push({
-          name: this.newTask
-        });
-        this.newTask = "";
-      }
+    getCards: function getCards(url) {
+      var _this = this;
+
+      var page_url = url || 'https://127.0.0.1/MyProject/public/cards';
+      fetch(page_url).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this.cards = res.data;
+      });
     }
   }
 });
