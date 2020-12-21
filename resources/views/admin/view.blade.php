@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 @section('title',$user->name.' '.$user->lastName)
 @section('content')
     <div class="content-wrapper">
@@ -34,7 +34,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card card-outline card-white">
+                        <div class="card card-outline card-info">
                             <div class="card-body box-profile">
                                 <div class="text-center">
                                     @if(!empty($user['image']))
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card card-white">
+                        <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">More About {{$user->name}}</h3>
                             </div>
@@ -74,21 +74,21 @@
                     </div>
                     <div class="col-md-9">
                         <div class="col-md-12">
-                            <div class="card card-white card-tabs">
+                            <div class="card card-tabs">
                                 <div class="card-header p-0 pt-0">
                                     <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">
+                                            <a class="nav-link text-warning active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">
                                                 Update
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#showActivity" class="nav-link" id="custom-activity-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
+                                            <a href="#showActivity" class="nav-link text-warning" id="custom-activity-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
                                                 Activity
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#updatePassword" class="nav-link" id="custom-password-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
+                                            <a href="#updatePassword" class="nav-link text-warning" id="custom-password-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
                                                 Update Password
                                             </a>
                                         </li>

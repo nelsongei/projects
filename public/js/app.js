@@ -41357,316 +41357,303 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "card card-outline card-white" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3 mr-2" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-3" },
+            _vm._l(_vm.cards, function(card) {
+              return _c("div", { key: card.id, staticClass: "card p-2" }, [
+                _c("div", { staticClass: "card-header bg-white" }, [
+                  _c("h4", { staticClass: "card-title" }, [
+                    _vm._v(_vm._s(card.name))
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1, true),
+                  _vm._v(" "),
+                  _vm._m(2, true)
+                ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4)
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(5)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "card card-outline card-white" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success btn-sm",
-              attrs: {
-                href: "#",
-                "data-toggle": "modal",
-                "data-target": "#addCard"
-              }
-            },
-            [
-              _c("i", { staticClass: "fa fa-plus" }),
-              _vm._v("Add Card\n            ")
-            ]
-          ),
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-success btn-sm",
+        attrs: { href: "#", "data-toggle": "modal", "data-target": "#addCard" }
+      },
+      [_c("i", { staticClass: "fa fa-plus" }), _vm._v("Add Card\n            ")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-sm float-sm-right",
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": "#addTask"
+        }
+      },
+      [
+        _c("span", { attrs: { "aria-hidden": "true" } }, [
+          _c("i", { staticClass: "fa fa-plus" })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal fade", attrs: { id: "addTask" } }, [
+      _c("div", { staticClass: "modal-dialog modal-md" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h5", { staticClass: "modal-title" }, [_vm._v("Add Task")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  "aria-label": "Close"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                                                x\n                                            "
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row mt-3 mr-2" }, [
-            _c("div", { staticClass: "col-md-3" }, [
-              _c("div", { staticClass: "card p-2" }, [
-                _c("div", { staticClass: "card-header bg-white" }, [
-                  _c("h4", { staticClass: "card-title" }, [
-                    _vm._v("Initiations")
+          _c("div", { staticClass: "modal-body" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                attrs: { method: "post", action: "" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12 form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "col-form-label", attrs: { for: "task" } },
+                      [_vm._v("Task")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "task", id: "task" }
+                    })
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm float-sm-right",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#addTask"
-                      }
-                    },
-                    [
-                      _c("span", { attrs: { "aria-hidden": "true" } }, [
-                        _c("i", { staticClass: "fa fa-plus" })
-                      ])
-                    ]
-                  ),
+                  _c("div", { staticClass: "col-md-12 form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-form-label",
+                        attrs: { for: "description" }
+                      },
+                      [_vm._v("Task")]
+                    ),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      staticClass: "form-control",
+                      attrs: { name: "description", id: "description" }
+                    })
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "modal fade", attrs: { id: "addTask" } },
-                    [
-                      _c("div", { staticClass: "modal-dialog modal-md" }, [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c("h5", { staticClass: "modal-title" }, [
-                              _vm._v("Add Task")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "close",
-                                attrs: {
-                                  type: "button",
-                                  "data-dismiss": "modal",
-                                  "aria-label": "Close"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                                x\n                                            "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
-                                staticClass: "form-horizontal",
-                                attrs: { method: "post", action: "" }
-                              },
-                              [
-                                _c("div", { staticClass: "row" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-12 form-group" },
-                                    [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "col-form-label",
-                                          attrs: { for: "task" }
-                                        },
-                                        [_vm._v("Task")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "task",
-                                          id: "task"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-12 form-group" },
-                                    [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "col-form-label",
-                                          attrs: { for: "description" }
-                                        },
-                                        [_vm._v("Task")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("textarea", {
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          name: "description",
-                                          id: "description"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-12 form-group" },
-                                    [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "col-form-label",
-                                          attrs: { for: "due_date" }
-                                        },
-                                        [_vm._v("Due Date")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("input", {
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "date",
-                                          name: "due_date",
-                                          id: "due_date"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "modal-footer justify-content-between"
-                                  },
-                                  [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-default btn-sm",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal"
-                                        }
-                                      },
-                                      [
-                                        _c("i", { staticClass: "fa fa-times" }),
-                                        _vm._v(
-                                          "\n                                                        Close\n                                                    "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-success btn-sm",
-                                        attrs: { type: "submit" }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                                        Add Task\n                                                    "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-4" }, [
-              _c("div", { staticClass: "p-2 card card-success" }, [
-                _c("h3", [_vm._v("Developing")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-4" }, [
-              _c("div", { staticClass: "p-2 card card-success" }, [
-                _c("h3", [_vm._v("Done")])
-              ])
-            ])
+                  _c("div", { staticClass: "col-md-12 form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-form-label",
+                        attrs: { for: "due_date" }
+                      },
+                      [_vm._v("Due Date")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "date", name: "due_date", id: "due_date" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "modal-footer justify-content-between" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default btn-sm",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-times" }),
+                        _vm._v(
+                          "\n                                                        Close\n                                                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-sm",
+                        attrs: { type: "submit" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                                        Add Task\n                                                    "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "modal fade", attrs: { id: "addCard" } }, [
-        _c("div", { staticClass: "modal-dialog modal-md" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _c("div", { staticClass: "modal-header" }, [
-              _c("h5", { staticClass: "modal-title" }, [_vm._v("Add Card")]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "close",
-                  attrs: {
-                    type: "button",
-                    "data-dismiss": "modal",
-                    "aria-label": "Close"
-                  }
-                },
-                [_vm._v("\n                        x\n                    ")]
-              )
-            ]),
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4" }, [
+      _c("div", { staticClass: "p-2 card card-success" }, [
+        _c("h3", [_vm._v("Developing")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4" }, [
+      _c("div", { staticClass: "p-2 card card-success" }, [
+        _c("h3", [_vm._v("Done")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal fade", attrs: { id: "addCard" } }, [
+      _c("div", { staticClass: "modal-dialog modal-md" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h5", { staticClass: "modal-title" }, [_vm._v("Add Card")]),
             _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  attrs: { method: "post", action: "" }
-                },
-                [
-                  _c("div", { staticClass: "row" }, [
-                    _c("input", {
-                      attrs: { type: "hidden", name: "project_id" }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-12 form-group" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-form-label",
-                          attrs: { for: "card" }
-                        },
-                        [_vm._v("Card")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text", name: "card", id: "card" }
-                      })
-                    ])
-                  ]),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  "aria-label": "Close"
+                }
+              },
+              [_vm._v("\n                        x\n                    ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                attrs: { method: "post", action: "" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "project_id" }
+                  }),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "modal-footer justify-content-between" },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-default btn-sm",
-                          attrs: { type: "button", "data-dismiss": "modal" }
-                        },
-                        [
-                          _c("i", { staticClass: "fa fa-times" }),
-                          _vm._v(
-                            "\n                                Close\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success btn-sm",
-                          attrs: { type: "submit" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                Add Task\n                            "
-                          )
-                        ]
-                      )
-                    ]
-                  )
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-12 form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "col-form-label", attrs: { for: "card" } },
+                      [_vm._v("Card")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "card", id: "card" }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "modal-footer justify-content-between" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default btn-sm",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-times" }),
+                        _vm._v(
+                          "\n                                Close\n                            "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success btn-sm",
+                        attrs: { type: "submit" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Add Task\n                            "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
           ])
         ])
       ])

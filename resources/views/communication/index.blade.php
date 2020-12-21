@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 @section('title','Email')
 @section('content')
     <div class="content-wrapper">
@@ -34,19 +34,19 @@
                             <div class="card-body p-0">
                                 <ul class="nav nav-pills flex-column">
                                     <li class="nav-item active">
-                                        <a href="#" class="nav-link">
+                                        <a href="#" class="nav-link text-warning">
                                             <i class="fa fa-inbox"></i>Inbox
                                             <span class="badge bg-primary float-right">12</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="#" class="nav-link text-warning">
                                             <i class="fa fa-envelope"></i>Sent
                                             <span class="badge bg-success float-right">1</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="#" class="nav-link text-warning">
                                             <i class="fa fa-trash"></i>Trash
                                             <span class="badge bg-gradient-red float-right">2</span>
                                         </a>

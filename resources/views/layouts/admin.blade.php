@@ -45,7 +45,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell fa-2x"></i>
-                    <span class="badge badge-success badge-sm navbar-badge push-right">{{auth()->user()->unreadNotifications->count()}}</span>
+                    <span class="badge badge-success badge-sm navbar-badge push-right">
+                        {{auth()->user()->unreadNotifications->count()}}
+                    </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span class="dropdown-item dropdown-header text-dark">

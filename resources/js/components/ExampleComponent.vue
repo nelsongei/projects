@@ -7,9 +7,9 @@
                 </button>
                 <div class="row mt-3 mr-2">
                     <div class="col-md-3">
-                        <div class="card p-2">
+                        <div class="card p-2" v-for="card in cards" :key="card.id">
                             <div class="card-header bg-white">
-                                <h4 class="card-title">Initiations</h4>
+                                <h4 class="card-title">{{card.name}}</h4>
                                 <button type="button" class="btn btn-sm float-sm-right" data-toggle="modal" data-target="#addTask">
                                     <span aria-hidden="true">
                                         <i class="fa fa-plus"></i>
@@ -132,7 +132,6 @@
                 .then(res=>res.json())
                 .then(res=>{
                     this.cards = res.data;
-
                 })
 
             }

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 @section('title','Dashboard')
 @section('content')
     <div class="content-wrapper">
@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-muted ml-2 mt-4"><strong>Welcome,</strong>{{\Illuminate\Support\Facades\Auth::user()->name.' '.\Illuminate\Support\Facades\Auth::user()->lastName}}</h1>
                     </div>
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
+                        <ol class="breadcrumb float-sm-right ml-2">
                             <li class="breadcrumb-item">
                                 <a href="{{url('/home')}}">Home</a>
                             </li>
@@ -25,77 +25,53 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box bg-info">
-                            <span class="info-box-icon">
-                                <i class="fa fa-user"></i>
+                        <div class="info-box bg-white shadow-sm">
+                            <span class="info-box-icon bg-success elevation-1" style="border-radius: 50%;">
+                                <i class="fa fa-users"></i>
                             </span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Users</span>
-                                <span class="info-box-number">{{$users}}</span>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 100%"></div>
-                                </div>
-                                <span class="progress-description mt-2">
-                                    <a href="{{url('/users')}}" class="small-box-footer text-white">
-                                        More Info <i class="fa fa-arrow-circle-right"></i>
-                                    </a>
+                                <span class="info-box-number">
+                                    <h4 id="infoNo"><strong>{{$users}}</strong></h4>
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box bg-pink">
-                            <span class="info-box-icon">
+                        <div class="info-box bg-white shadow-sm">
+                            <span class="info-box-icon bg-pink elevation-1" style="border-radius: 50%;">
                                 <i class="fa fa-project-diagram"></i>
                             </span>
                             <div class="info-box-content">
                                 <span class="info-box-text">Projects</span>
-                                <span class="info-box-number">{{$users}}</span>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 100%"></div>
-                                </div>
-                                <span class="progress-description mt-2">
-                                    <a href="{{url('/users')}}" class="small-box-footer text-white">
-                                        More Info <i class="fa fa-arrow-circle-right"></i>
-                                    </a>
+                                <span class="info-box-number">
+                                    <h4 id="infoNo"><strong>{{$users}}</strong></h4>
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box bg-danger">
-                            <span class="info-box-icon">
-                                <i class="fa fa-hotel"></i>
+                        <div class="info-box bg-white shadow-sm">
+                            <span class="info-box-icon bg-info elevation-1" style="border-radius: 50%;">
+                                <i class="fa fa-check-double"></i>
                             </span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Hotels</span>
-                                <span class="info-box-number">{{$users}}</span>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 100%"></div>
-                                </div>
-                                <span class="progress-description mt-2">
-                                    <a href="{{url('/users')}}" class="small-box-footer text-white">
-                                        More Info <i class="fa fa-arrow-circle-right"></i>
-                                    </a>
+                                <span class="info-box-text">Tasks</span>
+                                <span class="info-box-number">
+                                    <h4 id="infoNo"><strong>{{$users}}</strong></h4>
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box bg-success">
-                            <span class="info-box-icon">
-                                <i class="fa fa-users"></i>
+                        <div class="info-box bg-white shadow-sm">
+                            <span class="info-box-icon bg-danger elevation-1" style="border-radius: 50%;">
+                                <i class="fa fa-envelope"></i>
                             </span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Clients</span>
-                                <span class="info-box-number">{{$users}}</span>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 100%"></div>
-                                </div>
-                                <span class="progress-description mt-2">
-                                    <a href="{{url('/users')}}" class="small-box-footer text-white">
-                                        More Info <i class="fa fa-arrow-circle-right"></i>
-                                    </a>
+                                <span class="info-box-text">Emails</span>
+                                <span class="info-box-number">
+                                    <h4 id="infoNo"><strong>{{$users}}</strong></h4>
                                 </span>
                             </div>
                         </div>

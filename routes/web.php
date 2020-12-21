@@ -49,6 +49,6 @@ Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'v
 Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
 Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
 //Cards
-Route::get('cards',[App\Http\Controllers\CardController::class,'index'])->name('cards');
+Route::get('project/{project}/{card}',[App\Http\Controllers\CardController::class,'index'])->name('cards');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 @section('title','WhatsApp')
 @section('content')
     <div class="content-wrapper">
