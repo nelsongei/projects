@@ -744,7 +744,7 @@
                         </a>
                     @endforeach
                     <span class="dropdown-item dropdown-footer">
-                        See All Notifications
+                        <a href="{{url('notifications')}}">See All Notifications</a>
                     </span>
                 </div>
             </li>
@@ -767,7 +767,7 @@
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                     <span class="dropdown-item dropdown-header">  {{Auth::user()->name.' '.auth::user()->lastName}}</span>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
+                    <a href="{{url('/profile')}}" class="dropdown-item">
                         <i class="fas fa-user mr-2"></i> Profile
                     </a>
                     <a href="#" class="dropdown-item">
@@ -875,9 +875,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{url('#')}}" class="nav-link">
+                                <a href="{{url('/profile')}}" class="nav-link">
                                     <p class="ml-3">
-                                        <i class="nav-icon fa fa-cogs"></i>
+                                        <i class="nav-icon fa fa-user-circle"></i>
                                         Profile
                                     </p>
                                 </a>

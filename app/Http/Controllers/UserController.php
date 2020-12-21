@@ -183,4 +183,14 @@ class UserController extends Controller
         }
         return redirect()->back();
     }
+    public function allNotifications(){
+        return view('admin.notification');
+    }
+    public function updatePassword(Request $request){
+        $validatePassword = $request->validate([
+           'oldPass'=>'required|min:6',
+           'password'=>'required|string|min:6',
+           'password_confirmation'=>'required| same:password'
+        ]);
+    }
 }
