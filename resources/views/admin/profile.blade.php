@@ -30,8 +30,8 @@
                         <div class="card card-outline card-info">
                             <div class="card-body box-profile">
                                 <div class="text-center">
-                                    @if(!empty($user['image']))
-                                        <img src="{{asset('')}}storage/{{$user->image}}" class="img-rounded profile-user-img img-circle" alt="user">
+                                    @if(empty($user['image']))
+                                        <img src="{{asset('')}}storage/{{Auth::user()->image}}" class="img-rounded profile-user-img img-circle" alt="user">
                                     @else
                                         <img src="{{asset('resources/settings/admin.png')}}" class="img-circle profile-user-img" alt="user">
                                     @endif
@@ -86,10 +86,19 @@
                                     <div class="tab-content" id="custom-tabs-one-tabContent">
                                         <div class="tab-pane fade show active" id="updatePassword" role="tabpanel" aria-labelledby="custom-password-tab">
                                             <div class="card card-white">
+                                                @if(count($errors)>0)
+                                                    @foreach($errors->all() as $error)
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                            {{$error}}
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
                                                 <div class="col-md-12">
-                                                    <form method="post" class="form-horizontal" action="{{url('/posy')}}">
+                                                    <form method="post" class="form-horizontal" action="{{url('/user/updatePassword')}}">
                                                         @csrf
-                                                        <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                                         <div class="form-group">
                                                             <label class="col-form-label" for="oldPass">Old Password</label>
                                                             <input type="password" name="oldPass" id="oldPass" class="form-control" required>
@@ -114,12 +123,16 @@
                                         <div class="tab-pane fade show" id="updateImage" role="tabpanel" aria-labelledby="custom-image-tab">
                                             <div class="card card-white">
                                                 <div class="col-md-12">
-                                                    <form method="post" class="form-horizontal" action="{{url('/posy')}}">
+                                                    <form method="post" class="form-horizontal" action="{{url('/user/updateProfile')}}" enctype="multipart/form-data">
                                                         @csrf
-                                                        <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                                         <div class="form-group">
-                                                            <label class="col-form-label" for="name">Profile Picture</label>
-                                                            <input type="file" name="name" id="name" class="form-control">
+                                                            <label class="col-form-label" for="image">Profile Picture</label>
+                                                            <input type="file" name="image" id="image" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-success btn-sm">
+                                                                Update
+                                                            </button>
                                                         </div>
                                                     </form>
                                                 </div>

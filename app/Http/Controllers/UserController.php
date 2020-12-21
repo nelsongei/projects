@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -136,20 +137,33 @@ class UserController extends Controller
         }
         return redirect()->back();
     }
+    //Update Profile Picture
     public function updateProfilePicture(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validator = Validator::make($request->all(),[
-            'img_file'=>'required |image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image'=>'required |image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         if ($validator->fails()){
             toast('Image is required or input an image');
             return redirect()->back();
         }
         $userId = Auth::user()->id;
-        $url = request('img_file')->store('users','public');
+        $url = request('image')->store('users','public');
         $update = User::where('id',$userId)
-                    ->update(['img_file'=>$url]);
-        if ($update->success()){
+                    ->update(['image'=>$url]);
+        if ($update){
+            //Notify
+            $users = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' Has Updated Profile Picture'
+            ];
+            $users->notify(new UserNotification($details));
+            //activity
+            $activity = 'Updated profile picture';
+            $activityLog = new ActivityLog();
+            $activityLog->user_id = $userId;
+            $activityLog->activity = $activity;
+            $activityLog->save();
             toast('Profile picture has been updated','success','top-right');
         }
         else{
@@ -186,11 +200,43 @@ class UserController extends Controller
     public function allNotifications(){
         return view('admin.notification');
     }
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $validatePassword = $request->validate([
            'oldPass'=>'required|min:6',
            'password'=>'required|string|min:6',
-           'password_confirmation'=>'required| same:password'
+           'password_confirmation'=>'required|same:password'
+        ],[
+            'oldPass.required'=>'Old Password is required',
+            'oldPass.min'=>'The Old password needs to have a minimum of 6 characters',
+            'password.required'=>'New Password is required',
+            'password.min'=>'The New password needs to have a minimum of 6 characters',
+            'password_confirmation.same' => 'Password confirmation did not match.'
         ]);
+        $currentPassword = Auth::user()->password;
+        if (Hash::check($request->input('oldPass'),$currentPassword)){
+            $user_id = Auth::user()->id;
+            $obj_user = User::find($user_id);
+            $obj_user->password = Hash::make($request->input('password'));
+            $obj_user->save();
+            //Activity
+            $activity = 'Password has been updated';
+            $activityLog = new ActivityLog();
+            $activityLog->user_id = $user_id;
+            $activityLog->activity = $activity;
+            $activityLog->save();
+
+            //Notify
+            $users = User::first();
+            $details = [
+                'data'=>Auth::user()->name.' Has Changed Password'
+            ];
+            $users->notify(new UserNotification($details));
+            toast('Password has been updated','success','top-right');
+        }
+        else{
+            toast('Failed to update password','warning','top-right');
+            }
+        return redirect()->back();
     }
 }

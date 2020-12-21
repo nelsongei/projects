@@ -761,7 +761,7 @@
                        </strong>
                      </span>
                     @else
-                        <img src="{{Auth::user()->image}}" width="30px" height="30px" class="img-circle elevation-1" alt="User Image" style="margin-top:-4px; ">
+                        <img src="{{asset('')}}storage/{{Auth::user()->image}}" width="30px" height="30px" class="img-circle elevation-1" alt="User Image" style="margin-top:-4px; ">
                     @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">

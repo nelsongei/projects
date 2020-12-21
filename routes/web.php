@@ -33,7 +33,8 @@ Route::get('/user/delete/{user}',[App\Http\Controllers\UserController::class,'de
 Route::get('/userRead',[App\Http\Controllers\UserController::class,'userActivity'])->name('userRead');
 Route::get('/user/clearLogs/{user}',[App\Http\Controllers\UserController::class,'clearAdminLog'])->name('/user/clearLogs');
 Route::get('/notifications',[App\Http\Controllers\UserController::class,'allNotifications'])->name('/notification');
-
+Route::post('user/updatePassword',[App\Http\Controllers\UserController::class,'updatePassword'])->name('/user/updatePassword');
+Route::post('/user/updateProfile',[App\Http\Controllers\UserController::class,'updateProfilePicture'])->name('user/updateProfile');
 //
 Route::get('/mails',[App\Http\Controllers\EmailController::class,'index'])->name('mails');
 Route::post('/mail/send',[App\Http\Controllers\EmailController::class,'sendEmail'])->name('/mail/send');
