@@ -7,5 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-This is a web application more than just CRM - currently working on it
+This is a web application more than just CRM - currently working on it. 
+Front end is a different thing
 
