@@ -69,6 +69,11 @@
                                     <i class="fa fa-phone text-success"></i>
                                     {{$user->phone}}
                                 </p>
+                                <strong>Projects:</strong>
+                                <p class="text-muted">
+                                    <i class="fa fa-project-diagram text-warning"></i>
+                                    {{$projects}}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -89,7 +94,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a href="#updatePassword" class="nav-link text-warning" id="custom-password-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
-                                                Update Password
+                                                Projects
                                             </a>
                                         </li>
                                     </ul>
@@ -178,9 +183,35 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade show" id="updatePassword" role="tabpanel" aria-labelledby="custom-password-tab">
-                                            <div class="card card-white">
-                                                <div class="col-md-12">
-
+                                            <div class="col-md-12">
+                                                <div class="card card-white">
+                                                    <div class="card-body overflow-auto">
+                                                        <div class="tab-pane" id="timeline">
+                                                            <div class="timeline timeline-inverse">
+                                                                @foreach ($user->project as $projects)
+                                                                    <div>
+                                                                        <i class="fa fa-project-diagram fa-fw bg-success"></i>
+                                                                        <div class="timeline-item bg-white">
+                                                                            <h3 class="timeline-header">
+                                                                                <span class="text-primary">{{$projects->created_at->diffForHumans()}}</span>
+                                                                            </h3>
+                                                                            <div class="timeline-body">
+                                                                                <div class="row">
+                                                                                    <dt class="col-sm-3">Projects: </dt>
+                                                                                    <dd class="col-sm-3">
+                                                                                        {{$projects->project}}
+                                                                                    </dd>
+                                                                                    <dd class="col-sm-6">
+                                                                                        {{$projects->description}}
+                                                                                    </dd>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -14,6 +14,8 @@ class SampleChart extends BaseChart
      * Handles the HTTP request for the given chart.
      * It must always return an instance of Chartisan
      * and never a string or an array.
+     * @param Request $request
+     * @return Chartisan
      */
     public function handler(Request $request): Chartisan
     {

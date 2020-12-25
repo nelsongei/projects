@@ -32,8 +32,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+                        @foreach($project->card as $cards)
+{{--                            {{$cards->name}}--}}
+                            @endforeach
                         <div id="app">
-                            <example-component></example-component>
+                            <example-component :project="{{$project}}"></example-component>
                         </div>
                     </div>
                 </div>

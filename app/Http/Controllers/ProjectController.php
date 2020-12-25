@@ -2,123 +2,108 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ActivityLog;
 use App\Models\Project;
-use App\Models\User;
-use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $users = User::all();
-        $projects = Project::orderBy('id','asc')->simplePaginate(10);
-        return view('project.index',compact('users','projects'));
+        //
+        return Project::orderBy('created_at','desc')->get();
     }
-    //Add Project
-    public function addProject(): \Illuminate\Http\RedirectResponse
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        $validator = Validator::make(request()->all(),[
-            'user_id'=>'required',
-            'project'=>'required',
-            'description'=>'required'
-        ]);
-        if ($validator->fails()){
-            toast('All Fields are Required','warning','top-right');
-            return redirect()->back();
-        }
-        $project = new Project();
-        $project->user_id = request('user_id');
-        $project->project = request('project');
-        $project->description = request('description');
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Project
+     */
+    public function store(Request $request): Project
+    {
+        //
+        $project = new Project;
+        $project->user_id = $request->project['user_id'];
+        $project->project = $request->project['project'];
+        $project->description = $request->project['description'];
         $project->save();
 
-        $projectId = $project->id;
-        if ($projectId){
-            //Activity
-            $userId = Auth::user()->id;
-            $activity = 'Added a project';
-            $activityLog = new ActivityLog();
-            $activityLog->user_id = $userId;
-            $activityLog->activity = $activity;
-            $activityLog->save();
-            //Notification
-            $users = User::first();
-            $details = [
-                'data'=>Auth::user()->name.' Has Added a project'
-            ];
-            $users->notify(new UserNotification($details));
-            toast('Project added','success','top-right');
-        }
-        else{
-            toast('Error! something went wrong','warning','top-right');
-        }
-        return redirect()->back();
+        return $project;
     }
-    //View Project
-    public function viewProject(Project $project){
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Project $project
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     */
+    public function show(Project $project)
+    {
+        //
         return view('project.view',compact('project'));
     }
-    //Edit Project
-    public function editProject(): \Illuminate\Http\RedirectResponse
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $id = request()->input('id');
-        $validator = Validator::make(request()->all(),[
-            'user_id'=>'required',
-            'project'=>'required',
-            'description'=>'required'
-        ]);
-        if($validator->fails()){
-            toast('All fields are required','warning','top-right');
-            return redirect()->back();
-        }
-        $project = Project::findOrFail($id);
-        $project->user_id = request('user_id');
-        $project->project = request('project');
-        $project->description = request('description');
-        $project->save();
-
-        $projectId = $project->id;
-        if ($projectId){
-            //Activity
-            $userId = Auth::user()->id;
-            $activity  = 'Updated Project';
-
-            $activityLog = new ActivityLog();
-            $activityLog->user_id = $userId;
-            $activityLog->activity = $activity;
-            $activityLog->save();
-            //Notification
-            $users = User::first();
-            $details = [
-                'data'=>Auth::user()->name.' has edited a project'
-            ];
-            $users->notify(new UserNotification($details));
-            toast('Project Updated successfully','success','top-right');
-        }
-        else{
-            toast('Failed to delete project','warning','top-right');
-            }
-        return redirect()->back();
+        //
     }
-    public function deleteProject($project): \Illuminate\Http\RedirectResponse
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return string
+     */
+    public function update(Request $request, $id)
     {
-        $delete = Project::find($project)->delete();
-        if ($delete){
-            $users = User::first();
-            $details = [
-                'data'=>Auth()->user()->name.' Deleted Project'
-            ];
-            $users->notify(new UserNotification($details));
-            toast('Project Deleted Successfully','success','top-right');
+        //
+        $project = Project::find($id);
+        if ($project){
+            $project->user_id = $request->project['user_id'];
+            $project->project = $request->project['project'];
+            $project->description = $request->project['description'];
+            $project->save();
+            return $project;
         }
-        else{
-            toast('Fail to delete','warning','top-right');
-            }
-        return redirect()->back();
+        return "Project Not Found";
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return string
+     */
+    public function destroy($id)
+    {
+        //
+        $project = Project::find($id);
+        if ($project){
+            $project->delete();
+            return "Project Deleted successfully";
+        }
+        return "Project Not Found";
     }
 }

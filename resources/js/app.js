@@ -1,3 +1,22 @@
+// require ('./bootstrap')
+//
+// import Vue from 'vue'
+// import App from './vue/app'
+// import {library} from '@fortawesome/fontawesome-svg-core'
+// import {faPlusSquare,faTrash} from "@fortawesome/free-solid-svg-icons";
+// import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+// library.add(faPlusSquare,faTrash)
+// Vue.component('font-awesome-icon',FontAwesomeIcon)
+//
+// const app = new Vue({
+//     el: "#app",
+//     components:{
+//         App
+//     }
+// })
+
+
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,6 +26,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+import VueToast from 'vue-toast-notification';
+
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+Vue.use(VueToast)
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,6 +45,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('project-component', require('./components/ProjectComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -7,9 +7,9 @@
                 </button>
                 <div class="row mt-3 mr-2">
                     <div class="col-md-3">
-                        <div class="card p-2" v-for="card in cards" :key="card.id">
+                        <div class="card p-2" v-for="(card,index) in project.card">
                             <div class="card-header bg-white">
-                                <h4 class="card-title">{{card.name}}</h4>
+                                <h3 class="card-title">{{card.name}}</h3>
                                 <button type="button" class="btn btn-sm float-sm-right" data-toggle="modal" data-target="#addTask">
                                     <span aria-hidden="true">
                                         <i class="fa fa-plus"></i>
@@ -55,16 +55,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="p-2 card card-success">
-                            <h3>Developing</h3>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="p-2 card card-success">
-                            <h3>Done</h3>
                         </div>
                     </div>
                 </div>
@@ -114,13 +104,11 @@
         components: {
             draggable,
             },
+        props:[
+          'project'
+        ],
         data () {
-            return {
-                cards: [],
-                tasks: [],
-                cardId:'',
-                taskId:'',
-                }
+
         },
         created() {
             this.getCards();

@@ -29,9 +29,16 @@
                             </div>
                             @foreach(Auth::user()->notifications as $notification)
                                 <div>
-                                    <i class="fas fa-envelope bg-blue"></i>
+                                    <i class="fas fa-bell bg-primary"></i>
                                     <div class="timeline-item">
-                                        <span class="time"><i class="fas fa-clock"></i> {{$notification->created_at->diffForHumans()}}</span>
+                                        <div class="timeline-header">
+                                            <span class="time"><i class="fas fa-clock"></i> {{$notification->created_at->diffForHumans()}}</span>
+                                        </div>
+                                        <span class="time">
+                                            <a href="{{url('#')}}">
+                                                <ion-icon name="close-outline" size="large" class="text-warning"></ion-icon>
+                                            </a>
+                                        </span>
                                         <div class="timeline-body">
                                             {{$notification->data['data']}}
                                         </div>

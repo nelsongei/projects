@@ -7,10 +7,12 @@
     <link rel="shortcut icon" href="{{asset('resources/settings/fav-icon.PNG')}}" type="image/png">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- iCheck -->
@@ -132,7 +134,7 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar" style="background-image:url('https://127.0.0.1/MyProject/public/assets/images/shots/10.jpg'); background-repeat: repeat-y;">
+    <aside class="main-sidebar" >
         <!-- Brand Logo -->
         <a href="{{url('/home')}}" class="brand-link" style=" padding-top: 1.4rem !important; padding-bottom: 1.25rem !important; background-color:rgb(75, 71, 109) !important;">
 
@@ -247,9 +249,9 @@
 @yield('content')
 
 
-    <audio style="display: none;" id="notificationSound">
-        <source src="{{asset('images/notification.mp3')}}" type="audio/mpeg">
-    </audio>
+{{--    <audio style="display: none;" id="notificationSound">--}}
+{{--        <source src="{{asset('images/notification.mp3')}}" type="audio/mpeg">--}}
+{{--    </audio>--}}
     <!--help modal-->
     <!-- /.content-wrapper -->
     <footer class="main-footer">
@@ -266,20 +268,19 @@
 </div>
 <!-- ./wrapper -->
 
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+{{--<script>--}}
+{{--    $(function () {--}}
+{{--        $('[data-toggle="tooltip"]').tooltip()--}}
+{{--    });--}}
+
+{{--    $.widget.bridge('uibutton', $.ui.button)--}}
+{{--</script>--}}
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('assets/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    });
-
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
 <!-- DataTables -->
 <script src="{{asset('assets/dashboard/plugins/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('assets/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>

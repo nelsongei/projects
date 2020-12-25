@@ -45,11 +45,11 @@ Route::get('/prices',[App\Http\Controllers\FlightController::class,'getPrices'])
 Route::get('/whatsapp',[App\Http\Controllers\WhatsappController::class,'index'])->name('whatsapp');
 Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'send'])->name('whatsapp/send');
 //Projects
-Route::get('projects',[App\Http\Controllers\ProjectController::class,'index'])->name('projects');
-Route::post('/project/add',[App\Http\Controllers\ProjectController::class,'addProject'])->name('project/add');
-Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'viewProject'])->name('viewProject');
-Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
-Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
+Route::get('projects',[App\Http\Controllers\HomeController::class,'project'])->name('projects');
+//Route::post('/project/add',[App\Http\Controllers\ProjectController::class,'addProject'])->name('project/add');
+//Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'viewProject'])->name('viewProject');
+//Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
+//Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
 //Cards
 Route::get('project/{project}/{card}',[App\Http\Controllers\CardController::class,'index'])->name('cards');
 //Logout

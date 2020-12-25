@@ -22,7 +22,8 @@ class UserController extends Controller
     }
     //View User
     public function viewUser(User $user){
-        return view('admin.view',compact('user'));
+        $projects = count($user->project);
+        return view('admin.view',compact('user','projects'));
     }
     //Profile
     public function profile(User $user){
