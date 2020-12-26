@@ -277,7 +277,7 @@
 {{--    $.widget.bridge('uibutton', $.ui.button)--}}
 {{--</script>--}}
 <!-- jQuery UI 1.11.4 -->
-<script src="{{asset('assets/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+{{--<script src="{{asset('assets/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>--}}
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -386,27 +386,27 @@
 
     let bounceEaseOut = makeEaseOut(bounce);
 
-    window.onload = function() {
-        $("#brick").fadeIn(3500);
-        animate({
-            duration: 3000,
-            timing: bounceEaseOut,
-            draw: function(progress) {
-                brick.style.left = progress * 50 + '%';
-            }
-        });
-
-        setInterval(Incrementerr,20);
-        var x=0;
-        function Incrementerr(){
-            x=x+1;
-            if(x<=document.getElementById('incrementHolder').value){
-                document.getElementById('increment').innerHTML=x;
-            }
-
-
-        }
-    };
+    // window.onload = function() {
+    //     $("#brick").fadeIn(3500);
+    //     animate({
+    //         duration: 3000,
+    //         timing: bounceEaseOut,
+    //         draw: function(progress) {
+    //             brick.style.left = progress * 50 + '%';
+    //         }
+    //     });
+    //
+    //     setInterval(Incrementerr,20);
+    //     var x=0;
+    //     function Incrementerr(){
+    //         x=x+1;
+    //         if(x<=document.getElementById('incrementHolder').value){
+    //             document.getElementById('increment').innerHTML=x;
+    //         }
+    //
+    //
+    //     }
+    // };
 </script>
 
 

@@ -24,7 +24,7 @@
                                 </a>
                             </td>
                             <td>
-                                {{project.project}}
+                                {{project.user.name+' '+project.user.lastName}}
                             </td>
                             <td>{{project.description}}</td>
                             <td>
@@ -69,17 +69,17 @@
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label for="project" class="col-form-label">Project Name</label>
-                                            <input type="text" name="project" class="form-control" id="project">
+                                            <input type="text" name="project" class="form-control" id="project" v-model="project">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="user_id" class="col-form-label">User</label>
-                                            <select class="form-control" name="user_id" id="user_id">
+                                            <select class="form-control" name="user_id" id="user_id" v-model="user_id">
                                                 <option v-for="user in users" :value="user.id">{{user.name+' '+user.lastName}}</option>
                                             </select>
                                         </div>
                                         <div class="col-md-12 form-group">
                                             <label for="description" class="col-form-label">Description</label>
-                                            <textarea id="description" name="description" class="form-control" rows="2"></textarea>
+                                            <textarea id="description" name="description" class="form-control" rows="2" v-model="description"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -107,11 +107,9 @@
         data(){
             return {
                 projects: [],
-                project:{
-                    project:'',
-                    user_id:'',
-                    description:'',
-                }
+                project: "",
+                user_id:"",
+                description: "",
             }
         },
         methods: {
@@ -132,16 +130,34 @@
                 $('#addProject').modal('show')
             },
             submitProject(){
-                // if(this.project===''||this.user_id===''||this.description===''){
-                //     Vue.$toast.info('All Fields Are Required',{position:'top-right'})
-                // }
-                axios.post('api/project/store',{
-                    project:[
-                        this.project,
-                        this.user_id,
-                        this.description,
-                    ]
-                })
+                if(this.project===''||this.user_id===''||this.description===''){
+                    Vue.$toast.info('All Fields Are required',{position:'top-right'})
+                }
+                else{
+                    fetch('http://127.0.0.1/MyProject/public/api/project/store',{
+                        method:'post',
+                        body:JSON.stringify({
+                            "project":this.project,"user_id":this.user_id,"description":this.description
+                        }),
+                        headers:{
+                            'Accept':'application/json',
+                            'Content-Type':'application/json',
+                            'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                        }
+                    })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        if(response.errors){
+                            this.anyError = true;
+                            this.errors = response.errors;
+                        }
+                        if (response.status === 0){
+                            this.anyError=false;
+                            $('#addProject').modal('hide')
+                            Vue.$toast.success('Projet added successfully',{position:'top-right'})
+                        }
+                    })
+                }
             },
         },
         created(){

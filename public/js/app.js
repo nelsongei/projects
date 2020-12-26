@@ -2151,11 +2151,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       projects: [],
-      project: {
-        project: '',
-        user_id: '',
-        description: ''
-      }
+      project: "",
+      user_id: "",
+      description: ""
     };
   },
   methods: {
@@ -2176,12 +2174,42 @@ __webpack_require__.r(__webpack_exports__);
       $('#addProject').modal('show');
     },
     submitProject: function submitProject() {
-      // if(this.project===''||this.user_id===''||this.description===''){
-      //     Vue.$toast.info('All Fields Are Required',{position:'top-right'})
-      // }
-      axios.post('api/project/store', {
-        project: [this.project, this.user_id, this.description]
-      });
+      var _this2 = this;
+
+      if (this.project === '' || this.user_id === '' || this.description === '') {
+        Vue.$toast.info('All Fields Are required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch('http://127.0.0.1/MyProject/public/api/project/store', {
+          method: 'post',
+          body: JSON.stringify({
+            "project": this.project,
+            "user_id": this.user_id,
+            "description": this.description
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.errors) {
+            _this2.anyError = true;
+            _this2.errors = response.errors;
+          }
+
+          if (response.status === 0) {
+            _this2.anyError = false;
+            $('#addProject').modal('hide');
+            Vue.$toast.success('Projet added successfully', {
+              position: 'top-right'
+            });
+          }
+        });
+      }
     }
   },
   created: function created() {
@@ -42445,7 +42473,7 @@ var render = function() {
                 _c("td", [
                   _vm._v(
                     "\n                            " +
-                      _vm._s(project.project) +
+                      _vm._s(project.user.name + " " + project.user.lastName) +
                       "\n                        "
                   )
                 ]),
@@ -42508,7 +42536,42 @@ var render = function() {
                   [
                     _c("div", { staticClass: "modal-body" }, [
                       _c("div", { staticClass: "row" }, [
-                        _vm._m(6),
+                        _c("div", { staticClass: "col-md-6 form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: { for: "project" }
+                            },
+                            [_vm._v("Project Name")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.project,
+                                expression: "project"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              name: "project",
+                              id: "project"
+                            },
+                            domProps: { value: _vm.project },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.project = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-6 form-group" }, [
                           _c(
@@ -42523,8 +42586,32 @@ var render = function() {
                           _c(
                             "select",
                             {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.user_id,
+                                  expression: "user_id"
+                                }
+                              ],
                               staticClass: "form-control",
-                              attrs: { name: "user_id", id: "user_id" }
+                              attrs: { name: "user_id", id: "user_id" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.user_id = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
                             },
                             _vm._l(_vm.users, function(user) {
                               return _c(
@@ -42541,11 +42628,46 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(7)
+                        _c("div", { staticClass: "col-md-12 form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: { for: "description" }
+                            },
+                            [_vm._v("Description")]
+                          ),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.description,
+                                expression: "description"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "description",
+                              name: "description",
+                              rows: "2"
+                            },
+                            domProps: { value: _vm.description },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.description = $event.target.value
+                              }
+                            }
+                          })
+                        ])
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(8)
+                    _vm._m(6)
                   ]
                 )
               ])
@@ -42647,40 +42769,6 @@ var staticRenderFns = [
           )
         ]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 form-group" }, [
-      _c(
-        "label",
-        { staticClass: "col-form-label", attrs: { for: "project" } },
-        [_vm._v("Project Name")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", name: "project", id: "project" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 form-group" }, [
-      _c(
-        "label",
-        { staticClass: "col-form-label", attrs: { for: "description" } },
-        [_vm._v("Description")]
-      ),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: { id: "description", name: "description", rows: "2" }
-      })
     ])
   },
   function() {

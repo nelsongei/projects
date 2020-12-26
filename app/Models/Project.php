@@ -12,6 +12,9 @@ class Project extends Model
 //    protected $casts =[
 //        'user_id'=>'array'
 //    ];
+    protected $fillable =[
+        'user_id','project','description'
+    ];
     public function user(){
         return $this->belongsTo(User::class);
     }

@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        return Project::orderBy('created_at','desc')->get();
+        return Project::orderBy('created_at','desc')->with('user')->get();
     }
 
     /**
@@ -32,18 +32,23 @@ class ProjectController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Project
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request): Project
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         //
-        $project = new Project;
-        $project->user_id = $request->project['user_id'];
-        $project->project = $request->project['project'];
-        $project->description = $request->project['description'];
-        $project->save();
-
-        return $project;
+        $data = request()->validate([
+            'project'=>'required',
+            'user_id'=>'required',
+            'description'=>'required'
+        ]);
+        $store = Project::create($data);
+        if ($store){
+            return response()->json(['status'=>0]);
+        }
+        else{
+            return response()->json(['status'=>1]);
+        }
     }
 
     /**
