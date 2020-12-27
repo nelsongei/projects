@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div id="app">
-                            <project-component></project-component>
+                            <project-component :users="{{$users}}"></project-component>
                         </div>
                     </div>
                 </div>

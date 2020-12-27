@@ -2045,6 +2045,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2146,6 +2148,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users'],
   data: function data() {
@@ -2153,11 +2156,18 @@ __webpack_require__.r(__webpack_exports__);
       projects: [],
       project: "",
       user_id: "",
-      description: ""
+      description: "",
+      projectId: "",
+      edit: false,
+      anyError: false,
+      errors: ''
     };
   },
+  created: function created() {
+    this.getProjects();
+  },
   methods: {
-    getProject: function getProject() {
+    getProjects: function getProjects() {
       var _this = this;
 
       axios.get('http://127.0.0.1/MyProject/public/api/projects').then(function (response) {
@@ -2173,47 +2183,89 @@ __webpack_require__.r(__webpack_exports__);
       this.description = '';
       $('#addProject').modal('show');
     },
+    editProject: function editProject(project) {
+      this.projectId = project.id;
+      this.project = project.project;
+      this.user_id = project.user;
+      this.description = project.description;
+      this.edit = true;
+      $('#addProject').modal('show');
+    },
     submitProject: function submitProject() {
       var _this2 = this;
 
       if (this.project === '' || this.user_id === '' || this.description === '') {
-        Vue.$toast.info('All Fields Are required', {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('All Fields Are required', {
           position: 'top-right'
         });
       } else {
-        fetch('http://127.0.0.1/MyProject/public/api/project/store', {
-          method: 'post',
-          body: JSON.stringify({
-            "project": this.project,
-            "user_id": this.user_id,
-            "description": this.description
-          }),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-          }
-        }).then(function (response) {
-          return response.json();
-        }).then(function (response) {
-          if (response.errors) {
-            _this2.anyError = true;
-            _this2.errors = response.errors;
-          }
+        if (this.edit === false) {
+          fetch('http://127.0.0.1/MyProject/public/api/project/store', {
+            method: 'post',
+            body: JSON.stringify({
+              "project": this.project,
+              "user_id": this.user_id,
+              "description": this.description
+            }),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+            }
+          }).then(function (response) {
+            return response.json();
+          }).then(function (response) {
+            if (response.errors) {
+              _this2.anyError = true;
+              _this2.errors = response.errors;
+            }
 
-          if (response.status === 0) {
-            _this2.anyError = false;
-            $('#addProject').modal('hide');
-            Vue.$toast.success('Projet added successfully', {
-              position: 'top-right'
-            });
-          }
-        });
+            if (response.status === 0) {
+              _this2.anyError = false;
+              $('#addProject').modal('hide');
+
+              _this2.getProjects();
+
+              vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Projet added successfully', {
+                position: 'top-right'
+              });
+            }
+          });
+        } else {
+          fetch("http://127.0.0.1/MyProject/public/api/project/".concat(this.projectId), {
+            method: 'patch',
+            body: JSON.stringify({
+              "project": this.project,
+              "user_id": this.user_id,
+              "description": this.description
+            }),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+            }
+          }).then(function (response) {
+            return response.json();
+          }).then(function (response) {
+            if (response.errors) {
+              _this2.anyError = true;
+              _this2.errors = response.errors;
+            }
+
+            if (response.status === 0) {
+              _this2.anyError = false;
+              $('#addProject').modal('hide');
+
+              _this2.getProjects();
+
+              vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Project updated succesfully', {
+                position: 'top-right'
+              });
+            }
+          });
+        }
       }
     }
-  },
-  created: function created() {
-    this.getProject();
   }
 });
 
@@ -42495,9 +42547,26 @@ var render = function() {
                     _vm._v(" "),
                     _vm._m(2, true),
                     _vm._v(" "),
-                    _vm._m(3, true),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item text-success",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.editProject(project)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-edit" }),
+                        _vm._v(
+                          "\n                                    Edit Project\n                                "
+                        )
+                      ]
+                    ),
                     _vm._v(" "),
-                    _vm._m(4, true)
+                    _vm._m(3, true)
                   ])
                 ])
               ])
@@ -42521,7 +42590,7 @@ var render = function() {
           [
             _c("div", { staticClass: "modal-dialog modal-md" }, [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
                 _c(
                   "form",
@@ -42667,7 +42736,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(6)
+                    _vm._m(5)
                   ]
                 )
               ])
@@ -42721,17 +42790,6 @@ var staticRenderFns = [
       _c("i", { staticClass: "fa fa-user-plus" }),
       _vm._v(
         "\n                                    Invite User\n                                "
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: " dropdown-item text-success" }, [
-      _c("i", { staticClass: "fa fa-edit" }),
-      _vm._v(
-        "\n                                    Edit Project\n                                "
       )
     ])
   },
@@ -42794,7 +42852,7 @@ var staticRenderFns = [
         { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
         [
           _vm._v(
-            "\n                                    Add Project\n                                "
+            "\n                                    Save Project\n                                "
           )
         ]
       )

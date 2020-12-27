@@ -47,7 +47,7 @@ Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'sen
 //Projects
 Route::get('/projects',[App\Http\Controllers\HomeController::class,'project'])->name('projects');
 //Route::post('/projects',[App\Http\Controllers\ProjectController::class,'store']);
-//Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'viewProject'])->name('viewProject');
+Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'show']);
 //Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
 //Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
 //Cards

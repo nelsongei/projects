@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -36,13 +37,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        //
-        $data = request()->validate([
-            'project'=>'required',
-            'user_id'=>'required',
-            'description'=>'required'
-        ]);
-        $store = Project::create($data);
+//        $store = Project::create($data);
+        $store = new Project;
+        $store->user_id = $request->user_id;
+        $store->project = $request->project;
+        $store->description = $request->description;
+        $store->save();
         if ($store){
             return response()->json(['status'=>0]);
         }
@@ -55,12 +55,13 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param Project $project
+     * @param Card $card
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Project $project,Card $card)
     {
         //
-        return view('project.view',compact('project'));
+        return view('project.view',compact('project','card'));
     }
 
     /**

@@ -89,6 +89,7 @@ class HomeController extends Controller
         return view('home',compact('users','projects','tasks','emails','emailCount','project','usersCount'));
     }
     public function project(){
-        return view('project.index');
+        $users = User::all();
+        return view('project.index',compact('users'));
     }
 }

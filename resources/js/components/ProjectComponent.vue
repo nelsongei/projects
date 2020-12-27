@@ -42,10 +42,10 @@
                                         <i class="fa fa-user-plus"></i>
                                         Invite User
                                     </li>
-                                    <li class=" dropdown-item text-success">
+                                    <a class="dropdown-item text-success" @click="editProject(project)" href="#">
                                         <i class="fa fa-edit"></i>
                                         Edit Project
-                                    </li>
+                                    </a>
                                     <li class=" dropdown-item text-danger">
                                         <i class="fa fa-trash"></i>
                                         Delete Project
@@ -88,7 +88,7 @@
                                         Close
                                     </button>
                                     <button type="submit" class="btn btn-primary btn-sm">
-                                        Add Project
+                                        Save Project
                                     </button>
                                 </div>
                             </form>
@@ -100,6 +100,8 @@
     </div>
 </template>
 <script>
+    import Vue from "vue";
+
     export default {
         props:[
             'users'
@@ -110,10 +112,17 @@
                 project: "",
                 user_id:"",
                 description: "",
+                projectId:"",
+                edit:false,
+                anyError:false,
+                errors:''
             }
         },
+        created(){
+            this.getProjects();
+        },
         methods: {
-            getProject(){
+            getProjects(){
                 axios.get('http://127.0.0.1/MyProject/public/api/projects')
                 .then(response =>{
                     this.projects = response.data
@@ -129,39 +138,73 @@
                 this.description = '';
                 $('#addProject').modal('show')
             },
+            editProject(project){
+                this.projectId = project.id;
+                this.project = project.project;
+                this.user_id = project.user;
+                this.description = project.description;
+                this.edit = true;
+                $('#addProject').modal('show')
+            },
             submitProject(){
                 if(this.project===''||this.user_id===''||this.description===''){
-                    Vue.$toast.info('All Fields Are required',{position:'top-right'})
+                    Vue.$toast.warning('All Fields Are required',{position:'top-right'})
                 }
                 else{
-                    fetch('http://127.0.0.1/MyProject/public/api/project/store',{
-                        method:'post',
-                        body:JSON.stringify({
-                            "project":this.project,"user_id":this.user_id,"description":this.description
-                        }),
-                        headers:{
-                            'Accept':'application/json',
-                            'Content-Type':'application/json',
-                            'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
-                        }
-                    })
-                    .then(response=>response.json())
-                    .then(response=>{
-                        if(response.errors){
-                            this.anyError = true;
-                            this.errors = response.errors;
-                        }
-                        if (response.status === 0){
-                            this.anyError=false;
-                            $('#addProject').modal('hide')
-                            Vue.$toast.success('Projet added successfully',{position:'top-right'})
-                        }
-                    })
+                    if(this.edit === false){
+                        fetch('http://127.0.0.1/MyProject/public/api/project/store',{
+                            method:'post',
+                            body:JSON.stringify({
+                                "project":this.project,"user_id":this.user_id,"description":this.description
+                            }),
+                            headers:{
+                                'Accept':'application/json',
+                                'Content-Type':'application/json',
+                                'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                            }
+                        })
+                        .then(response=>response.json())
+                        .then(response=>{
+                            if(response.errors){
+                                this.anyError = true;
+                                this.errors = response.errors;
+                            }
+                            if (response.status === 0){
+                                this.anyError=false;
+                                $('#addProject').modal('hide')
+                                this.getProjects();
+                                Vue.$toast.success('Projet added successfully',{position:'top-right'})
+                            }
+                        })
+                    }
+                    else{
+                        fetch(`http://127.0.0.1/MyProject/public/api/project/${this.projectId}`,{
+                            method:'patch',
+                            body:JSON.stringify({
+                                "project":this.project,"user_id":this.user_id,"description":this.description
+                            }),
+                            headers:{
+                                'Accept':'application/json',
+                                'Content-Type':'application/json',
+                                'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                            }
+                        })
+                        .then(response=>response.json())
+                        .then(response=>{
+                            if(response.errors){
+                                this.anyError = true;
+                                this.errors = response.errors;
+                            }
+                            if(response.status ===0){
+                                this.anyError=false;
+                                $('#addProject').modal('hide')
+                                this.getProjects();
+                                Vue.$toast.success('Project updated succesfully',{position:'top-right'})
+                            }
+                        })
+                    }
                 }
             },
         },
-        created(){
-            this.getProject();
-        }
         }
 </script>
