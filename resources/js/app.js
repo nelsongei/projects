@@ -28,10 +28,12 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueToast from 'vue-toast-notification';
+import Popover from 'vue-js-popover'
 
 import 'vue-toast-notification/dist/theme-sugar.css';
 
 Vue.use(VueToast)
+Vue.use(Popover,{tooltip:true})
 
 /**
  * The following block of code may be used to automatically register your

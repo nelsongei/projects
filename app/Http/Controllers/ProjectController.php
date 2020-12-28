@@ -85,15 +85,20 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $project = Project::find($id);
-        if ($project){
-            $project->user_id = $request->project['user_id'];
-            $project->project = $request->project['project'];
-            $project->description = $request->project['description'];
-            $project->save();
-            return $project;
+        $project = Project::findOrFail($id);
+        $project->user_id = $request->user_id;
+        $project->project = $request->project;
+        $project->description = $request->description;
+        $project->push();
+        if($project){
+            return response()->json(['status'=>0]);
         }
-        return "Project Not Found";
+        else{
+            return response()->json(['status'=>1]);
+        }
+
+
+//
     }
 
     /**
@@ -105,11 +110,12 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
-        $project = Project::find($id);
+        $project = Project::find($id)->delete();
         if ($project){
-            $project->delete();
-            return "Project Deleted successfully";
+            return response()->json(['status'=>0]);
         }
-        return "Project Not Found";
+        else{
+            return response()->json(['status'=>1]);
+        }
     }
 }

@@ -17,7 +17,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(project, index) in projects">
-                            <td>{{project.id}}</td>
+                            <td>{{index +1}}</td>
                             <td>
                                 <a :href="'project/'+project.id">
                                     {{project.project}}
@@ -46,15 +46,26 @@
                                         <i class="fa fa-edit"></i>
                                         Edit Project
                                     </a>
-                                    <li class=" dropdown-item text-danger">
+                                    <a class=" dropdown-item text-danger" @click="destroy(project.id)">
                                         <i class="fa fa-trash"></i>
                                         Delete Project
-                                    </li>
+                                    </a>
                                 </ul>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li :class="[{disabled:!pagination.prev_page_url}]" class="page-item">
+                            <a class="page-link" @click="getStudents(pagination.prev_page_url)" href="#">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">{{pagination.current_page}} of {{pagination.last_page}}</a></li>
+                        <li :class="[{disabled: !pagination.next_page_url}]" class="page-item">
+                            <a class="page-link" @click="getStudents(pagination.next_page_url)" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
                 <div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-md">
                         <div class="modal-content">
@@ -115,7 +126,8 @@
                 projectId:"",
                 edit:false,
                 anyError:false,
-                errors:''
+                errors:'',
+                pagination:{}
             }
         },
         created(){
@@ -126,6 +138,12 @@
                 axios.get('http://127.0.0.1/MyProject/public/api/projects')
                 .then(response =>{
                     this.projects = response.data
+                    this.pagination={
+                        current_page:response.current_page,
+                        last_page:response.last_page,
+                        next_page_url:response.next_page_url,
+                        prev_page_url:response.prev_page_url
+                    };
                 })
                 .catch(error=>{
                     console.log(error)
@@ -179,7 +197,7 @@
                     }
                     else{
                         fetch(`http://127.0.0.1/MyProject/public/api/project/${this.projectId}`,{
-                            method:'patch',
+                            method:'put',
                             body:JSON.stringify({
                                 "project":this.project,"user_id":this.user_id,"description":this.description
                             }),
@@ -205,6 +223,26 @@
                     }
                 }
             },
+            destroy(id){
+                if(confirm('Are you sure')){
+                    fetch(`http://127.0.0.1/MyProject/public/api/project/${id}`,{
+                        method:'delete',
+                        headers:{
+                            'Accept':'application/json',
+                            'Content-Type':'application/json',
+                            'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                        }
+                    })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        console.log(response)
+                        if(response.status ===0){
+                            this.getProjects();
+                            Vue.$toast.success('Project Deleted',{position:'top-right'})
+                        }
+                    })
+                }
+            }
         },
         }
 </script>
