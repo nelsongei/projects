@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Card extends Model
 {
     use HasFactory;
+    public function project()
+    {
+        return $this->belongsTo(Project::class,'project_id');
+    }
 }

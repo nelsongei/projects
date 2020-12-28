@@ -19,8 +19,8 @@ class CreateTasksTable extends Migration
             $table->foreign('project_id')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
             $table->bigInteger('card_id')->unsigned();
             $table->foreign('card_id')->references('id')->on('cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->text('description');
+            $table->string('task_name')->nullable();
+            $table->text('task_description');
             $table->string('due_date')->nullable();
             $table->timestamps();
             $table->index('card_id');

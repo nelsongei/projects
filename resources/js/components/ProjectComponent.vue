@@ -38,7 +38,7 @@
                                             View Project
                                         </a>
                                     </li>
-                                    <li class=" dropdown-item text-primary">
+                                    <li class=" dropdown-item text-warning">
                                         <i class="fa fa-user-plus"></i>
                                         Invite User
                                     </li>
@@ -70,7 +70,10 @@
                     <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Create Project</h5>
+                                <h5 class="modal-title">
+                                    <i class="fa fa-pen"></i>
+                                    Project
+                                </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     &times;
                                 </button>
@@ -85,6 +88,7 @@
                                         <div class="col-md-6 form-group">
                                             <label for="user_id" class="col-form-label">User</label>
                                             <select class="form-control" name="user_id" id="user_id" v-model="user_id">
+                                                <option disabled value="">Select User</option>
                                                 <option v-for="user in users" :value="user.id">{{user.name+' '+user.lastName}}</option>
                                             </select>
                                         </div>
@@ -191,7 +195,7 @@
                                 this.anyError=false;
                                 $('#addProject').modal('hide')
                                 this.getProjects();
-                                Vue.$toast.success('Projet added successfully',{position:'top-right'})
+                                Vue.$toast.success('Project added successfully',{position:'top-right'})
                             }
                         })
                     }
@@ -235,10 +239,9 @@
                     })
                     .then(response=>response.json())
                     .then(response=>{
-                        console.log(response)
                         if(response.status ===0){
                             this.getProjects();
-                            Vue.$toast.success('Project Deleted',{position:'top-right'})
+                            Vue.$toast.warning('Project Deleted Successfully',{position:'top-right'})
                         }
                     })
                 }

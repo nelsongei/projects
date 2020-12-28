@@ -1910,6 +1910,8 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -1968,6 +1970,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -1977,20 +2019,76 @@ __webpack_require__.r(__webpack_exports__);
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   props: ['project'],
-  data: function data() {},
+  data: function data() {
+    return {
+      project_id: "",
+      cards: [],
+      name: "",
+      anyError: false,
+      errors: '',
+      card_id: '',
+      task_name: '',
+      task_description: '',
+      due_date: ''
+    };
+  },
   created: function created() {
     this.getCards();
   },
   methods: {
-    getCards: function getCards(url) {
+    getCards: function getCards() {
       var _this = this;
 
-      var page_url = url || 'https://127.0.0.1/MyProject/public/cards';
-      fetch(page_url).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.cards = res.data;
+      axios.get('https://127.0.0.1/MyProject/public/api/cards').then(function (response) {
+        _this.cards = response.data;
       });
+    },
+    addCards: function addCards() {
+      this.project_id = this.project.id;
+      this.name = '';
+      $('#addCard').modal('show');
+    },
+    addTask: function addTask() {
+      // this.project_id=this.project.id;
+      // this.card_id = this.card.id;
+      // this.task_name = '';
+      // this.task_description='';
+      // this.due_date ='';
+      $('#addTask').modal('show');
+    },
+    submitCard: function submitCard() {
+      var _this2 = this;
+
+      if (this.name === '') {
+        vue__WEBPACK_IMPORTED_MODULE_1___default.a.$toast.warning('Card Name is required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch('https://127.0.0.1/MyProject/public/api/card/store', {
+          method: 'POST',
+          body: JSON.stringify({
+            "project_id": this.project_id,
+            "name": this.name
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            $('#addCard').modal('hide');
+
+            _this2.getCards();
+
+            vue__WEBPACK_IMPORTED_MODULE_1___default.a.$toast.success('Card Has been added successfully', {
+              position: 'top-right'
+            });
+          }
+        });
+      }
     }
   }
 });
@@ -2008,6 +2106,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -2205,7 +2307,7 @@ __webpack_require__.r(__webpack_exports__);
 
               _this2.getProjects();
 
-              vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Projet added successfully', {
+              vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Project added successfully', {
                 position: 'top-right'
               });
             }
@@ -2259,12 +2361,10 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           return response.json();
         }).then(function (response) {
-          console.log(response);
-
           if (response.status === 0) {
             _this3.getProjects();
 
-            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Project Deleted', {
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('Project Deleted Successfully', {
               position: 'top-right'
             });
           }
@@ -42211,51 +42311,254 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card card-outline card-white" }, [
       _c("div", { staticClass: "card-body" }, [
-        _vm._m(0),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-sm",
+            attrs: { href: "#" },
+            on: { click: _vm.addCards }
+          },
+          [
+            _c("i", { staticClass: "fa fa-plus" }),
+            _vm._v("Add Card\n            ")
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "row mt-3 mr-2" }, [
-          _c(
-            "div",
-            { staticClass: "col-md-3" },
-            _vm._l(_vm.project.card, function(card, index) {
-              return _c("div", { staticClass: "card p-2" }, [
-                _c(
-                  "div",
-                  { staticClass: "card-header bg-white" },
-                  [
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v(_vm._s(card.name))
+        _c(
+          "div",
+          { staticClass: "row mt-3 mr-2" },
+          _vm._l(_vm.project.card, function(card, index) {
+            return _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "card p-lg-2" }, [
+                _c("div", { staticClass: "card-header bg-white" }, [
+                  _c("h3", { staticClass: "card-title" }, [
+                    _vm._v(_vm._s(card.name))
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0, true),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "dropdown-menu" }, [
+                    _c("div", { staticClass: "text-center text-primary" }, [
+                      _vm._v("Card Actions")
                     ]),
                     _vm._v(" "),
+                    _c("div", { staticClass: "dropdown-divider" }),
+                    _vm._v(" "),
+                    _vm._m(1, true),
+                    _vm._v(" "),
                     _c(
-                      "b-popover",
+                      "a",
                       {
-                        staticClass: "btn btn-sm float-sm-right",
-                        attrs: {
-                          type: "button",
-                          "data-toggle": "popover",
-                          "data-placement": "right",
-                          "data-target": "#popOver"
-                        }
+                        staticClass: "dropdown-item",
+                        on: { click: _vm.addTask }
                       },
                       [
-                        _c("span", { attrs: { "aria-hidden": "true" } }, [
-                          _c("i", { staticClass: "fa fa-ellipsis-h" })
-                        ])
+                        _c("i", { staticClass: "fa fa-plus" }),
+                        _vm._v(
+                          "\n                                    Add Task\n                                "
+                        )
                       ]
-                    )
-                  ],
-                  1
-                )
-              ])
-            }),
-            0
-          )
-        ])
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "dropdown-divider" }),
+                    _vm._v(" "),
+                    _vm._m(2, true)
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal fade", attrs: { id: "addTask" } },
+                [
+                  _c("div", { staticClass: "modal-dialog modal-md" }, [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _vm._m(3, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _c("form", [
+                          _c("div", { staticClass: "row" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.project_id,
+                                  expression: "project_id"
+                                }
+                              ],
+                              attrs: {
+                                type: "hidden",
+                                name: "project_id",
+                                value: "this.project_id"
+                              },
+                              domProps: { value: _vm.project_id },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.project_id = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.card_id,
+                                  expression: "card_id"
+                                }
+                              ],
+                              attrs: {
+                                type: "hidden",
+                                name: "card_id",
+                                value: "this.card_id"
+                              },
+                              domProps: { value: _vm.card_id },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.card_id = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-12 form-group" }, [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "col-form-label",
+                                  attrs: { for: "task_name" }
+                                },
+                                [_vm._v("Task Name")]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.task_name,
+                                    expression: "task_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "task_name",
+                                  id: "task_name"
+                                },
+                                domProps: { value: _vm.task_name },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.task_name = $event.target.value
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ])
+          }),
+          0
+        )
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1)
+    _c("div", { staticClass: "modal fade", attrs: { id: "addCard" } }, [
+      _c("div", { staticClass: "modal-dialog modal-md" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.submitCard($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.project_id,
+                        expression: "project_id"
+                      }
+                    ],
+                    attrs: {
+                      type: "hidden",
+                      name: "project_id",
+                      value: "this.project_id"
+                    },
+                    domProps: { value: _vm.project_id },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.project_id = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-12 form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "col-form-label", attrs: { for: "name" } },
+                      [_vm._v("Card")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.name,
+                          expression: "name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "name", id: "name" },
+                      domProps: { value: _vm.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.name = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(5)
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -42266,100 +42569,112 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-success btn-sm",
-        attrs: { href: "#", "data-toggle": "modal", "data-target": "#addCard" }
+        staticClass: "btn btn-sm float-sm-right dropdown-toggle",
+        attrs: {
+          type: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true"
+        }
       },
-      [_c("i", { staticClass: "fa fa-plus" }), _vm._v("Add Card\n            ")]
+      [_c("i", { staticClass: "fa fa-ellipsis-h" })]
     )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal fade", attrs: { id: "addCard" } }, [
-      _c("div", { staticClass: "modal-dialog modal-md" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _c("div", { staticClass: "modal-header" }, [
-            _c("h5", { staticClass: "modal-title" }, [_vm._v("Add Card")]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "close",
-                attrs: {
-                  type: "button",
-                  "data-dismiss": "modal",
-                  "aria-label": "Close"
-                }
-              },
-              [_vm._v("\n                        x\n                    ")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c(
-              "form",
-              {
-                staticClass: "form-horizontal",
-                attrs: { method: "post", action: "" }
-              },
-              [
-                _c("div", { staticClass: "row" }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "project_id" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 form-group" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-form-label", attrs: { for: "card" } },
-                      [_vm._v("Card")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text", name: "card", id: "card" }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "modal-footer justify-content-between" },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-default btn-sm",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-times" }),
-                        _vm._v(
-                          "\n                                Close\n                            "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success btn-sm",
-                        attrs: { type: "submit" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                Add Task\n                            "
-                        )
-                      ]
-                    )
-                  ]
-                )
-              ]
-            )
-          ])
-        ])
-      ])
+    return _c("li", { staticClass: "dropdown-item" }, [
+      _c("i", { staticClass: "fa fa-thumbtack" }),
+      _vm._v(
+        "\n                                    Move Card\n                                "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "dropdown-item" }, [
+      _c("i", { staticClass: "fa fa-tasks" }),
+      _vm._v(
+        "\n                                    Move All Tasks Here\n                                "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Add Task")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _vm._v(
+            "\n                                        ×\n                                    "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Add Card")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_vm._v("\n                        ×\n                    ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer justify-content-between" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default btn-sm",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [
+          _c("i", { staticClass: "fa fa-times" }),
+          _vm._v(
+            "\n                                Close\n                            "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success btn-sm", attrs: { type: "submit" } },
+        [
+          _vm._v(
+            "\n                                Add Task\n                            "
+          )
+        ]
+      )
     ])
   }
 ]
@@ -42651,18 +42966,26 @@ var render = function() {
                                 }
                               }
                             },
-                            _vm._l(_vm.users, function(user) {
-                              return _c(
+                            [
+                              _c(
                                 "option",
-                                { domProps: { value: user.id } },
-                                [
-                                  _vm._v(
-                                    _vm._s(user.name + " " + user.lastName)
-                                  )
-                                ]
-                              )
-                            }),
-                            0
+                                { attrs: { disabled: "", value: "" } },
+                                [_vm._v("Select User")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.users, function(user) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: user.id } },
+                                  [
+                                    _vm._v(
+                                      _vm._s(user.name + " " + user.lastName)
+                                    )
+                                  ]
+                                )
+                              })
+                            ],
+                            2
                           )
                         ]),
                         _vm._v(" "),
@@ -42755,7 +43078,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: " dropdown-item text-primary" }, [
+    return _c("li", { staticClass: " dropdown-item text-warning" }, [
       _c("i", { staticClass: "fa fa-user-plus" }),
       _vm._v(
         "\n                                    Invite User\n                                "
@@ -42767,7 +43090,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title" }, [_vm._v("Create Project")]),
+      _c("h5", { staticClass: "modal-title" }, [
+        _c("i", { staticClass: "fa fa-pen" }),
+        _vm._v(
+          "\n                                Project\n                            "
+        )
+      ]),
       _vm._v(" "),
       _c(
         "button",
