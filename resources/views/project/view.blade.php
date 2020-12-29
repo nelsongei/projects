@@ -43,4 +43,6 @@
             </div>
         </section>
     </div>
+    <script>
+    </script>
     @endsection

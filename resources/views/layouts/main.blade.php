@@ -336,7 +336,7 @@
         var s = currentTime.getSeconds();
 
 
-        if (h ==0){
+        if (h ===0){
             h = 12
         }   else if (h>12) {
             h = h - 12;
@@ -385,28 +385,6 @@
     }
 
     let bounceEaseOut = makeEaseOut(bounce);
-
-    // window.onload = function() {
-    //     $("#brick").fadeIn(3500);
-    //     animate({
-    //         duration: 3000,
-    //         timing: bounceEaseOut,
-    //         draw: function(progress) {
-    //             brick.style.left = progress * 50 + '%';
-    //         }
-    //     });
-    //
-    //     setInterval(Incrementerr,20);
-    //     var x=0;
-    //     function Incrementerr(){
-    //         x=x+1;
-    //         if(x<=document.getElementById('incrementHolder').value){
-    //             document.getElementById('increment').innerHTML=x;
-    //         }
-    //
-    //
-    //     }
-    // };
 </script>
 
 

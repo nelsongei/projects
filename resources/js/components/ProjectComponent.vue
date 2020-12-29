@@ -58,11 +58,11 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li :class="[{disabled:!pagination.prev_page_url}]" class="page-item">
-                            <a class="page-link" @click="getStudents(pagination.prev_page_url)" href="#">Previous</a>
+                            <a class="page-link" @click="getProjects(pagination.prev_page_url)" href="#">Previous</a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#">{{pagination.current_page}} of {{pagination.last_page}}</a></li>
                         <li :class="[{disabled: !pagination.next_page_url}]" class="page-item">
-                            <a class="page-link" @click="getStudents(pagination.next_page_url)" href="#">Next</a>
+                            <a class="page-link" @click="getProjects(pagination.next_page_url)" href="#">Next</a>
                         </li>
                     </ul>
                 </nav>
@@ -116,11 +116,14 @@
 </template>
 <script>
     import Vue from "vue";
-
+    import ExampleComponent from "./ExampleComponent";
     export default {
         props:[
             'users'
         ],
+        components:{
+            ExampleComponent
+        },
         data(){
             return {
                 projects: [],
@@ -148,6 +151,7 @@
                         next_page_url:response.next_page_url,
                         prev_page_url:response.prev_page_url
                     };
+                    console.log(this.pagination)
                 })
                 .catch(error=>{
                     console.log(error)
