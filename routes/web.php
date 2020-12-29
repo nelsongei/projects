@@ -50,6 +50,7 @@ Route::get('/projects',[App\Http\Controllers\HomeController::class,'project'])->
 Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'show']);
 //Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
 //Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
+Route::post('/tasks',[App\Http\Controllers\TaskController::class,'store']);
 //Cards
 Route::get('project/{project}/{card}',[App\Http\Controllers\CardController::class,'index'])->name('cards');
 //Logout

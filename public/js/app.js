@@ -2009,6 +2009,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2024,8 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
       project_id: "",
       cards: [],
       name: "",
-      anyError: false,
-      errors: '',
+      card: '',
       card_id: '',
       task_name: '',
       task_description: '',
@@ -2049,11 +2066,11 @@ __webpack_require__.r(__webpack_exports__);
       $('#addCard').modal('show');
     },
     addTask: function addTask() {
-      // this.project_id=this.project.id;
-      // this.card_id = this.card.id;
-      // this.task_name = '';
-      // this.task_description='';
-      // this.due_date ='';
+      this.project_id = this.project.id;
+      this.card_id = this.card.id;
+      this.task_name = '';
+      this.task_description = '';
+      this.due_date = '';
       $('#addTask').modal('show');
     },
     submitCard: function submitCard() {
@@ -2084,6 +2101,43 @@ __webpack_require__.r(__webpack_exports__);
             _this2.getCards();
 
             vue__WEBPACK_IMPORTED_MODULE_1___default.a.$toast.success('Card Has been added successfully', {
+              position: 'top-right'
+            });
+          }
+        });
+      }
+    },
+    submitTask: function submitTask() {
+      var _this3 = this;
+
+      if (this.task_name === '' || this.task_description === '' || this.due_date === '') {
+        vue__WEBPACK_IMPORTED_MODULE_1___default.a.$toast.warning('All Fields Are Required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch('https://127.0.0.1/MyProject/public/api/task/store', {
+          method: 'POST',
+          body: JSON.stringify({
+            "project_id": this.project_id,
+            "card_id": this.card_id,
+            "task_name": this.task_name,
+            "task_description": this.task_description,
+            "due_date": this.due_date
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            $('#addTask').modal('hide');
+
+            _this3.getCards();
+
+            vue__WEBPACK_IMPORTED_MODULE_1___default.a.$toast.success('Task Has Been Added Successfully', {
               position: 'top-right'
             });
           }
@@ -42335,34 +42389,42 @@ var render = function() {
                     _vm._v(_vm._s(card.name))
                   ]),
                   _vm._v(" "),
-                  _vm._m(0, true),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "dropdown-menu" }, [
-                    _c("div", { staticClass: "text-center text-primary" }, [
-                      _vm._v("Card Actions")
-                    ]),
+                  _c("div", { staticClass: "dropright" }, [
+                    _vm._m(0, true),
                     _vm._v(" "),
-                    _c("div", { staticClass: "dropdown-divider" }),
-                    _vm._v(" "),
-                    _vm._m(1, true),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item",
-                        on: { click: _vm.addTask }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-plus" }),
-                        _vm._v(
-                          "\n                                    Add Task\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "dropdown-divider" }),
-                    _vm._v(" "),
-                    _vm._m(2, true)
+                    _c("ul", { staticClass: "dropdown-menu" }, [
+                      _c("div", { staticClass: "text-center text-primary" }, [
+                        _vm._v("Card Actions")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dropdown-divider" }),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.addTask(card.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-plus" }),
+                          _vm._v(
+                            "\n                                        Add Task" +
+                              _vm._s(card.id) +
+                              "\n                                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(1, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dropdown-divider" }),
+                      _vm._v(" "),
+                      _vm._m(2, true)
+                    ])
                   ])
                 ])
               ]),
@@ -42373,99 +42435,219 @@ var render = function() {
                 [
                   _c("div", { staticClass: "modal-dialog modal-md" }, [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(3, true),
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c("h5", { staticClass: "modal-title" }, [
+                          _vm._v("Add Task" + _vm._s(card.id))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "close",
+                            attrs: {
+                              type: "button",
+                              "data-dismiss": "modal",
+                              "aria-label": "Close"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                        ×\n                                    "
+                            )
+                          ]
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
-                        _c("form", [
-                          _c("div", { staticClass: "row" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.project_id,
-                                  expression: "project_id"
-                                }
-                              ],
-                              attrs: {
-                                type: "hidden",
-                                name: "project_id",
-                                value: "this.project_id"
-                              },
-                              domProps: { value: _vm.project_id },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.project_id = $event.target.value
-                                }
+                        _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.submitTask($event)
                               }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.card_id,
-                                  expression: "card_id"
-                                }
-                              ],
-                              attrs: {
-                                type: "hidden",
-                                name: "card_id",
-                                value: "this.card_id"
-                              },
-                              domProps: { value: _vm.card_id },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "row" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.project_id,
+                                    expression: "project_id"
                                   }
-                                  _vm.card_id = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-12 form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: "col-form-label",
-                                  attrs: { for: "task_name" }
+                                ],
+                                attrs: {
+                                  type: "hidden",
+                                  name: "project_id",
+                                  value: "this.project_id"
                                 },
-                                [_vm._v("Task Name")]
-                              ),
+                                domProps: { value: _vm.project_id },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.project_id = $event.target.value
+                                  }
+                                }
+                              }),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.task_name,
-                                    expression: "task_name"
+                                    value: _vm.card_id,
+                                    expression: "card_id"
                                   }
                                 ],
-                                staticClass: "form-control",
                                 attrs: {
-                                  type: "text",
-                                  name: "task_name",
-                                  id: "task_name"
+                                  type: "hidden",
+                                  name: "card_id",
+                                  value: "card.id"
                                 },
-                                domProps: { value: _vm.task_name },
+                                domProps: { value: _vm.card_id },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
-                                    _vm.task_name = $event.target.value
+                                    _vm.card_id = $event.target.value
                                   }
                                 }
-                              })
-                            ])
-                          ])
-                        ])
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 form-group" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-form-label",
+                                      attrs: { for: "task_name" }
+                                    },
+                                    [_vm._v("Task Name")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.task_name,
+                                        expression: "task_name"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "task_name",
+                                      id: "task_name"
+                                    },
+                                    domProps: { value: _vm.task_name },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.task_name = $event.target.value
+                                      }
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 form-group" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-form-label",
+                                      attrs: { for: "task_description" }
+                                    },
+                                    [_vm._v("Description")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.task_description,
+                                        expression: "task_description"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      id: "task_description",
+                                      name: "task_description"
+                                    },
+                                    domProps: { value: _vm.task_description },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.task_description =
+                                          $event.target.value
+                                      }
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-md-12 form-group" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-form-label",
+                                      attrs: { for: "due_date" }
+                                    },
+                                    [_vm._v("Due Date")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.due_date,
+                                        expression: "due_date"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "datetime-local",
+                                      name: "due_date",
+                                      id: "due_date"
+                                    },
+                                    domProps: { value: _vm.due_date },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.due_date = $event.target.value
+                                      }
+                                    }
+                                  })
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(3, true)
+                          ]
+                        )
                       ])
                     ])
                   ])
@@ -42586,7 +42768,7 @@ var staticRenderFns = [
     return _c("li", { staticClass: "dropdown-item" }, [
       _c("i", { staticClass: "fa fa-thumbtack" }),
       _vm._v(
-        "\n                                    Move Card\n                                "
+        "\n                                        Move Card\n                                    "
       )
     ])
   },
@@ -42597,7 +42779,7 @@ var staticRenderFns = [
     return _c("li", { staticClass: "dropdown-item" }, [
       _c("i", { staticClass: "fa fa-tasks" }),
       _vm._v(
-        "\n                                    Move All Tasks Here\n                                "
+        "\n                                        Move All Tasks Here\n                                    "
       )
     ])
   },
@@ -42605,22 +42787,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title" }, [_vm._v("Add Task")]),
-      _vm._v(" "),
+    return _c("div", { staticClass: "modal-footer justify-content-between" }, [
       _c(
         "button",
         {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
+          staticClass: "btn btn-default btn-sm",
+          attrs: { type: "button", "data-dismiss": "modal" }
         },
         [
           _vm._v(
-            "\n                                        ×\n                                    "
+            "\n                                                Close\n                                            "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
+        [
+          _vm._v(
+            "\n                                                Add Task\n                                            "
           )
         ]
       )
@@ -42668,7 +42854,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-success btn-sm", attrs: { type: "submit" } },
+        { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
         [
           _vm._v(
             "\n                                Add Task\n                            "

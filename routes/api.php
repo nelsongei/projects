@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,8 @@ Route::prefix('/project')->group( function (){
 Route::get('/cards',[CardController::class,'index']);
 Route::prefix('/card')->group(function(){
     Route::post('/store',[CardController::class,'store']);
+});
+Route::get('/tasks',[TaskController::class,'index']);
+Route::prefix('/task')->group(function(){
+    Route::post('/store',[TaskController::class,'store']);
 });
