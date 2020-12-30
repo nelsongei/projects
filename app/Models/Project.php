@@ -21,4 +21,8 @@ class Project extends Model
     public function card(){
         return $this->hasMany(Card::class);
     }
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
+
 }

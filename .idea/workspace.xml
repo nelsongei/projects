@@ -27,15 +27,86 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/commandlinetools/Laravel_12_18_20__4_52_AM.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/todo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/Auth/ConfirmPasswordController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/ItemController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Http/Controllers/TestimonialController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Models/Item.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/app/Models/Testimonial.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/database/migrations/2020_12_18_022035_create_testimonials_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/database/migrations/2020_12_23_172717_create_items_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/database/seeders/TestimonialsTableSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/public/css/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/public/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/public/mix-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/components/CardDraggable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/components/ExampleComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/components/KanbanBoard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/components/TableDraggable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/vue/addItemForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/vue/app.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/vue/listItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/js/vue/listView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/sass/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/sass/app.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/auth/login.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/auth/passwords/email.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/auth/register.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/auth/verify.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/home.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/resources/views/tasks/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../todo/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/87fceddd-d4d0-4422-8578-0ebf3da147e8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/87fceddd-d4d0-4422-8578-0ebf3da147e8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Card.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Task.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProjectsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ProjectsTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/project/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/view.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/bootstrap/cache/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/bootstrap/cache/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/app/public/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/app/public/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/framework/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/framework/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/framework/cache/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/framework/cache/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/framework/cache/data/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/framework/cache/data/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/framework/sessions/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/framework/sessions/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/framework/testing/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/framework/testing/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/framework/views/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/framework/views/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/storage/logs/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/storage/logs/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../todo/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/../todo/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +262,7 @@
     <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../todo" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -316,7 +387,8 @@
       <workItem from="1609161692931" duration="9325000" />
       <workItem from="1609223306042" duration="6460000" />
       <workItem from="1609251200581" duration="10670000" />
-      <workItem from="1609299625873" duration="6477000" />
+      <workItem from="1609299625873" duration="7525000" />
+      <workItem from="1609311967717" duration="7000000" />
     </task>
     <servers />
   </component>

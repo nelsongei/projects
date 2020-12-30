@@ -13,18 +13,14 @@ class CardController extends Controller
     {
         return Card::find($card)->where('project_id',$project)->get();
     }
-    public function store(Request $request): string
+    public function store(Request $request)
     {
-        $data = request()->validate([
-            'name'=>'required',
-        ]);
-        $cards=Card::create($data);
-//        $cards = new Card;
-//        $cards->project_id = $request->project_id;
-//        $cards->name = $request->name;
-//        $cards->save();
+        $cards = new Card;
+        $cards->project_id = $request->project_id;
+        $cards->name = $request->name;
+        $cards->save();
         if ($cards){
-            return response()->json(['status' => 0]);
+            return response()->json(['status'=>0]);
         }
         else{
             return response()->json(['status'=>1]);
