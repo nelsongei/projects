@@ -48,6 +48,7 @@ Vue.use(Popover,{tooltip:true})
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('project-component', require('./components/ProjectComponent.vue').default);
+Vue.component('card-component', require('./components/CardComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -41,7 +41,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-//        $store = Project::create($data);
         $store = new Project;
         $store->user_id = $request->user_id;
         $store->project = $request->project;

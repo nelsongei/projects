@@ -70,16 +70,15 @@ import ProjectsTable from "./ProjectsTable";
 export default{
     props:[
         'project',
-        'card'
     ],
     data(){
         return{
-            // cards: [],
+            cards: [],
             name: '',
             project_id:this.project.id,
             newTaskForStatus:0,
-            // anyError:false,
-            // errors:'',
+            anyError:false,
+            errors:'',
 
         }
     },
@@ -100,50 +99,50 @@ export default{
             // })
         },
         addCards(){
-            // this.project_id=this.project.id;
-            // this.name='';
-            // $('#addCard').modal('show');
+            this.project_id=this.project.id;
+            this.name='';
+            $('#addCard').modal('show');
         },
         submitCard(){
-            // if(this.name===''){
-            //     Vue.$toast.error('Card name is required',{position:'top-right'})
-            // }
-            // else{
-            //     fetch('https://127.0.0.1/MyProject/public/api/card/store',{
-            //         method:'POST',
-            //         body:JSON.stringify({
-            //             "name":this.name
-            //         }),
-            //         headers:{
-            //             'Accept':'application/json',
-            //             'Content-Type':'application/json',
-            //             'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
-            //         }
-            //     })
-            //     .then(response=>response.json())
-            //     .then(response=>{
-            //         console.log(response)
-            //         if (response.errors){
-            //             this.anyError=true;
-            //             this.errors = response.errors
-            //         }
-            //         if(response.status===0){
-            //             this.anyError=false;
-            //             $('#addCard').modal('hide');
-            //             this.getCards();
-            //             Vue.$toast.success('Card has been added successfully',{position:'top-right'})
-            //         }
-            //     })
-            // }
+            if(this.name===''){
+                Vue.$toast.error('Card name is required',{position:'top-right'})
+            }
+            else{
+                fetch('https://127.0.0.1/MyProject/public/api/card/store',{
+                    method:'POST',
+                    body:JSON.stringify({
+                        "name":this.name
+                    }),
+                    headers:{
+                        'Accept':'application/json',
+                        'Content-Type':'application/json',
+                        'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                    }
+                })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    if (response.errors){
+                        this.anyError=true;
+                        this.errors = response.errors
+                    }
+                    if(response.status===0){
+                        this.anyError=false;
+                        $('#addCard').modal('hide');
+                        this.getCards();
+                        Vue.$toast.success('Card has been added successfully',{position:'top-right'})
+                    }
+                })
+            }
         },
         openTaskForm(cardId){
-            // this.newTaskForStatus=cardId;
+            this.newTaskForStatus=cardId;
         },
         handleTaskAdded(){
 
         },
         closeAddTaskForm(){
-            // this.newTaskForStatus=0;
+            this.newTaskForStatus=0;
         },
     }
 }

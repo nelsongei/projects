@@ -36,7 +36,7 @@
 {{--                            {{$cards->name}}--}}
                             @endforeach
                         <div id="app">
-                            <example-component :project="{{$project}}"></example-component>
+                            <card-component :project="{{$project}}"></card-component>
                         </div>
                     </div>
                 </div>

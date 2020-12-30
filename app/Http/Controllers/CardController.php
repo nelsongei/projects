@@ -9,17 +9,20 @@ use Illuminate\Http\Request;
 class CardController extends Controller
 {
     //
-    public function index(Project $project, Card $card){
-//        return Card::find($card)->where('project_id',$project)->get();
-//        return Card::orderBy('id','desc')->with('project')->get();
-        $cards = Card::get('project_id')->where('project_id',1);
-        return count([$cards]);
+    public function index(Project $project, Card $card): int
+    {
+        return Card::find($card)->where('project_id',$project)->get();
     }
-    public function store(Request $request){
-        $cards = new Card;
-        $cards->project_id = $request->project_id;
-        $cards->name = $request->name;
-        $cards->save();
+    public function store(Request $request): string
+    {
+        $data = request()->validate([
+            'name'=>'required',
+        ]);
+        $cards=Card::create($data);
+//        $cards = new Card;
+//        $cards->project_id = $request->project_id;
+//        $cards->name = $request->name;
+//        $cards->save();
         if ($cards){
             return response()->json(['status' => 0]);
         }

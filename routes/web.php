@@ -46,12 +46,12 @@ Route::get('/whatsapp',[App\Http\Controllers\WhatsappController::class,'index'])
 Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'send'])->name('whatsapp/send');
 //Projects
 Route::get('/projects',[App\Http\Controllers\HomeController::class,'project'])->name('projects');
-Route::get('/project/{project}/cards',[App\Http\Controllers\CardController::class,'index']);
+//Route::get('/project/{project}/cards',[App\Http\Controllers\CardController::class,'index']);
 Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'show']);
 //Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
 //Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
 Route::post('/tasks',[App\Http\Controllers\TaskController::class,'store']);
 //Cards
-Route::get('project/{project}/{card}',[App\Http\Controllers\CardController::class,'index'])->name('cards');
+Route::post('/cards',[App\Http\Controllers\CardController::class,'store'])->name('cards');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
