@@ -9,4 +9,13 @@
 
 This is a web application more than just CRM - currently working on it. 
 Front end is a different thing
-
+<b>How to install<b>
+<ul>
+    <li>Composer Install</li>
+    <li>cp .env-example .env</li>
+    <li>php artisan key:generate</li>
+    <li>php artisan migrate</li>
+    <li>php artisan db:seed</li>
+    <li>npm install</li>
+    <li>php artisan serve</li>
+</ul>
