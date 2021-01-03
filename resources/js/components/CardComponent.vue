@@ -10,12 +10,27 @@
                         <div class="card p-lg-2">
                             <div class="card-header bg-white">
                                 <h3 class="card-title text-bold text-warning">{{ card.name }}</h3>
-                                <button
-                                    class="btn btn-sm float-right"
-                                    @click="openTaskForm(card.id)"
-                                >
-                                    <i class="fa fa-plus"></i>
-                                </button>
+                                <div class=dropright>
+                                    <button
+                                        class="btn btn-sm float-right dropdown"
+                                        data-toggle="dropdown"
+                                    >
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <span class="dropdown-item dropdown-header text-center text-bold text-dark">Card Action</span>
+                                        <a @click="openTaskForm(card.id)" class="dropdown-item">
+                                            <i class="fa fa-plus"></i>&nbsp;Add Task
+                                        </a>
+                                        <a class="dropdown-item">
+                                            <i class="fa fa-check"></i>&nbsp;Move Card
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item">
+                                            <i class="fa fa-tasks"></i>&nbsp;Move All Task Here
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <ProjectsTable
@@ -25,14 +40,32 @@
                                     v-on:task-added="handleTaskAdded"
                                     v-on:task-canceled="closeAddTaskForm"
                                 ></ProjectsTable>
-                                <draggable :options="{animation:200}" @change="update">
-                                    <div v-for="task in card.tasks" class="mb-2">
-                                        <div class="list-group">
-                                            <div class="list-group-item">
-                                                {{task.task_name}}
+                                <draggable :options="dragOptions" @change="update">
+                                    <transition-group element="'div'" class="mb-2" v-for="task in card.task">
+                                        <!-- <div v-for="task in card.tasks" class="mb-2"> -->
+                                            <div class="list-group">
+                                                <div class="list-group-item" @click="addFeedbackModal(task)">
+                                                    {{task.task_name}}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                            <div class="modal fade" id="addFeedbackModal">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                &times;
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!-- </div> -->
+                                    </transition-group>
                                 </draggable>
                             </div>
                         </div>
@@ -89,19 +122,27 @@ export default{
             newTaskForStatus:0,
             anyError:false,
             errors:'',
-
+            taskId:"",
+            task_name:'',
         }
     },
     components:{
         ProjectsTable,
         draggable
     },
+    computed:{
+        dragOptions(){
+            return{
+                animation: 1,
+            }
+        }
+    },
     created() {
         this.getCards();
     },
     methods: {
         getCards(){
-            axios.get('https://127.0.0.1/MyProject/public/api/cards')
+            axios.get('http://127.0.0.1/projects/public/api/cards')
             .then(response=>{
                 this.cards = response.data
             })
@@ -114,12 +155,17 @@ export default{
             this.name='';
             $('#addCard').modal('show');
         },
+        addFeedbackModal(task){
+            this.taskId=task.id
+            this.task_name
+            $('#addFeedbackModal').modal('show')
+        },
         submitCard(){
             if(this.name===''){
                 Vue.$toast.error('Card name is required',{position:'top-right'})
             }
             else{
-                fetch('https://127.0.0.1/MyProject/public/api/card/store',{
+                fetch('http://127.0.0.1/projects/public/api/card/store',{
                     method:'POST',
                     body:JSON.stringify({
                         "name":this.name,"project_id":this.project_id

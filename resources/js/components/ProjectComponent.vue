@@ -142,7 +142,7 @@
         },
         methods: {
             getProjects(){
-                axios.get('http://127.0.0.1/MyProject/public/api/projects')
+                axios.get('http://127.0.0.1/projects/public/api/projects')
                 .then(response =>{
                     this.projects = response.data
                     this.pagination={
@@ -178,7 +178,7 @@
                 }
                 else{
                     if(this.edit === false){
-                        fetch('http://127.0.0.1/MyProject/public/api/project/store',{
+                        fetch('http://127.0.0.1/projects/public/api/project/store',{
                             method:'post',
                             body:JSON.stringify({
                                 "project":this.project,"user_id":this.user_id,"description":this.description
@@ -204,7 +204,7 @@
                         })
                     }
                     else{
-                        fetch(`http://127.0.0.1/MyProject/public/api/project/${this.projectId}`,{
+                        fetch(`http://127.0.0.1/projects/public/api/project/${this.projectId}`,{
                             method:'put',
                             body:JSON.stringify({
                                 "project":this.project,"user_id":this.user_id,"description":this.description
@@ -233,7 +233,7 @@
             },
             destroy(id){
                 if(confirm('Are you sure')){
-                    fetch(`http://127.0.0.1/MyProject/public/api/project/${id}`,{
+                    fetch(`http://127.0.0.1/projects/public/api/project/${id}`,{
                         method:'delete',
                         headers:{
                             'Accept':'application/json',

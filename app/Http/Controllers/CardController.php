@@ -12,6 +12,7 @@ class CardController extends Controller
     public function index(Project $project, Card $card): int
     {
         return Card::find($card)->where('project_id',$project)->get();
+        // return Card::orderBy('id','desc')->get();
     }
     public function store(Request $request)
     {

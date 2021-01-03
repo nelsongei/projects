@@ -1988,6 +1988,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2000,12 +2033,21 @@ __webpack_require__.r(__webpack_exports__);
       project_id: "",
       newTaskForStatus: 0,
       anyError: false,
-      errors: ''
+      errors: '',
+      taskId: "",
+      task_name: ''
     };
   },
   components: {
     ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__["default"],
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
+  computed: {
+    dragOptions: function dragOptions() {
+      return {
+        animation: 1
+      };
+    }
   },
   created: function created() {
     this.getCards();
@@ -2014,7 +2056,7 @@ __webpack_require__.r(__webpack_exports__);
     getCards: function getCards() {
       var _this = this;
 
-      axios.get('https://127.0.0.1/MyProject/public/api/cards').then(function (response) {
+      axios.get('http://127.0.0.1/projects/public/api/cards').then(function (response) {
         _this.cards = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -2025,6 +2067,11 @@ __webpack_require__.r(__webpack_exports__);
       this.name = '';
       $('#addCard').modal('show');
     },
+    addFeedbackModal: function addFeedbackModal(task) {
+      this.taskId = task.id;
+      this.task_name;
+      $('#addFeedbackModal').modal('show');
+    },
     submitCard: function submitCard() {
       var _this2 = this;
 
@@ -2033,7 +2080,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch('https://127.0.0.1/MyProject/public/api/card/store', {
+        fetch('http://127.0.0.1/projects/public/api/card/store', {
           method: 'POST',
           body: JSON.stringify({
             "name": this.name,
@@ -2388,7 +2435,7 @@ __webpack_require__.r(__webpack_exports__);
     getProjects: function getProjects() {
       var _this = this;
 
-      axios.get('http://127.0.0.1/MyProject/public/api/projects').then(function (response) {
+      axios.get('http://127.0.0.1/projects/public/api/projects').then(function (response) {
         _this.projects = response.data;
         _this.pagination = {
           current_page: response.current_page,
@@ -2425,7 +2472,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         if (this.edit === false) {
-          fetch('http://127.0.0.1/MyProject/public/api/project/store', {
+          fetch('http://127.0.0.1/projects/public/api/project/store', {
             method: 'post',
             body: JSON.stringify({
               "project": this.project,
@@ -2457,7 +2504,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          fetch("http://127.0.0.1/MyProject/public/api/project/".concat(this.projectId), {
+          fetch("http://127.0.0.1/projects/public/api/project/".concat(this.projectId), {
             method: 'put',
             body: JSON.stringify({
               "project": this.project,
@@ -2495,7 +2542,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (confirm('Are you sure')) {
-        fetch("http://127.0.0.1/MyProject/public/api/project/".concat(id), {
+        fetch("http://127.0.0.1/projects/public/api/project/".concat(id), {
           method: 'delete',
           headers: {
             'Accept': 'application/json',
@@ -2589,7 +2636,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch('https://127.0.0.1/MyProject/public/api/task/store', {
+        fetch('http://127.0.0.1/projects/public/api/task/store', {
           method: 'POST',
           body: JSON.stringify({
             "project_id": this.projectId,
@@ -42580,18 +42627,44 @@ var render = function() {
                     [_vm._v(_vm._s(card.name))]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm float-right",
-                      on: {
-                        click: function($event) {
-                          return _vm.openTaskForm(card.id)
-                        }
-                      }
-                    },
-                    [_c("i", { staticClass: "fa fa-plus" })]
-                  )
+                  _c("div", { staticClass: "dropright" }, [
+                    _vm._m(0, true),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "dropdown-menu" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "dropdown-item dropdown-header text-center text-bold text-dark"
+                        },
+                        [_vm._v("Card Action")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "dropdown-item",
+                          on: {
+                            click: function($event) {
+                              return _vm.openTaskForm(card.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-plus" }),
+                          _vm._v(
+                            " Add Task\n                                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(1, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dropdown-divider" }),
+                      _vm._v(" "),
+                      _vm._m(2, true)
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
@@ -42614,23 +42687,98 @@ var render = function() {
                     _c(
                       "draggable",
                       {
-                        attrs: { options: { animation: 200 } },
+                        attrs: { options: _vm.dragOptions },
                         on: { change: _vm.update }
                       },
-                      _vm._l(card.tasks, function(task) {
-                        return _c("div", { staticClass: "mb-2" }, [
-                          _c("div", { staticClass: "list-group" }, [
-                            _c("div", { staticClass: "list-group-item" }, [
-                              _vm._v(
-                                "\n                                            " +
-                                  _vm._s(task.task_name) +
-                                  "\n                                        "
+                      _vm._l(card.task, function(task) {
+                        return _c(
+                          "transition-group",
+                          { staticClass: "mb-2", attrs: { element: "'div'" } },
+                          [
+                            _c("div", { staticClass: "list-group" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "list-group-item",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addFeedbackModal(task)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                                " +
+                                      _vm._s(task.task_name) +
+                                      "\n                                            "
+                                  )
+                                ]
                               )
-                            ])
-                          ])
-                        ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "modal fade",
+                                attrs: { id: "addFeedbackModal" }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "modal-dialog modal-xl" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "modal-content" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "modal-header" },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass: "close",
+                                                attrs: {
+                                                  type: "button",
+                                                  "data-dismiss": "modal",
+                                                  "aria-label": "Close"
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                            ×\n                                                        "
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "modal-body" },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "form-group" },
+                                              [
+                                                _c("textarea", {
+                                                  staticClass: "form-control"
+                                                })
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
                       }),
-                      0
+                      1
                     )
                   ],
                   1
@@ -42646,7 +42794,7 @@ var render = function() {
     _c("div", { staticClass: "modal fade", attrs: { id: "addCard" } }, [
       _c("div", { staticClass: "modal-dialog modal-md" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
+          _vm._m(3),
           _vm._v(" "),
           _c(
             "form",
@@ -42718,7 +42866,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _vm._m(4)
             ]
           )
         ])
@@ -42727,6 +42875,37 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-sm float-right dropdown",
+        attrs: { "data-toggle": "dropdown" }
+      },
+      [_c("i", { staticClass: "fa fa-ellipsis-v" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "dropdown-item" }, [
+      _c("i", { staticClass: "fa fa-check" }),
+      _vm._v(" Move Card\n                                    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "dropdown-item" }, [
+      _c("i", { staticClass: "fa fa-tasks" }),
+      _vm._v(" Move All Task Here\n                                    ")
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -58734,8 +58913,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/MyProject/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/MyProject/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\projects\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\projects\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

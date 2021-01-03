@@ -86,7 +86,8 @@
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-bell mr-0"></i>
                             {{$notification->data['data']}}
-                            <span class="float-left text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
+                            <br/>
+                            <span class="float-left text-muted text-bold text-sm">{{$notification->created_at->diffForHumans()}}</span>
                         </a>
                     @endforeach
                     <span class="dropdown-item dropdown-footer">

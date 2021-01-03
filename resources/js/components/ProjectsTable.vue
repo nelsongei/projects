@@ -56,7 +56,7 @@ export default {
                 Vue.$toast.error('All Fields are required',{position:'top-right'});
             }
             else{
-                fetch('https://127.0.0.1/MyProject/public/api/task/store',{
+                fetch('http://127.0.0.1/projects/public/api/task/store',{
                     method:'POST',
                     body:JSON.stringify({
                         "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date
