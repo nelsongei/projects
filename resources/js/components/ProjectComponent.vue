@@ -89,7 +89,7 @@
                                             <label for="user_id" class="col-form-label">User</label>
                                             <select class="form-control" name="user_id" id="user_id" v-model="user_id">
                                                 <option disabled value="">Select User</option>
-                                                <option v-for="user in users" :value="user.id">{{user.name+' '+user.lastName}}</option>
+                                                <option v-for="user in users" :value="user.id" :key="user.id">{{user.name+' '+user.lastName}}</option>
                                             </select>
                                         </div>
                                         <div class="col-md-12 form-group">

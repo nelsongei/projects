@@ -52,6 +52,7 @@ Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'s
 //Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
 Route::post('/tasks',[App\Http\Controllers\TaskController::class,'store']);
 //Cards
+Route::get('/cards',[App\Http\Controllers\CardController::class,'index'])->name('cards');
 Route::post('/cards',[App\Http\Controllers\CardController::class,'store'])->name('cards');
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

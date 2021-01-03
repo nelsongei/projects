@@ -2021,6 +2021,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2035,7 +2057,8 @@ __webpack_require__.r(__webpack_exports__);
       anyError: false,
       errors: '',
       taskId: "",
-      task_name: ''
+      task_name: '',
+      task_description: ''
     };
   },
   components: {
@@ -2069,7 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     addFeedbackModal: function addFeedbackModal(task) {
       this.taskId = task.id;
-      this.task_name;
+      this.task_description = task.task_description;
       $('#addFeedbackModal').modal('show');
     },
     submitCard: function submitCard() {
@@ -42686,85 +42709,245 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "draggable",
-                      {
-                        attrs: { options: _vm.dragOptions },
-                        on: { change: _vm.update }
-                      },
-                      _vm._l(card.task, function(task) {
-                        return _c(
+                      _vm._b(
+                        {
+                          on: {
+                            change: _vm.update,
+                            start: function($event) {
+                              _vm.drag = true
+                            },
+                            end: function($event) {
+                              _vm.drag = false
+                            }
+                          },
+                          model: {
+                            value: _vm.cards,
+                            callback: function($$v) {
+                              _vm.cards = $$v
+                            },
+                            expression: "cards"
+                          }
+                        },
+                        "draggable",
+                        _vm.dragOptions,
+                        false
+                      ),
+                      [
+                        _c(
                           "transition-group",
-                          { staticClass: "mb-2", attrs: { element: "'div'" } },
-                          [
-                            _c("div", { staticClass: "list-group" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "list-group-item",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.addFeedbackModal(task)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                                " +
-                                      _vm._s(task.task_name) +
-                                      "\n                                            "
-                                  )
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
+                          _vm._l(card.tasks, function(task) {
+                            return _c(
                               "div",
-                              {
-                                staticClass: "modal fade",
-                                attrs: { id: "addFeedbackModal" }
-                              },
+                              { key: task.id, staticClass: "mb-2" },
                               [
+                                _c("div", { staticClass: "list-group" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "list-group-item",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.addFeedbackModal(task)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                                " +
+                                          _vm._s(task.task_name) +
+                                          "\n                                            "
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "modal-dialog modal-xl" },
+                                  {
+                                    staticClass: "modal fade",
+                                    attrs: { id: "addFeedbackModal" }
+                                  },
                                   [
                                     _c(
                                       "div",
-                                      { staticClass: "modal-content" },
+                                      { staticClass: "modal-dialog modal-xl" },
                                       [
                                         _c(
                                           "div",
-                                          { staticClass: "modal-header" },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass: "close",
-                                                attrs: {
-                                                  type: "button",
-                                                  "data-dismiss": "modal",
-                                                  "aria-label": "Close"
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                                            ×\n                                                        "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "modal-body" },
+                                          { staticClass: "modal-content" },
                                           [
                                             _c(
                                               "div",
-                                              { staticClass: "form-group" },
+                                              { staticClass: "modal-header" },
                                               [
-                                                _c("textarea", {
-                                                  staticClass: "form-control"
-                                                })
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass: "close",
+                                                    attrs: {
+                                                      type: "button",
+                                                      "data-dismiss": "modal",
+                                                      "aria-label": "Close"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                                            ×\n                                                        "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "modal-body" },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "row" },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass: "col-md-8"
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "form-group"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "label",
+                                                              {
+                                                                staticClass:
+                                                                  "col-form-group",
+                                                                attrs: {
+                                                                  for:
+                                                                    "task_description"
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Task Description"
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c("textarea", {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
+                                                                  value:
+                                                                    _vm.task_description,
+                                                                  expression:
+                                                                    "task_description"
+                                                                }
+                                                              ],
+                                                              staticClass:
+                                                                "form-control",
+                                                              attrs: {
+                                                                rows: "2",
+                                                                id:
+                                                                  "task_description",
+                                                                name:
+                                                                  "task_description",
+                                                                readonly: ""
+                                                              },
+                                                              domProps: {
+                                                                value:
+                                                                  _vm.task_description
+                                                              },
+                                                              on: {
+                                                                input: function(
+                                                                  $event
+                                                                ) {
+                                                                  if (
+                                                                    $event
+                                                                      .target
+                                                                      .composing
+                                                                  ) {
+                                                                    return
+                                                                  }
+                                                                  _vm.task_description =
+                                                                    $event.target.value
+                                                                }
+                                                              }
+                                                            })
+                                                          ]
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass: "col-md-3"
+                                                      },
+                                                      [
+                                                        _c("label", [
+                                                          _vm._v("Task Actions")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "btn btn-block btn-sm bg-warning"
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "fa fa-user"
+                                                            }),
+                                                            _vm._v(
+                                                              "Add User\n                                                                "
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "btn btn-block btn-sm bg-primary"
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "fa fa-bars"
+                                                            }),
+                                                            _vm._v(
+                                                              "Add Comments\n                                                                "
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "btn btn-block btn-sm bg-info"
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "fa fa-check"
+                                                            }),
+                                                            _vm._v(
+                                                              "Add Checklist\n                                                                "
+                                                            )
+                                                          ]
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
                                               ]
                                             )
                                           ]
@@ -42775,14 +42958,33 @@ var render = function() {
                                 )
                               ]
                             )
-                          ]
+                          }),
+                          0
                         )
-                      }),
+                      ],
                       1
                     )
                   ],
                   1
-                )
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-footer bg-white" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.openTaskForm(card.id)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-plus" }),
+                      _vm._v(" Add Task\n                            ")
+                    ]
+                  )
+                ])
               ])
             ])
           }),
@@ -43456,7 +43658,10 @@ var render = function() {
                               _vm._l(_vm.users, function(user) {
                                 return _c(
                                   "option",
-                                  { domProps: { value: user.id } },
+                                  {
+                                    key: user.id,
+                                    domProps: { value: user.id }
+                                  },
                                   [
                                     _vm._v(
                                       _vm._s(user.name + " " + user.lastName)

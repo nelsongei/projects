@@ -20,7 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        return Project::orderBy('created_at','desc')->with('user')->get();
+        return Project::orderBy('id','asc')->with('user')->get();
     }
 
     /**

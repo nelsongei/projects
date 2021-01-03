@@ -40,9 +40,9 @@
                                     v-on:task-added="handleTaskAdded"
                                     v-on:task-canceled="closeAddTaskForm"
                                 ></ProjectsTable>
-                                <draggable :options="dragOptions" @change="update">
-                                    <transition-group element="'div'" class="mb-2" v-for="task in card.task">
-                                        <!-- <div v-for="task in card.tasks" class="mb-2"> -->
+                                <draggable v-bind="dragOptions" @change="update" @start="drag = true" @end="drag = false" v-model="cards">
+                                    <transition-group>
+                                        <div v-for="task in card.tasks" class="mb-2" :key="task.id">
                                             <div class="list-group">
                                                 <div class="list-group-item" @click="addFeedbackModal(task)">
                                                     {{task.task_name}}
@@ -57,16 +57,38 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <textarea class="form-control"></textarea>
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-group" for="task_description">Task Description</label>
+                                                                        <textarea class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description" readonly></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>Task Actions</label>
+                                                                    <button class="btn btn-block btn-sm bg-warning">
+                                                                        <i class="fa fa-user"></i>Add User
+                                                                    </button>
+                                                                    <button class="btn btn-block btn-sm bg-primary">
+                                                                        <i class="fa fa-bars"></i>Add Comments
+                                                                    </button>
+                                                                    <button class="btn btn-block btn-sm bg-info">
+                                                                        <i class="fa fa-check"></i>Add Checklist
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <!-- </div> -->
+                                        </div>
                                     </transition-group>
                                 </draggable>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <button class="btn btn-sm" @click="openTaskForm(card.id)">
+                                    <i class="fa fa-plus"></i> Add Task
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -124,6 +146,7 @@ export default{
             errors:'',
             taskId:"",
             task_name:'',
+            task_description:''
         }
     },
     components:{
@@ -157,7 +180,7 @@ export default{
         },
         addFeedbackModal(task){
             this.taskId=task.id
-            this.task_name
+            this.task_description=task.task_description
             $('#addFeedbackModal').modal('show')
         },
         submitCard(){
