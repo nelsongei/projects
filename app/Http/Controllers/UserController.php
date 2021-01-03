@@ -27,7 +27,8 @@ class UserController extends Controller
     }
     //Profile
     public function profile(User $user){
-        return view('admin.profile',compact('user'));
+        $projects = count(auth()->user()->project);
+        return view('admin.profile',compact('user','projects'));
     }
     //Add User
     public function addUser(Request $request): \Illuminate\Http\RedirectResponse

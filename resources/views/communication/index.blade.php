@@ -159,7 +159,7 @@
                     <div class="modal-header">
                         <h3 class="modal-title">Send Mail</h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            X
+                            &times;
                         </button>
                     </div>
                     <div class="modal-body">

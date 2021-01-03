@@ -42770,7 +42770,7 @@ var render = function() {
                                   [
                                     _c(
                                       "div",
-                                      { staticClass: "modal-dialog modal-xl" },
+                                      { staticClass: "modal-dialog modal-lg" },
                                       [
                                         _c(
                                           "div",

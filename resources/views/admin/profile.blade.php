@@ -62,6 +62,11 @@
                                     <i class="fa fa-phone text-success"></i>
                                     {{Auth::user()->phone}}
                                 </p>
+                                <strong>Projects:</strong>
+                                <p class="text-muted">
+                                <i class="fa fa-project-diagram text-warning"></i>
+                                    {{$projects}}
+                                </p>
                             </div>
                         </div>
                     </div>
