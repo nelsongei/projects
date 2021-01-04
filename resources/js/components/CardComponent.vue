@@ -32,6 +32,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <ProjectsTable
+                                    v-if="newTaskForStatus===card.id"
+                                    :card-id="card.id"
+                                    :project-id="project.id"
+                                    v-on:task-added="handleTaskAdded"
+                                    v-on:task-canceled="closeAddTaskForm"
+                                ></ProjectsTable>
+                                <draggable :element="'div'" v-for="task in card.tasks" class="mb-2" :key="task.id">
+                                    <!-- <div v-for="task in card.tasks" class="mb-2" :key="task.id"> -->
+                                        <div class="list-group">
+                                            <div class="list-group-item">
+                                                {{task.task_name}}
+                                            </div>
+                                        </div>
+                                    <!-- </div> -->
+                                </draggable>
+                            </div>
                         </div>
                     </div>
                 </draggable>
@@ -83,6 +101,7 @@ export default {
             cards:[],
             project_id:'',
             name:'',
+            newTaskForStatus: 0,
         }
     },
     components:{
@@ -94,6 +113,15 @@ export default {
             this.project_id = this.project.id;
             this.name = '';
             $('#addCard').modal('show');
+        },
+        openTaskForm(cardId){
+            this.newTaskForStatus=cardId
+        },
+        handleTaskAdded(){
+
+        },
+        closeAddTaskForm(){
+            this.newTaskForStatus=0;
         }
     }
     

@@ -1985,6 +1985,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1994,7 +2012,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cards: [],
       project_id: '',
-      name: ''
+      name: '',
+      newTaskForStatus: 0
     };
   },
   components: {
@@ -2006,6 +2025,13 @@ __webpack_require__.r(__webpack_exports__);
       this.project_id = this.project.id;
       this.name = '';
       $('#addCard').modal('show');
+    },
+    openTaskForm: function openTaskForm(cardId) {
+      this.newTaskForStatus = cardId;
+    },
+    handleTaskAdded: function handleTaskAdded() {},
+    closeAddTaskForm: function closeAddTaskForm() {
+      this.newTaskForStatus = 0;
     }
   }
 });
@@ -64303,7 +64329,49 @@ var render = function() {
                         ])
                       ])
                     ])
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _vm.newTaskForStatus === card.id
+                        ? _c("ProjectsTable", {
+                            attrs: {
+                              "card-id": card.id,
+                              "project-id": _vm.project.id
+                            },
+                            on: {
+                              "task-added": _vm.handleTaskAdded,
+                              "task-canceled": _vm.closeAddTaskForm
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._l(card.tasks, function(task) {
+                        return _c(
+                          "draggable",
+                          {
+                            key: task.id,
+                            staticClass: "mb-2",
+                            attrs: { element: "div" }
+                          },
+                          [
+                            _c("div", { staticClass: "list-group" }, [
+                              _c("div", { staticClass: "list-group-item" }, [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(task.task_name) +
+                                    "\n                                        "
+                                )
+                              ])
+                            ])
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
                 ])
               ])
             }),
