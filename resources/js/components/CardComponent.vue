@@ -58,22 +58,45 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="row">
-                                                                <div class="col-md-8">
+                                                                <div class="col-md-9">
                                                                     <div class="form-group">
                                                                         <label class="col-form-group" for="task_description">Task Description</label>
-                                                                        <textarea class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description" readonly></textarea>
+                                                                        <textarea class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description"></textarea>
+                                                                        <!-- <input v-model="task_description" type="hidden"> -->
+                                                                        <p>{{task_description}}</p>
                                                                     </div>
+                                                                    <b>Checklist Title</b>
+                                                                    <ul class="bg-white ui-sortable todo-list">
+                                                                        <li>
+                                                                            <input type="checkbox">
+                                                                            <span class="text">Item Name</span>
+                                                                            <small class="badge badge-success badge-pill">
+                                                                                <i class="fa fa-clock"></i>
+                                                                                2 mins
+                                                                            </small>
+                                                                            <div class="tools">
+                                                                                <i class="fa fa-clock"></i>
+                                                                                <i class="fa fa-user-plus"></i>
+                                                                                <a class="btn btn-sm">
+                                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <label>Task Actions</label>
-                                                                    <button class="btn btn-block btn-sm bg-warning">
-                                                                        <i class="fa fa-user"></i>Add User
+                                                                    <button class="btn btn-block btn-md btn-default">
+                                                                        <i class="fa fa-user"></i> Add User
                                                                     </button>
-                                                                    <button class="btn btn-block btn-sm bg-primary">
-                                                                        <i class="fa fa-bars"></i>Add Comments
+                                                                    <button class="btn btn-block btn-sm btn-default">
+                                                                        <i class="fa fa-bars"></i> Add Comments
                                                                     </button>
-                                                                    <button class="btn btn-block btn-sm bg-info">
-                                                                        <i class="fa fa-check"></i>Add Checklist
+                                                                    <button class="btn btn-block btn-sm btn-default">
+                                                                        <i class="fa fa-check-square"></i> Add Checklist
+                                                                    </button>
+                                                                    <button class="btn btn-block btn-md btn-default">
+                                                                        <i class="fa fa-clock"></i> Add Due Date
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -86,7 +109,7 @@
                                 </draggable>
                             </div>
                             <div class="card-footer bg-white">
-                                <button class="btn btn-sm" @click="openTaskForm(card.id)">
+                                <button class="btn btn-sm text" @click="openTaskForm(card.id)">
                                     <i class="fa fa-plus"></i> Add Task
                                 </button>
                             </div>
@@ -209,6 +232,7 @@ export default{
                         this.anyError=false;
                         $('#addCard').modal('hide');
                         this.getCards();
+                        window.location.reload();
                         Vue.$toast.success('Card has been added successfully',{position:'top-right'})
                     }
                 })

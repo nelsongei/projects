@@ -2043,6 +2043,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2128,6 +2151,7 @@ __webpack_require__.r(__webpack_exports__);
 
             _this2.getCards();
 
+            window.location.reload();
             vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Card has been added successfully', {
               position: 'top-right'
             });
@@ -2677,6 +2701,7 @@ __webpack_require__.r(__webpack_exports__);
           return response.json();
         }).then(function (response) {
           if (response.status === 0) {
+            window.location.reload();
             vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Added', {
               position: 'top-right'
             });
@@ -42810,7 +42835,7 @@ var render = function() {
                                                     _c(
                                                       "div",
                                                       {
-                                                        staticClass: "col-md-8"
+                                                        staticClass: "col-md-9"
                                                       },
                                                       [
                                                         _c(
@@ -42856,8 +42881,7 @@ var render = function() {
                                                                 id:
                                                                   "task_description",
                                                                 name:
-                                                                  "task_description",
-                                                                readonly: ""
+                                                                  "task_description"
                                                               },
                                                               domProps: {
                                                                 value:
@@ -42878,7 +42902,102 @@ var render = function() {
                                                                     $event.target.value
                                                                 }
                                                               }
-                                                            })
+                                                            }),
+                                                            _vm._v(" "),
+                                                            _c("p", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.task_description
+                                                                )
+                                                              )
+                                                            ])
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("b", [
+                                                          _vm._v(
+                                                            "Checklist Title"
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "ul",
+                                                          {
+                                                            staticClass:
+                                                              "bg-white ui-sortable todo-list"
+                                                          },
+                                                          [
+                                                            _c("li", [
+                                                              _c("input", {
+                                                                attrs: {
+                                                                  type:
+                                                                    "checkbox"
+                                                                }
+                                                              }),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "text"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Item Name"
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "small",
+                                                                {
+                                                                  staticClass:
+                                                                    "badge badge-success badge-pill"
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "fa fa-clock"
+                                                                  }),
+                                                                  _vm._v(
+                                                                    "\n                                                                            2 mins\n                                                                        "
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "tools"
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "fa fa-clock"
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "fa fa-user-plus"
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "a",
+                                                                    {
+                                                                      staticClass:
+                                                                        "btn btn-sm"
+                                                                    },
+                                                                    [
+                                                                      _c("i", {
+                                                                        staticClass:
+                                                                          "fa fa-ellipsis-h"
+                                                                      })
+                                                                    ]
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ])
                                                           ]
                                                         )
                                                       ]
@@ -42898,7 +43017,7 @@ var render = function() {
                                                           "button",
                                                           {
                                                             staticClass:
-                                                              "btn btn-block btn-sm bg-warning"
+                                                              "btn btn-block btn-md btn-default"
                                                           },
                                                           [
                                                             _c("i", {
@@ -42906,7 +43025,7 @@ var render = function() {
                                                                 "fa fa-user"
                                                             }),
                                                             _vm._v(
-                                                              "Add User\n                                                                "
+                                                              " Add User\n                                                                "
                                                             )
                                                           ]
                                                         ),
@@ -42915,7 +43034,7 @@ var render = function() {
                                                           "button",
                                                           {
                                                             staticClass:
-                                                              "btn btn-block btn-sm bg-primary"
+                                                              "btn btn-block btn-sm btn-default"
                                                           },
                                                           [
                                                             _c("i", {
@@ -42923,7 +43042,7 @@ var render = function() {
                                                                 "fa fa-bars"
                                                             }),
                                                             _vm._v(
-                                                              "Add Comments\n                                                                "
+                                                              " Add Comments\n                                                                "
                                                             )
                                                           ]
                                                         ),
@@ -42932,15 +43051,32 @@ var render = function() {
                                                           "button",
                                                           {
                                                             staticClass:
-                                                              "btn btn-block btn-sm bg-info"
+                                                              "btn btn-block btn-sm btn-default"
                                                           },
                                                           [
                                                             _c("i", {
                                                               staticClass:
-                                                                "fa fa-check"
+                                                                "fa fa-check-square"
                                                             }),
                                                             _vm._v(
-                                                              "Add Checklist\n                                                                "
+                                                              " Add Checklist\n                                                                "
+                                                            )
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "button",
+                                                          {
+                                                            staticClass:
+                                                              "btn btn-block btn-md btn-default"
+                                                          },
+                                                          [
+                                                            _c("i", {
+                                                              staticClass:
+                                                                "fa fa-clock"
+                                                            }),
+                                                            _vm._v(
+                                                              " Add Due Date\n                                                                "
                                                             )
                                                           ]
                                                         )
@@ -42972,7 +43108,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-sm",
+                      staticClass: "btn btn-sm text",
                       on: {
                         click: function($event) {
                           return _vm.openTaskForm(card.id)

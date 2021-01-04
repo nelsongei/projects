@@ -70,6 +70,7 @@ export default {
                 .then(response=>response.json())
                 .then(response=>{
                     if(response.status === 0){
+                        window.location.reload();
                         Vue.$toast.success('Task Added',{position:'top-right'})
                     }
                 })
