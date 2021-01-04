@@ -1910,10 +1910,9 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'dayjs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _ProjectsTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProjectsTable */ "./resources/js/components/ProjectsTable.vue");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectsTable */ "./resources/js/components/ProjectsTable.vue");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2080,7 +2079,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 
@@ -2100,8 +2098,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_2__["default"],
-    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_3___default.a
+    ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__["default"],
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   computed: {
     dragOptions: function dragOptions() {
@@ -42984,7 +42982,7 @@ var render = function() {
                                                                       _vm._v(
                                                                         "\n                                                                            " +
                                                                           _vm._s(
-                                                                            checklist.created_at.fromNow()
+                                                                            checklist.created_at
                                                                           ) +
                                                                           "\n                                                                        "
                                                                       )

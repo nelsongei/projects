@@ -72,7 +72,7 @@
                                                                             <span class="text">{{checklist.name}}</span>
                                                                             <small class="badge badge-success badge-pill">
                                                                                 <i class="fa fa-clock"></i>
-                                                                                {{checklist.created_at.fromNow()}}
+                                                                                {{checklist.created_at}}
                                                                             </small>
                                                                             <div class="tools">
                                                                                 <i class="fa fa-clock"></i>
@@ -165,8 +165,7 @@
     </div>
 </template>
 <script>
-import Vue from 'vue'
-import dayjs from 'dayjs'
+import Vue from 'vue';
 import ProjectsTable from "./ProjectsTable";
 import draggable from 'vuedraggable'
 export default{
@@ -183,7 +182,7 @@ export default{
             errors:'',
             taskId:"",
             task_name:'',
-            task_description:''
+            task_description:'',
         }
     },
     components:{
