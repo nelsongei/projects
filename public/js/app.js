@@ -1910,9 +1910,10 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectsTable */ "./resources/js/components/ProjectsTable.vue");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'dayjs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _ProjectsTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProjectsTable */ "./resources/js/components/ProjectsTable.vue");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -2079,6 +2080,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -2098,8 +2100,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__["default"],
-    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_2___default.a
+    ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_2__["default"],
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_3___default.a
   },
   computed: {
     dragOptions: function dragOptions() {
@@ -42933,85 +42935,105 @@ var render = function() {
                                                           )
                                                         ]),
                                                         _vm._v(" "),
-                                                        _c(
-                                                          "ul",
-                                                          {
-                                                            staticClass:
-                                                              "bg-white ui-sortable todo-list"
-                                                          },
-                                                          [
-                                                            _c("li", [
-                                                              _c("input", {
-                                                                attrs: {
-                                                                  type:
-                                                                    "checkbox"
-                                                                }
-                                                              }),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "span",
-                                                                {
-                                                                  staticClass:
-                                                                    "text"
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "Item Name"
-                                                                  )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "small",
-                                                                {
-                                                                  staticClass:
-                                                                    "badge badge-success badge-pill"
-                                                                },
-                                                                [
-                                                                  _c("i", {
-                                                                    staticClass:
-                                                                      "fa fa-clock"
-                                                                  }),
-                                                                  _vm._v(
-                                                                    "\n                                                                            2 mins\n                                                                        "
-                                                                  )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "tools"
-                                                                },
-                                                                [
-                                                                  _c("i", {
-                                                                    staticClass:
-                                                                      "fa fa-clock"
-                                                                  }),
-                                                                  _vm._v(" "),
-                                                                  _c("i", {
-                                                                    staticClass:
-                                                                      "fa fa-user-plus"
+                                                        _vm._l(
+                                                          task.checklist,
+                                                          function(checklist) {
+                                                            return _c(
+                                                              "ul",
+                                                              {
+                                                                key:
+                                                                  checklist.id,
+                                                                staticClass:
+                                                                  "bg-white ui-sortable todo-list"
+                                                              },
+                                                              [
+                                                                _c("li", [
+                                                                  _c("input", {
+                                                                    attrs: {
+                                                                      type:
+                                                                        "checkbox"
+                                                                    }
                                                                   }),
                                                                   _vm._v(" "),
                                                                   _c(
-                                                                    "a",
+                                                                    "span",
                                                                     {
                                                                       staticClass:
-                                                                        "btn btn-sm"
+                                                                        "text"
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          checklist.name
+                                                                        )
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "small",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge badge-success badge-pill"
                                                                     },
                                                                     [
                                                                       _c("i", {
                                                                         staticClass:
-                                                                          "fa fa-ellipsis-h"
-                                                                      })
+                                                                          "fa fa-clock"
+                                                                      }),
+                                                                      _vm._v(
+                                                                        "\n                                                                            " +
+                                                                          _vm._s(
+                                                                            checklist.created_at.fromNow()
+                                                                          ) +
+                                                                          "\n                                                                        "
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "tools"
+                                                                    },
+                                                                    [
+                                                                      _c("i", {
+                                                                        staticClass:
+                                                                          "fa fa-clock"
+                                                                      }),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c("i", {
+                                                                        staticClass:
+                                                                          "fa fa-user-plus"
+                                                                      }),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c(
+                                                                        "a",
+                                                                        {
+                                                                          staticClass:
+                                                                            "btn btn-sm"
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "i",
+                                                                            {
+                                                                              staticClass:
+                                                                                "fa fa-ellipsis-h"
+                                                                            }
+                                                                          )
+                                                                        ]
+                                                                      )
                                                                     ]
                                                                   )
-                                                                ]
-                                                              )
-                                                            ])
-                                                          ]
+                                                                ])
+                                                              ]
+                                                            )
+                                                          }
                                                         ),
                                                         _vm._v(" "),
                                                         _c("b", [
@@ -43062,7 +43084,8 @@ var render = function() {
                                                             ])
                                                           ]
                                                         )
-                                                      ]
+                                                      ],
+                                                      2
                                                     ),
                                                     _vm._v(" "),
                                                     _c(
@@ -43096,7 +43119,7 @@ var render = function() {
                                                           "button",
                                                           {
                                                             staticClass:
-                                                              "btn btn-block btn-sm btn-default"
+                                                              "btn btn-block btn-md btn-default"
                                                           },
                                                           [
                                                             _c("i", {
@@ -43113,7 +43136,7 @@ var render = function() {
                                                           "button",
                                                           {
                                                             staticClass:
-                                                              "btn btn-block btn-sm btn-default"
+                                                              "btn btn-block btn-md btn-default"
                                                           },
                                                           [
                                                             _c("i", {

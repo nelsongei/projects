@@ -66,13 +66,13 @@
                                                                         <p>{{task_description}}</p>
                                                                     </div>
                                                                     <b>Checklist Title</b>
-                                                                    <ul class="bg-white ui-sortable todo-list">
+                                                                    <ul class="bg-white ui-sortable todo-list" v-for="checklist in task.checklist" :key="checklist.id">
                                                                         <li>
                                                                             <input type="checkbox">
-                                                                            <span class="text">Item Name</span>
+                                                                            <span class="text">{{checklist.name}}</span>
                                                                             <small class="badge badge-success badge-pill">
                                                                                 <i class="fa fa-clock"></i>
-                                                                                2 mins
+                                                                                {{checklist.created_at.fromNow()}}
                                                                             </small>
                                                                             <div class="tools">
                                                                                 <i class="fa fa-clock"></i>
@@ -102,10 +102,10 @@
                                                                     <button class="btn btn-block btn-md btn-default">
                                                                         <i class="fa fa-user"></i> Add User
                                                                     </button>
-                                                                    <button class="btn btn-block btn-sm btn-default">
+                                                                    <button class="btn btn-block btn-md btn-default">
                                                                         <i class="fa fa-bars"></i> Add Comments
                                                                     </button>
-                                                                    <button class="btn btn-block btn-sm btn-default">
+                                                                    <button class="btn btn-block btn-md btn-default">
                                                                         <i class="fa fa-check-square"></i> Add Checklist
                                                                     </button>
                                                                     <button class="btn btn-block btn-md btn-default">
@@ -166,6 +166,7 @@
 </template>
 <script>
 import Vue from 'vue'
+import dayjs from 'dayjs'
 import ProjectsTable from "./ProjectsTable";
 import draggable from 'vuedraggable'
 export default{

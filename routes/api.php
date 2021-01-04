@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ChecklistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,10 @@ Route::prefix('/card')->group(function(){
 Route::get('/tasks',[TaskController::class,'index']);
 Route::prefix('/task')->group(function(){
     Route::post('/store',[TaskController::class,'store']);
+});
+Route::get('/checklists',[ChecklistController::class,'index']);
+Route::prefix('/checklist')->group(function(){
+    Route::post('/store',[ChecklistController::class,'store']);
+    Route::put('/{id}',[ChecklistController::class,'update']);
+    Route::delete('/{id}',[ChecklistController::class,'destroy']);
 });

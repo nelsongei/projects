@@ -15,7 +15,13 @@ class CreateChecklistsTable extends Migration
     {
         Schema::create('checklists', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('task_id')->unsigned();
+            $table->foreign('task_id')->references('id')->on('tasks')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('name');
+            $table->boolean('completed')->default(false);
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
+            $table->index('task_id');
         });
     }
 

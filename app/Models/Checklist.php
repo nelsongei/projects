@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Checklist extends Model
 {
     use HasFactory;
+    public function tasks(){
+        return $this->belongsTo(Task::class);
+    }
 }
