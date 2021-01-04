@@ -43618,7 +43618,7 @@ var render = function() {
           _c(
             "tbody",
             _vm._l(_vm.projects, function(project, index) {
-              return _c("tr", [
+              return _c("tr", { key: project.id }, [
                 _c("td", [_vm._v(_vm._s(index + 1))]),
                 _vm._v(" "),
                 _c("td", [

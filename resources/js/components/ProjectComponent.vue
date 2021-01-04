@@ -16,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(project, index) in projects">
+                        <tr v-for="(project, index) in projects" :key="project.id">
                             <td>{{index +1}}</td>
                             <td>
                                 <a :href="'project/'+project.id">
