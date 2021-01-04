@@ -83,6 +83,19 @@
                                                                             </div>
                                                                         </li>
                                                                     </ul>
+                                                                    <b>Feedback</b>
+                                                                    <ul class="bg-white ui-sortable todo-list">
+                                                                        <li>
+                                                                            <div class="">
+                                                                                <span class="img-circle elevation-1 text px-3 py-3">NN</span>
+                                                                                <span>
+                                                                                    <div class="form-group">
+                                                                                        <textarea class="form-control" placeholder="Add Feedback"></textarea>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <label>Task Actions</label>

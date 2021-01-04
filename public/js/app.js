@@ -2066,6 +2066,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42997,6 +43010,55 @@ var render = function() {
                                                                   )
                                                                 ]
                                                               )
+                                                            ])
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("b", [
+                                                          _vm._v("Feedback")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "ul",
+                                                          {
+                                                            staticClass:
+                                                              "bg-white ui-sortable todo-list"
+                                                          },
+                                                          [
+                                                            _c("li", [
+                                                              _c("div", {}, [
+                                                                _c(
+                                                                  "span",
+                                                                  {
+                                                                    staticClass:
+                                                                      "img-circle elevation-1 text px-3 py-3"
+                                                                  },
+                                                                  [_vm._v("NN")]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c("span", [
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "form-group"
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "textarea",
+                                                                        {
+                                                                          staticClass:
+                                                                            "form-control",
+                                                                          attrs: {
+                                                                            placeholder:
+                                                                              "Add Feedback"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ])
+                                                              ])
                                                             ])
                                                           ]
                                                         )
