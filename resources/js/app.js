@@ -34,7 +34,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
 Vue.use(VueToast)
 Vue.use(Popover,{tooltip:true})
-
+Vue.use(require('vue-moment'))
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

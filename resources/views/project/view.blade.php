@@ -35,7 +35,6 @@
                         @foreach($project->card as $cards)
                             @foreach($cards->tasks as $task)
                                 @foreach($task->checklist as $checklist)
-                                    {{$checklist->name}}
                                 @endforeach
                             @endforeach
                         @endforeach
