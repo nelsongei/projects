@@ -9,6 +9,7 @@
 
 This is a web application more than just CRM - currently working on it. 
 Front end is a different thing
+<br/>
 <b>How to install<b>
 <ul>
     <li>Composer Install</li>
