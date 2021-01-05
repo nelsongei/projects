@@ -2117,7 +2117,8 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       newTaskForStatus: 0,
       task_name: '',
-      task_description: ''
+      task_description: '',
+      editingTask: null
     };
   },
   computed: {
@@ -2199,7 +2200,14 @@ __webpack_require__.r(__webpack_exports__);
     closeAddTaskForm: function closeAddTaskForm() {
       this.newTaskForStatus = 0;
     },
-    changeOrder: function changeOrder() {}
+    changeOrder: function changeOrder() {},
+    endEditTask: function endEditTask(task) {
+      this.editingTask = null;
+      axios.get('');
+    },
+    editTask: function editTask(task) {
+      this.editingTask = task;
+    }
   }
 });
 
@@ -2664,17 +2672,26 @@ __webpack_require__.r(__webpack_exports__);
       edit: false,
       anyError: false,
       errors: '',
-      pagination: {}
+      pagination: {},
+      baseURL: ''
     };
   },
   created: function created() {
+    this.getBaseURL();
+  },
+  mounted: function mounted() {
     this.getProjects();
   },
   methods: {
+    getBaseURL: function getBaseURL() {
+      var getUrl = window.location;
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
+    },
     getProjects: function getProjects() {
       var _this = this;
 
-      axios.get('http://127.0.0.1/projects/public/api/projects').then(function (response) {
+      // axios.get('http://127.0.0.1/projects/public/api/projects')
+      axios.get("".concat(this.baseURL, "api/projects")).then(function (response) {
         _this.projects = response.data;
         _this.pagination = {
           current_page: response.current_page,
@@ -64575,7 +64592,8 @@ var render = function() {
                                       _c(
                                         "div",
                                         {
-                                          staticClass: "modal-dialog modal-lg"
+                                          staticClass:
+                                            "modal-dialog modal-lg modal-dialog-scrollable"
                                         },
                                         [
                                           _c(
@@ -64644,56 +64662,108 @@ var render = function() {
                                                                 ]
                                                               ),
                                                               _vm._v(" "),
-                                                              _c("textarea", {
-                                                                directives: [
-                                                                  {
-                                                                    name:
-                                                                      "model",
-                                                                    rawName:
-                                                                      "v-model",
-                                                                    value:
-                                                                      _vm.task_description,
-                                                                    expression:
-                                                                      "task_description"
-                                                                  }
-                                                                ],
-                                                                staticClass:
-                                                                  "form-control",
-                                                                attrs: {
-                                                                  rows: "2",
-                                                                  id:
-                                                                    "task_description",
-                                                                  name:
-                                                                    "task_description"
-                                                                },
-                                                                domProps: {
-                                                                  value:
-                                                                    _vm.task_description
-                                                                },
-                                                                on: {
-                                                                  input: function(
-                                                                    $event
-                                                                  ) {
-                                                                    if (
-                                                                      $event
-                                                                        .target
-                                                                        .composing
-                                                                    ) {
-                                                                      return
+                                                              task ===
+                                                              _vm.editingTask
+                                                                ? _c(
+                                                                    "textarea",
+                                                                    {
+                                                                      directives: [
+                                                                        {
+                                                                          name:
+                                                                            "model",
+                                                                          rawName:
+                                                                            "v-model",
+                                                                          value:
+                                                                            _vm.task_description,
+                                                                          expression:
+                                                                            "task_description"
+                                                                        }
+                                                                      ],
+                                                                      staticClass:
+                                                                        "form-control",
+                                                                      attrs: {
+                                                                        rows:
+                                                                          "2",
+                                                                        id:
+                                                                          "task_description",
+                                                                        name:
+                                                                          "task_description"
+                                                                      },
+                                                                      domProps: {
+                                                                        value:
+                                                                          _vm.task_description
+                                                                      },
+                                                                      on: {
+                                                                        keyup: function(
+                                                                          $event
+                                                                        ) {
+                                                                          if (
+                                                                            !$event.type.indexOf(
+                                                                              "key"
+                                                                            ) &&
+                                                                            _vm._k(
+                                                                              $event.keyCode,
+                                                                              "enter",
+                                                                              13,
+                                                                              $event.key,
+                                                                              "Enter"
+                                                                            )
+                                                                          ) {
+                                                                            return null
+                                                                          }
+                                                                          return _vm.endEditTask(
+                                                                            task
+                                                                          )
+                                                                        },
+                                                                        blur: function(
+                                                                          $event
+                                                                        ) {
+                                                                          return _vm.endEditing(
+                                                                            task
+                                                                          )
+                                                                        },
+                                                                        input: function(
+                                                                          $event
+                                                                        ) {
+                                                                          if (
+                                                                            $event
+                                                                              .target
+                                                                              .composing
+                                                                          ) {
+                                                                            return
+                                                                          }
+                                                                          _vm.task_description =
+                                                                            $event.target.value
+                                                                        }
+                                                                      }
                                                                     }
-                                                                    _vm.task_description =
-                                                                      $event.target.value
-                                                                  }
-                                                                }
-                                                              }),
-                                                              _vm._v(" "),
-                                                              _c("p", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.task_description
                                                                   )
-                                                                )
-                                                              ])
+                                                                : _vm._e(),
+                                                              _vm._v(" "),
+                                                              task !==
+                                                              _vm.editingTask
+                                                                ? _c(
+                                                                    "p",
+                                                                    {
+                                                                      on: {
+                                                                        dblclick: function(
+                                                                          $event
+                                                                        ) {
+                                                                          return _vm.editTask(
+                                                                            task
+                                                                          )
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          _vm.task_description
+                                                                        )
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                : _vm._e()
                                                             ]
                                                           ),
                                                           _vm._v(" "),
@@ -66217,7 +66287,7 @@ var render = function() {
                       _c("a", { attrs: { href: "project/" + project.id } }, [
                         _c("i", { staticClass: "fa fa-eye" }),
                         _vm._v(
-                          "\n                                        View Project\n                                    "
+                          "\n                                        Manage Project\n                                    "
                         )
                       ])
                     ]),

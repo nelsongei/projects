@@ -49,7 +49,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal fade" id="addFeedbackModal">
-                                                <div class="modal-dialog modal-lg">
+                                                <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -61,9 +61,9 @@
                                                                 <div class="col-md-9">
                                                                     <div class="form-group">
                                                                         <label class="col-form-group" for="task_description">Task Description</label>
-                                                                        <textarea class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description"></textarea>
+                                                                        <textarea v-if="task === editingTask" @keyup.enter="endEditTask(task)" @blur="endEditing(task)" class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description"></textarea>
                                                                         <!-- <input v-model="task_description" type="hidden"> -->
-                                                                        <p>{{task_description}}</p>
+                                                                        <p v-if="task !== editingTask" @dblclick="editTask(task)">{{task_description}}</p>
                                                                     </div>
                                                                     <b>Checklist Title</b>
                                                                     <ul class="bg-white ui-sortable todo-list" v-for="checklist in task.checklist" :key="checklist.id">
@@ -205,7 +205,8 @@ export default {
             name:'',
             newTaskForStatus:0,
             task_name:'',
-            task_description:''
+            task_description:'',
+            editingTask:null,
         }
     },
     computed:{
@@ -284,6 +285,13 @@ export default {
         },
         changeOrder(){
 
+        },
+        endEditTask(task){
+            this.editingTask =  null;
+            axios.get('')
+        },
+        editTask(task){
+            this.editingTask = task;
         }
     }
 }
