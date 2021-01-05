@@ -2155,7 +2155,8 @@ __webpack_require__.r(__webpack_exports__);
       editingTask: null,
       baseURL: '',
       taskId: '',
-      todo_name: ''
+      todo_name: '',
+      card_id: ''
     };
   },
   computed: {
@@ -2242,6 +2243,21 @@ __webpack_require__.r(__webpack_exports__);
       this.newTaskForStatus = 0;
     },
     changeOrder: function changeOrder() {},
+    moveTask: function moveTask(task) {
+      fetch("http://127.0.0.1/projects/public/move/".concat(this.taskId), {
+        method: 'put',
+        body: JSON.stringify({
+          "card_id": this.card_id
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+        }
+      }).then(function (response) {
+        return response.json();
+      });
+    },
     endEditing: function endEditing(task) {
       this.editingTask = null;
       fetch("http://127.0.0.1/projects/public/api/task/".concat(this.taskId), {
@@ -2255,12 +2271,12 @@ __webpack_require__.r(__webpack_exports__);
           'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
         }
       }).then(function (response) {
-        (function (response) {
+        return function (response) {
           return json();
-        });
+        };
       }).then(function (response) {
         if (response.status === 0) {
-          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Description Updated', {
+          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Description Updated successfully', {
             position: 'top-right'
           });
         }
@@ -65436,54 +65452,19 @@ var render = function() {
                                                                     "form",
                                                                     {
                                                                       staticClass:
-                                                                        "px-4 py-3"
+                                                                        "px-4 py-3",
+                                                                      on: {
+                                                                        submit: function(
+                                                                          $event
+                                                                        ) {
+                                                                          $event.preventDefault()
+                                                                          return _vm.moveTask(
+                                                                            task
+                                                                          )
+                                                                        }
+                                                                      }
                                                                     },
                                                                     [
-                                                                      _c(
-                                                                        "input",
-                                                                        {
-                                                                          directives: [
-                                                                            {
-                                                                              name:
-                                                                                "model",
-                                                                              rawName:
-                                                                                "v-model",
-                                                                              value:
-                                                                                _vm.taskId,
-                                                                              expression:
-                                                                                "taskId"
-                                                                            }
-                                                                          ],
-                                                                          attrs: {
-                                                                            type:
-                                                                              "hidden",
-                                                                            name:
-                                                                              "task_id"
-                                                                          },
-                                                                          domProps: {
-                                                                            value:
-                                                                              _vm.taskId
-                                                                          },
-                                                                          on: {
-                                                                            input: function(
-                                                                              $event
-                                                                            ) {
-                                                                              if (
-                                                                                $event
-                                                                                  .target
-                                                                                  .composing
-                                                                              ) {
-                                                                                return
-                                                                              }
-                                                                              _vm.taskId =
-                                                                                $event.target.value
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
                                                                       _c(
                                                                         "div",
                                                                         {
@@ -65509,31 +65490,106 @@ var render = function() {
                                                                           _c(
                                                                             "select",
                                                                             {
+                                                                              directives: [
+                                                                                {
+                                                                                  name:
+                                                                                    "model",
+                                                                                  rawName:
+                                                                                    "v-model",
+                                                                                  value:
+                                                                                    _vm.card_id,
+                                                                                  expression:
+                                                                                    "card_id"
+                                                                                }
+                                                                              ],
                                                                               staticClass:
-                                                                                "form-control"
-                                                                            },
-                                                                            _vm._l(
-                                                                              _vm.cards,
-                                                                              function(
-                                                                                card
-                                                                              ) {
-                                                                                return _c(
-                                                                                  "option",
-                                                                                  {
-                                                                                    key:
-                                                                                      card.id
-                                                                                  },
-                                                                                  [
-                                                                                    _vm._v(
-                                                                                      _vm._s(
-                                                                                        card.name
-                                                                                      )
+                                                                                "form-control",
+                                                                              attrs: {
+                                                                                name:
+                                                                                  "card_id"
+                                                                              },
+                                                                              on: {
+                                                                                change: function(
+                                                                                  $event
+                                                                                ) {
+                                                                                  var $$selectedVal = Array.prototype.filter
+                                                                                    .call(
+                                                                                      $event
+                                                                                        .target
+                                                                                        .options,
+                                                                                      function(
+                                                                                        o
+                                                                                      ) {
+                                                                                        return o.selected
+                                                                                      }
                                                                                     )
-                                                                                  ]
-                                                                                )
+                                                                                    .map(
+                                                                                      function(
+                                                                                        o
+                                                                                      ) {
+                                                                                        var val =
+                                                                                          "_value" in
+                                                                                          o
+                                                                                            ? o._value
+                                                                                            : o.value
+                                                                                        return val
+                                                                                      }
+                                                                                    )
+                                                                                  _vm.card_id = $event
+                                                                                    .target
+                                                                                    .multiple
+                                                                                    ? $$selectedVal
+                                                                                    : $$selectedVal[0]
+                                                                                }
                                                                               }
-                                                                            ),
-                                                                            0
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "option",
+                                                                                {
+                                                                                  attrs: {
+                                                                                    disabled:
+                                                                                      "",
+                                                                                    value:
+                                                                                      ""
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "Select Card"
+                                                                                  )
+                                                                                ]
+                                                                              ),
+                                                                              _vm._v(
+                                                                                " "
+                                                                              ),
+                                                                              _vm._l(
+                                                                                _vm.cards,
+                                                                                function(
+                                                                                  card
+                                                                                ) {
+                                                                                  return _c(
+                                                                                    "option",
+                                                                                    {
+                                                                                      key:
+                                                                                        card.id,
+                                                                                      domProps: {
+                                                                                        value:
+                                                                                          card.id
+                                                                                      }
+                                                                                    },
+                                                                                    [
+                                                                                      _vm._v(
+                                                                                        _vm._s(
+                                                                                          card.name
+                                                                                        )
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                                }
+                                                                              )
+                                                                            ],
+                                                                            2
                                                                           )
                                                                         ]
                                                                       ),

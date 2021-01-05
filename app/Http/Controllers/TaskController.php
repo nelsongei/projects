@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Card;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -37,11 +39,24 @@ class TaskController extends Controller
             return response()->json(['status' => 1]);
         }
     }
+    //Update Task Description
     public function update(Request $request, $id){
         $tasksUpdate = Task::find($id);
         $tasksUpdate->task_description = $request->task_description;
         $tasksUpdate->push();
         if($tasksUpdate){
+            return response()->json(['status'=>0]);
+        }
+        else{
+            return response()->json(['status'=>1]);
+        }
+    }
+    //Move Task
+    public function moveTask(Request $request,$id){
+        $moveTask = Task::find($id);
+        $moveTask->card_id = $request->card_id;
+        $moveTask->push();
+        if($moveTask){
             return response()->json(['status'=>0]);
         }
         else{

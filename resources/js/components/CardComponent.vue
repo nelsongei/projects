@@ -152,12 +152,12 @@
                                                                             <i class="fa fa-arrow-right"></i> Move Task
                                                                         </button>
                                                                         <div class="dropdown-menu">
-                                                                            <form class="px-4 py-3">
-                                                                                <input type="hidden" name="task_id" v-model="taskId">
+                                                                            <form class="px-4 py-3" @submit.prevent="moveTask(task)">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Move To</label>
-                                                                                    <select class="form-control">
-                                                                                        <option v-for="card in cards" :key="card.id">{{card.name}}</option>
+                                                                                    <select class="form-control" name="card_id" v-model="card_id">
+                                                                                        <option disabled value="">Select Card</option>
+                                                                                        <option v-for="card in cards" :key="card.id" :value="card.id">{{card.name}}</option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="dropdown-divider"></div>
@@ -244,6 +244,7 @@ export default {
             baseURL:'',
             taskId:'',
             todo_name:'',
+            card_id:'',
         }
     },
     computed:{
@@ -327,6 +328,20 @@ export default {
         changeOrder(){
 
         },
+        moveTask(task){
+            fetch(`http://127.0.0.1/projects/public/move/${this.taskId}`,{
+                method:'put',
+                body:JSON.stringify({
+                    "card_id":this.card_id
+                }),
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json',
+                    'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')   
+                }
+            })
+            .then(response=>response.json())
+        },
         endEditing(task){
             this.editingTask =  null;
             fetch(`http://127.0.0.1/projects/public/api/task/${this.taskId}`,{
@@ -340,12 +355,10 @@ export default {
                     'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
                 }
             })
-            .then(response=>{
-                response=>json()
-            })
+            .then(response=>response=>json())
             .then(response=>{
                 if(response.status===0){
-                    Vue.$toast.success('Task Description Updated',{position:'top-right'})
+                    Vue.$toast.success('Task Description Updated successfully',{position:'top-right'})
                 }
             })
             .catch(error=>{
