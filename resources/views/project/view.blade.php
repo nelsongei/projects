@@ -34,8 +34,7 @@
                     <div class="col-md-12">
                         @foreach($project->card as $cards)
                             @foreach($cards->tasks as $task)
-                                @foreach($task->checklist as $checklist)
-                                @endforeach
+
                             @endforeach
                         @endforeach
                         <div id="app">

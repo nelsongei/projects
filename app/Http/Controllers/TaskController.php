@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Project;
+use App\Models\Card;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     //
-    public function index(){
-        return Task::all();
+    public function index(Project $project, Card $card,Task $task){
+        return Task::find($task)->where('project_id',$project)->where('card_id',$card)->get();
     }
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {

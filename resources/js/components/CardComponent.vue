@@ -2,14 +2,14 @@
     <div>
         <div class="card card-outline card-warning">
             <div class="card-body">
-                <button class="btn btn-primary btn-sm" @click="addCards" href="#">
-                    <i class="fa fa-plus"></i>Add Card
+                <button class="btn btn-sm btn-primary" @click="addCards">
+                    <i class="fa fa-plus"></i> Add Card
                 </button>
-                <draggable :element="'div'" class="row mt-2 mr-3">
-                    <div class="col-md-3" v-for="card in project.card" :key="card.id">
+                <draggable element="div" class="row mt-2 mr-3" v-model="cards" :dragOptions="dragOptions">
+                    <div class="col-md-3" v-for="card in cards" :key="card.id">
                         <div class="card p-lg-2">
                             <div class="card-header bg-white">
-                                <h3 class="card-title text-bold text-warning">{{card.name}}</h3>
+                                <h3 class="card-title text-bold">{{card.name}}</h3>
                                 <div class=dropright>
                                     <button
                                         class="btn btn-sm float-right dropdown"
@@ -40,15 +40,113 @@
                                     v-on:task-added="handleTaskAdded"
                                     v-on:task-canceled="closeAddTaskForm"
                                 ></ProjectsTable>
-                                <draggable :element="'div'" v-for="task in card.tasks" class="mb-2" :key="task.id">
-                                    <!-- <div v-for="task in card.tasks" class="mb-2" :key="task.id"> -->
-                                        <div class="list-group">
-                                            <div class="list-group-item">
-                                                {{task.task_name}}
+                                <draggable :dragOptions="dragOptions" v-model="card.tasks" @end="changeOrder">
+                                    <transition-group :id="card.id">
+                                        <div v-for="task in card.tasks" :key="task.id" class="mb-2">
+                                            <div class="list-group">
+                                                <div class="list-group-item" @click="addFeedbackModal(task)">
+                                                    {{task.task_name}}
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="addFeedbackModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                &times;
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-9">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-group" for="task_description">Task Description</label>
+                                                                        <textarea class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description"></textarea>
+                                                                        <!-- <input v-model="task_description" type="hidden"> -->
+                                                                        <p>{{task_description}}</p>
+                                                                    </div>
+                                                                    <b>Checklist Title</b>
+                                                                    <ul class="bg-white ui-sortable todo-list" v-for="checklist in task.checklist" :key="checklist.id">
+                                                                        <li>
+                                                                            <input type="checkbox">
+                                                                            <span class="text">{{checklist.name}}</span>
+                                                                            <small class="badge badge-success badge-pill">
+                                                                                <i class="fa fa-clock"></i>
+                                                                                2 Mins Ago
+                                                                            </small>
+                                                                            <div class="tools">
+                                                                                <div class="">
+                                                                                    <button type="button" class="btn btn-sm dropdown" data-toggle="dropdown">
+                                                                                        <i class="fa fa-ellipsis-v"></i>
+                                                                                    </button>
+                                                                                    <div class="dropdown-menu">
+                                                                                        <span class="dropdown-item dropdown-header text-center text-bold text-dark">Checklist Action</span>
+                                                                                        <div class="dropdown-divider"></div>
+                                                                                        <a class="dropdown-item">
+                                                                                            <i class="fa fa-plus"></i>Add Checklist
+                                                                                        </a>
+                                                                                        <a class="dropdown-item">
+                                                                                            <i class="fa fa-clock"></i> Due Date
+                                                                                        </a>
+                                                                                        <a class="dropdown-item">
+                                                                                            <i class="fa fa-user-plus"></i> Assign To
+                                                                                        </a>
+                                                                                        <a class="dropdown-item">
+                                                                                            <i class="fa fa-edit"></i> Edit
+                                                                                        </a>
+                                                                                        <a class="dropdown-item">
+                                                                                            <i class="fa fa-trash"></i> Delete
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <b>Feedback</b>
+                                                                    <ul class="bg-white ui-sortable todo-list">
+                                                                        <li>
+                                                                            <div class="">
+                                                                                <span class="img-circle elevation-1 text px-3 py-3">NN</span>
+                                                                                <span>
+                                                                                    <div class="form-group">
+                                                                                        <textarea class="form-control" placeholder="Add Feedback"></textarea>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label>Task Actions</label>
+                                                                    <button class="btn btn-block btn-md btn-default">
+                                                                        <i class="fa fa-check"></i> Complete Task
+                                                                    </button>
+                                                                    <button class="btn btn-block btn-md btn-default">
+                                                                        <i class="fa fa-user"></i> Add User
+                                                                    </button>
+                                                                    <button class="btn btn-block btn-md btn-default">
+                                                                        <i class="fa fa-bars"></i> Add Comments
+                                                                    </button>
+                                                                    <button class="btn btn-block btn-md btn-default">
+                                                                        <i class="fa fa-check-square"></i> Add Checklist
+                                                                    </button>
+                                                                    <button class="btn btn-block btn-md btn-default">
+                                                                        <i class="fa fa-clock"></i> Add Due Date
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    <!-- </div> -->
+                                    </transition-group>
                                 </draggable>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <button class="btn btn-sm text" @click="openTaskForm(card.id)">
+                                    <i class="fa fa-plus"></i> Add Task
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -96,23 +194,84 @@ export default {
     props:[
         'project'
     ],
+    components:{
+        draggable,
+        ProjectsTable
+    },
     data(){
         return{
-            cards:[],
+            cards:this.project.card,
             project_id:'',
             name:'',
-            newTaskForStatus: 0,
+            newTaskForStatus:0,
+            task_name:'',
+            task_description:''
         }
     },
-    components:{
-        ProjectsTable,
-        draggable
+    computed:{
+        dragOptions(){
+            return {
+                animation: 1,
+                group:'cards',
+                ghostClass:'ghost'
+            };
+        },
     },
     methods:{
+        getCards(){
+            axios.get('http://127.0.0.1/projects/public/api/cards')
+            .then(response=>{
+                this.cards = response.data
+                // console.log(this.cards)
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
+        addFeedbackModal(task){
+            this.taskId=task.id;
+            this.task_description = task.task_description;
+            $('#addFeedbackModal').modal('show')
+        },
         addCards(){
-            this.project_id = this.project.id;
-            this.name = '';
-            $('#addCard').modal('show');
+            this.project_id=this.project.id;
+            this.name='';
+            $('#addCard').modal('show')
+        },
+        submitCard(){
+            if(this.name===''){
+                Vue.$toast.error('Card name is required',{position:'top-right'})
+            }
+            else{
+                fetch('http://127.0.0.1/projects/public/api/card/store',{
+                    method:'POST',
+                    body:JSON.stringify({
+                        "name":this.name,"project_id":this.project_id
+                    }),
+                    headers:{
+                        'Accept':'application/json',
+                        'Content-Type':'application/json',
+                        'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                    }
+                })
+                .then(response=>response.json())
+                .then(response=>{
+                    if (response.errors){
+                        this.anyError=true;
+                        this.errors = response.errors
+                    }
+                    if(response.status===0){
+                        this.anyError=false;
+                        $('#addCard').modal('hide');
+                        this.getCards();
+                        window.location.reload();
+                        Vue.$toast.success('Card has been added successfully',{position:'top-right'})
+                    }
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
+            }
         },
         openTaskForm(cardId){
             this.newTaskForStatus=cardId
@@ -122,8 +281,10 @@ export default {
         },
         closeAddTaskForm(){
             this.newTaskForStatus=0;
+        },
+        changeOrder(){
+
         }
     }
-    
 }
 </script>

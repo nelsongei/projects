@@ -22,6 +22,7 @@ class CreateTasksTable extends Migration
             $table->string('task_name')->nullable();
             $table->text('task_description');
             $table->string('due_date')->nullable();
+            $table->boolean('completed')->default(false);
             $table->timestamps();
             $table->index('card_id');
         });

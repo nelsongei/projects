@@ -12,10 +12,10 @@ class CardController extends Controller
     //
     public function index(Project $project, Card $card)
     {
-        // return Card::find($card)->where('project_id',$project)->get();
+        return Card::where('project_id',$project)->get();
         // return Card::orderBy('id','desc')->get();
-        $cards = DB::table('cards')->where('project_id',$project)->get();
-        return $cards;
+        // $cards = DB::table('cards')->where('project_id',$project)->get();
+        // return $cards;
     }
     public function store(Request $request)
     {
