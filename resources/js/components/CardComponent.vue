@@ -59,13 +59,14 @@
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-md-9">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-group" for="task_description">Task Description</label>
-                                                                        <textarea v-if="task === editingTask" @keyup.enter="endEditTask(task)" @blur="endEditing(task)" class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description"></textarea>
-                                                                        <!-- <input v-model="task_description" type="hidden"> -->
-                                                                        <p v-if="task !== editingTask" @dblclick="editTask(task)">{{task_description}}</p>
-                                                                    </div>
-                                                                    <b>Checklist Title</b>
+                                                                    <form @submit.prevent="endEditing(task)">
+                                                                        <div class="form-group">
+                                                                            <label class="col-form-group" for="task_description">Task Description</label>
+                                                                            <textarea v-if="task === editingTask" @keyup.enter="endEditing(task)" @blur="endEditing(task)" class="form-control" rows="2" id="task_description" name="task_description" v-model="task_description"></textarea>
+                                                                        </div>
+                                                                    </form>
+                                                                    <p v-if="task !== editingTask" @dblclick="editTask(task)">{{task_description}}</p>
+                                                                    <b>Task Todo List</b>
                                                                     <ul class="bg-white ui-sortable todo-list" v-for="checklist in task.checklist" :key="checklist.id">
                                                                         <li>
                                                                             <input type="checkbox">
@@ -83,7 +84,7 @@
                                                                                         <span class="dropdown-item dropdown-header text-center text-bold text-dark">Checklist Action</span>
                                                                                         <div class="dropdown-divider"></div>
                                                                                         <a class="dropdown-item">
-                                                                                            <i class="fa fa-plus"></i>Add Checklist
+                                                                                            <i class="fa fa-plus"></i>Add Todo
                                                                                         </a>
                                                                                         <a class="dropdown-item">
                                                                                             <i class="fa fa-clock"></i> Due Date
@@ -102,6 +103,7 @@
                                                                             </div>
                                                                         </li>
                                                                     </ul>
+                                                                    <br/>
                                                                     <b>Feedback</b>
                                                                     <ul class="bg-white ui-sortable todo-list">
                                                                         <li>
@@ -127,12 +129,44 @@
                                                                     <button class="btn btn-block btn-md btn-default">
                                                                         <i class="fa fa-bars"></i> Add Comments
                                                                     </button>
-                                                                    <button class="btn btn-block btn-md btn-default">
-                                                                        <i class="fa fa-check-square"></i> Add Checklist
-                                                                    </button>
-                                                                    <button class="btn btn-block btn-md btn-default">
-                                                                        <i class="fa fa-clock"></i> Add Due Date
-                                                                    </button>
+                                                                    <div class="dropright">
+                                                                        <button class="btn btn-block btn-md btn-default dropdown" data-toggle="dropdown">
+                                                                            <i class="fa fa-check-square"></i> Add Todo List
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                            <form class="px-4 py-3" @submit.prevent="addTodo">
+                                                                                <input type="hidden" name="task_id" v-model="taskId">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label" for="todo_name">Name</label>
+                                                                                    <input type="text" name="todo_name" class="form-control" id="todo_name">
+                                                                                </div>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                                                    Add
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="dropdown">
+                                                                        <button class="btn btn-block btn-md btn-default dropdown" data-toggle="dropdown">
+                                                                            <i class="fa fa-arrow-right"></i> Move Task
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                            <form class="px-4 py-3">
+                                                                                <input type="hidden" name="task_id" v-model="taskId">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Move To</label>
+                                                                                    <select class="form-control">
+                                                                                        <option v-for="card in cards" :key="card.id">{{card.name}}</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                                                    Move
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -207,6 +241,9 @@ export default {
             task_name:'',
             task_description:'',
             editingTask:null,
+            baseURL:'',
+            taskId:'',
+            todo_name:'',
         }
     },
     computed:{
@@ -219,8 +256,12 @@ export default {
         },
     },
     methods:{
+        getBaseURL: function(){
+            var getUrl = window.location
+            this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
+        },
         getCards(){
-            axios.get('http://127.0.0.1/projects/public/api/cards')
+            fetch('http://127.0.0.1/projects/public/api/cards')
             .then(response=>{
                 this.cards = response.data
                 // console.log(this.cards)
@@ -286,9 +327,30 @@ export default {
         changeOrder(){
 
         },
-        endEditTask(task){
+        endEditing(task){
             this.editingTask =  null;
-            axios.get('')
+            fetch(`http://127.0.0.1/projects/public/api/task/${this.taskId}`,{
+                method:'put',
+                body:JSON.stringify({
+                    "task_description":this.task_description
+                }),
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json',
+                    'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                }
+            })
+            .then(response=>{
+                response=>json()
+            })
+            .then(response=>{
+                if(response.status===0){
+                    Vue.$toast.success('Task Description Updated',{position:'top-right'})
+                }
+            })
+            .catch(error=>{
+                console.log(error)
+            })
         },
         editTask(task){
             this.editingTask = task;

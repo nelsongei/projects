@@ -37,10 +37,10 @@ class TaskController extends Controller
             return response()->json(['status' => 1]);
         }
     }
-    public function updateDescription(Request $request, $id){
+    public function update(Request $request, $id){
         $tasksUpdate = Task::find($id);
         $tasksUpdate->task_description = $request->task_description;
-        $tasksUpdate->save();
+        $tasksUpdate->push();
         if($tasksUpdate){
             return response()->json(['status'=>0]);
         }

@@ -150,7 +150,6 @@
                 this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
             },
             getProjects(){
-                // axios.get('http://127.0.0.1/projects/public/api/projects')
                 axios.get(`${this.baseURL}api/projects`)
                 .then(response =>{
                     this.projects = response.data
