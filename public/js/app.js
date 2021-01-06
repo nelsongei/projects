@@ -2256,6 +2256,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         return response.json();
+      }).then(function (response) {
+        if (response.status === 0) {
+          $('#addFeedbackModal').modal('hide');
+          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Moved Successfully', {
+            position: 'top-right'
+          });
+        }
       });
     },
     endEditing: function endEditing(task) {

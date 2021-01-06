@@ -341,6 +341,12 @@ export default {
                 }
             })
             .then(response=>response.json())
+            .then(response=>{
+                if(response.status===0){
+                    $('#addFeedbackModal').modal('hide');
+                    Vue.$toast.success('Task Moved Successfully',{position:'top-right'});
+                }
+            })
         },
         endEditing(task){
             this.editingTask =  null;
@@ -358,7 +364,7 @@ export default {
             .then(response=>response=>json())
             .then(response=>{
                 if(response.status===0){
-                    Vue.$toast.success('Task Description Updated successfully',{position:'top-right'})
+                    Vue.$toast.success('Task Description Updated successfully',{position:'top-right'});
                 }
             })
             .catch(error=>{
