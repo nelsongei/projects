@@ -256,6 +256,12 @@ export default {
             };
         },
     },
+    created(){
+        this.getBaseURL();
+    },
+    mounted(){
+
+    },
     methods:{
         getBaseURL: function(){
             var getUrl = window.location
@@ -344,6 +350,7 @@ export default {
             .then(response=>{
                 if(response.status===0){
                     $('#addFeedbackModal').modal('hide');
+                    this.getCards();
                     Vue.$toast.success('Task Moved Successfully',{position:'top-right'});
                 }
             })

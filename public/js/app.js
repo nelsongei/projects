@@ -2168,6 +2168,10 @@ __webpack_require__.r(__webpack_exports__);
       };
     }
   },
+  created: function created() {
+    this.getBaseURL();
+  },
+  mounted: function mounted() {},
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
@@ -2244,6 +2248,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeOrder: function changeOrder() {},
     moveTask: function moveTask(task) {
+      var _this3 = this;
+
       fetch("http://127.0.0.1/projects/public/move/".concat(this.taskId), {
         method: 'put',
         body: JSON.stringify({
@@ -2259,6 +2265,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.status === 0) {
           $('#addFeedbackModal').modal('hide');
+
+          _this3.getCards();
+
           vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Moved Successfully', {
             position: 'top-right'
           });
@@ -2813,7 +2822,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         if (this.edit === false) {
-          fetch('http://127.0.0.1/projects/public/api/project/store', {
+          fetch("".concat(this.baseURL, "api/project/store"), {
             method: 'post',
             body: JSON.stringify({
               "project": this.project,
@@ -2845,7 +2854,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          fetch("http://127.0.0.1/projects/public/api/project/".concat(this.projectId), {
+          fetch("".concat(this.baseURL, "api/project/").concat(this.projectId), {
             method: 'put',
             body: JSON.stringify({
               "project": this.project,
@@ -2883,7 +2892,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (confirm('Are you sure')) {
-        fetch("http://127.0.0.1/projects/public/api/project/".concat(id), {
+        fetch("".concat(this.baseURL, "api/project/").concat(id), {
           method: 'delete',
           headers: {
             'Accept': 'application/json',
