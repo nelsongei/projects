@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     //
-    public function index(Project $project, Card $card,Task $task){
-        return Task::find($task)->where('project_id',$project)->where('card_id',$card)->get();
+    public function index($id){
+        $tasks = Card::find($id);
+        return $tasks->tasks;
     }
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {

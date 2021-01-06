@@ -27,11 +27,11 @@ Route::prefix('/project')->group( function (){
     Route::put('/{id}',[ProjectController::class,'update']);
     Route::delete('/{id}',[ProjectController::class,'destroy']);
 });
-Route::get('/cards',[CardController::class,'index']);
+Route::get('/cards/{id}',[CardController::class,'index']);
 Route::prefix('/card')->group(function(){
     Route::post('/store',[CardController::class,'store']);
 });
-Route::get('/tasks',[TaskController::class,'index']);
+Route::get('/tasks/{id}',[TaskController::class,'index']);
 Route::prefix('/task')->group(function(){
     Route::post('/store',[TaskController::class,'store']);
     Route::put('/{id}',[TaskController::class,'update']);

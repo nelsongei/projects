@@ -40,7 +40,7 @@
                                     v-on:task-added="handleTaskAdded"
                                     v-on:task-canceled="closeAddTaskForm"
                                 ></ProjectsTable>
-                                <draggable :dragOptions="dragOptions" v-model="card.tasks" @end="changeOrder">
+                                <draggable :dragOptions="dragOptions" v-model="tasks" @end="changeOrder">
                                     <transition-group :id="card.id">
                                         <div v-for="task in card.tasks" :key="task.id" class="mb-2">
                                             <div class="list-group">
@@ -234,7 +234,8 @@ export default {
     },
     data(){
         return{
-            cards:this.project.card,
+            cards:[],
+            tasks:[],
             project_id:'',
             name:'',
             newTaskForStatus:0,
@@ -245,6 +246,7 @@ export default {
             taskId:'',
             todo_name:'',
             card_id:'',
+            projectId:this.project.id,
         }
     },
     computed:{
@@ -260,7 +262,7 @@ export default {
         this.getBaseURL();
     },
     mounted(){
-
+        this.getCards();
     },
     methods:{
         getBaseURL: function(){
@@ -268,10 +270,19 @@ export default {
             this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
         },
         getCards(){
-            fetch('http://127.0.0.1/projects/public/api/cards')
+            axios.get(`${this.baseURL}api/cards/${this.projectId}`)
             .then(response=>{
                 this.cards = response.data
-                // console.log(this.cards)
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
+        getTasks(){
+            // fetch(`${this.baseURL}api/tasks/${this.cardId}`)
+            fetch('http://127.0.0.1/projects/public/api/tasks/1')
+            .then(response=>{
+                this.tasks = response.data
             })
             .catch(error=>{
                 console.log(error)
@@ -313,7 +324,6 @@ export default {
                         this.anyError=false;
                         $('#addCard').modal('hide');
                         this.getCards();
-                        window.location.reload();
                         Vue.$toast.success('Card has been added successfully',{position:'top-right'})
                     }
                 })
@@ -343,7 +353,7 @@ export default {
                 headers:{
                     'Accept':'application/json',
                     'Content-Type':'application/json',
-                    'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')   
+                    'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
                 }
             })
             .then(response=>response.json())

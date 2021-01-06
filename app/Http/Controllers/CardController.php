@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\DB;
 class CardController extends Controller
 {
     //
-    public function index(Project $project, Card $card)
+    public function index($id)
     {
-        // return Card::find($card)->where('project_id',$project)->get();
-        // return Card::orderBy('id','desc')->get();
-        $cards = DB::table('cards')->where('project_id',$project)->first();
-        return $cards;
+        $cards = Project::find($id);
+        return $cards->card;
     }
     public function store(Request $request)
     {

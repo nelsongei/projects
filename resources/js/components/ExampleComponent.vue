@@ -217,7 +217,7 @@ export default{
             return{
                 animation: 1,
             }
-        }, 
+        },
     },
     created() {
         this.getCards();

@@ -15,7 +15,8 @@ class Card extends Model
     {
         return $this->belongsTo(Project::class,'project_id');
     }
-    public function tasks(){
-        return $this->hasMany(Task::class);
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Task::class,'card_id');
     }
 }

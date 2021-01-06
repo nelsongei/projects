@@ -2146,7 +2146,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      cards: this.project.card,
+      cards: [],
+      tasks: [],
       project_id: '',
       name: '',
       newTaskForStatus: 0,
@@ -2156,7 +2157,8 @@ __webpack_require__.r(__webpack_exports__);
       baseURL: '',
       taskId: '',
       todo_name: '',
-      card_id: ''
+      card_id: '',
+      projectId: this.project.id
     };
   },
   computed: {
@@ -2171,7 +2173,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getBaseURL();
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.getCards();
+  },
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
@@ -2180,8 +2184,18 @@ __webpack_require__.r(__webpack_exports__);
     getCards: function getCards() {
       var _this = this;
 
-      fetch('http://127.0.0.1/projects/public/api/cards').then(function (response) {
-        _this.cards = response.data; // console.log(this.cards)
+      axios.get("".concat(this.baseURL, "api/cards/").concat(this.projectId)).then(function (response) {
+        _this.cards = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getTasks: function getTasks() {
+      var _this2 = this;
+
+      // fetch(`${this.baseURL}api/tasks/${this.cardId}`)
+      fetch('http://127.0.0.1/projects/public/api/tasks/1').then(function (response) {
+        _this2.tasks = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2197,7 +2211,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#addCard').modal('show');
     },
     submitCard: function submitCard() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.name === '') {
         vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('Card name is required', {
@@ -2219,17 +2233,16 @@ __webpack_require__.r(__webpack_exports__);
           return response.json();
         }).then(function (response) {
           if (response.errors) {
-            _this2.anyError = true;
-            _this2.errors = response.errors;
+            _this3.anyError = true;
+            _this3.errors = response.errors;
           }
 
           if (response.status === 0) {
-            _this2.anyError = false;
+            _this3.anyError = false;
             $('#addCard').modal('hide');
 
-            _this2.getCards();
+            _this3.getCards();
 
-            window.location.reload();
             vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Card has been added successfully', {
               position: 'top-right'
             });
@@ -2248,7 +2261,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeOrder: function changeOrder() {},
     moveTask: function moveTask(task) {
-      var _this3 = this;
+      var _this4 = this;
 
       fetch("http://127.0.0.1/projects/public/move/".concat(this.taskId), {
         method: 'put',
@@ -2266,7 +2279,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response.status === 0) {
           $('#addFeedbackModal').modal('hide');
 
-          _this3.getCards();
+          _this4.getCards();
 
           vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Moved Successfully', {
             position: 'top-right'
@@ -64639,11 +64652,11 @@ var render = function() {
                           attrs: { dragOptions: _vm.dragOptions },
                           on: { end: _vm.changeOrder },
                           model: {
-                            value: card.tasks,
+                            value: _vm.tasks,
                             callback: function($$v) {
-                              _vm.$set(card, "tasks", $$v)
+                              _vm.tasks = $$v
                             },
-                            expression: "card.tasks"
+                            expression: "tasks"
                           }
                         },
                         [
@@ -86900,7 +86913,6 @@ Vue.use(__webpack_require__(/*! vue-moment */ "./node_modules/vue-moment/dist/vu
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('project-component', __webpack_require__(/*! ./components/ProjectComponent.vue */ "./resources/js/components/ProjectComponent.vue")["default"]);
 Vue.component('card-component', __webpack_require__(/*! ./components/CardComponent.vue */ "./resources/js/components/CardComponent.vue")["default"]);
 /**
@@ -87254,8 +87266,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\projects\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\projects\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/projects/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/projects/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
