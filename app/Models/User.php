@@ -50,6 +50,6 @@ class User extends Authenticatable
         return $this->hasMany(ActivityLog::class);
     }
     public function project(){
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class,'user_id');
     }
 }

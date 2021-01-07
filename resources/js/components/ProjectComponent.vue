@@ -117,6 +117,8 @@
 <script>
     import Vue from "vue";
     import ExampleComponent from "./ExampleComponent";
+    import {MultiSelectPlugin} from '@syncfusion/ej2-vue-dropdowns'
+    Vue.use(MultiSelectPlugin);
     export default {
         props:[
             'users'
@@ -261,3 +263,6 @@
         },
         }
 </script>
+<style scoped>
+
+</style>

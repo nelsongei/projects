@@ -55,6 +55,6 @@ Route::post('/tasks',[App\Http\Controllers\TaskController::class,'store']);
 Route::get('/cards',[App\Http\Controllers\CardController::class,'index'])->name('cards');
 Route::post('/cards',[App\Http\Controllers\CardController::class,'store'])->name('cards');
 Route::put('/move/{id}',[App\Http\Controllers\TaskController::class,'moveTask'])->name('moveTask');
-Route::get('/tasksTest/',[App\Http\Controllers\TaskController::class,'testData']);
+Route::put('/complete/{id}/',[App\Http\Controllers\TaskController::class,'completeTask']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

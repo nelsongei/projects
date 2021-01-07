@@ -35,6 +35,7 @@ Route::get('/tasks/{id}',[TaskController::class,'index']);
 Route::prefix('/task')->group(function(){
     Route::post('/store',[TaskController::class,'store']);
     Route::put('/{id}',[TaskController::class,'update']);
+    Route::put('/complete/{id}',[TaskController::class,'completeTask']);
 });
 Route::get('/checklists',[ChecklistController::class,'index']);
 Route::prefix('/checklist')->group(function(){

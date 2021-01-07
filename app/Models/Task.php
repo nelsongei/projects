@@ -17,7 +17,8 @@ class Task extends Model
     public function projects(){
         return $this->belongsTo(Project::class);
     }
-    public function checklist(){
+    public function checklists(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(Checklist::class);
     }
 }

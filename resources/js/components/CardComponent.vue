@@ -67,7 +67,7 @@
                                                                     </form>
                                                                     <p v-if="task !== editingTask" @dblclick="editTask(task)">{{task_description}}</p>
                                                                     <b>Task Todo List</b>
-                                                                    <ul class="bg-white ui-sortable todo-list" v-for="checklist in task.checklist" :key="checklist.id">
+                                                                    <ul class="bg-white ui-sortable todo-list" v-for="checklist in task.checklists" :key="checklist.id">
                                                                         <li>
                                                                             <input type="checkbox">
                                                                             <span class="text">{{checklist.name}}</span>
@@ -108,7 +108,7 @@
                                                                     <ul class="bg-white ui-sortable todo-list">
                                                                         <li>
                                                                             <div class="">
-                                                                                <span class="img-circle elevation-1 text px-3 py-3">NN</span>
+<!--                                                                                <span class="img-circle elevation-1 text px-3 py-3">NN</span>-->
                                                                                 <span>
                                                                                     <div class="form-group">
                                                                                         <textarea class="form-control" placeholder="Add Feedback"></textarea>
@@ -120,16 +120,12 @@
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <label>Task Actions</label>
-                                                                    <button class="btn btn-block btn-md btn-default">
-                                                                        <i class="fa fa-check"></i> Complete Task
-                                                                    </button>
-                                                                    <button class="btn btn-block btn-md btn-default">
-                                                                        <i class="fa fa-user"></i> Add User
-                                                                    </button>
-                                                                    <button class="btn btn-block btn-md btn-default">
-                                                                        <i class="fa fa-bars"></i> Add Comments
-                                                                    </button>
-                                                                    <div class="dropright">
+                                                                    <div class="checkboxes mb-1">
+                                                                        <a class="btn btn-block btn-md btn-default">
+                                                                            <input type="checkbox" name="completed" @change="completeTask(task)" v-model="task.completed">&nbsp;<strong>Complete:</strong> <span>{{task.task_name}}</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="dropright mb-1">
                                                                         <button class="btn btn-block btn-md btn-default dropdown" data-toggle="dropdown">
                                                                             <i class="fa fa-check-square"></i> Add Todo List
                                                                         </button>
@@ -147,7 +143,7 @@
                                                                             </form>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="dropdown">
+                                                                    <div class="dropdown mb-1">
                                                                         <button class="btn btn-block btn-md btn-default dropdown" data-toggle="dropdown">
                                                                             <i class="fa fa-arrow-right"></i> Move Task
                                                                         </button>
@@ -247,6 +243,7 @@ export default {
             todo_name:'',
             card_id:'',
             projectId:this.project.id,
+            completed:[true,false],
         }
     },
     computed:{
@@ -324,6 +321,7 @@ export default {
                         this.anyError=false;
                         $('#addCard').modal('hide');
                         this.getCards();
+                        window.location.reload()
                         Vue.$toast.success('Card has been added successfully',{position:'top-right'})
                     }
                 })
@@ -345,7 +343,7 @@ export default {
 
         },
         moveTask(task){
-            fetch(`http://127.0.0.1/projects/public/move/${this.taskId}`,{
+            fetch(`${this.baseURL}move/${this.taskId}`,{
                 method:'put',
                 body:JSON.stringify({
                     "card_id":this.card_id
@@ -363,6 +361,28 @@ export default {
                     window.location.reload()
                     Vue.$toast.success('Task Moved Successfully',{position:'top-right'});
                 }
+            })
+        },
+        completeTask(task){
+            fetch(`${this.baseURL}complete/${this.taskId}`,{
+                method:'put',
+                body:JSON.stringify({
+                    "completed":this.completed
+                }),
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json',
+                    'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                }
+            })
+            .then(response=>response.json())
+            .then(response=>{
+                if (response.status ===200){
+                    Vue.$toast.success('Task Completed',{position:'top-right'});
+                }
+            })
+            .catch(error=>{
+                console.log(error)
             })
         },
         endEditing(task){
@@ -394,3 +414,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+#checkboxes input{
+    display: inline-block;
+}
+#checkboxes span{
+    display: inline-block;
+}
+</style>

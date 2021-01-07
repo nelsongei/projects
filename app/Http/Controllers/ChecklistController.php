@@ -10,8 +10,8 @@ use Illuminate\Support\Carbon;
 class ChecklistController extends Controller
 {
     //Fetch
-    public function index(Task $task,Checklist $checklist){
-        return Checklist::find($checklist)->where('task_id',$task)->get();
+    public function index(){
+        return Checklist::get();
 
     }
     //Store
@@ -20,7 +20,7 @@ class ChecklistController extends Controller
         $newChecklist->task_id = $request->task_id;
         $newChecklist->name = $request->name;
         $newChecklist->save();
-        // return $newChecklist;
+//        return $newChecklist;
         if($newChecklist){
             return response()->json(['status'=>0]);
         }
@@ -35,7 +35,7 @@ class ChecklistController extends Controller
             $checklist->completed = $request->checklist['completed'] ? true : false;
             $checklist->completed_at = $request->checklist['completed'] ? Carbon::now() : null;
             $checklist->save();
-        
+
             return response()->json(['status'=>0]);
         }
         else{

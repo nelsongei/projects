@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Card;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -18,13 +19,6 @@ class TaskController extends Controller
     }
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-//        $tasks = new Task;
-//        $tasks->project_id = $request->project_id;
-//        $tasks->card_id = $request->card_id;
-//        $tasks->task_name = $request->task_name;
-//        $tasks->task_description = $request->task_description;
-//        $tasks->due_date = $request->due_date;
-//        $tasks->save();
         $data =request()->validate([
             'project_id'=>'required',
             'card_id'=>'required',
@@ -63,5 +57,23 @@ class TaskController extends Controller
         else{
             return response()->json(['status'=>1]);
         }
+    }
+    public function completeTask(Task $task,Request $request,$id){
+//        $task=Task::find($id);
+//        $task->update([
+//            'completed'=>$request->has('completed')
+//        ]);
+//        return $task;
+        $complete = Task::find($id);
+        if ($complete){
+            $complete->completed = $request->completed ? true : false;
+            $complete->push();
+            return $complete;
+        }
+//        if ($complete){
+//            return response()->json(['status'=>0]);
+//        }
+//        return response()->json(['status'=>1]);
+
     }
 }
