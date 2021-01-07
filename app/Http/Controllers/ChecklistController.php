@@ -18,7 +18,7 @@ class ChecklistController extends Controller
     public function store(Request $request){
         $newChecklist = new Checklist();
         $newChecklist->task_id = $request->task_id;
-        $newChecklist->name = $request->name;
+        $newChecklist->todo_name = $request->todo_name;
         $newChecklist->save();
 //        return $newChecklist;
         if($newChecklist){
