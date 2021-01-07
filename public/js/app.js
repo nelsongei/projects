@@ -2261,8 +2261,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeOrder: function changeOrder() {},
     moveTask: function moveTask(task) {
-      var _this4 = this;
-
       fetch("http://127.0.0.1/projects/public/move/".concat(this.taskId), {
         method: 'put',
         body: JSON.stringify({
@@ -2278,9 +2276,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.status === 0) {
           $('#addFeedbackModal').modal('hide');
-
-          _this4.getCards();
-
+          window.location.reload();
           vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Moved Successfully', {
             position: 'top-right'
           });
@@ -2300,9 +2296,7 @@ __webpack_require__.r(__webpack_exports__);
           'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
         }
       }).then(function (response) {
-        return function (response) {
-          return json();
-        };
+        return response.json();
       }).then(function (response) {
         if (response.status === 0) {
           vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Description Updated successfully', {
@@ -64564,7 +64558,7 @@ var render = function() {
                 expression: "cards"
               }
             },
-            _vm._l(_vm.cards, function(card) {
+            _vm._l(_vm.project.card, function(card) {
               return _c("div", { key: card.id, staticClass: "col-md-3" }, [
                 _c("div", { staticClass: "card p-lg-2" }, [
                   _c("div", { staticClass: "card-header bg-white" }, [

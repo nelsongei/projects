@@ -6,7 +6,7 @@
                     <i class="fa fa-plus"></i> Add Card
                 </button>
                 <draggable element="div" class="row mt-2 mr-3" v-model="cards" :dragOptions="dragOptions">
-                    <div class="col-md-3" v-for="card in cards" :key="card.id">
+                    <div class="col-md-3" v-for="card in project.card" :key="card.id">
                         <div class="card p-lg-2">
                             <div class="card-header bg-white">
                                 <h3 class="card-title text-bold">{{card.name}}</h3>
@@ -360,7 +360,7 @@ export default {
             .then(response=>{
                 if(response.status===0){
                     $('#addFeedbackModal').modal('hide');
-                    this.getCards();
+                    window.location.reload()
                     Vue.$toast.success('Task Moved Successfully',{position:'top-right'});
                 }
             })
@@ -378,7 +378,7 @@ export default {
                     'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
                 }
             })
-            .then(response=>response=>json())
+            .then(response=>response.json())
             .then(response=>{
                 if(response.status===0){
                     Vue.$toast.success('Task Description Updated successfully',{position:'top-right'});
