@@ -106,15 +106,21 @@
                                                 <br/>
                                                 <b>Feedback</b>
                                                 <ul class="bg-white ui-sortable todo-list">
+                                                  <p v-for="feedback in task.feedback" :key="feedback.id">{{feedback.feedback}}</p>
                                                   <li>
-                                                    <div class="">
-                                                      <!--                                                                                <span class="img-circle elevation-1 text px-3 py-3">NN</span>-->
-                                                      <span>
+                                                    <form class="" @submit.prevent="addFeedback(task)">
+                                                      <div class="">
+                                                        <span>
+                                                          <input type="hidden" name="task_id" value="task.id" v-model="task.id">
                                                           <div class="form-group">
                                                               <textarea class="form-control" name="feedback" v-model="feedback" @keyup.enter="addFeedback(task)" placeholder="Add Feedback"></textarea>
                                                           </div>
-                                                      </span>
-                                                    </div>
+                                                        </span>
+                                                      </div>
+                                                      <button type="submit" class="btn btn-sm btn-primary">
+                                                          Add
+                                                      </button>
+                                                    </form>
                                                   </li>
                                                 </ul>
                                               </div>
@@ -450,7 +456,7 @@ export default {
             fetch(`${this.baseURL}api/feedback/store`,{
               method:'post',
               body:JSON.stringify({
-                "feedback":this.feedback
+                "feedback":this.feedback,"task_id":this.taskId
               }),
               headers:{
                 'Accept':'application/json',
@@ -462,6 +468,7 @@ export default {
             .then(response=>{
                 if(response.status===0){
                   this.getCards();
+                  window.location.reload()
                   Vue.$toast.success('Feedback added',{position:'top-right'})
                 }
             })

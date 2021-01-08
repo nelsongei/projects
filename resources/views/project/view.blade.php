@@ -56,6 +56,8 @@
                             @foreach($cards->tasks as $task)
                                 @foreach($task->checklists as $checklist)
                                 @endforeach
+                                @foreach($task->feedback as $feedback)
+                                    @endforeach
                             @endforeach
                         @endforeach
                         <div id="app">
