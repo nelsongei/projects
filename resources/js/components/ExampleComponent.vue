@@ -108,10 +108,10 @@
                                                     <div class="dropdown-menu">
                                                         <form class="px-4 py-3" @submit.prevent="moveTask(task)">
                                                             <div class="form-group">
-                                                                <label class="col-form-label">Move To</label>
-                                                                <select class="form-control" name="card_id" v-model="cardId">
+                                                                <label class="col-form-label" for="card_id">Move To</label>
+                                                                <select class="form-control" name="card_id" id="card_id">
                                                                     <option disabled value="">Select Card</option>
-                                                                    <option v-for="card in cardId" :key="card.id" :value="card.id">{{card.name}}</option>
+                                                                    <option v-for="card in cards" :key="card.id">{{card.name}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="dropdown-divider"></div>
@@ -137,9 +137,10 @@
 import draggable from "vuedraggable";
 import Vue from "vue";
     export default {
-        props:{
-            cardId:Number
-        },
+      props:[
+          'cardId',
+          'cards'
+      ],
         components:{
             draggable,
         },
@@ -186,7 +187,7 @@ import Vue from "vue";
                 $('#addFeedbackModal').modal('show')
             },
             moveTask(task){
-                fetch(`${this.baseURL}move/${this.taskId}`,{
+                axios.put(`${this.baseURL}move/${this.taskId}`,{
                     method:'put',
                     body:JSON.stringify({
                         "card_id":this.card_id
@@ -200,8 +201,8 @@ import Vue from "vue";
                     .then(response=>response.json())
                     .then(response=>{
                         if(response.status===0){
+                            this.getTasks();
                             $('#addFeedbackModal').modal('hide');
-                            window.location.reload()
                             Vue.$toast.success('Task Moved Successfully',{position:'top-right'});
                         }
                     })

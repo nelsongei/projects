@@ -78,7 +78,7 @@ class HomeController extends Controller
                     ->fill(false);
         $project = new DataChart();
         $project->labels(['3 weeks Ago','2 weeks Ago','Last Week','This Week']);
-        $project->dataset('Projects','bar',[$week4,$week3,$week2,$week1])
+        $project->dataset('Projects','bar',[$project4,$project3,$project2,$project1])
                 ->color('#dc3545')
                 ->backgroundColor('#dc3545')
                 ->fill(false);

@@ -21,4 +21,7 @@ class Task extends Model
     {
         return $this->hasMany(Checklist::class);
     }
+    public function feedback(){
+        return $this->hasMany(Feedback::class,'task_id');
+    }
 }

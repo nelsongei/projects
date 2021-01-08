@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Card;
 use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -26,11 +28,20 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @param Project $project
+     * @param Card $card
+     * @param Task $task
+     * @return Application|Factory|View|Response
      */
     public function create()
     {
         //
+        $all = Task::all()->count();
+        $notComplete = Task::where('completed',false)->count();
+
+        $complete = ($notComplete/$all)*100;
+        $projects = Project::all()->where('user_id',Auth::user()->id);
+        return view('project.task',compact('projects','complete'));
     }
 
     /**

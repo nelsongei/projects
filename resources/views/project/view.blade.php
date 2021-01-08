@@ -8,6 +8,7 @@
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">{{$project->project}}</h1>
                     </div>
+                    @if(Gate::check('isSuper'))
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item">
@@ -25,6 +26,25 @@
                             </li>
                         </ol>
                     </div>
+                    @else
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="{{url('/home')}}">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="{{url('/management')}}">
+                                        My Projects
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Project Info
+                                </li>
+                            </ol>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
