@@ -111,7 +111,7 @@
                                                       <!--                                                                                <span class="img-circle elevation-1 text px-3 py-3">NN</span>-->
                                                       <span>
                                                           <div class="form-group">
-                                                              <textarea class="form-control" placeholder="Add Feedback"></textarea>
+                                                              <textarea class="form-control" name="feedback" v-model="feedback" @keyup.enter="addFeedback(task)" placeholder="Add Feedback"></textarea>
                                                           </div>
                                                       </span>
                                                     </div>
@@ -244,6 +244,7 @@ export default {
             card_id:'',
             projectId:this.project.id,
             completed:[true,false],
+            feedback:''
         }
     },
     computed:{
@@ -440,7 +441,35 @@ export default {
                     console.log(error)
                 })
             }
-        }
+        },
+      addFeedback(task){
+          if (this.feedback ===''){
+            Vue.$toast.warning('This field is required',{position:'top-right'})
+          }
+          else{
+            fetch(`${this.baseURL}api/feedback/store`,{
+              method:'post',
+              body:JSON.stringify({
+                "feedback":this.feedback
+              }),
+              headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+              }
+            })
+            .then(response=>response.json())
+            .then(response=>{
+                if(response.status===0){
+                  this.getCards();
+                  Vue.$toast.success('Feedback added',{position:'top-right'})
+                }
+            })
+            .catch(error=>{
+              console.log(error)
+            })
+          }
+      }
     }
 }
 </script>

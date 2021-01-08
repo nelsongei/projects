@@ -6,7 +6,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ChecklistController;
-
+use App\Http\Controllers\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,4 +42,8 @@ Route::prefix('/checklist')->group(function(){
     Route::post('/store',[ChecklistController::class,'store']);
     Route::put('/{id}',[ChecklistController::class,'update']);
     Route::delete('/{id}',[ChecklistController::class,'destroy']);
+});
+Route::get('/feedbacks',[FeedbackController::class,'index']);
+Route::prefix('/feedback')->group(function (){
+    Route::post('/store',[FeedbackController::class,'store']);
 });

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -7,105 +7,307 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="shortcut icon" href="{{asset('resources/settings/fav-icon.PNG')}}" type="image/png">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('resources/plugins/fontawesome-free/css/all.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/animate/animate.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/animsition/css/animsition.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/select2/select2.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/daterangepicker/daterangepicker.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/mainlrs2.css')}}">
 
-    <!--Tinymce library-->
-{{--    <script src="{{asset('resources/tinymce/tinymce.min.js')}}"></script>--}}
-<!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{asset('resources/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('resources/dist/css/adminlte.min.css')}}">
-    <!--Sweet Alert-->
-    <link rel="stylesheet" href="{{asset('resources/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
-    <!--Select2 CSS-->
-    <link rel="stylesheet" href="{{asset('resources/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('resources/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/w3v3.css')}}">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/animate.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/popper.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+    <title>{{config('app_name','Zalego | Project Management Tool')}}</title>
+    <style type="text/css">
+        .alert-danger{
+            background-color: rgb(220, 53, 69);
+            color: #fff;
+            font-size: 10px;
+        }
+
+        .alert-success{
+            background-color:#339966;
+            color: #fff;
+            font-size: 10px;
+        }
+
+        .modal-content {
+            -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+
+            background-color: #fff;
+            border-color: transparent;
+
+        }
+
+        .modal-dialog {
+
+            margin-top: 140px!important;
+
+
+        }
+
+        .modal-body {
+
+            padding: 2rem;
+            background-color: #eef2f4;
+        }
+
+        .modal-backdrop {
+            background-color: #000;
+        }
+
+        .modal-backdrop.fade {
+            opacity: 0;
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.06;
+        }
+
+    </style>
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body style="background-color: #999999;">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+<div class="limiter">
+    <div class="container-login100">
+        <div class="login100-more">
+            <h1 class="ml12 p-l-16 p-t-30"><strong>Zalego Project Management Tool</strong></h1><hr>
+            <br><br>
+            <h2 class="p-l-16 text-center featuresText">At a glance we offer</h2>
 
-                    </ul>
+            <!-- carousel code -->
+            <div id="carouselExampleIndicators" class="carousel slide">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                <div class="carousel-inner">
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                    <!-- first slide -->
+                    <div class="carousel-item active">
+                        <div class="carousel-caption d-md-block">
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            <img data-animation="animated bounceInLeft" src="{{asset('assets/images/shots/14.JPG')}}" class="d-block w-100" alt="...">
+                            <h3 data-animation="animated bounceInRight">
+                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Project Management Tool
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- second slide -->
+                    <div class="carousel-item skyblue">
+                        <div class="carousel-caption d-md-block">
+                            <img data-animation="animated bounceInLeft" src="{{asset('assets/images/shots/5.JPG')}}" class="d-block w-100" alt="...">
+                            <h3 data-animation="animated bounceInRight">
+                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Testing/Assessment Management
+                            </h3>
+
+                        </div>
+                    </div>
+                    <!-- third slide -->
+                    <div class="carousel-item skyblue">
+                        <div class="carousel-caption d-md-block">
+                            <img data-animation="animated bounceInRight" src="{{asset('assets/images/shots/15.JPG')}}" class="d-block w-100" alt="...">
+                            <h3 data-animation="animated bounceInLeft">
+                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Reporting & Tracking
+                            </h3>
+
+                        </div>
+                    </div>
+                    <!-- fifth slide -->
+                    <div class="carousel-item skyblue">
+                        <div class="carousel-caption d-md-block">
+                            <img data-animation="animated bounceInRight" src="{{asset('assets/images/11.JPG')}}" class="d-block w-100" alt="...">
+                            <h3 data-animation="animated bounceInUp">
+                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> User Management
+                            </h3>
+
+                        </div>
+                    </div>
+
+                    <!-- sixth slide -->
+                    <div class="carousel-item skyblue">
+                        <div class="carousel-caption d-md-block">
+                            <img data-animation="animated bounceInUp" src="{{asset('assets/images/shots/2.JPG')}}" class="d-block w-100" alt="...">
+                            <h3 data-animation="animated bounceInLeft">
+                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Account Management
+                            </h3>
+
+                        </div>
+                    </div>
+
+                    <!-- seventh slide -->
+                    <div class="carousel-item skyblue">
+                        <div class="carousel-caption d-md-block">
+                            <img data-animation="animated flipInY" src="{{asset('assets/images/shots/17.JPG')}}" class="d-block w-100" alt="...">
+                            <h3 data-animation="animated bounceInUp">
+                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Email/Chats/Calls
+                            </h3>
+
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-    <!-- jQuery -->
-    <script src="{{asset('resources/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap 4 -->
-    {{--<script src="{{asset('resources/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>--}}
-    <!-- DataTables -->
-    <script src="{{asset('resources/plugins/datatables/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('resources/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{asset('resources/dist/js/adminlte.min.js')}}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('resources/dist/js/demo.js')}}"></script>
-    <script src="{{asset('resources/sweetalert2/sweetalert2.min.js')}}"></script>
-    <script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
+            </div>
+
+            <!--Partners-->
+            <div class="partners">
+                <h3 class="partnersText">Working closely with <br><span id="cNo">0</span> +<br> companies.<br><br>
+
+
+                @yield('content')
+
+
+                <!--include the loaders-->
+                @include('uiassets.loaders')
+                <!--end loaders-->
+
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <!--===============================================================================================-->
+        <script type="text/javascript">
+            function loader(id){
+                var item=id;
+                switch(item){
+                    case 'facebook':
+                        $('#facebookLoginModal').modal('show');
+                        break;
+
+                    case 'twitter':
+                        $('#twitterLoginModal').modal('show');
+                        break;
+
+                    case 'google':
+                        $('#googleLoginModal').modal('show');
+                        break;
+
+                    case 'email':
+                        $('#emailLoginModal').modal('show');
+                        break;
+
+                    case 'reset':
+                        $('#resetPasswordModal').modal('show');
+                        break;
+                }
+            }
+
+            setInterval(Incrementer,40);
+            var x=0;
+            function Incrementer(){
+                x=x+1;
+                if(x<=123){
+                    document.getElementById('cNo').innerHTML=x;
+                }
+            }
+            // Wrap every letter in a span
+            var textWrapper = document.querySelector('.ml12');
+            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+            anime.timeline({loop: false})
+                .add({
+                    targets: '.ml12 .letter',
+                    translateX: [40,0],
+                    translateZ: 0,
+                    opacity: [0,1],
+                    easing: "easeOutExpo",
+                    duration: 1200,
+                    delay: (el, i) => 500 + 30 * i
+                });
+
+            /* Demo Scripts for Bootstrap Carousel and Animate.css article
+            * on SitePoint by Maria Antonietta Perna
+            */
+            (function($) {
+                //Function to animate slider captions
+                function doAnimations(elems) {
+                    //Cache the animationend event in a variable
+                    var animEndEv = "webkitAnimationEnd animationend";
+                    elems.each(function() {
+                        var $this = $(this),
+                            $animationType = $this.data("animation");
+                        $this.addClass($animationType).one(animEndEv, function() {
+                            $this.removeClass($animationType);
+                        });
+                    });
+                }
+
+                //Variables on page load
+                var $myCarousel = $("#carouselExampleIndicators"),
+                    $firstAnimatingElems = $myCarousel
+                        .find(".carousel-item:first")
+                        .find("[data-animation ^= 'animated']");
+
+                //Initialize carousel
+                $myCarousel.carousel();
+
+                //Animate captions in first slide on page load
+                doAnimations($firstAnimatingElems);
+
+                //Other slides to be animated on carousel slide event
+                $myCarousel.on("slide.bs.carousel", function(e) {
+                    var $animatingElems = $(e.relatedTarget).find(
+                        "[data-animation ^= 'animated']"
+                    );
+                    doAnimations($animatingElems);
+                });
+            })(jQuery);
+        </script>
+        <script src="{{asset('assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+        <!--===============================================================================================-->
+        <script src="{{asset('assets/vendor/animsition/js/animsition.min.js')}}"></script>
+        <!--===============================================================================================-->
+        <script src="{{asset('assets/vendor/bootstrap/js/popper.js')}}"></script>
+        <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+        <!--===============================================================================================-->
+        <script src="{{asset('assets/vendor/select2/select2.min.js')}}"></script>
+        <!--===============================================================================================-->
+        <script src="{{asset('assets/vendor/daterangepicker/moment.min.js')}}"></script>
+        <script src="{{asset('assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
+        <!--===============================================================================================-->
+        <script src="{{asset('assets/vendor/countdowntime/countdowntime.js')}}"></script>
+        <!--===============================================================================================-->
+        <script src="{{asset('assets/js/main.js')}}"></script>
+
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            /**
+             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+             (function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5e410772298c395d1ce7144d/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();**/
+        </script>
+        <!--End of Tawk.to Script-->
 </body>
 </html>
