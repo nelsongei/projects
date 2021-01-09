@@ -27,9 +27,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/TaskModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js.LICENSE.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/project/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/view.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -335,7 +341,9 @@
       <workItem from="1610034160697" duration="3928000" />
       <workItem from="1610040727624" duration="1998000" />
       <workItem from="1610046505016" duration="4955000" />
-      <workItem from="1610077538483" duration="12547000" />
+      <workItem from="1610077538483" duration="14558000" />
+      <workItem from="1610104776605" duration="4857000" />
+      <workItem from="1610168808855" duration="11455000" />
     </task>
     <servers />
   </component>
