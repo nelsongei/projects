@@ -30,16 +30,16 @@
                                         <i class="fa fa-plus"></i>Add User
                                     </button>
                                 </div>
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped" id="example1">
                                     <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone No.</th>
-                                        <th>Role</th>
-                                        <th>Action</th>
-                                    </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone No.</th>
+                                            <th>Role</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
                                     <?php $count =1;?>
                                     <tbody>

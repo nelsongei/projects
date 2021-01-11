@@ -179,6 +179,25 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-barcode fa-fw"></i>
+                            <p>
+                                Assets Management
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{url('/categories')}}" class="nav-link">
+                                    <p class="ml-3">
+                                        <i class="nav-icon fa fa-arrow-alt-circle-down"></i>
+                                        Assets
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-phone fa-fw"></i>
                             <p>
                                 Communication
@@ -325,6 +344,17 @@
         closeOnSelect: false,
         allowClear: true
     })
+    $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
 </script>
 
 <script>
@@ -674,8 +704,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
     <!-- DataTables -->
-    <script src="{{asset('assets/dashboard/plugins/datatables/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('assets/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+{{--    <script src="{{asset('assets/dashboard/plugins/datatables/jquery.dataTables.js')}}"></script>--}}
+{{--    <script src="{{asset('assets/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>--}}
     <!-- AdminLTE App -->
     <script src="{{asset('resources/dist/js/adminlte.min.js')}}"></script>
     <!-- Sparkline -->
@@ -701,8 +731,8 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{--<script src="{{asset('assets/dashboard/dist/js/pages/dashboard.js')}}"></script>--}}
     <!-- AdminLTE for demo purposes -->
-    {{--<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>--}}
-    {{--<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>--}}
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{asset('assets/dashboard/dist/js/demo.js')}}"></script>
     <script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
     <script src="{{asset('resources/sweetalert2/sweetalert2.min.js')}}"></script>

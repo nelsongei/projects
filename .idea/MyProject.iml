@@ -138,5 +138,6 @@
     <orderEntry type="library" name="popper.js" level="application" />
     <orderEntry type="library" name="animate.css" level="application" />
     <orderEntry type="library" name="animejs" level="application" />
+    <orderEntry type="library" name="jquery.dataTables" level="application" />
   </component>
 </module>

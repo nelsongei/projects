@@ -27,16 +27,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/TaskModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_11_075029_create_categories_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/assets/AssetsComponents.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/assets/CategoryComponents.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/assets/DashboardComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/assets/IndexComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/assets/assets.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/assets/category.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/assets/dashboard.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/assets/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js.LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/project/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/vue/addProject.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/vue/app.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +214,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../neson" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -216,7 +231,7 @@
       <recent name="$PROJECT_DIR$/public/assets/images" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.ReceiveMailController">
+  <component name="RunManager" selected="PHPUnit.phpunit.xml">
     <configuration name="ReceiveMailController" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Http\Controllers\ReceiveMailController" file="$PROJECT_DIR$/app/Http/Controllers/ReceiveMailController.php" scope="Class" />
       <method v="2" />
@@ -343,7 +358,11 @@
       <workItem from="1610046505016" duration="4955000" />
       <workItem from="1610077538483" duration="14558000" />
       <workItem from="1610104776605" duration="4857000" />
-      <workItem from="1610168808855" duration="11455000" />
+      <workItem from="1610168808855" duration="12288000" />
+      <workItem from="1610249712301" duration="607000" />
+      <workItem from="1610345311127" duration="15908000" />
+      <workItem from="1610378089246" duration="1031000" />
+      <workItem from="1610379605809" duration="15000" />
     </task>
     <servers />
   </component>

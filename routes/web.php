@@ -56,5 +56,11 @@ Route::get('/cards',[App\Http\Controllers\CardController::class,'index'])->name(
 Route::post('/cards',[App\Http\Controllers\CardController::class,'store'])->name('cards');
 Route::put('/move/{id}',[App\Http\Controllers\TaskController::class,'moveTask'])->name('moveTask');
 Route::put('/complete/{id}/',[App\Http\Controllers\TaskController::class,'completeTask']);
+
+//Assets
+Route::get('/categories',[App\Http\Controllers\CategoryController::class,'index'])->name('assets');
+Route::get('/assets_dashboard',[App\Http\Controllers\CategoryController::class,'dashboard']);
+Route::get('/create_assets',[App\Http\Controllers\CategoryController::class,'assets']);
+Route::get('/create_category',[App\Http\Controllers\CategoryController::class,'category']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
