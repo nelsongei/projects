@@ -29,9 +29,13 @@ class CategoryController extends Controller
     }
     //Store Category
     public function store(Request $request){
-        $category = new Category();
-        $category->category = $request->category;
-        $category->save();
+        $data = request()->validate([
+            'category'=>'unique:categories',
+        ]);
+        $category = Category::create($data);
+//        $category = new Category();
+//        $category->category = $request->category;
+//        $category->save();
         if ($category){
             return response()->json(['status'=>0]);
         }
@@ -43,6 +47,13 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->category = $request->category;
         $category->push();
+        if ($category){
+            return response()->json(['status'=>0]);
+        }
+        return response()->json(['status'=>1]);
+    }
+    public function destroy($id){
+        $category = Category::find($id)->delete();
         if ($category){
             return response()->json(['status'=>0]);
         }

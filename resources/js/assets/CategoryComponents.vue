@@ -30,11 +30,11 @@
                         More
                       </a>
                     </li>
-                    <a class="dropdown-item text-success" @click="editCategory(category)" href="#">
+                    <li class="dropdown-item text-success" @click="editCategory(category)">
                       <i class="fa fa-edit"></i>
                       Edit
-                    </a>
-                    <li class="dropdown-item text-danger">
+                    </li>
+                    <li class="dropdown-item text-danger" @click="destroy(category.id)">
                       <i class="fa fa-trash"></i>
                       Delete
                     </li>
@@ -56,6 +56,12 @@
             </button>
           </div>
           <form @submit.prevent="submitCategory">
+              <div v-if="anyError" class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <p class="text-center" v-for="error in errors" :key="error.id">{{error}}</p>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
             <div class="modal-body">
               <div class="form-group">
                 <label class="col-form-label" for="category">Category</label>
@@ -135,7 +141,7 @@ export default {
               .then(response=>{
                   if (response.errors){
                       this.anyError = true;
-                      this.anyError = response.errors;
+                      this.errors = response.errors;
                   }
                   if (response.status===0){
                       this.anyError = false;
@@ -172,6 +178,25 @@ export default {
               })
           }
       }
+    },
+    destroy(id){
+        if (confirm('Are you sure you want to delete')){
+            fetch(`${this.baseURL}api/category/${id}`,{
+                method:'delete',
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json',
+                    'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                }
+            })
+            .then(response=>response.json())
+            .then(response=>{
+                if (response.status===0){
+                    this.getCategories();
+                    Vue.$toast.info('Category deleted',{position:'top-right'})
+                }
+            })
+        }
     },
     addCategory(){
       this.edit=false;

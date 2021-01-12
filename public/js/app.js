@@ -2035,6 +2035,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2093,7 +2099,7 @@ __webpack_require__.r(__webpack_exports__);
           }).then(function (response) {
             if (response.errors) {
               _this2.anyError = true;
-              _this2.anyError = response.errors;
+              _this2.errors = response.errors;
             }
 
             if (response.status === 0) {
@@ -2138,6 +2144,30 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         }
+      }
+    },
+    destroy: function destroy(id) {
+      var _this3 = this;
+
+      if (confirm('Are you sure you want to delete')) {
+        fetch("".concat(this.baseURL, "api/category/").concat(id), {
+          method: 'delete',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            _this3.getCategories();
+
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.info('Category deleted', {
+              position: 'top-right'
+            });
+          }
+        });
       }
     },
     addCategory: function addCategory() {
@@ -43538,10 +43568,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c(
-                        "a",
+                        "li",
                         {
                           staticClass: "dropdown-item text-success",
-                          attrs: { href: "#" },
                           on: {
                             click: function($event) {
                               return _vm.editCategory(category)
@@ -43556,7 +43585,23 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(2, true)
+                      _c(
+                        "li",
+                        {
+                          staticClass: "dropdown-item text-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.destroy(category.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-trash" }),
+                          _vm._v(
+                            "\n                    Delete\n                  "
+                          )
+                        ]
+                      )
                     ])
                   ])
                 ])
@@ -43583,7 +43628,7 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(3),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "form",
@@ -43596,6 +43641,29 @@ var render = function() {
                 }
               },
               [
+                _vm.anyError
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "alert alert-warning alert-dismissible fade show",
+                        attrs: { role: "alert" }
+                      },
+                      [
+                        _vm._l(_vm.errors, function(error) {
+                          return _c(
+                            "p",
+                            { key: error.id, staticClass: "text-center" },
+                            [_vm._v(_vm._s(error))]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm._m(3)
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c(
@@ -43675,15 +43743,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "dropdown-item text-danger" }, [
-      _c("i", { staticClass: "fa fa-trash" }),
-      _vm._v("\n                    Delete\n                  ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title" }, [_vm._v("Asset Category")]),
       _vm._v(" "),
@@ -43700,6 +43759,23 @@ var staticRenderFns = [
         [_vm._v("\n            ×\n          ")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this
