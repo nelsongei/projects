@@ -30,10 +30,10 @@
                         More
                       </a>
                     </li>
-                    <li class="dropdown-item text-success">
+                    <a class="dropdown-item text-success" @click="editCategory(category)" href="#">
                       <i class="fa fa-edit"></i>
                       Edit
-                    </li>
+                    </a>
                     <li class="dropdown-item text-danger">
                       <i class="fa fa-trash"></i>
                       Delete
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="addCategory">
+    <div class="modal fade" id="addCategory" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -58,8 +58,8 @@
           <form @submit.prevent="submitCategory">
             <div class="modal-body">
               <div class="form-group">
-                <label class="col-form-label">Category</label>
-                <input type="text" name="category" class="form-control" v-model="category">
+                <label class="col-form-label" for="category">Category</label>
+                <input type="text" name="category" class="form-control" v-model="category" id="category">
               </div>
             </div>
             <div class="modal-footer justify-content-between">
@@ -77,18 +77,22 @@
   </div>
 </template>
 <script>
-import AddCategoryComponent from './AddCategoryComponent'
 import Vue from 'vue'
 export default {
   data(){
     return{
       data:{},
       category:'',
-      baseURL:''
+      baseURL:'',
+      edit:false,
+      categoryId:'',
+      anyError:false,
+      errors:'',
+
     }
   },
   components:{
-    AddCategoryComponent
+
   },
   created() {
     this.getBaseURL()
@@ -115,31 +119,71 @@ export default {
         Vue.$toast.warning('Category Field is required',{position:'top-right'})
       }
       else {
-        fetch(`http://127.0.0.1/projects/public/api/category/store`,{
-          method:'post',
-          body:JSON.stringify({
-            "category":this.category
-          }),
-          headers:{
-            'Accept':'application/json',
-            'Content-Type':'application/json',
-            'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+          if(this.edit ===false){
+              fetch(`${this.baseURL}api/category/store`,{
+                  method:'post',
+                  body:JSON.stringify({
+                      "category":this.category
+                  }),
+                  headers:{
+                      'Accept':'application/json',
+                      'Content-Type':'application/json',
+                      'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                  }
+              })
+              .then(response=>response.json())
+              .then(response=>{
+                  if (response.errors){
+                      this.anyError = true;
+                      this.anyError = response.errors;
+                  }
+                  if (response.status===0){
+                      this.anyError = false;
+                      $('#addCategory').modal('hide')
+                      this.getCategories();
+                      Vue.$toast.success('Category has been added',{position:'top-right'})
+                  }
+              })
           }
-        })
-        .then(response=>response.json())
-        .then(response=>{
-          if (response.status ===0){
-            $('#addCategory').modal('hide')
-            this.getCategories()
-            Vue.$toast.success('Category has been added',{position:'top-right'})
+          else{
+              fetch(`${this.baseURL}api/category/${this.categoryId}`,{
+                  method:'put',
+                  body:JSON.stringify({
+                      "category":this.category
+                  }),
+                  headers:{
+                      'Accept':'application/json',
+                      'Content-Type':'application/json',
+                      'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                  }
+              })
+              .then(response=>response.json())
+              .then(response=>{
+                  if (response.errors){
+                      this.anyError = true;
+                      this.anyError = response.errors
+                  }
+                  if (response.status===0){
+                      this.anyError = false;
+                      $('#addCategory').modal('hide')
+                      this.getCategories();
+                      Vue.$toast.success('Category has been updated',{position:'top-right'})
+                  }
+              })
           }
-        })
       }
     },
     addCategory(){
+      this.edit=false;
       this.category='';
       $('#addCategory').modal('show')
-    }
+    },
+    editCategory(category){
+        this.categoryId = category.id;
+        this.category=category.category;
+        this.edit = true;
+        $('#addCategory').modal('show')
+      }
   },
 }
 </script>

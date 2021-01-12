@@ -37,4 +37,15 @@ class CategoryController extends Controller
         }
         return response()->json(['status'=>1]);
     }
+    //Update
+    public function update(Request $request,$id)
+    {
+        $category = Category::findOrFail($id);
+        $category->category = $request->category;
+        $category->push();
+        if ($category){
+            return response()->json(['status'=>0]);
+        }
+        return response()->json(['status'=>1]);
+    }
 }
