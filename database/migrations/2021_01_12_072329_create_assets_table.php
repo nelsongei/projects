@@ -15,7 +15,15 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('asset_name')->nullable();
+            $table->string('asset_serial_no')->unique();
+            $table->string('department')->nullable();
+            $table->string('location')->nullable();
+            $table->boolean('maintenance')->default(false);
             $table->timestamps();
+            $table->index('category_id');
         });
     }
 

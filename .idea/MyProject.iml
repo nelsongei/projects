@@ -139,5 +139,6 @@
     <orderEntry type="library" name="animate.css" level="application" />
     <orderEntry type="library" name="animejs" level="application" />
     <orderEntry type="library" name="jquery.dataTables" level="application" />
+    <orderEntry type="library" name="jquery-3.5.1" level="application" />
   </component>
 </module>

@@ -12,6 +12,7 @@
               <tr>
                 <th>#</th>
                 <th>Asset Category Name</th>
+                <th>Asset Category Type</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -19,6 +20,7 @@
               <tr v-for="(category,index) in data" :key="category.id">
                 <td>{{index+=1}}</td>
                 <td>{{category.category}}</td>
+                <td>Fixed Type</td>
                 <td>
                   <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-cogs"></i>Action

@@ -8,6 +8,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AssetController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,3 +55,4 @@ Route::prefix('/category',)->group(function (){
     Route::put('/{id}',[CategoryController::class,'update']);
     Route::delete('/{id}',[CategoryController::class,'destroy']);
 });
+Route::get('/assets',[AssetController::class,'index']);

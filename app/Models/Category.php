@@ -14,4 +14,7 @@ class Category extends Model
     protected $rules = [
         'category'=>'unique:categories',
     ];
+    public function asset(){
+        $this->hasMany(Asset::class);
+    }
 }

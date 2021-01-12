@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Asset extends Model
 {
     use HasFactory;
+    public function categories(){
+        $this->belongsTo(Category::class);
+    }
 }

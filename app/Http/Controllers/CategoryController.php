@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -33,9 +35,11 @@ class CategoryController extends Controller
             'category'=>'unique:categories',
         ]);
         $category = Category::create($data);
-//        $category = new Category();
-//        $category->category = $request->category;
-//        $category->save();
+        //
+        $activity = new ActivityLog();
+        $activity->user_id = 1;
+        $activity->activity = 'created category';
+        $activity->save();
         if ($category){
             return response()->json(['status'=>0]);
         }
