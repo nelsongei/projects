@@ -48,8 +48,6 @@ Route::get('/whatsapp/send',[App\Http\Controllers\WhatsappController::class,'sen
 Route::get('/projects',[App\Http\Controllers\HomeController::class,'project'])->name('projects');
 Route::get('/management',[App\Http\Controllers\ProjectController::class,'create']);
 Route::get('project/{project}',[App\Http\Controllers\ProjectController::class,'show']);
-//Route::post('/project/update',[App\Http\Controllers\ProjectController::class,'editProject'])->name('/project/update');
-//Route::get('project/delete/{project}',[App\Http\Controllers\ProjectController::class,'deleteProject'])->name('project/delete/{project}');
 Route::post('/tasks',[App\Http\Controllers\TaskController::class,'store']);
 //Cards
 Route::get('/cards',[App\Http\Controllers\CardController::class,'index'])->name('cards');
@@ -58,9 +56,10 @@ Route::put('/move/{id}',[App\Http\Controllers\TaskController::class,'moveTask'])
 Route::put('/complete/{id}/',[App\Http\Controllers\TaskController::class,'completeTask']);
 
 //Assets
-Route::get('/categories',[App\Http\Controllers\CategoryController::class,'index'])->name('assets');
+Route::get('/categories',[App\Http\Controllers\CategoryController::class,'assetIndex'])->name('assets');
 Route::get('/assets_dashboard',[App\Http\Controllers\CategoryController::class,'dashboard']);
 Route::get('/create_assets',[App\Http\Controllers\CategoryController::class,'assets']);
 Route::get('/create_category',[App\Http\Controllers\CategoryController::class,'category']);
+Route::get('/category/{category}',[App\Http\Controllers\CategoryController::class,'show']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

@@ -161,7 +161,7 @@
                         next_page_url:response.next_page_url,
                         prev_page_url:response.prev_page_url
                     };
-                    console.log(this.pagination)
+                    // console.log(this.pagination)
                 })
                 .catch(error=>{
                     console.log(error)

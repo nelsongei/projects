@@ -344,17 +344,17 @@
         closeOnSelect: false,
         allowClear: true
     })
-    $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-        });
-    });
+    // $(function () {
+    //     $("#example1").DataTable();
+    //     $('#example2').DataTable({
+    //         "paging": true,
+    //         "lengthChange": false,
+    //         "searching": false,
+    //         "ordering": true,
+    //         "info": true,
+    //         "autoWidth": false,
+    //     });
+    // });
 </script>
 
 <script>
@@ -731,8 +731,8 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{--<script src="{{asset('assets/dashboard/dist/js/pages/dashboard.js')}}"></script>--}}
     <!-- AdminLTE for demo purposes -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+{{--    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>--}}
+{{--    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>--}}
     <script src="{{asset('assets/dashboard/dist/js/demo.js')}}"></script>
     <script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
     <script src="{{asset('resources/sweetalert2/sweetalert2.min.js')}}"></script>

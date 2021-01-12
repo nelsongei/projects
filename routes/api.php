@@ -7,6 +7,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,4 +47,8 @@ Route::prefix('/checklist')->group(function(){
 Route::get('/feedbacks',[FeedbackController::class,'index']);
 Route::prefix('/feedback')->group(function (){
     Route::post('/store',[FeedbackController::class,'store']);
+});
+Route::get('/categories',[CategoryController::class,'index']);
+Route::prefix('/category',)->group(function (){
+    Route::post('/store',[CategoryController::class,'store']);
 });
