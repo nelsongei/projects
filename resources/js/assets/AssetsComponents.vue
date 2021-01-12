@@ -2,9 +2,9 @@
     <div>
         <div class="card">
             <div class="card-body">
-                <button class="btn btn-sm btn-primary">
+                <a class="btn btn-sm btn-primary" :href="'assetForm'">
                     Add Asset
-                </button>
+                </a>
                 <div class="row mt-2 mr-2">
                     <table class="table table-bordered">
                         <thead>
@@ -20,10 +20,15 @@
                         <tr v-for="(asset, index) in data" :key="asset.id">
                             <td>{{index+=1}}</td>
                             <td>{{asset.asset_name}}</td>
-                            <td>{{asset.category.category}}</td>
+                            <td>{{asset.categories.category}}</td>
                             <td>{{asset.asset_serial_no}}</td>
                             <td>{{asset.department}}</td>
                             <td>{{asset.location}}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-cogs"></i>Action
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -44,6 +49,12 @@ import Vue from 'vue'
             department:'',
             location:'',
         }
+    },
+    created() {
+        this.getBaseURL();
+    },
+    mounted(){
+        this.getAssets();
     },
     methods: {
         getBaseURL: function(){

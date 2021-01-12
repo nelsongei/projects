@@ -15,6 +15,6 @@ class Category extends Model
         'category'=>'unique:categories',
     ];
     public function asset(){
-        $this->hasMany(Asset::class);
+        return $this->hasMany(Asset::class);
     }
 }

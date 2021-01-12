@@ -9,6 +9,6 @@ class Asset extends Model
 {
     use HasFactory;
     public function categories(){
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class,'category_id');
     }
 }

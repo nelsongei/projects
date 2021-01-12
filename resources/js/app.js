@@ -53,6 +53,7 @@ Vue.component('dashboard-component', require('./assets/DashboardComponent.vue').
 Vue.component('assets-component', require('./assets/AssetsComponents.vue').default);
 Vue.component('category-component', require('./assets/CategoryComponents.vue').default);
 Vue.component('details-component', require('./assets/CategoryDetails.vue').default);
+Vue.component('add-component', require('./assets/AddAssetComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

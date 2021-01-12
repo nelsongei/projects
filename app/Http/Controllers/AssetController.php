@@ -9,6 +9,9 @@ class AssetController extends Controller
 {
     //
     public function index(){
-        return Asset::orderBy('id','desc')->with('category')->get();
+        return Asset::orderBy('id','desc')->with('categories')->get();
+    }
+    public function addAssetForm(){
+        return view('assets.AddAsset');
     }
 }
