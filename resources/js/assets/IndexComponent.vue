@@ -7,7 +7,7 @@
             <div class="card-body">
               <div class="list-group">
                 <div class="list-group-item">
-                  <h6 class="text-bold">Dashboard</h6>
+                  <h6 class="text-bold">Asset Dashboard</h6>
                 </div>
               </div>
             </div>

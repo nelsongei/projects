@@ -16,7 +16,7 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{url('/categories')}}">
+                                <a href="{{url('/create_assets')}}">
                                     Assets
                                 </a>
                             </li>
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div id="app">
-                            <add-component></add-component>
+                            <add-component :categories="{{$categories}}"></add-component>
                         </div>
                     </div>
                 </div>

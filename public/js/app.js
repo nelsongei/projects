@@ -1955,6 +1955,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1989,7 +1991,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['categories'],
+  data: function data() {
+    return {
+      asset_name: '',
+      category_id: '',
+      asset_serial_no: '',
+      department: '',
+      location: '',
+      baseURL: ''
+    };
+  },
+  created: function created() {
+    this.getBaseURL();
+  },
+  methods: {
+    getBaseURL: function getBaseURL() {
+      var getUrl = window.location;
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
+    },
+    submitAsset: function submitAsset() {
+      if (this.asset_name === '' || this.category_id === '' || this.asset_serial_no === '' || this.department === '' || this.location === '') {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('All form inputs are required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch("".concat(this.baseURL, "api/asset/store"), {
+          method: 'post',
+          body: JSON.stringify({
+            "asset_name": this.asset_name,
+            "category_id": this.category_id,
+            "asset_serial_no": this.asset_serial_no,
+            "department": this.department,
+            "location": this.location
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Asset added successfully', {
+              position: 'top-right'
+            });
+            window.location.reload();
+          }
+        });
+      }
+    }
+  }
+});
 
 /***/ }),
 
@@ -2091,6 +2153,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -43672,83 +43738,227 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "form",
+        {
+          staticClass: "form-horizontal",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submitAsset($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6 form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-form-label",
+                    attrs: { for: "asset_name" }
+                  },
+                  [_vm._v("Asset Name")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.asset_name,
+                      expression: "asset_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "asset_name", id: "asset_name" },
+                  domProps: { value: _vm.asset_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.asset_name = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-form-label",
+                    attrs: { for: "category_id" }
+                  },
+                  [_vm._v("Category")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.category_id,
+                        expression: "category_id"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "category_id", id: "category_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.category_id = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { disabled: "", value: "" } }, [
+                      _vm._v("Select")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.categories, function(category) {
+                      return _c(
+                        "option",
+                        { key: category.id, domProps: { value: category.id } },
+                        [_vm._v(_vm._s(category.category))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-form-label",
+                    attrs: { for: "asset_serial_no" }
+                  },
+                  [_vm._v("Serial No")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.asset_serial_no,
+                      expression: "asset_serial_no"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "asset_serial_no",
+                    id: "asset_serial_no"
+                  },
+                  domProps: { value: _vm.asset_serial_no },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.asset_serial_no = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-form-label",
+                    attrs: { for: "department" }
+                  },
+                  [_vm._v("Department")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.department,
+                      expression: "department"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "department", name: "department" },
+                  domProps: { value: _vm.department },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.department = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "col-form-label", attrs: { for: "location" } },
+                  [_vm._v("Location")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.location,
+                      expression: "location"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "location", name: "location" },
+                  domProps: { value: _vm.location },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.location = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("form", { staticClass: "form-horizontal" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c("label", { staticClass: "col-form-label" }, [
-                  _vm._v("Asset Name")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c("label", { staticClass: "col-form-label" }, [
-                  _vm._v("Category")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    staticClass: "form-control",
-                    attrs: { name: "category_id" }
-                  },
-                  [
-                    _c("option", { attrs: { disabled: "" } }, [
-                      _vm._v("Select")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c("label", { staticClass: "col-form-label" }, [
-                  _vm._v("Serial No")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c("label", { staticClass: "col-form-label" }, [
-                  _vm._v("Department")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c("label", { staticClass: "col-form-label" }, [
-                  _vm._v("Location")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text" }
-                })
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "card-footer bg-white" }, [
+      _c("button", { staticClass: "btn btn-primary btn-sm" }, [
+        _vm._v("\n                    Save\n                ")
       ])
     ])
   }
@@ -43903,7 +44113,15 @@ var render = function() {
                 return _c("tr", { key: category.id }, [
                   _c("td", [_vm._v(_vm._s((index += 1)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(category.category))]),
+                  _c("td", [
+                    _c("a", { attrs: { href: "category/" + category.id } }, [
+                      _vm._v(
+                        "\n                      " +
+                          _vm._s(category.category) +
+                          "\n                  "
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v("Fixed Type")]),
                   _vm._v(" "),
@@ -44242,7 +44460,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "list-group" }, [
           _c("div", { staticClass: "list-group-item" }, [
-            _c("h6", { staticClass: "text-bold" }, [_vm._v("Dashboard")])
+            _c("h6", { staticClass: "text-bold" }, [_vm._v("Asset Dashboard")])
           ])
         ])
       ])

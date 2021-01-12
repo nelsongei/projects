@@ -56,3 +56,6 @@ Route::prefix('/category',)->group(function (){
     Route::delete('/{id}',[CategoryController::class,'destroy']);
 });
 Route::get('/assets',[AssetController::class,'index']);
+Route::prefix('asset')->group(function(){
+    Route::post('/store',[AssetController::class,'store']);
+});

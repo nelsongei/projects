@@ -17,6 +17,8 @@ class CreateAssetsTable extends Migration
             $table->id();
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('supplier_id')->unsigned();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('asset_name')->nullable();
             $table->string('asset_serial_no')->unique();
             $table->string('department')->nullable();

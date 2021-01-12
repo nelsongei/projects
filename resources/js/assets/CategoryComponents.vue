@@ -19,7 +19,11 @@
             <tbody>
               <tr v-for="(category,index) in data" :key="category.id">
                 <td>{{index+=1}}</td>
-                <td>{{category.category}}</td>
+                <td>
+                    <a :href="'category/'+category.id">
+                        {{category.category}}
+                    </a>
+                </td>
                 <td>Fixed Type</td>
                 <td>
                   <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
