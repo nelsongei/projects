@@ -20,9 +20,9 @@ class CreatePurchasesTable extends Migration
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('receipt_no')->nullable();
-            $table->string('quantity')->nullable();
-            $table->string('amount')->nullable();
-            $table->string('total_amount')->nullable();
+            $table->integer('quantity');
+            $table->float('amount');
+            $table->float('total_amount');
             $table->string('purchase_date');
             $table->timestamps();
         });

@@ -63,4 +63,6 @@ Route::prefix('asset')->group(function(){
 Route::get('/suppliers',[SupplierController::class,'index']);
 Route::prefix('/supplier')->group(function(){
     Route::post('/store',[SupplierController::class,'store']);
+    Route::put('/{id}',[SupplierController::class,'update']);
+    Route::delete('/{id}',[SupplierController::class,'destroy']);
 });

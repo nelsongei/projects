@@ -61,19 +61,23 @@
                                         <h3 class="col-md-12 card-title text-bold">Purchase Details</h3>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="receipt_no">Receipt No</label>
-                                            <input type="text" class="form-control" id="receipt_no" name="receipt_no">
+                                            <input type="text" class="form-control" id="receipt_no" name="receipt_no" v-model="receipt_no">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="quantity">Quantity</label>
-                                            <input type="text" class="form-control" id="quantity" name="quantity">
+                                            <input type="number" min="1" class="form-control" id="quantity" name="quantity" v-model="quantity">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="amount">Amount Per Unit</label>
-                                            <input type="text" class="form-control" id="amount" name="amount">
+                                            <input type="number" min="1" class="form-control" id="amount" name="amount" v-model.number="amount">
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label class="col-form-label" for="purchase_date">Purchase Date</label>
+                                            <input type="date" class="form-control" id="purchase_date" name="purchase_date" v-model.number="purchase_date">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="total_amount">Total Amount</label>
-                                            <input type="text" class="form-control" id="total_amount" name="total_amount" readonly>
+                                            <input type="number" :value.number="total"  step="any" class="form-control" id="total_amount" name="total_amount" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +121,7 @@
                                                         <i class="fa fa-edit"></i>
                                                         Edit
                                                     </li>
-                                                    <li class="dropdown-item text-danger">
+                                                    <li class="dropdown-item text-danger" @click="destroy(supplier.id)">
                                                         <i class="fa fa-trash"></i>
                                                         Delete
                                                     </li>
@@ -210,6 +214,12 @@ import Vue from 'vue'
                 supplier_group:'',
                 edit:false,
                 supplierId:'',
+                asset_id:'',
+                receipt_no:'',
+                purchase_date:'',
+                total_amount:0,
+                quantity:1,
+                amount:1,
             }
         },
         created () {
@@ -217,6 +227,13 @@ import Vue from 'vue'
         },
         mounted(){
             this.getSuppliers();
+        },
+        computed:{
+            total(){
+                let calculated_amount = this.quantity * this.amount;
+                this.total_amount = calculated_amount;
+                return calculated_amount;
+            }
         },
         methods:{
             getBaseURL: function(){
@@ -252,14 +269,14 @@ import Vue from 'vue'
                 })
             },
             submitAsset(){
-                if(this.asset_name===''||this.category_id===''||this.supplier_id===''||this.asset_serial_no===''||this.department===''||this.location===''){
+                if(this.asset_name===''||this.category_id===''||this.supplier_id===''||this.asset_serial_no===''||this.department===''||this.location===''||this.receipt_no===''||this.quantity===''||this.amount===''||this.purchase_date===''||this.total_amount===''){
                     Vue.$toast.warning('All form inputs are required',{position:'top-right'});
                 }
                 else{
                     fetch(`${this.baseURL}api/asset/store`,{
                         method:'post',
                         body:JSON.stringify({
-                            "asset_name":this.asset_name,"category_id":this.category_id,"supplier_id":this.supplier_id,"asset_serial_no":this.asset_serial_no,"department":this.department,"location":this.location
+                            "asset_name":this.asset_name,"category_id":this.category_id,"supplier_id":this.supplier_id,"asset_serial_no":this.asset_serial_no,"department":this.department,"location":this.location,"receipt_no":this.receipt_no,"quantity":this.quantity,"amount":this.amount,"purchase_date":this.purchase_date,"total_amount":this.total_amount
                         }),
                         headers:{
                             'Accept':'application/json',
@@ -271,6 +288,7 @@ import Vue from 'vue'
                     .then(response=>{
                         if(response.status===0){
                             Vue.$toast.success('Asset added successfully',{position:'top-right'})
+                            this.asset_name='';this.category_id='';this.supplier_id='';this.asset_serial_no='';this.department='';this.location='';this.receipt_no='';this.quantity='';this.amount='';this.purchase_date='';this.total_amount='';
                         }
                     })
                 }
@@ -292,20 +310,61 @@ import Vue from 'vue'
                                 'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
                             }
                         })
-                            .then(response=>response.json())
-                            .then(response=>{
-                                if(response.status===0){
-                                    this.getSuppliers();
-                                    Vue.$toast.success('You have added supplier successfully',{position:'top-right'});
-                                    $('#addSupplier').modal('hide');
+                        .then(response=>response.json())
+                        .then(response=>{
+                            if(response.status===0){
+                                this.getSuppliers();
+                                Vue.$toast.success('You have added supplier successfully',{position:'top-right'});
+                                $('#addSupplier').modal('hide');
 
-                                }
-                            })
+                            }
+                        })
                     }
                     else{
+                        fetch(`${this.baseURL}api/supplier/${this.supplierId}`,{
+                            method:'put',
+                            body:JSON.stringify({
+                                "name":this.name,"email":this.email,"address":this.address,"phone_no":this.phone_no,"supplier_group":this.supplier_group
+                            }),
+                            headers:{
+                                'Accept':'application/json',
+                                'Content-Type':'application/json',
+                                'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                            }
+                        })
+                        .then(response=>response.json())
+                        .then(response=>{
+                            if(response.status===0){
+                                this.getSuppliers();
+                                Vue.$toast.success('Supplier Updated successfully',{position:'top-right'});
+                                $('#addSupplier').modal('hide');
+                            }
+                        })
                     }
                 }
-            }
+            },
+            destroy(id){
+                if(confirm('Are you sure?')){
+                    fetch(`${this.baseURL}api/supplier/${id}`,{
+                        method:'delete',
+                        headers:{
+                            'Accept':'application/json',
+                            'Content-Type':'application/json',
+                            'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                        }
+                    })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        if(response.status===0){
+                            this.getSuppliers();
+                            Vue.$toast.info('Supplier has been removed successfully',{position:'top-right'});
+                        }
+                    })
+                    .catch(error=>{
+                        console.log(error)
+                    })
+                }
+            },
         }
     }
 </script>

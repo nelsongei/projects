@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asset;
 use App\Models\Category;
+use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class AssetController extends Controller
 {
     //
     public function index(){
-        return Asset::orderBy('id','desc')->with('categories','suppliers')->get();
+        return Asset::orderBy('id','desc')->with('categories','suppliers','purchase')->get();
     }
     //
     public function addAssetForm(){
@@ -28,7 +29,19 @@ class AssetController extends Controller
         $assets->department = $request->department;
         $assets->location = $request->location;
         $assets->save();
-        if ($assets){
+        //
+        $assetId = $assets->id;
+        $supplierId = $assets->supplier_id;
+        $purchase = new Purchase();
+        $purchase->asset_id = $assetId;
+        $purchase->receipt_no = $request->receipt_no;
+        $purchase->quantity = $request->quantity;
+        $purchase->supplier_id = $supplierId;
+        $purchase->amount = $request->amount;
+        $purchase->purchase_date = $request->purchase_date;
+        $purchase->total_amount = $request->total_amount;
+        $purchase->save();
+        if ($assets && $purchase){
             return response()->json(['status'=>0]);
         }
         return response()->json(['status'=>1]);
