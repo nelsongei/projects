@@ -23,7 +23,11 @@
                         <tbody>
                             <tr v-for="(asset, index) in data" :key="asset.id">
                                 <td>{{index+=1}}</td>
-                                <td>{{asset.asset_name}}</td>
+                                <td>
+                                    <a :href="'asset/'+asset.id">
+                                        {{asset.asset_name}}
+                                    </a>
+                                </td>
                                 <td>{{asset.suppliers.name}}</td>
                                 <td>{{asset.categories.category}}</td>
                                 <td>{{asset.asset_serial_no}}</td>
@@ -35,6 +39,12 @@
                                         <i class="fa fa-cogs"></i>Action
                                     </button>
                                     <ul class="dropdown-menu">
+                                        <li class="dropdown-item text-info">
+                                            <a :href="'asset/'+asset.id">
+                                                <i class="fa fa-eye"></i>
+                                                More Info
+                                            </a>
+                                        </li>
                                         <li class="dropdown-item text-success" @click="editAsset(asset)">
                                             <i class="fa fa-edit"></i>
                                             Edit
@@ -186,7 +196,24 @@ import Vue from 'vue'
         },
         destroy(id){
             if(confirm('Are you sure you want to delete?')){
-
+                fetch(`${this.baseURL}api/asset/${id}`,{
+                    method:'delete',
+                    headers:{
+                        'Accept':'application/json',
+                        'Content-Type':'application/json',
+                        'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                    }
+                })
+                .then(response=>response.json())
+                .then(response=>{
+                    if (response.status ===0){
+                        this.getAssets();
+                        Vue.$toast.info('Asset Has been Deleted',{position:'top-right'});
+                    }
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
             }
         }
     }

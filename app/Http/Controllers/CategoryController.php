@@ -29,9 +29,6 @@ class CategoryController extends Controller
     public function index(){
         return Category::all();
     }
-    public function show(Category $category){
-        return view('assets.view',compact('category'));
-    }
     //Store Category
     public function store(Request $request){
         $data = request()->validate([

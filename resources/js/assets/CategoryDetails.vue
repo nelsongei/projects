@@ -3,7 +3,7 @@
         <div class="card card-outline card-info">
             <div class="card-body box-profile">
                 <div class="text-center text-bold">
-                    <h1 style="font-size:72px">{{category.category.charAt(0)}}</h1>
+                    <h1 style="font-size:72px">{{asset.categories.category.charAt(0)}}</h1>
                 </div>
             </div>
         </div>
@@ -12,7 +12,7 @@
 <script>
 export default{
     props:[
-        'category',
+        'asset',
     ],
 }
 </script>

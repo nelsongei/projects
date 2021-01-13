@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\DataChart;
 use App\Models\Asset;
 use App\Models\Category;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssetController extends Controller
 {
@@ -20,6 +22,21 @@ class AssetController extends Controller
         $suppliers = Supplier::all();
         return view('assets.AddAsset',compact('categories','suppliers'));
     }
+    //
+    public function show(Asset $asset){
+        $depreciation = $asset->purchase->total_amount;
+        $salvage_value = (0.375*$depreciation);
+        $straight_line_depreciation = (($depreciation-$salvage_value)/5);
+        //Chart
+        $finalChart = new DataChart();
+        $finalChart->labels(['Initial Price','Final After Depreciation']);
+        $finalChart->dataset('Asset Depreciation Rate(5 YRS)','line',[$depreciation,$straight_line_depreciation])
+                  ->color('#dc3545')
+                  ->backgroundColor('#f96f34')
+                  ->fill(false);
+        return view('assets.view',compact('asset','finalChart'));
+    }
+    //
     public function store(Request $request){
         $assets = new Asset();
         $assets->asset_name = $request->asset_name;

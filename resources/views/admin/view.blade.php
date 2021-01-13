@@ -43,9 +43,9 @@
                                         <img src="{{asset('resources/settings/admin.png')}}" class="img-circle profile-user-img" alt="user">
                                     @endif
                                     <h3 class="profile-username">{{$user->name.' '.$user->lastName}}</h3>
-                                        <p class="text-blue">
-                                            {{$user->role->role}}
-                                        </p>
+                                    <p class="text-blue">
+                                        {{$user->role->role}}
+                                    </p>
                                 </div>
                             </div>
                         </div>

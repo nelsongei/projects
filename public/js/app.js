@@ -2491,6 +2491,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['categories', 'suppliers'],
@@ -2574,7 +2584,30 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     destroy: function destroy(id) {
-      if (confirm('Are you sure you want to delete?')) {}
+      var _this3 = this;
+
+      if (confirm('Are you sure you want to delete?')) {
+        fetch("".concat(this.baseURL, "api/asset/").concat(id), {
+          method: 'delete',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            _this3.getAssets();
+
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.info('Asset Has been Deleted', {
+              position: 'top-right'
+            });
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     }
   }
 });
@@ -2592,14 +2625,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2848,7 +2873,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['category']
+  props: ['asset']
 });
 
 /***/ }),
@@ -83335,7 +83360,15 @@ var render = function() {
                 return _c("tr", { key: asset.id }, [
                   _c("td", [_vm._v(_vm._s((index += 1)))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(asset.asset_name))]),
+                  _c("td", [
+                    _c("a", { attrs: { href: "asset/" + asset.id } }, [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(asset.asset_name) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(asset.suppliers.name))]),
                   _vm._v(" "),
@@ -83353,6 +83386,15 @@ var render = function() {
                     _vm._m(1, true),
                     _vm._v(" "),
                     _c("ul", { staticClass: "dropdown-menu" }, [
+                      _c("li", { staticClass: "dropdown-item text-info" }, [
+                        _c("a", { attrs: { href: "asset/" + asset.id } }, [
+                          _c("i", { staticClass: "fa fa-eye" }),
+                          _vm._v(
+                            "\n                                            More Info\n                                        "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "li",
                         {
@@ -83830,13 +83872,11 @@ var render = function() {
                   _c("td", [_vm._v(_vm._s((index += 1)))]),
                   _vm._v(" "),
                   _c("td", [
-                    _c("a", { attrs: { href: "category/" + category.id } }, [
-                      _vm._v(
-                        "\n                      " +
-                          _vm._s(category.category) +
-                          "\n                  "
-                      )
-                    ])
+                    _vm._v(
+                      "\n                  " +
+                        _vm._s(category.category) +
+                        "\n              "
+                    )
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v("Fixed Type")]),
@@ -83845,19 +83885,6 @@ var render = function() {
                     _vm._m(1, true),
                     _vm._v(" "),
                     _c("ul", { staticClass: "dropdown-menu" }, [
-                      _c("li", { staticClass: "dropdown-item text-info" }, [
-                        _c(
-                          "a",
-                          { attrs: { href: "category/" + category.id } },
-                          [
-                            _c("i", { staticClass: "fa fa-eye" }),
-                            _vm._v(
-                              "\n                      More\n                    "
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "li",
                         {
@@ -84118,7 +84145,7 @@ var render = function() {
       _c("div", { staticClass: "card-body box-profile" }, [
         _c("div", { staticClass: "text-center text-bold" }, [
           _c("h1", { staticStyle: { "font-size": "72px" } }, [
-            _vm._v(_vm._s(_vm.category.category.charAt(0)))
+            _vm._v(_vm._s(_vm.asset.categories.category.charAt(0)))
           ])
         ])
       ])

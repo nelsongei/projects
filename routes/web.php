@@ -60,9 +60,8 @@ Route::get('/categories',[App\Http\Controllers\CategoryController::class,'assetI
 Route::get('/assets_dashboard',[App\Http\Controllers\CategoryController::class,'dashboard']);
 Route::get('/create_assets',[App\Http\Controllers\CategoryController::class,'assets']);
 Route::get('/create_category',[App\Http\Controllers\CategoryController::class,'category']);
-Route::get('/category/{category}',[App\Http\Controllers\CategoryController::class,'show']);
 Route::get('/assetForm',[App\Http\Controllers\AssetController::class,'addAssetForm'] );
-//Supplier
-//Route::post('/store',[App\Http\Controllers\SupplierController::class,'store']);
+//Asset
+Route::get('/asset/{asset}',[App\Http\Controllers\AssetController::class,'show']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

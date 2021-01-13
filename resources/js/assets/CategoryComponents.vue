@@ -20,9 +20,7 @@
               <tr v-for="(category,index) in data" :key="category.id">
                 <td>{{index+=1}}</td>
                 <td>
-                    <a :href="'category/'+category.id">
-                        {{category.category}}
-                    </a>
+                    {{category.category}}
                 </td>
                 <td>Fixed Type</td>
                 <td>
@@ -30,12 +28,6 @@
                     <i class="fa fa-cogs"></i>Action
                   </button>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item text-info">
-                      <a :href="'category/'+category.id">
-                        <i class="fa fa-eye"></i>
-                        More
-                      </a>
-                    </li>
                     <li class="dropdown-item text-success" @click="editCategory(category)">
                       <i class="fa fa-edit"></i>
                       Edit
