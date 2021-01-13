@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use App\Models\Category;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,9 @@ class CategoryController extends Controller
         return view('assets.dashboard');
     }
     public function assets(){
-        return view('assets.assets');
+        $suppliers = Supplier::all();
+        $categories = Category::all();
+        return view('assets.assets',compact('categories','suppliers'));
     }
     public function category(){
         return view('assets.category');

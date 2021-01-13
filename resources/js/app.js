@@ -29,7 +29,6 @@ window.Vue = require('vue');
 
 import VueToast from 'vue-toast-notification';
 import Popover from 'vue-js-popover'
-
 import 'vue-toast-notification/dist/theme-sugar.css';
 
 Vue.use(VueToast)

@@ -46,4 +46,25 @@ class AssetController extends Controller
         }
         return response()->json(['status'=>1]);
     }
+    public function update(Request $request,$id){
+        $assets = Asset::find($id);
+        $assets->asset_name = $request->asset_name;
+        $assets->category_id = $request->category_id;
+        $assets->supplier_id = $request->supplier_id;
+        $assets->asset_serial_no = $request->asset_serial_no;
+        $assets->department = $request->department;
+        $assets->location = $request->location;
+        $assets->push();
+        if ($assets){
+            return response()->json(['status'=>0]);
+        }
+        return response()->json(['status'=>1]);
+    }
+    public function destroy($id){
+        $assets=Asset::find($id)->delete();
+        if($assets){
+            return response()->json(['status'=>0]);
+        }
+        return response()->json(['status'=>1]);
+    }
 }

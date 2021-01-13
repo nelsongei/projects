@@ -29,12 +29,15 @@
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Asset.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Asset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Purchase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Purchase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_12_151820_create_purchases_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_12_151820_create_purchases_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/assets/AddAssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/AddAssetComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/assets/AssetsComponents.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/AssetsComponents.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/assets/DashboardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/DashboardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assets/assets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets/assets.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -353,7 +356,7 @@
       <workItem from="1610422134605" duration="3325000" />
       <workItem from="1610426208126" duration="35134000" />
       <workItem from="1610478808023" duration="4311000" />
-      <workItem from="1610507447302" duration="24510000" />
+      <workItem from="1610507447302" duration="34320000" />
     </task>
     <servers />
   </component>
@@ -391,5 +394,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

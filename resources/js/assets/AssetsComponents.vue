@@ -16,34 +16,106 @@
                                 <th>Serial No</th>
                                 <th>Department</th>
                                 <th>Location</th>
+                                <th>Asset Value</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(asset, index) in data" :key="asset.id">
-                            <td>{{index+=1}}</td>
-                            <td>{{asset.asset_name}}</td>
-                            <td>{{asset.suppliers.name}}</td>
-                            <td>{{asset.categories.category}}</td>
-                            <td>{{asset.asset_serial_no}}</td>
-                            <td>{{asset.department}}</td>
-                            <td>{{asset.location}}</td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-cogs"></i>Action
-                                </button>
-                            </td>
-                        </tr>
+                            <tr v-for="(asset, index) in data" :key="asset.id">
+                                <td>{{index+=1}}</td>
+                                <td>{{asset.asset_name}}</td>
+                                <td>{{asset.suppliers.name}}</td>
+                                <td>{{asset.categories.category}}</td>
+                                <td>{{asset.asset_serial_no}}</td>
+                                <td>{{asset.department}}</td>
+                                <td>{{asset.location}}</td>
+                                <td>{{asset.purchase.total_amount}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-cogs"></i>Action
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-item text-success" @click="editAsset(asset)">
+                                            <i class="fa fa-edit"></i>
+                                            Edit
+                                        </li>
+                                        <li class="dropdown-item text-danger" @click="destroy(asset.id)">
+                                            <i class="fa fa-trash"></i>
+                                            Delete
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="assetModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Asset</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            &times;
+                        </button>
+                    </div>
+                    <form @submit.prevent="assetEdits">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="asset_name">Asset Name</label>
+                                    <input type="text" class="form-control" name="asset_name" v-model="asset_name" id="asset_name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="category_id">Asset Category</label>
+                                    <select v-model="category_id" name="category_id" class="form-control" id="category_id">
+                                        <option disabled value="">Select</option>
+                                        <option v-for="category in categories" :value="category.id" :key="category.id">{{category.category}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="supplier_id">Supplier</label>
+                                    <select v-model="supplier_id" name="category_id" class="form-control" id="supplier_id">
+                                        <option disabled value="">Select</option>
+                                        <option v-for="supplier in suppliers" :value="supplier.id" :key="supplier.id">{{supplier.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="asset_serial_no">Asset Serial No</label>
+                                    <input type="text" class="form-control" name="asset_serial_no" v-model="asset_serial_no" id="asset_serial_no">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="department">Department</label>
+                                    <input type="text" class="form-control" name="department" v-model="department" id="department">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label" for="location">Location</label>
+                                    <input type="text" class="form-control" name="location" v-model="location" id="location">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                Update
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-// import Vue from 'vue'
+import Vue from 'vue'
     export default {
+        props:[
+            'categories',
+            'suppliers'
+        ],
     data() {
         return {
             data:{},
@@ -52,6 +124,8 @@
             asset_serial_no:'',
             department:'',
             location:'',
+            supplier_id:'',
+            category_id:'',
         }
     },
     created() {
@@ -74,6 +148,47 @@
                 console.log(error)
             })
         },
+        editAsset(asset){
+            this.assetId = asset.id;
+            this.asset_name = asset.asset_name;
+            this.category_id = asset.category;
+            this.supplier_id = asset.supplier_id;
+            this.asset_serial_no = asset.asset_serial_no;
+            this.department = asset.department;
+            this.location = asset.location;
+            $('#assetModal').modal('show')
+        },
+        assetEdits(){
+            if(this.asset_name===''||this.category_id===''||this.supplier_id===''||this.asset_serial_no===''||this.department===''||this.location===''){
+                Vue.$toast.warning('Check form inputs',{position:'top-right'})
+            }
+            else{
+                fetch(`${this.baseURL}api/asset/${this.assetId}`,{
+                    method:'put',
+                    body:JSON.stringify({
+                        "asset_name":this.asset_name,"category_id":this.category_id,"supplier_id":this.supplier_id,"asset_serial_no":this.asset_serial_no,"department":this.department,"location":this.location
+                    }),
+                    headers:{
+                        'Accept':'application/json',
+                        'Content-Type':'application/json',
+                        'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                    }
+                })
+                .then(response=>response.json())
+                .then(response=>{
+                    if (response.status ===0){
+                        this.getAssets();
+                        Vue.$toast.success('Asset Updated successfully',{position:'top-right'})
+                        $('#assetModal').modal('hide')
+                    }
+                })
+            }
+        },
+        destroy(id){
+            if(confirm('Are you sure you want to delete?')){
+
+            }
+        }
     }
 }
 </script>

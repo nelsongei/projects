@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div id="app">
-                            <assets-component></assets-component>
+                            <assets-component :categories="{{$categories}}" :suppliers="{{$suppliers}}"></assets-component>
                         </div>
                     </div>
                 </div>

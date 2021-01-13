@@ -15,6 +15,6 @@ class Asset extends Model
         return $this->belongsTo(Supplier::class,'supplier_id');
     }
     public function purchase(){
-        return $this->hasMany(Purchase::class);
+        return $this->hasOne(Purchase::class);
     }
 }
