@@ -21,7 +21,7 @@
                         <div class="card">
                             <form class="form-horizontal" @submit.prevent="submitAsset">
                                 <div class="card-header">
-                                    <button class="btn btn-primary btn-sm">
+                                    <button class="btn btn-primary btn-sm" type="submit">
                                         Save
                                     </button>
                                 </div>
@@ -82,42 +82,38 @@
                     </div>
                     <div class="tab-pane show fade" id="suppliers" role="tabpanel" aria-labelledby="custom-supplier-tab">
                         <div class="card">
-                            <form class="form-horizontal">
-                                <div class="card-header">
-                                    <button class="btn btn-primary btn-sm">
-                                        Save
-                                    </button>
-                                </div>
+                            <form class="form-horizontal" @submit.prevent="addSupplier">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="name">Supplier Full Names</label>
-                                            <input type="text" class="form-control" name="asset_name" id="name" v-model="asset_name">
+                                            <input type="text" class="form-control" name="asset_name" id="name" v-model="name">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="email">Email</label>
-                                            <input type="email" class="form-control" name="email" id="email" v-model="asset_name">
+                                            <input type="email" class="form-control" name="email" id="email" v-model="email">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="address">Address</label>
-                                            <input type="text" class="form-control" name="address" id="address" v-model="asset_name">
+                                            <input type="text" class="form-control" name="address" id="address" v-model="address">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="phone_no">Phone No</label>
-                                            <input type="text" class="form-control" name="phone_no" id="phone_no" v-model="asset_name">
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label class="col-form-label" for="image">Avatar</label>
-                                            <input type="text" class="form-control" name="image" id="image" v-model="asset_name">
+                                            <input type="text" class="form-control" name="phone_no" id="phone_no" v-model="phone_no">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="supplier_group">Supplier Group</label>
-                                            <select class="form-control" name="supplier_group" id="supplier_group">
+                                            <select class="form-control" name="supplier_group" id="supplier_group" v-model="supplier_group">
                                                 <option disabled value="">Select</option>
-                                                <option value="">Electronics</option>
+                                                <option>Electronics</option>
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary btn-sm" type="submit">
+                                        Save
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -136,6 +132,7 @@ import Vue from 'vue'
     ],
         data () {
             return{
+                data:{},
                 asset_name:'',
                 category_id:'',
                 asset_serial_no:'',
@@ -143,15 +140,33 @@ import Vue from 'vue'
                 location:'',
                 supplier_id:'',
                 baseURL:'',
+                name:'',
+                email:'',
+                address:'',
+                phone_no:'',
+                image:'',
+                supplier_group:''
             }
         },
         created () {
             this.getBaseURL();
         },
+        mounted(){
+            this.getSuppliers();
+        },
         methods:{
             getBaseURL: function(){
                 var getUrl = window.location
                 this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
+            },
+            getSuppliers(){
+                axios.get(`${this.baseURL}api/suppliers`)
+                .then(response=>{
+                    this.data = response.data
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
             },
             submitAsset(){
                 if(this.asset_name===''||this.category_id===''||this.supplier_id===''||this.asset_serial_no===''||this.department===''||this.location===''){
@@ -173,7 +188,30 @@ import Vue from 'vue'
                     .then(response=>{
                         if(response.status===0){
                             Vue.$toast.success('Asset added successfully',{position:'top-right'})
-                            window.location.reload();
+                        }
+                    })
+                }
+            },
+            addSupplier(){
+                if(this.name===''||this.email===''||this.address===''||this.phone_no===''||this.supplier_group===''){
+                    Vue.$toast.warning('All Fields are required',{position:'top-right'})
+                }
+                else{
+                    fetch(`http://127.0.0.1/projects/public/api/supplier/store/`,{
+                        method:'post',
+                        body:JSON.stringify({
+                            "name":this.name,"email":this.email,"address":this.address,"phone_no":this.phone_no,"supplier_group":this.supplier_group
+                        }),
+                        headers:{
+                            'Accept':'application/json',
+                            'Content-Type':'application/json',
+                            'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                        }
+                    })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        if(response.status===0){
+                            Vue.$toast.success('You have added supplier successfully',{position:'top-right'})
                         }
                     })
                 }

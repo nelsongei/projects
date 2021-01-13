@@ -11,6 +11,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Asset</th>
+                                <th>Supplier</th>
                                 <th>Asset Category</th>
                                 <th>Serial No</th>
                                 <th>Department</th>
@@ -22,6 +23,7 @@
                         <tr v-for="(asset, index) in data" :key="asset.id">
                             <td>{{index+=1}}</td>
                             <td>{{asset.asset_name}}</td>
+                            <td>{{asset.suppliers.name}}</td>
                             <td>{{asset.categories.category}}</td>
                             <td>{{asset.asset_serial_no}}</td>
                             <td>{{asset.department}}</td>

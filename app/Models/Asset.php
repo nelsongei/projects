@@ -11,4 +11,7 @@ class Asset extends Model
     public function categories(){
         return $this->belongsTo(Category::class,'category_id');
     }
+    public function suppliers(){
+        return $this->belongsTo(Supplier::class,'supplier_id');
+    }
 }

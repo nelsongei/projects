@@ -62,5 +62,7 @@ Route::get('/create_assets',[App\Http\Controllers\CategoryController::class,'ass
 Route::get('/create_category',[App\Http\Controllers\CategoryController::class,'category']);
 Route::get('/category/{category}',[App\Http\Controllers\CategoryController::class,'show']);
 Route::get('/assetForm',[App\Http\Controllers\AssetController::class,'addAssetForm'] );
+//Supplier
+Route::post('/sulier/store',[App\Http\Controllers\SupplierController::class,'store']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

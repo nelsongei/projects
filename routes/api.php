@@ -9,6 +9,7 @@ use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\SupplierController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -58,4 +59,8 @@ Route::prefix('/category',)->group(function (){
 Route::get('/assets',[AssetController::class,'index']);
 Route::prefix('asset')->group(function(){
     Route::post('/store',[AssetController::class,'store']);
+});
+Route::get('/suppliers',[SupplierController::class,'index']);
+Route::prefix('supplier')->group(function(){
+    Route::post('/store',[SupplierController::class,'store']);
 });

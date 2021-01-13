@@ -11,7 +11,7 @@ class AssetController extends Controller
 {
     //
     public function index(){
-        return Asset::orderBy('id','desc')->with('categories')->get();
+        return Asset::orderBy('id','desc')->with('categories','suppliers')->get();
     }
     //
     public function addAssetForm(){
