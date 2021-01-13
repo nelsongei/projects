@@ -1997,9 +1997,98 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['categories'],
+  props: ['categories', 'suppliers'],
   data: function data() {
     return {
       asset_name: '',
@@ -2007,6 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
       asset_serial_no: '',
       department: '',
       location: '',
+      supplier_id: '',
       baseURL: ''
     };
   },
@@ -2019,7 +2109,7 @@ __webpack_require__.r(__webpack_exports__);
       this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
     },
     submitAsset: function submitAsset() {
-      if (this.asset_name === '' || this.category_id === '' || this.asset_serial_no === '' || this.department === '' || this.location === '') {
+      if (this.asset_name === '' || this.category_id === '' || this.supplier_id === '' || this.asset_serial_no === '' || this.department === '' || this.location === '') {
         vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('All form inputs are required', {
           position: 'top-right'
         });
@@ -2029,6 +2119,7 @@ __webpack_require__.r(__webpack_exports__);
           body: JSON.stringify({
             "asset_name": this.asset_name,
             "category_id": this.category_id,
+            "supplier_id": this.supplier_id,
             "asset_serial_no": this.asset_serial_no,
             "department": this.department,
             "location": this.location
@@ -2064,8 +2155,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2105,7 +2194,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+// import Vue from 'vue'
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -43739,215 +43830,558 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card" }, [
-      _c(
-        "form",
-        {
-          staticClass: "form-horizontal",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.submitAsset($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-form-label",
-                    attrs: { for: "asset_name" }
-                  },
-                  [_vm._v("Asset Name")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
+    _c("div", { staticClass: "card card-tabs" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-content",
+            attrs: { id: "custom-tabs-one-tabContent" }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade show active",
+                attrs: {
+                  id: "custom-tabs-one-home",
+                  role: "tabpanel",
+                  "aria-labelledby": "custom-tabs-one-home"
+                }
+              },
+              [
+                _c("div", { staticClass: "card" }, [
+                  _c(
+                    "form",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.asset_name,
-                      expression: "asset_name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", name: "asset_name", id: "asset_name" },
-                  domProps: { value: _vm.asset_name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                      staticClass: "form-horizontal",
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.submitAsset($event)
+                        }
                       }
-                      _vm.asset_name = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-form-label",
-                    attrs: { for: "category_id" }
-                  },
-                  [_vm._v("Category")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.category_id,
-                        expression: "category_id"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "category_id", id: "category_id" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.category_id = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { disabled: "", value: "" } }, [
-                      _vm._v("Select")
-                    ]),
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c(
+                            "h3",
+                            { staticClass: "col-md-12 card-title text-bold" },
+                            [_vm._v("Asset Details")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6 form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-form-label",
+                                attrs: { for: "asset_name" }
+                              },
+                              [_vm._v("Asset Name")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.asset_name,
+                                  expression: "asset_name"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "asset_name",
+                                id: "asset_name"
+                              },
+                              domProps: { value: _vm.asset_name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.asset_name = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6 form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-form-label",
+                                attrs: { for: "category_id" }
+                              },
+                              [_vm._v("Category")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.category_id,
+                                    expression: "category_id"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "category_id",
+                                  id: "category_id"
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.category_id = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  { attrs: { disabled: "", value: "" } },
+                                  [_vm._v("Select")]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.categories, function(category) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: category.id,
+                                      domProps: { value: category.id }
+                                    },
+                                    [_vm._v(_vm._s(category.category))]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6 form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-form-label",
+                                attrs: { for: "supplier_id" }
+                              },
+                              [_vm._v("Supplier")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.supplier_id,
+                                    expression: "supplier_id"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "supplier_id",
+                                  id: "supplier_id"
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.supplier_id = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  { attrs: { disabled: "", value: "" } },
+                                  [_vm._v("Select")]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.suppliers, function(supplier) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: supplier.id,
+                                      domProps: { value: supplier.id }
+                                    },
+                                    [_vm._v(_vm._s(supplier.name))]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6 form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-form-label",
+                                attrs: { for: "asset_serial_no" }
+                              },
+                              [_vm._v("Serial No")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.asset_serial_no,
+                                  expression: "asset_serial_no"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "asset_serial_no",
+                                id: "asset_serial_no"
+                              },
+                              domProps: { value: _vm.asset_serial_no },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.asset_serial_no = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6 form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-form-label",
+                                attrs: { for: "department" }
+                              },
+                              [_vm._v("Department")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.department,
+                                  expression: "department"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "department",
+                                name: "department"
+                              },
+                              domProps: { value: _vm.department },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.department = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6 form-group" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-form-label",
+                                attrs: { for: "location" }
+                              },
+                              [_vm._v("Location")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.location,
+                                  expression: "location"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: "location",
+                                name: "location"
+                              },
+                              domProps: { value: _vm.location },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.location = $event.target.value
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "h3",
+                            { staticClass: "col-md-12 card-title text-bold" },
+                            [_vm._v("Purchase Details")]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _vm._m(5)
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane show fade",
+                attrs: {
+                  id: "suppliers",
+                  role: "tabpanel",
+                  "aria-labelledby": "custom-supplier-tab"
+                }
+              },
+              [
+                _c("div", { staticClass: "card" }, [
+                  _c("form", { staticClass: "form-horizontal" }, [
+                    _vm._m(6),
                     _vm._v(" "),
-                    _vm._l(_vm.categories, function(category) {
-                      return _c(
-                        "option",
-                        { key: category.id, domProps: { value: category.id } },
-                        [_vm._v(_vm._s(category.category))]
-                      )
-                    })
-                  ],
-                  2
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-form-label",
-                    attrs: { for: "asset_serial_no" }
-                  },
-                  [_vm._v("Serial No")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.asset_serial_no,
-                      expression: "asset_serial_no"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    name: "asset_serial_no",
-                    id: "asset_serial_no"
-                  },
-                  domProps: { value: _vm.asset_serial_no },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.asset_serial_no = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-form-label",
-                    attrs: { for: "department" }
-                  },
-                  [_vm._v("Department")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.department,
-                      expression: "department"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", id: "department", name: "department" },
-                  domProps: { value: _vm.department },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.department = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 form-group" }, [
-                _c(
-                  "label",
-                  { staticClass: "col-form-label", attrs: { for: "location" } },
-                  [_vm._v("Location")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.location,
-                      expression: "location"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", id: "location", name: "location" },
-                  domProps: { value: _vm.location },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.location = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ]
-      )
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6 form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: { for: "name" }
+                            },
+                            [_vm._v("Supplier Full Names")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.asset_name,
+                                expression: "asset_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              name: "asset_name",
+                              id: "name"
+                            },
+                            domProps: { value: _vm.asset_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.asset_name = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6 form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: { for: "email" }
+                            },
+                            [_vm._v("Email")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.asset_name,
+                                expression: "asset_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "email",
+                              name: "email",
+                              id: "email"
+                            },
+                            domProps: { value: _vm.asset_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.asset_name = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6 form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: { for: "address" }
+                            },
+                            [_vm._v("Address")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.asset_name,
+                                expression: "asset_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              name: "address",
+                              id: "address"
+                            },
+                            domProps: { value: _vm.asset_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.asset_name = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6 form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: { for: "phone_no" }
+                            },
+                            [_vm._v("Phone No")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.asset_name,
+                                expression: "asset_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              name: "phone_no",
+                              id: "phone_no"
+                            },
+                            domProps: { value: _vm.asset_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.asset_name = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6 form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-form-label",
+                              attrs: { for: "image" }
+                            },
+                            [_vm._v("Avatar")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.asset_name,
+                                expression: "asset_name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text", name: "image", id: "image" },
+                            domProps: { value: _vm.asset_name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.asset_name = $event.target.value
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(7)
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ])
     ])
   ])
 }
@@ -43956,10 +44390,181 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer bg-white" }, [
+    return _c("div", { staticClass: "card-header p-0 pt-0" }, [
+      _c(
+        "ul",
+        {
+          staticClass: "nav nav-tabs",
+          attrs: { role: "tablist", id: "custom-tabs-one-tab" }
+        },
+        [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link text-warning active",
+                attrs: {
+                  id: "custom-tabs-one-home-tab",
+                  "data-toggle": "pill",
+                  href: "#custom-tabs-one-home",
+                  role: "tab",
+                  "aria-controls": "custom-tabs-one-home",
+                  "aria-selected": "true"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                        Asset and Purchase Details\n                    "
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link text-warning",
+                attrs: {
+                  href: "#suppliers",
+                  id: "custom-supplier-tab",
+                  "data-toggle": "pill",
+                  role: "tab",
+                  "aria-controls": "custom-supplier-tab",
+                  "aria-selected": "false"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                        Add Suppliers\n                    "
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
       _c("button", { staticClass: "btn btn-primary btn-sm" }, [
-        _vm._v("\n                    Save\n                ")
+        _vm._v(
+          "\n                                    Save\n                                "
+        )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 form-group" }, [
+      _c(
+        "label",
+        { staticClass: "col-form-label", attrs: { for: "receipt_no" } },
+        [_vm._v("Receipt No")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", id: "receipt_no", name: "receipt_no" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 form-group" }, [
+      _c(
+        "label",
+        { staticClass: "col-form-label", attrs: { for: "quantity" } },
+        [_vm._v("Quantity")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", id: "quantity", name: "quantity" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 form-group" }, [
+      _c("label", { staticClass: "col-form-label", attrs: { for: "amount" } }, [
+        _vm._v("Amount Per Unit")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", id: "amount", name: "amount" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 form-group" }, [
+      _c(
+        "label",
+        { staticClass: "col-form-label", attrs: { for: "total_amount" } },
+        [_vm._v("Amount Per Unit")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          id: "total_amount",
+          name: "total_amount",
+          readonly: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("button", { staticClass: "btn btn-primary btn-sm" }, [
+        _vm._v(
+          "\n                                    Save\n                                "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 form-group" }, [
+      _c(
+        "label",
+        { staticClass: "col-form-label", attrs: { for: "supplier_group" } },
+        [_vm._v("Supplier Group")]
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "form-control",
+          attrs: { name: "supplier_group", id: "supplier_group" }
+        },
+        [
+          _c("option", { attrs: { disabled: "", value: "" } }, [
+            _vm._v("Select")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "" } }, [_vm._v("Electronics")])
+        ]
+      )
     ])
   }
 ]
@@ -44033,19 +44638,21 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("th", [_vm._v("#")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Asset")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Asset Category")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Serial No")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Department")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Location")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Action")])
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Asset")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Asset Category")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Serial No")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Department")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Location")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
+      ])
     ])
   },
   function() {
@@ -44502,7 +45109,9 @@ var staticRenderFns = [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "list-group" }, [
           _c("div", { staticClass: "list-group-item" }, [
-            _c("h6", { staticClass: "text-bold" }, [_vm._v("Purchase Details")])
+            _c("h6", { staticClass: "text-bold" }, [
+              _vm._v("Depreciation Details")
+            ])
           ])
         ])
       ])

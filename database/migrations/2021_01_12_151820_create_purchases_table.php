@@ -22,6 +22,7 @@ class CreatePurchasesTable extends Migration
             $table->string('receipt_no')->nullable();
             $table->string('quantity')->nullable();
             $table->string('amount')->nullable();
+            $table->string('total_amount')->nullable();
             $table->string('purchase_date');
             $table->timestamps();
         });

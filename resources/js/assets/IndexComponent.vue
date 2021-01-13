@@ -46,7 +46,7 @@
                     <div class="card-body">
                         <div class="list-group">
                             <div class="list-group-item">
-                                <h6 class="text-bold">Purchase Details</h6>
+                                <h6 class="text-bold">Depreciation Details</h6>
                             </div>
                         </div>
                     </div>

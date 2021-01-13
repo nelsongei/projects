@@ -8,13 +8,15 @@
                 <div class="row mt-2 mr-2">
                     <table class="table table-bordered">
                         <thead>
-                            <th>#</th>
-                            <th>Asset</th>
-                            <th>Asset Category</th>
-                            <th>Serial No</th>
-                            <th>Department</th>
-                            <th>Location</th>
-                            <th>Action</th>
+                            <tr>
+                                <th>#</th>
+                                <th>Asset</th>
+                                <th>Asset Category</th>
+                                <th>Serial No</th>
+                                <th>Department</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(asset, index) in data" :key="asset.id">
@@ -38,7 +40,7 @@
     </div>
 </template>
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
     export default {
     data() {
         return {
@@ -58,7 +60,7 @@ import Vue from 'vue'
     },
     methods: {
         getBaseURL: function(){
-            var getUrl = window.location
+            let getUrl = window.location
             this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
         },
         getAssets(){
