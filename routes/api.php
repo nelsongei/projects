@@ -61,6 +61,6 @@ Route::prefix('asset')->group(function(){
     Route::post('/store',[AssetController::class,'store']);
 });
 Route::get('/suppliers',[SupplierController::class,'index']);
-Route::prefix('supplier')->group(function(){
+Route::prefix('/supplier')->group(function(){
     Route::post('/store',[SupplierController::class,'store']);
 });

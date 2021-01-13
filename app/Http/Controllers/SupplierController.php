@@ -18,12 +18,14 @@ class SupplierController extends Controller
         $supplier->email = $request->email;
         $supplier->address = $request->address;
         $supplier->phone_no = $request->phone_no;
-        $supplier->image = null;
         $supplier->supplier_group = $request->supplier_group;
         $supplier->save();
         if($supplier){
             return response()->json(['status'=>0]);
         }
         return response()->json(['status'=>1]);
+    }
+    public function update(){
+
     }
 }
