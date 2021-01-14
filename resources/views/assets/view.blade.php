@@ -78,6 +78,11 @@
                                                 Asset Depreciation Rate
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-warning">
+                                                Update Asset Icon
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="card-body">

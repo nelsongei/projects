@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\DataChart;
 use App\Models\ActivityLog;
+use App\Models\Asset;
 use App\Models\Category;
+use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +18,21 @@ class CategoryController extends Controller
         return view('assets.index');
     }
     public function dashboard(){
-        return view('assets.dashboard');
+        $assets = Asset::all()->count();
+        $assetValue = Purchase::select('total_amount')->sum('total_amount');
+        $maintenance = Asset::all()->where('maintenance',true)->count();
+        //
+        $assetName = Asset::all();
+        foreach ($assetName as $asset){
+            echo $asset->asset_name;
+            $assetChart = new DataChart();
+            $assetChart->labels([$asset->asset_name,'Depreciation Value']);
+            $assetChart->dataset('Assets','bar',[$asset->purchase->total_amount,$asset->purchase->total_amount])
+                ->color('#dc3545')
+                ->backgroundColor('#dc3545')
+                ->fill(false);
+        }
+        return view('assets.dashboard',compact('assets','assetValue','maintenance','assetChart'));
     }
     public function assets(){
         $suppliers = Supplier::all();

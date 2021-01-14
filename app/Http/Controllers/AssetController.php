@@ -8,7 +8,6 @@ use App\Models\Category;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class AssetController extends Controller
 {
