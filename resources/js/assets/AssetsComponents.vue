@@ -174,17 +174,17 @@ import Vue from 'vue'
                 console.log(error)
             })
         },
-        getSearch(){
-            axios.get(`api/asset/search`,{
-                params: {keywords: this.keywords}
-            })
-            .then(response=>{
-                this.data = response.data
-            })
-            .catch(error=>{
-                console.log(error)
-            })
-        },
+        // getSearch(){
+        //     axios.get(`api/asset/search`,{
+        //         params: {keywords: this.keywords}
+        //     })
+        //     .then(response=>{
+        //         this.data = response.data
+        //     })
+        //     .catch(error=>{
+        //         console.log(error)
+        //     })
+        // },
         getSearch(){
             axios.get(`${this.baseURL}api/asset/search`,{
                 params: {keywords: this.keywords}
