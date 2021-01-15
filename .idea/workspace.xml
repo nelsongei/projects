@@ -27,14 +27,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/barcode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MyProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetMoveController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/AssetMove.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_15_071717_create_asset_moves_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/assets/moveAsset.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/assets/AssetsComponents.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/AssetsComponents.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/assets/barcode.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets/barcode.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/assets/CategoryDetails.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/assets/IndexComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/IndexComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assets/barcode.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/assets/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

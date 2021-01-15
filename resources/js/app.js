@@ -51,7 +51,7 @@ Vue.component('index-component', require('./assets/IndexComponent.vue').default)
 Vue.component('dashboard-component', require('./assets/DashboardComponent.vue').default);
 Vue.component('assets-component', require('./assets/AssetsComponents.vue').default);
 Vue.component('category-component', require('./assets/CategoryComponents.vue').default);
-Vue.component('details-component', require('./assets/CategoryDetails.vue').default);
+Vue.component('move-component', require('./assets/MoveAssetComponent.vue').default);
 Vue.component('add-component', require('./assets/AddAssetComponent.vue').default);
 
 /**

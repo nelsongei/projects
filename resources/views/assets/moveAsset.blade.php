@@ -32,11 +32,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="barcode">
-                            <p class="name">{{$asset->asset_name}}</p>
-                            <p class="price">Price: {{$asset->asset_seial_no}}</p>
-                            {!! DNS1D::getBarcodeHTML($product->pid, "C128",1.4,22) !!}
-                            <p class="pid">{{$product->pid}}</p>
+                        <div id="app">
+                            <move-component></move-component>
                         </div>
                     </div>
                 </div>

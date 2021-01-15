@@ -41,7 +41,7 @@
         </a>
       </div>
         <div class="col-md-3">
-            <a :href="'create_category'">
+            <a :href="'move'">
                 <div class="card">
                     <div class="card-body">
                         <div class="list-group">

@@ -63,5 +63,7 @@ Route::get('/create_category',[App\Http\Controllers\CategoryController::class,'c
 Route::get('/assetForm',[App\Http\Controllers\AssetController::class,'addAssetForm'] );
 //Asset
 Route::get('/asset/{asset}',[App\Http\Controllers\AssetController::class,'show']);
+//Move Assets
+Route::get('/move',[App\Http\Controllers\AssetMoveController::class,'index']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
