@@ -5,6 +5,16 @@
                 <a class="btn btn-sm btn-primary" :href="'assetForm'">
                     Add Asset
                 </a>
+                <form class="form-inline ml-1 float-sm-right bg-warning" @submit.prevent="getSearch" style="border-radius: 5px">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" v-model="keywords">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar text-white" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 <div class="row mt-2 mr-2">
                     <table class="table table-bordered">
                         <thead>
@@ -136,6 +146,7 @@ import Vue from 'vue'
             location:'',
             supplier_id:'',
             category_id:'',
+            keywords:null,
         }
     },
     created() {
@@ -144,13 +155,29 @@ import Vue from 'vue'
     mounted(){
         this.getAssets();
     },
+    watch: {
+        keywords(after,before){
+            this.getSearch()
+        }
+    },
     methods: {
         getBaseURL: function(){
             let getUrl = window.location
-            this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
+            this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
         },
         getAssets(){
             axios.get(`${this.baseURL}api/assets`)
+            .then(response=>{
+                this.data = response.data
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
+        getSearch(){
+            axios.get(`${this.baseURL}api/asset/search`,{
+                params: {keywords: this.keywords}
+            })
             .then(response=>{
                 this.data = response.data
             })

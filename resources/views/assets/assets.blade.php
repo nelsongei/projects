@@ -17,7 +17,7 @@
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="{{url('/categories')}}">
-                                    Assets
+                                    Category
                                 </a>
                             </li>
                             <li class="breadcrumb-item">

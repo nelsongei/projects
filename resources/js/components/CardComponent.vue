@@ -6,7 +6,7 @@
           <i class="fa fa-plus"></i> Add Card
         </button>
         <draggable element="div" class="row mt-2 mr-3" v-model="cards" :dragOptions="dragOptions">
-          <div class="col-md-3" v-for="card in cards" :key="card.id">
+          <div class="col-md-3" v-for="card in project.card" :key="card.id">
             <div class="card p-lg-2">
               <div class="card-header bg-white">
                 <h3 class="card-title text-bold">{{card.name}}</h3>
@@ -40,10 +40,6 @@
                     v-on:task-added="handleTaskAdded"
                     v-on:task-canceled="closeAddTaskForm"
                 ></ProjectsTable>
-                <ExampleComponent
-                  :cardId="card.id"
-                  :cards="cards"
-                ></ExampleComponent>
                 <draggable :dragOptions="dragOptions" v-model="tasks" @end="changeOrder">
                   <transition-group :id="card.id">
                     <div v-for="task in card.tasks" :key="task.id" class="mb-2">
@@ -277,7 +273,7 @@ export default {
   methods:{
     getBaseURL: function(){
       var getUrl = window.location
-      this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
+      this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
     },
     getCards(){
       axios.get(`${this.baseURL}api/cards/${this.projectId}`)

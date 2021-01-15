@@ -22,7 +22,7 @@
                 <td>
                     {{category.category}}
                 </td>
-                <td>Fixed Type</td>
+                <td>{{category.asset_type}}</td>
                 <td>
                   <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-cogs"></i>Action
@@ -65,6 +65,16 @@
                 <label class="col-form-label" for="category">Category</label>
                 <input type="text" name="category" class="form-control" v-model="category" id="category">
               </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="asset_type">Category</label>
+                    <select name="asset_type" class="form-control" v-model="asset_type" id="asset_type">
+                        <option disabled value="">Select</option>
+                        <option>Fixed Asset</option>
+                        <option>Consumables</option>
+                        <option>Services</option>
+                        <option>Products</option>
+                    </select>
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button class="btn btn-default btn-sm" data-dismiss="modal">
@@ -87,6 +97,7 @@ export default {
     return{
       data:{},
       category:'',
+      asset_type:'',
       baseURL:'',
       edit:false,
       categoryId:'',
@@ -107,7 +118,7 @@ export default {
   methods:{
     getBaseURL: function(){
       var getUrl = window.location
-      this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
+      this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
     },
     getCategories(){
       axios.get(`${this.baseURL}api/categories`)
@@ -119,7 +130,7 @@ export default {
       })
     },
     submitCategory(){
-      if(this.category===''){
+      if(this.category===''||this.asset_type===''){
         Vue.$toast.warning('Category Field is required',{position:'top-right'})
       }
       else {
@@ -127,7 +138,7 @@ export default {
               fetch(`${this.baseURL}api/category/store`,{
                   method:'post',
                   body:JSON.stringify({
-                      "category":this.category
+                      "category":this.category,"asset_type":this.asset_type
                   }),
                   headers:{
                       'Accept':'application/json',
@@ -153,7 +164,7 @@ export default {
               fetch(`${this.baseURL}api/category/${this.categoryId}`,{
                   method:'put',
                   body:JSON.stringify({
-                      "category":this.category
+                      "category":this.category,"asset_type":this.asset_type
                   }),
                   headers:{
                       'Accept':'application/json',
@@ -199,11 +210,13 @@ export default {
     addCategory(){
       this.edit=false;
       this.category='';
+      this.asset_type='';
       $('#addCategory').modal('show')
     },
     editCategory(category){
         this.categoryId = category.id;
         this.category=category.category;
+        this.asset_type=category.asset_type;
         this.edit = true;
         $('#addCategory').modal('show')
       }

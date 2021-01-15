@@ -52,14 +52,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-{{--                        @foreach($project->card as $cards)--}}
-{{--                            @foreach($cards->tasks as $task)--}}
-{{--                                @foreach($task->checklists as $checklist)--}}
-{{--                                @endforeach--}}
-{{--                                @foreach($task->feedback as $feedback)--}}
-{{--                                    @endforeach--}}
-{{--                            @endforeach--}}
-{{--                        @endforeach--}}
+                        @foreach($project->card as $cards)
+                            @foreach($cards->tasks as $task)
+                                @foreach($task->checklists as $checklist)
+                                @endforeach
+                                @foreach($task->feedback as $feedback)
+                                    @endforeach
+                            @endforeach
+                        @endforeach
                         <div id="app">
                             <card-component :project="{{$project}}"></card-component>
                         </div>
