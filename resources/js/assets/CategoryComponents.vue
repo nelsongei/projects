@@ -121,7 +121,7 @@ export default {
       this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
     },
     getCategories(){
-      axios.get(`${this.baseURL}api/categories`)
+      axios.get(`api/categories`)
       .then(response=>{
         this.data = response.data
       })

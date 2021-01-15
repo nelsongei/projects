@@ -40,6 +40,7 @@ Route::prefix('/task')->group(function(){
     Route::post('/store',[TaskController::class,'store']);
     Route::put('/{id}',[TaskController::class,'update']);
     Route::put('/complete/{id}',[TaskController::class,'completeTask']);
+//    Route::put('/move/{id}',[TaskController::class,'moveTask']);
 });
 Route::get('/checklists',[ChecklistController::class,'index']);
 Route::prefix('/checklist')->group(function(){
@@ -73,4 +74,5 @@ Route::prefix('/supplier')->group(function(){
 Route::get('/moves',[AssetMoveController::class,'index']);
 Route::prefix('/move')->group(function(){
     Route::post('/store',[AssetMoveController::class,'store']);
+    Route::delete('/{id}',[AssetMoveController::class,'destroy']);
 });

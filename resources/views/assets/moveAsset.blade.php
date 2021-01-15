@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div id="app">
-                            <move-component></move-component>
+                            <move-component :users="{{$users}}" :assets="{{$assets}}" :departments="{{$departments}}"></move-component>
                         </div>
                     </div>
                 </div>

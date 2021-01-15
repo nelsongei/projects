@@ -150,7 +150,7 @@
                 this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
             },
             getProjects(){
-                axios.get(`${this.baseURL}api/projects`)
+                axios.get(`api/projects`)
                 .then(response =>{
                     this.projects = response.data
                     this.pagination={
@@ -186,7 +186,7 @@
                 }
                 else{
                     if(this.edit === false){
-                        fetch(`${this.baseURL}api/project/store`,{
+                        fetch(`api/project/store`,{
                             method:'post',
                             body:JSON.stringify({
                                 "project":this.project,"user_id":this.user_id,"description":this.description
@@ -212,7 +212,7 @@
                         })
                     }
                     else{
-                        fetch(`${this.baseURL}api/project/${this.projectId}`,{
+                        fetch(`api/project/${this.projectId}`,{
                             method:'put',
                             body:JSON.stringify({
                                 "project":this.project,"user_id":this.user_id,"description":this.description
@@ -241,7 +241,7 @@
             },
             destroy(id){
                 if(confirm('Are you sure')){
-                    fetch(`${this.baseURL}api/project/${id}`,{
+                    fetch(`api/project/${id}`,{
                         method:'delete',
                         headers:{
                             'Accept':'application/json',

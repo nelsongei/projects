@@ -159,7 +159,7 @@
                                           <label class="col-form-label">Move To</label>
                                           <select class="form-control" name="card_id" v-model="card_id">
                                             <option disabled value="">Select Card</option>
-                                            <option v-for="card in cards" :key="card.id" :value="card.id">{{card.name}}</option>
+                                            <option v-for="card in project.card" :key="card.id" :value="card.id">{{card.name}}</option>
                                           </select>
                                         </div>
                                         <div class="dropdown-divider"></div>
@@ -265,18 +265,18 @@ export default {
     },
   },
   created(){
-    this.getBaseURL();
+      this.getCards();
   },
-  mounted(){
-    this.getCards();
-  },
+  // mounted(){
+  //   this.getCards();
+  // },
   methods:{
     getBaseURL: function(){
       var getUrl = window.location
       this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
     },
     getCards(){
-      axios.get(`${this.baseURL}api/cards/${this.projectId}`)
+      axios.get(`api/cards/${this.projectId}`)
           .then(response=>{
             this.cards = response.data
           })
@@ -285,7 +285,6 @@ export default {
           })
     },
     getTasks(){
-      // fetch(`${this.baseURL}api/tasks/${this.cardId}`)
       fetch('http://127.0.0.1/projects/public/api/tasks/1')
           .then(response=>{
             this.tasks = response.data
@@ -309,7 +308,7 @@ export default {
         Vue.$toast.error('Card name is required',{position:'top-right'})
       }
       else{
-        fetch(`${this.baseURL}api/card/store`,
+        fetch(`api/card/store`,
             {
               method:'POST',
               body:JSON.stringify({
@@ -353,8 +352,8 @@ export default {
 
     },
     moveTask(task){
-      fetch(`${this.baseURL}move/${this.taskId}`,{
-        method:'put',
+      fetch(`move/${this.taskId}`,{
+        method:'post',
         body:JSON.stringify({
           "card_id":this.card_id
         }),
@@ -364,17 +363,17 @@ export default {
           'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
         }
       })
-          .then(response=>response.json())
-          .then(response=>{
-            if(response.status===0){
-              $('#addFeedbackModal').modal('hide');
-              window.location.reload()
-              Vue.$toast.success('Task Moved Successfully',{position:'top-right'});
-            }
-          })
+      .then(response=>response.json())
+      .then(response=>{
+        if(response.status===0){
+          $('#addFeedbackModal').modal('hide');
+          window.location.reload()
+          Vue.$toast.success('Task Moved Successfully',{position:'top-right'});
+        }
+      })
     },
     completeTask(task){
-      fetch(`${this.baseURL}complete/${this.taskId}`,{
+      fetch(`complete/${this.taskId}`,{
         method:'put',
         body:JSON.stringify({
           "completed":this.completed
@@ -397,7 +396,7 @@ export default {
     },
     endEditing(task){
       this.editingTask =  null;
-      fetch(`${this.baseURL}api/task/${this.taskId}`,{
+      fetch(`api/task/${this.taskId}`,{
         method:'put',
         body:JSON.stringify({
           "task_description":this.task_description
@@ -426,7 +425,7 @@ export default {
         Vue.$toast.error('Todo Name is Required',{position:'top-right'})
       }
       else{
-        fetch('http://127.0.0.1/projects/public/api/checklist/store',{
+        fetch(`api/checklist/store`,{
           method:'post',
           body:JSON.stringify({
             "todo_name":this.todo_name,"task_id":this.taskId
@@ -455,7 +454,7 @@ export default {
         Vue.$toast.warning('This field is required',{position:'top-right'})
       }
       else{
-        fetch(`${this.baseURL}api/feedback/store`,{
+        fetch(`api/feedback/store`,{
           method:'post',
           body:JSON.stringify({
             "feedback":this.feedback,"task_id":this.taskId

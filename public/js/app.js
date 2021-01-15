@@ -2784,7 +2784,7 @@ __webpack_require__.r(__webpack_exports__);
     getCategories: function getCategories() {
       var _this = this;
 
-      axios.get("".concat(this.baseURL, "api/categories")).then(function (response) {
+      axios.get("api/categories").then(function (response) {
         _this.data = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -3073,8 +3073,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['users', 'departments', 'assets'],
   data: function data() {
     return {
       data: {},
@@ -3082,7 +3131,8 @@ __webpack_require__.r(__webpack_exports__);
       department_id: '',
       asset_id: '',
       maintenance: '',
-      created_at: ''
+      created_at: '',
+      notes: ''
     };
   },
   created: function created() {
@@ -3099,14 +3149,72 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     storeAssetMoved: function storeAssetMoved() {
-      if (this.user_id === '' || this.department_id === '' || this.asset_id === '') {
-        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('All Input fields are required');
-      }
+      var _this2 = this;
 
-      fetch("api/move/store", {
-        method: 'post',
-        body: JSON.stringify({})
-      });
+      if (this.user_id === '' || this.department_id === '' || this.asset_id === '' || this.notes === '') {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('All Input fields are required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch("api/move/store", {
+          method: 'post',
+          body: JSON.stringify({
+            "user_id": this.user_id,
+            "department_id": this.department_id,
+            "asset_id": this.asset_id,
+            "notes": this.notes
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            _this2.getMovedAssets();
+
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Asset has Been Moved', {
+              position: 'top-right'
+            });
+            $('#moveAsset').modal('hide');
+          }
+        });
+      }
+    },
+    addMoved: function addMoved() {
+      this.user_id = '';
+      this.department_id = '';
+      this.asset_id = '';
+      this.notes = '';
+      $('#moveAsset').modal('show');
+    },
+    destroy: function destroy(id) {
+      var _this3 = this;
+
+      if (confirm('Are you sure')) {
+        fetch("api/move/".concat(id), {
+          method: 'delete',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            _this3.getMovedAssets();
+
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.info('You have deleted successfully', {
+              position: 'top-right'
+            });
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     }
   }
 });
@@ -3392,11 +3500,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.getBaseURL();
-  },
-  mounted: function mounted() {
     this.getCards();
   },
+  // mounted(){
+  //   this.getCards();
+  // },
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
@@ -3405,7 +3513,7 @@ __webpack_require__.r(__webpack_exports__);
     getCards: function getCards() {
       var _this = this;
 
-      axios.get("".concat(this.baseURL, "api/cards/").concat(this.projectId)).then(function (response) {
+      axios.get("api/cards/".concat(this.projectId)).then(function (response) {
         _this.cards = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -3414,7 +3522,6 @@ __webpack_require__.r(__webpack_exports__);
     getTasks: function getTasks() {
       var _this2 = this;
 
-      // fetch(`${this.baseURL}api/tasks/${this.cardId}`)
       fetch('http://127.0.0.1/projects/public/api/tasks/1').then(function (response) {
         _this2.tasks = response.data;
       })["catch"](function (error) {
@@ -3439,7 +3546,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch("".concat(this.baseURL, "api/card/store"), {
+        fetch("api/card/store", {
           method: 'POST',
           body: JSON.stringify({
             "name": this.name,
@@ -3483,8 +3590,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     changeOrder: function changeOrder() {},
     moveTask: function moveTask(task) {
-      fetch("".concat(this.baseURL, "move/").concat(this.taskId), {
-        method: 'put',
+      fetch("move/".concat(this.taskId), {
+        method: 'post',
         body: JSON.stringify({
           "card_id": this.card_id
         }),
@@ -3506,7 +3613,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     completeTask: function completeTask(task) {
-      fetch("".concat(this.baseURL, "complete/").concat(this.taskId), {
+      fetch("complete/".concat(this.taskId), {
         method: 'put',
         body: JSON.stringify({
           "completed": this.completed
@@ -3530,7 +3637,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     endEditing: function endEditing(task) {
       this.editingTask = null;
-      fetch("".concat(this.baseURL, "api/task/").concat(this.taskId), {
+      fetch("api/task/".concat(this.taskId), {
         method: 'put',
         body: JSON.stringify({
           "task_description": this.task_description
@@ -3563,7 +3670,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch('http://127.0.0.1/projects/public/api/checklist/store', {
+        fetch("api/checklist/store", {
           method: 'post',
           body: JSON.stringify({
             "todo_name": this.todo_name,
@@ -3598,7 +3705,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch("".concat(this.baseURL, "api/feedback/store"), {
+        fetch("api/feedback/store", {
           method: 'post',
           body: JSON.stringify({
             "feedback": this.feedback,
@@ -4103,7 +4210,7 @@ __webpack_require__.r(__webpack_exports__);
     getProjects: function getProjects() {
       var _this = this;
 
-      axios.get("".concat(this.baseURL, "api/projects")).then(function (response) {
+      axios.get("api/projects").then(function (response) {
         _this.projects = response.data;
         _this.pagination = {
           current_page: response.current_page,
@@ -4139,7 +4246,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         if (this.edit === false) {
-          fetch("".concat(this.baseURL, "api/project/store"), {
+          fetch("api/project/store", {
             method: 'post',
             body: JSON.stringify({
               "project": this.project,
@@ -4171,7 +4278,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         } else {
-          fetch("".concat(this.baseURL, "api/project/").concat(this.projectId), {
+          fetch("api/project/".concat(this.projectId), {
             method: 'put',
             body: JSON.stringify({
               "project": this.project,
@@ -4209,7 +4316,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (confirm('Are you sure')) {
-        fetch("".concat(this.baseURL, "api/project/").concat(id), {
+        fetch("api/project/".concat(id), {
           method: 'delete',
           headers: {
             'Accept': 'application/json',
@@ -84551,11 +84658,26 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "ard" }, [
-                  _vm._m(1),
+                  _c("div", { staticClass: "card-header" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-sm",
+                        attrs: { "data-toggle": "modal" },
+                        on: { click: _vm.addMoved }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-arrow-alt-circle-right"
+                        }),
+                        _vm._v("Move Asset\n                            ")
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
                     _c("table", { staticClass: "table table-bordered" }, [
-                      _vm._m(2),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -84563,24 +84685,362 @@ var render = function() {
                           return _c("tr", { key: move.id }, [
                             _c("td", [_vm._v(_vm._s((index += 1)))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("HP Laptop")]),
+                            _c("td", [_vm._v(_vm._s(move.asset.asset_name))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("Finance")]),
+                            _c("td", [_vm._v(_vm._s(move.department.name))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("Nelson Sammy")]),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  move.user.name + " " + move.user.lastName
+                                )
+                              )
+                            ]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("9/1/2021")]),
+                            _c("td", [_vm._v(_vm._s(move.created_at))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v("No")]),
+                            move.maintenance === 0
+                              ? _c("td", [_vm._v("No")])
+                              : _c("td", [_vm._v("Yes")]),
                             _vm._v(" "),
-                            _vm._m(3, true)
+                            _c("td", [
+                              _vm._m(2, true),
+                              _vm._v(" "),
+                              _c("ul", { staticClass: "dropdown-menu" }, [
+                                _c(
+                                  "li",
+                                  {
+                                    staticClass: "dropdown-item text-danger",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.destroy(move.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", { staticClass: "fa fa-trash" }),
+                                    _vm._v(
+                                      "\n                                                    Delete\n                                                "
+                                    )
+                                  ]
+                                )
+                              ])
+                            ])
                           ])
                         }),
                         0
                       )
                     ])
                   ])
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "modal fade", attrs: { id: "moveAsset" } },
+                  [
+                    _c("div", { staticClass: "modal-dialog" }, [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.storeAssetMoved($event)
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "modal-body" }, [
+                              _c("div", { staticClass: "row" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-sm-6" },
+                                  [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "col-form-label",
+                                        attrs: { for: "asset_id" }
+                                      },
+                                      [_vm._v("Asset Name")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.asset_id,
+                                            expression: "asset_id"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "asset_id",
+                                          name: "asset_id"
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.asset_id = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { disabled: "", value: "" }
+                                          },
+                                          [_vm._v("Select")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.assets, function(asset) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: asset.id,
+                                              domProps: { value: asset.id }
+                                            },
+                                            [_vm._v(_vm._s(asset.asset_name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-sm-6" },
+                                  [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "col-form-label",
+                                        attrs: { for: "user_id" }
+                                      },
+                                      [_vm._v("Custodian")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.user_id,
+                                            expression: "user_id"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "user_id",
+                                          name: "user_id"
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.user_id = $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { disabled: "", value: "" }
+                                          },
+                                          [_vm._v("Select")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.users, function(user) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: user.id,
+                                              domProps: { value: user.id }
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  user.name +
+                                                    " " +
+                                                    user.lastName
+                                                )
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-sm-12" },
+                                  [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "col-form-label",
+                                        attrs: { for: "department_id" }
+                                      },
+                                      [_vm._v("Department")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.department_id,
+                                            expression: "department_id"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "department_id",
+                                          name: "department_id"
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.department_id = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { disabled: "", value: "" }
+                                          },
+                                          [_vm._v("Select")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.departments, function(
+                                          department
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: department.id,
+                                              domProps: { value: department.id }
+                                            },
+                                            [_vm._v(_vm._s(department.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-sm-12" },
+                                  [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "col-form-label",
+                                        attrs: { for: "notes" }
+                                      },
+                                      [_vm._v("Note")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("textarea", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.notes,
+                                          expression: "notes"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { name: "notes", id: "notes" },
+                                      domProps: { value: _vm.notes },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.notes = $event.target.value
+                                        }
+                                      }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(4)
+                          ]
+                        )
+                      ])
+                    ])
+                  ]
+                )
               ]
             )
           ]
@@ -84631,24 +85091,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-sm",
-          attrs: { "data-toggle": "modal" }
-        },
-        [
-          _c("i", { staticClass: "fa fa-arrow-alt-circle-right" }),
-          _vm._v("Move Asset\n                            ")
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("#")]),
@@ -84671,34 +85113,71 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-primary dropdown-toggle",
+        attrs: { type: "button", "data-toggle": "dropdown" }
+      },
+      [
+        _c("i", { staticClass: "fa fa-cogs" }),
+        _vm._v("Action\n                                            ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Move Asset")]),
+      _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "btn btn-sm btn-primary dropdown-toggle",
-          attrs: { type: "button", "data-toggle": "dropdown" }
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "aria-labelledby": "Close",
+            "data-dismiss": "modal"
+          }
         },
         [
-          _c("i", { staticClass: "fa fa-cogs" }),
-          _vm._v("Action\n                                            ")
+          _vm._v(
+            "\n                                        ×\n                                    "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer justify-content-between" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default btn-sm",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [
+          _vm._v(
+            "\n                                            ×Close\n                                        "
+          )
         ]
       ),
       _vm._v(" "),
-      _c("ul", { staticClass: "dropdown-menu" }, [
-        _c("li", { staticClass: "dropdown-item text-success" }, [
-          _c("i", { staticClass: "fa fa-edit" }),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
+        [
           _vm._v(
-            "\n                                                    Update\n                                                "
+            "\n                                            Save\n                                        "
           )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "dropdown-item text-danger" }, [
-          _c("i", { staticClass: "fa fa-trash" }),
-          _vm._v(
-            "\n                                                    Delete\n                                                "
-          )
-        ])
-      ])
+        ]
+      )
     ])
   }
 ]
@@ -86049,7 +86528,9 @@ var render = function() {
                                                                                 " "
                                                                               ),
                                                                               _vm._l(
-                                                                                _vm.cards,
+                                                                                _vm
+                                                                                  .project
+                                                                                  .card,
                                                                                 function(
                                                                                   card
                                                                                 ) {
