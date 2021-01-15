@@ -10,6 +10,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\AssetMoveController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -68,4 +69,8 @@ Route::prefix('/supplier')->group(function(){
     Route::post('/store',[SupplierController::class,'store']);
     Route::put('/{id}',[SupplierController::class,'update']);
     Route::delete('/{id}',[SupplierController::class,'destroy']);
+});
+Route::get('/moves',[AssetMoveController::class,'index']);
+Route::prefix('/move')->group(function(){
+    Route::post('/store',[AssetMoveController::class,'store']);
 });

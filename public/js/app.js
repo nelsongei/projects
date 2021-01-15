@@ -2514,6 +2514,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['categories', 'suppliers'],
@@ -2527,6 +2532,7 @@ __webpack_require__.r(__webpack_exports__);
       location: '',
       supplier_id: '',
       category_id: '',
+      maintenance: false,
       keywords: null
     };
   },
@@ -2555,17 +2561,6 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    // getSearch(){
-    //     axios.get(`api/asset/search`,{
-    //         params: {keywords: this.keywords}
-    //     })
-    //     .then(response=>{
-    //         this.data = response.data
-    //     })
-    //     .catch(error=>{
-    //         console.log(error)
-    //     })
-    // },
     getSearch: function getSearch() {
       var _this2 = this;
 
@@ -3008,11 +3003,113 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      data: {},
+      user_id: '',
+      department_id: '',
+      asset_id: '',
+      maintenance: '',
+      created_at: ''
+    };
+  },
+  created: function created() {
+    this.getMovedAssets();
+  },
+  methods: {
+    getMovedAssets: function getMovedAssets() {
+      var _this = this;
+
+      axios.get("api/moves").then(function (response) {
+        _this.data = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    storeAssetMoved: function storeAssetMoved() {
+      if (this.user_id === '' || this.department_id === '' || this.asset_id === '') {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('All Input fields are required');
+      }
+
+      fetch("api/move/store", {
+        method: 'post',
+        body: JSON.stringify({})
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -83496,6 +83593,14 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(asset.purchase.total_amount))]),
                   _vm._v(" "),
+                  asset.maintenance === 0
+                    ? _c("td", [_vm._v("No")])
+                    : _c("td", [
+                        _vm._v(
+                          "\n                                Yes\n                            "
+                        )
+                      ]),
+                  _vm._v(" "),
                   _c("td", [
                     _vm._m(2, true),
                     _vm._v(" "),
@@ -83879,6 +83984,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Location")]),
         _vm._v(" "),
         _c("th", [_vm._v("Asset Value")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Maintenance")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])
@@ -84420,9 +84527,181 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c("div", { staticClass: "card card-tabs" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-content",
+            attrs: { id: "custom-tabs-one-tabContent" }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade show active",
+                attrs: {
+                  role: "tabpanel",
+                  id: "custom-tabs-one-home",
+                  "aria-labelledby": "custom-tabs-one-home"
+                }
+              },
+              [
+                _c("div", { staticClass: "ard" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("table", { staticClass: "table table-bordered" }, [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.data, function(move, index) {
+                          return _c("tr", { key: move.id }, [
+                            _c("td", [_vm._v(_vm._s((index += 1)))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("HP Laptop")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Finance")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Nelson Sammy")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("9/1/2021")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("No")]),
+                            _vm._v(" "),
+                            _vm._m(3, true)
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header p-0 pt-0" }, [
+      _c(
+        "ul",
+        {
+          staticClass: "nav nav-tabs",
+          attrs: { role: "tablist", id: "custom-tabs-one-tab" }
+        },
+        [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link text-warning active",
+                attrs: {
+                  id: "custom-tabs-one-home-tab",
+                  "data-toggle": "pill",
+                  href: "#custom-tabs-one-home",
+                  role: "tab",
+                  "aria-controls": "custom-tabs-one-home",
+                  "aria-selected": "true"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                        Move Details\n                    "
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-sm",
+          attrs: { "data-toggle": "modal" }
+        },
+        [
+          _c("i", { staticClass: "fa fa-arrow-alt-circle-right" }),
+          _vm._v("Move Asset\n                            ")
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Asset Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Department")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Custodian")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date Moved")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Asset Maintenance")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-primary dropdown-toggle",
+          attrs: { type: "button", "data-toggle": "dropdown" }
+        },
+        [
+          _c("i", { staticClass: "fa fa-cogs" }),
+          _vm._v("Action\n                                            ")
+        ]
+      ),
+      _vm._v(" "),
+      _c("ul", { staticClass: "dropdown-menu" }, [
+        _c("li", { staticClass: "dropdown-item text-success" }, [
+          _c("i", { staticClass: "fa fa-edit" }),
+          _vm._v(
+            "\n                                                    Update\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "dropdown-item text-danger" }, [
+          _c("i", { staticClass: "fa fa-trash" }),
+          _vm._v(
+            "\n                                                    Delete\n                                                "
+          )
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

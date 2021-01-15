@@ -27,6 +27,7 @@
                                 <th>Department</th>
                                 <th>Location</th>
                                 <th>Asset Value</th>
+                                <th>Maintenance</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,6 +45,10 @@
                                 <td>{{asset.department}}</td>
                                 <td>{{asset.location}}</td>
                                 <td>{{asset.purchase.total_amount}}</td>
+                                <td v-if="asset.maintenance===0">No</td>
+                                <td v-else>
+                                    Yes
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-cogs"></i>Action
@@ -146,6 +151,7 @@ import Vue from 'vue'
             location:'',
             supplier_id:'',
             category_id:'',
+            maintenance:false,
             keywords:null,
         }
     },
@@ -174,17 +180,6 @@ import Vue from 'vue'
                 console.log(error)
             })
         },
-        // getSearch(){
-        //     axios.get(`api/asset/search`,{
-        //         params: {keywords: this.keywords}
-        //     })
-        //     .then(response=>{
-        //         this.data = response.data
-        //     })
-        //     .catch(error=>{
-        //         console.log(error)
-        //     })
-        // },
         getSearch(){
             axios.get(`${this.baseURL}api/asset/search`,{
                 params: {keywords: this.keywords}

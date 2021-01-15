@@ -15,7 +15,15 @@ class CreateAssetMovesTable extends Migration
     {
         Schema::create('asset_moves', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('asset_id')->unsigned();
+            $table->foreign('asset_id')->references('id')->on('assets')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('department_id')->unsigned();
+            $table->foreign('department_id')->references('id')->on('departments')->onUpdate('cascade')->onUpdate('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->boolean('maintenance')->default(false);
             $table->timestamps();
+            $table->index('asset_id');
         });
     }
 
