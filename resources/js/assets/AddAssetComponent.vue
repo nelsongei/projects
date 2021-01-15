@@ -52,7 +52,10 @@
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="department">Department</label>
-                                            <input type="text" class="form-control" id="department" name="department" v-model="department">
+                                            <select name="department" class="form-control" v-model="department" id="department">
+                                                <option disabled value="">Select</option>
+                                                <option v-for="department in departments" :key="department.id">{{ department.name }}</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label class="col-form-label" for="location">Location</label>
@@ -194,7 +197,8 @@ import Vue from 'vue'
     export default {
     props:[
         'categories',
-        'suppliers'
+        'suppliers',
+        'departments'
     ],
         data () {
             return{
@@ -238,7 +242,7 @@ import Vue from 'vue'
         methods:{
             getBaseURL: function(){
                 var getUrl = window.location
-                this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
+                this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
             },
             addSupplierModal(){
                 this.edit=false;

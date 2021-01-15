@@ -24,6 +24,7 @@ class CreateAssetsTable extends Migration
             $table->string('department')->nullable();
             $table->string('location')->nullable();
             $table->boolean('maintenance')->default(false);
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->index('category_id');
         });

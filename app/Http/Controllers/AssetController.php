@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Charts\DataChart;
 use App\Models\Asset;
 use App\Models\Category;
+use App\Models\Department;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AssetController extends Controller
 {
@@ -19,7 +21,8 @@ class AssetController extends Controller
     public function addAssetForm(){
         $categories = Category::all();
         $suppliers = Supplier::all();
-        return view('assets.AddAsset',compact('categories','suppliers'));
+        $departments = Department::all();
+        return view('assets.AddAsset',compact('categories','suppliers','departments'));
     }
     //
     public function show(Asset $asset){
@@ -76,11 +79,41 @@ class AssetController extends Controller
         }
         return response()->json(['status'=>1]);
     }
+    //
     public function destroy($id){
         $assets=Asset::find($id)->delete();
         if($assets){
             return response()->json(['status'=>0]);
         }
         return response()->json(['status'=>1]);
+    }
+    //Update Asset Image
+    public function updateImage(Request $request){
+        $id = $request->id;
+        $validator = Validator::make($request->all(),[
+            'image'=>'required |image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        if ($validator->fails()){
+            toast('Image is required or input an image','warning');
+            return redirect()->back();
+        }
+        $url = $request->image->store('assets','public');
+        $update = Asset::where('id',$id)
+                        ->update(['image'=>$url]);
+        if($update){
+            toast('Asset Icon has been updated','success','top-right');
+        }
+        return redirect()->back();
+    }
+    //
+    public function search(Request $request){
+        $assets = Asset::where('asset_name',$request->keywords)->get();
+        return response()->json($assets);
+    }
+    //Generate QR Code
+    public function generateCode(Request $request){
+        $id = $request->get('id');
+        $asset = Asset::find($id);
+        return view('assets.barcode')->with('asset',$asset);
     }
 }

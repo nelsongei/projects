@@ -2148,9 +2148,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['categories', 'suppliers'],
+  props: ['categories', 'suppliers', 'departments'],
   data: function data() {
     return {
       data: {},
@@ -2193,7 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
     },
     addSupplierModal: function addSupplierModal() {
       this.edit = false;
@@ -2501,6 +2504,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['categories', 'suppliers'],
@@ -2513,7 +2526,8 @@ __webpack_require__.r(__webpack_exports__);
       department: '',
       location: '',
       supplier_id: '',
-      category_id: ''
+      category_id: '',
+      keywords: null
     };
   },
   created: function created() {
@@ -2521,6 +2535,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getAssets();
+  },
+  watch: {
+    keywords: function keywords(after, before) {
+      this.getSearch();
+    }
   },
   methods: {
     getBaseURL: function getBaseURL() {
@@ -2530,8 +2549,21 @@ __webpack_require__.r(__webpack_exports__);
     getAssets: function getAssets() {
       var _this = this;
 
-      axios.get("".concat(this.baseURL, "api/assets")).then(function (response) {
+      axios.get("api/assets").then(function (response) {
         _this.data = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getSearch: function getSearch() {
+      var _this2 = this;
+
+      axios.get("api/asset/search", {
+        params: {
+          keywords: this.keywords
+        }
+      }).then(function (response) {
+        _this2.data = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2547,14 +2579,14 @@ __webpack_require__.r(__webpack_exports__);
       $('#assetModal').modal('show');
     },
     assetEdits: function assetEdits() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.asset_name === '' || this.category_id === '' || this.supplier_id === '' || this.asset_serial_no === '' || this.department === '' || this.location === '') {
         vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('Check form inputs', {
           position: 'top-right'
         });
       } else {
-        fetch("".concat(this.baseURL, "api/asset/").concat(this.assetId), {
+        fetch("api/asset/".concat(this.assetId), {
           method: 'put',
           body: JSON.stringify({
             "asset_name": this.asset_name,
@@ -2573,7 +2605,7 @@ __webpack_require__.r(__webpack_exports__);
           return response.json();
         }).then(function (response) {
           if (response.status === 0) {
-            _this2.getAssets();
+            _this3.getAssets();
 
             vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Asset Updated successfully', {
               position: 'top-right'
@@ -2584,10 +2616,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     destroy: function destroy(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (confirm('Are you sure you want to delete?')) {
-        fetch("".concat(this.baseURL, "api/asset/").concat(id), {
+        fetch("api/asset/".concat(id), {
           method: 'delete',
           headers: {
             'Accept': 'application/json',
@@ -2598,7 +2630,7 @@ __webpack_require__.r(__webpack_exports__);
           return response.json();
         }).then(function (response) {
           if (response.status === 0) {
-            _this3.getAssets();
+            _this4.getAssets();
 
             vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.info('Asset Has been Deleted', {
               position: 'top-right'
@@ -2707,12 +2739,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       data: {},
       category: '',
+      asset_type: '',
       baseURL: '',
       edit: false,
       categoryId: '',
@@ -2730,7 +2773,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
     },
     getCategories: function getCategories() {
       var _this = this;
@@ -2744,7 +2787,7 @@ __webpack_require__.r(__webpack_exports__);
     submitCategory: function submitCategory() {
       var _this2 = this;
 
-      if (this.category === '') {
+      if (this.category === '' || this.asset_type === '') {
         vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('Category Field is required', {
           position: 'top-right'
         });
@@ -2753,7 +2796,8 @@ __webpack_require__.r(__webpack_exports__);
           fetch("".concat(this.baseURL, "api/category/store"), {
             method: 'post',
             body: JSON.stringify({
-              "category": this.category
+              "category": this.category,
+              "asset_type": this.asset_type
             }),
             headers: {
               'Accept': 'application/json',
@@ -2783,7 +2827,8 @@ __webpack_require__.r(__webpack_exports__);
           fetch("".concat(this.baseURL, "api/category/").concat(this.categoryId), {
             method: 'put',
             body: JSON.stringify({
-              "category": this.category
+              "category": this.category,
+              "asset_type": this.asset_type
             }),
             headers: {
               'Accept': 'application/json',
@@ -2839,11 +2884,13 @@ __webpack_require__.r(__webpack_exports__);
     addCategory: function addCategory() {
       this.edit = false;
       this.category = '';
+      this.asset_type = '';
       $('#addCategory').modal('show');
     },
     editCategory: function editCategory(category) {
       this.categoryId = category.id;
       this.category = category.category;
+      this.asset_type = category.asset_type;
       this.edit = true;
       $('#addCategory').modal('show');
     }
@@ -3206,10 +3253,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -3258,7 +3301,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
     },
     getCards: function getCards() {
       var _this = this;
@@ -3956,7 +3999,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
     },
     getProjects: function getProjects() {
       var _this = this;
@@ -4155,13 +4198,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getBaseURL: function getBaseURL() {
+      var getUrl = window.location;
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
+    },
     addTask: function addTask() {
       if (this.task_name === '' || this.task_description === '') {
         vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('All Fields are required', {
           position: 'top-right'
         });
       } else {
-        fetch('http://127.0.0.1/projects/public/api/task/store', {
+        fetch("".concat(this.baseURL, "/api/task/store"), {
           method: 'POST',
           body: JSON.stringify({
             "project_id": this.projectId,
@@ -82520,31 +82567,51 @@ var render = function() {
                               [_vm._v("Department")]
                             ),
                             _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.department,
-                                  expression: "department"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "department",
-                                name: "department"
-                              },
-                              domProps: { value: _vm.department },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.department,
+                                    expression: "department"
                                   }
-                                  _vm.department = $event.target.value
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "department", id: "department" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.department = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  }
                                 }
-                              }
-                            })
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  { attrs: { disabled: "", value: "" } },
+                                  [_vm._v("Select")]
+                                ),
+                                _vm._v(" "),
+                                _vm._l(_vm.departments, function(department) {
+                                  return _c("option", { key: department.id }, [
+                                    _vm._v(_vm._s(department.name))
+                                  ])
+                                })
+                              ],
+                              2
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6 form-group" }, [
@@ -83350,9 +83417,54 @@ var render = function() {
           [_vm._v("\n                Add Asset\n            ")]
         ),
         _vm._v(" "),
+        _c(
+          "form",
+          {
+            staticClass: "form-inline ml-1 float-sm-right bg-warning",
+            staticStyle: { "border-radius": "5px" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.getSearch($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "input-group input-group-sm" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.keywords,
+                    expression: "keywords"
+                  }
+                ],
+                staticClass: "form-control form-control-navbar",
+                attrs: {
+                  type: "search",
+                  placeholder: "Search",
+                  "aria-label": "Search"
+                },
+                domProps: { value: _vm.keywords },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.keywords = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "row mt-2 mr-2" }, [
           _c("table", { staticClass: "table table-bordered" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "tbody",
@@ -83383,7 +83495,7 @@ var render = function() {
                   _c("td", [_vm._v(_vm._s(asset.purchase.total_amount))]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._m(1, true),
+                    _vm._m(2, true),
                     _vm._v(" "),
                     _c("ul", { staticClass: "dropdown-menu" }, [
                       _c("li", { staticClass: "dropdown-item text-info" }, [
@@ -83444,7 +83556,7 @@ var render = function() {
     _c("div", { staticClass: "modal fade", attrs: { id: "assetModal" } }, [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(2),
+          _vm._m(3),
           _vm._v(" "),
           _c(
             "form",
@@ -83723,7 +83835,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(3)
+              _vm._m(4)
             ]
           )
         ])
@@ -83732,6 +83844,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-navbar text-white", attrs: { type: "submit" } },
+        [_c("i", { staticClass: "fas fa-search" })]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -83879,7 +84003,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v("Fixed Type")]),
+                  _c("td", [_vm._v(_vm._s(category.asset_type))]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._m(1, true),
@@ -84014,6 +84138,61 @@ var render = function() {
                         }
                       }
                     })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-form-label",
+                        attrs: { for: "asset_type" }
+                      },
+                      [_vm._v("Category")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.asset_type,
+                            expression: "asset_type"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "asset_type", id: "asset_type" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.asset_type = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { disabled: "", value: "" } }, [
+                          _vm._v("Select")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Fixed Asset")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Consumables")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Services")]),
+                        _vm._v(" "),
+                        _c("option", [_vm._v("Products")])
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
@@ -84304,7 +84483,7 @@ var render = function() {
                 expression: "cards"
               }
             },
-            _vm._l(_vm.cards, function(card) {
+            _vm._l(_vm.project.card, function(card) {
               return _c("div", { key: card.id, staticClass: "col-md-3" }, [
                 _c("div", { staticClass: "card p-lg-2" }, [
                   _c("div", { staticClass: "card-header bg-white" }, [
@@ -84379,10 +84558,6 @@ var render = function() {
                             }
                           })
                         : _vm._e(),
-                      _vm._v(" "),
-                      _c("ExampleComponent", {
-                        attrs: { cardId: card.id, cards: _vm.cards }
-                      }),
                       _vm._v(" "),
                       _c(
                         "draggable",
@@ -107453,8 +107628,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp/htdocs/projects/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/projects/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/toor/Documents/projects/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/toor/Documents/projects/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -63,5 +63,7 @@ Route::get('/create_category',[App\Http\Controllers\CategoryController::class,'c
 Route::get('/assetForm',[App\Http\Controllers\AssetController::class,'addAssetForm'] );
 //Asset
 Route::get('/asset/{asset}',[App\Http\Controllers\AssetController::class,'show']);
+Route::post('/asset/updateImage',[App\Http\Controllers\AssetController::class,'updateImage']);
+Route::get('/barcode',[App\Http\Controllers\AssetController::class,'generateCode']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

@@ -51,12 +51,16 @@ export default {
         }
     },
     methods: {
+        getBaseURL: function(){
+            var getUrl = window.location
+            this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
+        },
         addTask(){
             if(this.task_name===''||this.task_description===''){
                 Vue.$toast.error('All Fields are required',{position:'top-right'});
             }
             else{
-                fetch('http://127.0.0.1/projects/public/api/task/store',{
+                fetch(`${this.baseURL}/api/task/store`,{
                     method:'POST',
                     body:JSON.stringify({
                         "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date

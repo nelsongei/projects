@@ -48,10 +48,10 @@ class CategoryController extends Controller
     }
     //Store Category
     public function store(Request $request){
-        $data = request()->validate([
-            'category'=>'unique:categories',
-        ]);
-        $category = Category::create($data);
+        $category = new Category();
+        $category->category = $request->category;
+        $category->asset_type = $request->asset_type;
+        $category->save();
         //
         $activity = new ActivityLog();
         $activity->user_id = 1;
@@ -67,6 +67,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->category = $request->category;
+        $category->asset_type = $request->asset_type;
         $category->push();
         if ($category){
             return response()->json(['status'=>0]);
