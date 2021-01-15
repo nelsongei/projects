@@ -166,7 +166,18 @@ import Vue from 'vue'
             this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
         },
         getAssets(){
-            axios.get(`${this.baseURL}api/assets`)
+            axios.get(`api/assets`)
+            .then(response=>{
+                this.data = response.data
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
+        getSearch(){
+            axios.get(`api/asset/search`,{
+                params: {keywords: this.keywords}
+            })
             .then(response=>{
                 this.data = response.data
             })
@@ -200,7 +211,7 @@ import Vue from 'vue'
                 Vue.$toast.warning('Check form inputs',{position:'top-right'})
             }
             else{
-                fetch(`${this.baseURL}api/asset/${this.assetId}`,{
+                fetch(`api/asset/${this.assetId}`,{
                     method:'put',
                     body:JSON.stringify({
                         "asset_name":this.asset_name,"category_id":this.category_id,"supplier_id":this.supplier_id,"asset_serial_no":this.asset_serial_no,"department":this.department,"location":this.location
@@ -223,7 +234,7 @@ import Vue from 'vue'
         },
         destroy(id){
             if(confirm('Are you sure you want to delete?')){
-                fetch(`${this.baseURL}api/asset/${id}`,{
+                fetch(`api/asset/${id}`,{
                     method:'delete',
                     headers:{
                         'Accept':'application/json',

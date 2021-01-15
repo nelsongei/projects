@@ -242,7 +242,7 @@ import Vue from 'vue'
         methods:{
             getBaseURL: function(){
                 var getUrl = window.location
-                this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
+                this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
             },
             addSupplierModal(){
                 this.edit=false;
