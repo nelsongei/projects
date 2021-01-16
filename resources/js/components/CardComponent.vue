@@ -267,13 +267,13 @@ export default {
   created(){
       this.getCards();
   },
-  // mounted(){
-  //   this.getCards();
-  // },
+  mounted(){
+    this.getCards();
+  },
   methods:{
     getBaseURL: function(){
       var getUrl = window.location
-      this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
+        this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/public/";
     },
     getCards(){
       axios.get(`api/cards/${this.projectId}`)
@@ -308,7 +308,7 @@ export default {
         Vue.$toast.error('Card name is required',{position:'top-right'})
       }
       else{
-        fetch(`api/card/store`,
+        fetch(`${this.baseURL}api/card/store`,
             {
               method:'POST',
               body:JSON.stringify({

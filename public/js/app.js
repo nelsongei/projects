@@ -3502,13 +3502,13 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getCards();
   },
-  // mounted(){
-  //   this.getCards();
-  // },
+  mounted: function mounted() {
+    this.getCards();
+  },
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
     },
     getCards: function getCards() {
       var _this = this;
@@ -3546,7 +3546,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch("api/card/store", {
+        fetch("".concat(this.baseURL, "api/card/store"), {
           method: 'POST',
           body: JSON.stringify({
             "name": this.name,
