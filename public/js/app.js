@@ -3221,522 +3221,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CardComponent.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ProjectsTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProjectsTable */ "./resources/js/components/ProjectsTable.vue");
-/* harmony import */ var _ExampleComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ExampleComponent */ "./resources/js/components/ExampleComponent.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['project'],
-  components: {
-    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_1___default.a,
-    ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ExampleComponent: _ExampleComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
-  },
-  data: function data() {
-    return {
-      cards: [],
-      tasks: [],
-      project_id: '',
-      name: '',
-      newTaskForStatus: 0,
-      task_name: '',
-      task_description: '',
-      editingTask: null,
-      baseURL: '',
-      taskId: '',
-      todo_name: '',
-      card_id: '',
-      projectId: this.project.id,
-      completed: [true, false],
-      feedback: ''
-    };
-  },
-  computed: {
-    dragOptions: function dragOptions() {
-      return {
-        animation: 1,
-        group: 'cards',
-        ghostClass: 'ghost'
-      };
-    }
-  },
-  created: function created() {
-    this.getCards();
-  },
-  mounted: function mounted() {
-    this.getCards();
-  },
-  methods: {
-    getBaseURL: function getBaseURL() {
-      var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
-    },
-    getCards: function getCards() {
-      var _this = this;
-
-      axios.get("api/cards/".concat(this.projectId)).then(function (response) {
-        _this.cards = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    getTasks: function getTasks() {
-      var _this2 = this;
-
-      fetch('http://127.0.0.1/projects/public/api/tasks/1').then(function (response) {
-        _this2.tasks = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    addFeedbackModal: function addFeedbackModal(task) {
-      this.taskId = task.id;
-      this.task_description = task.task_description;
-      $('#addFeedbackModal').modal('show');
-    },
-    addCards: function addCards() {
-      this.project_id = this.project.id;
-      this.name = '';
-      $('#addCard').modal('show');
-    },
-    submitCard: function submitCard() {
-      var _this3 = this;
-
-      if (this.name === '') {
-        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('Card name is required', {
-          position: 'top-right'
-        });
-      } else {
-        fetch("".concat(this.baseURL, "api/card/store"), {
-          method: 'POST',
-          body: JSON.stringify({
-            "name": this.name,
-            "project_id": this.project_id
-          }),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-          }
-        }).then(function (response) {
-          return response.json();
-        }).then(function (response) {
-          if (response.errors) {
-            _this3.anyError = true;
-            _this3.errors = response.errors;
-          }
-
-          if (response.status === 0) {
-            _this3.anyError = false;
-            $('#addCard').modal('hide');
-
-            _this3.getCards();
-
-            window.location.reload();
-            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Card has been added successfully', {
-              position: 'top-right'
-            });
-          }
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
-    },
-    openTaskForm: function openTaskForm(cardId) {
-      this.newTaskForStatus = cardId;
-    },
-    handleTaskAdded: function handleTaskAdded() {},
-    closeAddTaskForm: function closeAddTaskForm() {
-      this.newTaskForStatus = 0;
-    },
-    changeOrder: function changeOrder() {},
-    moveTask: function moveTask(task) {
-      fetch("move/".concat(this.taskId), {
-        method: 'post',
-        body: JSON.stringify({
-          "card_id": this.card_id
-        }),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-        }
-      }).then(function (response) {
-        return response.json();
-      }).then(function (response) {
-        if (response.status === 0) {
-          $('#addFeedbackModal').modal('hide');
-          window.location.reload();
-          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Moved Successfully', {
-            position: 'top-right'
-          });
-        }
-      });
-    },
-    completeTask: function completeTask(task) {
-      fetch("complete/".concat(this.taskId), {
-        method: 'put',
-        body: JSON.stringify({
-          "completed": this.completed
-        }),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-        }
-      }).then(function (response) {
-        return response.json();
-      }).then(function (response) {
-        if (response.status === 200) {
-          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Completed', {
-            position: 'top-right'
-          });
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    endEditing: function endEditing(task) {
-      this.editingTask = null;
-      fetch("api/task/".concat(this.taskId), {
-        method: 'put',
-        body: JSON.stringify({
-          "task_description": this.task_description
-        }),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-        }
-      }).then(function (response) {
-        return response.json();
-      }).then(function (response) {
-        if (response.status === 0) {
-          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Description Updated successfully', {
-            position: 'top-right'
-          });
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    editTask: function editTask(task) {
-      this.editingTask = task;
-    },
-    addTodo: function addTodo(task) {
-      var _this4 = this;
-
-      if (this.todo_name === '') {
-        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('Todo Name is Required', {
-          position: 'top-right'
-        });
-      } else {
-        fetch("api/checklist/store", {
-          method: 'post',
-          body: JSON.stringify({
-            "todo_name": this.todo_name,
-            "task_id": this.taskId
-          }),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-          }
-        }).then(function (response) {
-          return response.json();
-        }).then(function (response) {
-          if (response.status === 0) {
-            _this4.getCards();
-
-            window.location.reload();
-            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Todo List added', {
-              position: 'top-right'
-            });
-          }
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
-    },
-    addFeedback: function addFeedback(task) {
-      var _this5 = this;
-
-      if (this.feedback === '') {
-        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('This field is required', {
-          position: 'top-right'
-        });
-      } else {
-        fetch("api/feedback/store", {
-          method: 'post',
-          body: JSON.stringify({
-            "feedback": this.feedback,
-            "task_id": this.taskId
-          }),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
-          }
-        }).then(function (response) {
-          return response.json();
-        }).then(function (response) {
-          if (response.status === 0) {
-            _this5.getCards();
-
-            window.location.reload();
-            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Feedback added', {
-              position: 'top-right'
-            });
-          }
-        })["catch"](function (error) {
-          console.log(error);
-        });
-      }
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -4341,10 +3825,204 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProjectsTable.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ProjectsTable.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ListsComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/ListsComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectsTable */ "./resources/js/project/ProjectsTable.vue");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['project'],
+  components: {
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_2___default.a,
+    ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      cards: [],
+      name: '',
+      project_id: '',
+      newTaskForStatus: 0,
+      baseURL: '',
+      projectId: this.project.id
+    };
+  },
+  created: function created() {
+    this.getBaseURL();
+  },
+  mounted: function mounted() {
+    this.getCards();
+  },
+  methods: {
+    getBaseURL: function getBaseURL() {
+      var getUrl = window.location;
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
+    },
+    addCards: function addCards() {
+      this.project_id = this.project.id;
+      this.name = '';
+      $('#addCard').modal('show');
+    },
+    openTaskForm: function openTaskForm(cardId) {
+      this.newTaskForStatus = cardId;
+    },
+    handleTaskAdded: function handleTaskAdded() {},
+    closeAddTaskForm: function closeAddTaskForm() {
+      this.newTaskForStatus = 0;
+    },
+    getCards: function getCards() {
+      var _this = this;
+
+      axios.get("".concat(this.baseURL, "api/cards/").concat(this.projectId)).then(function (response) {
+        _this.cards = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    submitCard: function submitCard() {
+      var _this2 = this;
+
+      if (this.name === '') {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('Card name is required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch("".concat(this.baseURL, "api/card/store"), {
+          method: 'POST',
+          body: JSON.stringify({
+            "name": this.name,
+            "project_id": this.project_id
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.errors) {
+            _this2.anyError = true;
+            _this2.errors = response.errors;
+          }
+
+          if (response.status === 0) {
+            _this2.anyError = false;
+            $('#addCard').modal('hide');
+
+            _this2.getCards();
+
+            window.location.reload();
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Card has been added successfully', {
+              position: 'top-right'
+            });
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -25068,25 +24746,6 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 // module
 exports.push([module.i, "@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.v-toast--fade-out{-webkit-animation-name:fadeOut;animation-name:fadeOut}@-webkit-keyframes fadeInDown{from{opacity:0;transform:translate3d(0, -100%, 0)}to{opacity:1;transform:none}}@keyframes fadeInDown{from{opacity:0;transform:translate3d(0, -100%, 0)}to{opacity:1;transform:none}}.v-toast--fade-in-down{-webkit-animation-name:fadeInDown;animation-name:fadeInDown}@-webkit-keyframes fadeInUp{from{opacity:0;transform:translate3d(0, 100%, 0)}to{opacity:1;transform:none}}@keyframes fadeInUp{from{opacity:0;transform:translate3d(0, 100%, 0)}to{opacity:1;transform:none}}.v-toast--fade-in-up{-webkit-animation-name:fadeInUp;animation-name:fadeInUp}.fade-enter-active,.fade-leave-active{transition:opacity 150ms ease-out}.fade-enter,.fade-leave-to{opacity:0}.v-toast{position:fixed;display:flex;top:0;bottom:0;left:0;right:0;padding:2em;overflow:hidden;z-index:1052;pointer-events:none}.v-toast__item{display:inline-flex;align-items:center;-webkit-animation-duration:150ms;animation-duration:150ms;margin:.5em 0;box-shadow:0 1px 4px rgba(0,0,0,.12),0 0 6px rgba(0,0,0,.04);border-radius:.25em;pointer-events:auto;opacity:.92;color:#fff;min-height:3em;cursor:pointer}.v-toast__item--success{background-color:#47d78a}.v-toast__item--info{background-color:#1c85d5}.v-toast__item--warning{background-color:#febc22}.v-toast__item--error{background-color:#f7471c}.v-toast__item--default{background-color:#343a40}.v-toast__item.v-toast__item--top,.v-toast__item.v-toast__item--bottom{align-self:center}.v-toast__item.v-toast__item--top-right,.v-toast__item.v-toast__item--bottom-right{align-self:flex-end}.v-toast__item.v-toast__item--top-left,.v-toast__item.v-toast__item--bottom-left{align-self:flex-start}.v-toast__text{margin:0;padding:.5em 1em;word-break:break-word}.v-toast__icon{display:none}.v-toast.v-toast--top{flex-direction:column}.v-toast.v-toast--bottom{flex-direction:column-reverse}.v-toast.v-toast--custom-parent{position:absolute}@media screen and (max-width: 768px){.v-toast{padding:0;position:fixed !important}}.v-toast__item{opacity:1;min-height:4em}.v-toast__item .v-toast__text{padding:1.5em 1em}.v-toast__item .v-toast__icon{display:block;width:27px;min-width:27px;height:27px;margin-left:1em;background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45.999 45.999'%3E %3Cpath fill='%23fff' d='M39.264 6.736c-8.982-8.981-23.545-8.982-32.528 0-8.982 8.982-8.981 23.545 0 32.528 8.982 8.98 23.545 8.981 32.528 0 8.981-8.983 8.98-23.545 0-32.528zM25.999 33a3 3 0 11-6 0V21a3 3 0 116 0v12zm-3.053-17.128c-1.728 0-2.88-1.224-2.844-2.735-.036-1.584 1.116-2.771 2.879-2.771 1.764 0 2.88 1.188 2.917 2.771-.001 1.511-1.152 2.735-2.952 2.735z'/%3E %3C/svg%3E\") no-repeat}.v-toast__item.v-toast__item--success .v-toast__icon{background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E %3Cpath fill='%23fff' d='M26 0C11.664 0 0 11.663 0 26s11.664 26 26 26 26-11.663 26-26S40.336 0 26 0zm14.495 17.329l-16 18a1.997 1.997 0 01-2.745.233l-10-8a2 2 0 012.499-3.124l8.517 6.813L37.505 14.67a2.001 2.001 0 012.99 2.659z'/%3E %3C/svg%3E\") no-repeat}.v-toast__item.v-toast__item--error .v-toast__icon{background:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 51.976 51.976'%3E %3Cpath fill='%23fff' d='M44.373 7.603c-10.137-10.137-26.632-10.138-36.77 0-10.138 10.138-10.137 26.632 0 36.77s26.632 10.138 36.77 0c10.137-10.138 10.137-26.633 0-36.77zm-8.132 28.638a2 2 0 01-2.828 0l-7.425-7.425-7.778 7.778a2 2 0 11-2.828-2.828l7.778-7.778-7.425-7.425a2 2 0 112.828-2.828l7.425 7.425 7.071-7.071a2 2 0 112.828 2.828l-7.071 7.071 7.425 7.425a2 2 0 010 2.828z'/%3E %3C/svg%3E\") no-repeat}.v-toast__item.v-toast__item--warning .v-toast__icon{background:url(\"data:image/svg+xml,%3Csvg viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill='%23fff' d='M49.466 41.26L29.216 6.85c-.69-1.16-1.89-1.85-3.22-1.85-1.32 0-2.53.69-3.21 1.85L2.536 41.26c-.71 1.2-.72 2.64-.03 3.85.68 1.18 1.89 1.89 3.24 1.89h40.51c1.35 0 2.56-.71 3.23-1.89.7-1.21.69-2.65-.02-3.85zm-25.53-21.405h3.381v3.187l-.724 8.92H24.66l-.725-8.92v-3.187zm2.97 17.344a1.712 1.712 0 01-1.267.543c-.491 0-.914-.181-1.268-.543a1.788 1.788 0 01-.531-1.297c0-.502.176-.935.53-1.297a1.712 1.712 0 011.269-.544c.49 0 .914.181 1.268.544s.53.795.53 1.297c0 .503-.176.934-.53 1.297z'/%3E %3C/svg%3E\") no-repeat}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n#checkboxes input[data-v-6e4da0f2]{\n  display: inline-block;\n}\n#checkboxes span[data-v-6e4da0f2]{\n  display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -81557,36 +81216,6 @@ Sortable.mount(Remove, Revert);
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=style&index=0&id=299e239e&scoped=true&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=style&index=0&id=299e239e&scoped=true&lang=css& ***!
@@ -85187,1594 +84816,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true& ***!
-  \****************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card card-outline card-warning" }, [
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm btn-primary",
-              on: { click: _vm.addCards }
-            },
-            [
-              _c("i", { staticClass: "fa fa-plus" }),
-              _vm._v(" Add Card\n      ")
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "draggable",
-            {
-              staticClass: "row mt-2 mr-3",
-              attrs: { element: "div", dragOptions: _vm.dragOptions },
-              model: {
-                value: _vm.cards,
-                callback: function($$v) {
-                  _vm.cards = $$v
-                },
-                expression: "cards"
-              }
-            },
-            _vm._l(_vm.project.card, function(card) {
-              return _c("div", { key: card.id, staticClass: "col-md-3" }, [
-                _c("div", { staticClass: "card p-lg-2" }, [
-                  _c("div", { staticClass: "card-header bg-white" }, [
-                    _c("h3", { staticClass: "card-title text-bold" }, [
-                      _vm._v(_vm._s(card.name))
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "dropright" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm float-right dropdown",
-                          attrs: { "data-toggle": "dropdown" }
-                        },
-                        [_c("i", { staticClass: "fa fa-ellipsis-v" })]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "dropdown-menu" }, [
-                        _c(
-                          "span",
-                          {
-                            staticClass:
-                              "dropdown-item dropdown-header text-center text-bold text-dark"
-                          },
-                          [_vm._v("Card Action")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "dropdown-item",
-                            on: {
-                              click: function($event) {
-                                return _vm.openTaskForm(card.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "fa fa-plus" }),
-                            _vm._v(" Add Task\n                  ")
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "dropdown-item" }, [
-                          _c("i", { staticClass: "fa fa-check" }),
-                          _vm._v(" Move Card\n                  ")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "dropdown-divider" }),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "dropdown-item" }, [
-                          _c("i", { staticClass: "fa fa-tasks" }),
-                          _vm._v(" Move All Task Here\n                  ")
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "card-body" },
-                    [
-                      _vm.newTaskForStatus === card.id
-                        ? _c("ProjectsTable", {
-                            attrs: {
-                              "card-id": card.id,
-                              "project-id": _vm.project.id
-                            },
-                            on: {
-                              "task-added": _vm.handleTaskAdded,
-                              "task-canceled": _vm.closeAddTaskForm
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "draggable",
-                        {
-                          attrs: { dragOptions: _vm.dragOptions },
-                          on: { end: _vm.changeOrder },
-                          model: {
-                            value: _vm.tasks,
-                            callback: function($$v) {
-                              _vm.tasks = $$v
-                            },
-                            expression: "tasks"
-                          }
-                        },
-                        [
-                          _c(
-                            "transition-group",
-                            { attrs: { id: card.id } },
-                            _vm._l(card.tasks, function(task) {
-                              return _c(
-                                "div",
-                                { key: task.id, staticClass: "mb-2" },
-                                [
-                                  _c("div", { staticClass: "list-group" }, [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "list-group-item",
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.addFeedbackModal(task)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                        " +
-                                            _vm._s(task.task_name) +
-                                            "\n                      "
-                                        )
-                                      ]
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "modal fade",
-                                      attrs: { id: "addFeedbackModal" }
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "modal-dialog modal-lg modal-dialog-scrollable"
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "modal-content" },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "modal-header" },
-                                                [
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass: "close",
-                                                      attrs: {
-                                                        type: "button",
-                                                        "data-dismiss": "modal",
-                                                        "aria-label": "Close"
-                                                      }
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                              ×\n                            "
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "modal-body" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    { staticClass: "row" },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-md-9"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "form",
-                                                            {
-                                                              on: {
-                                                                submit: function(
-                                                                  $event
-                                                                ) {
-                                                                  $event.preventDefault()
-                                                                  return _vm.endEditing(
-                                                                    task
-                                                                  )
-                                                                }
-                                                              }
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "form-group"
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "label",
-                                                                    {
-                                                                      staticClass:
-                                                                        "col-form-group",
-                                                                      attrs: {
-                                                                        for:
-                                                                          "task_description"
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "Task Description"
-                                                                      )
-                                                                    ]
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  task ===
-                                                                  _vm.editingTask
-                                                                    ? _c(
-                                                                        "textarea",
-                                                                        {
-                                                                          directives: [
-                                                                            {
-                                                                              name:
-                                                                                "model",
-                                                                              rawName:
-                                                                                "v-model",
-                                                                              value:
-                                                                                _vm.task_description,
-                                                                              expression:
-                                                                                "task_description"
-                                                                            }
-                                                                          ],
-                                                                          staticClass:
-                                                                            "form-control",
-                                                                          attrs: {
-                                                                            rows:
-                                                                              "2",
-                                                                            id:
-                                                                              "task_description",
-                                                                            name:
-                                                                              "task_description"
-                                                                          },
-                                                                          domProps: {
-                                                                            value:
-                                                                              _vm.task_description
-                                                                          },
-                                                                          on: {
-                                                                            keyup: function(
-                                                                              $event
-                                                                            ) {
-                                                                              if (
-                                                                                !$event.type.indexOf(
-                                                                                  "key"
-                                                                                ) &&
-                                                                                _vm._k(
-                                                                                  $event.keyCode,
-                                                                                  "enter",
-                                                                                  13,
-                                                                                  $event.key,
-                                                                                  "Enter"
-                                                                                )
-                                                                              ) {
-                                                                                return null
-                                                                              }
-                                                                              return _vm.endEditing(
-                                                                                task
-                                                                              )
-                                                                            },
-                                                                            blur: function(
-                                                                              $event
-                                                                            ) {
-                                                                              return _vm.endEditing(
-                                                                                task
-                                                                              )
-                                                                            },
-                                                                            input: function(
-                                                                              $event
-                                                                            ) {
-                                                                              if (
-                                                                                $event
-                                                                                  .target
-                                                                                  .composing
-                                                                              ) {
-                                                                                return
-                                                                              }
-                                                                              _vm.task_description =
-                                                                                $event.target.value
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      )
-                                                                    : _vm._e()
-                                                                ]
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          task !==
-                                                          _vm.editingTask
-                                                            ? _c(
-                                                                "p",
-                                                                {
-                                                                  on: {
-                                                                    dblclick: function(
-                                                                      $event
-                                                                    ) {
-                                                                      return _vm.editTask(
-                                                                        task
-                                                                      )
-                                                                    }
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    _vm._s(
-                                                                      _vm.task_description
-                                                                    )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          _c("b", [
-                                                            _vm._v(
-                                                              "Task Todo List"
-                                                            )
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _vm._l(
-                                                            task.checklists,
-                                                            function(
-                                                              checklist
-                                                            ) {
-                                                              return _c(
-                                                                "ul",
-                                                                {
-                                                                  key:
-                                                                    checklist.id,
-                                                                  staticClass:
-                                                                    "bg-white ui-sortable todo-list"
-                                                                },
-                                                                [
-                                                                  _c("li", [
-                                                                    _c(
-                                                                      "input",
-                                                                      {
-                                                                        attrs: {
-                                                                          type:
-                                                                            "checkbox"
-                                                                        }
-                                                                      }
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "span",
-                                                                      {
-                                                                        staticClass:
-                                                                          "text"
-                                                                      },
-                                                                      [
-                                                                        _vm._v(
-                                                                          _vm._s(
-                                                                            checklist.todo_name
-                                                                          )
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "small",
-                                                                      {
-                                                                        staticClass:
-                                                                          "badge badge-success badge-pill"
-                                                                      },
-                                                                      [
-                                                                        _c(
-                                                                          "i",
-                                                                          {
-                                                                            staticClass:
-                                                                              "fa fa-clock"
-                                                                          }
-                                                                        ),
-                                                                        _vm._v(
-                                                                          "\n                                      2 Mins Ago\n                                    "
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "div",
-                                                                      {
-                                                                        staticClass:
-                                                                          "tools"
-                                                                      },
-                                                                      [
-                                                                        _c(
-                                                                          "div",
-                                                                          {},
-                                                                          [
-                                                                            _c(
-                                                                              "button",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "btn btn-sm dropdown",
-                                                                                attrs: {
-                                                                                  type:
-                                                                                    "button",
-                                                                                  "data-toggle":
-                                                                                    "dropdown"
-                                                                                }
-                                                                              },
-                                                                              [
-                                                                                _c(
-                                                                                  "i",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "fa fa-ellipsis-v"
-                                                                                  }
-                                                                                )
-                                                                              ]
-                                                                            ),
-                                                                            _vm._v(
-                                                                              " "
-                                                                            ),
-                                                                            _c(
-                                                                              "div",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "dropdown-menu"
-                                                                              },
-                                                                              [
-                                                                                _c(
-                                                                                  "span",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "dropdown-item dropdown-header text-center text-bold text-dark"
-                                                                                  },
-                                                                                  [
-                                                                                    _vm._v(
-                                                                                      "Checklist Action"
-                                                                                    )
-                                                                                  ]
-                                                                                ),
-                                                                                _vm._v(
-                                                                                  " "
-                                                                                ),
-                                                                                _c(
-                                                                                  "div",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "dropdown-divider"
-                                                                                  }
-                                                                                ),
-                                                                                _vm._v(
-                                                                                  " "
-                                                                                ),
-                                                                                _c(
-                                                                                  "a",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "dropdown-item"
-                                                                                  },
-                                                                                  [
-                                                                                    _c(
-                                                                                      "i",
-                                                                                      {
-                                                                                        staticClass:
-                                                                                          "fa fa-plus"
-                                                                                      }
-                                                                                    ),
-                                                                                    _vm._v(
-                                                                                      "Add Todo\n                                          "
-                                                                                    )
-                                                                                  ]
-                                                                                ),
-                                                                                _vm._v(
-                                                                                  " "
-                                                                                ),
-                                                                                _c(
-                                                                                  "a",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "dropdown-item"
-                                                                                  },
-                                                                                  [
-                                                                                    _c(
-                                                                                      "i",
-                                                                                      {
-                                                                                        staticClass:
-                                                                                          "fa fa-clock"
-                                                                                      }
-                                                                                    ),
-                                                                                    _vm._v(
-                                                                                      " Due Date\n                                          "
-                                                                                    )
-                                                                                  ]
-                                                                                ),
-                                                                                _vm._v(
-                                                                                  " "
-                                                                                ),
-                                                                                _c(
-                                                                                  "a",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "dropdown-item"
-                                                                                  },
-                                                                                  [
-                                                                                    _c(
-                                                                                      "i",
-                                                                                      {
-                                                                                        staticClass:
-                                                                                          "fa fa-user-plus"
-                                                                                      }
-                                                                                    ),
-                                                                                    _vm._v(
-                                                                                      " Assign To\n                                          "
-                                                                                    )
-                                                                                  ]
-                                                                                ),
-                                                                                _vm._v(
-                                                                                  " "
-                                                                                ),
-                                                                                _c(
-                                                                                  "a",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "dropdown-item"
-                                                                                  },
-                                                                                  [
-                                                                                    _c(
-                                                                                      "i",
-                                                                                      {
-                                                                                        staticClass:
-                                                                                          "fa fa-edit"
-                                                                                      }
-                                                                                    ),
-                                                                                    _vm._v(
-                                                                                      " Edit\n                                          "
-                                                                                    )
-                                                                                  ]
-                                                                                ),
-                                                                                _vm._v(
-                                                                                  " "
-                                                                                ),
-                                                                                _c(
-                                                                                  "a",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "dropdown-item"
-                                                                                  },
-                                                                                  [
-                                                                                    _c(
-                                                                                      "i",
-                                                                                      {
-                                                                                        staticClass:
-                                                                                          "fa fa-trash"
-                                                                                      }
-                                                                                    ),
-                                                                                    _vm._v(
-                                                                                      " Delete\n                                          "
-                                                                                    )
-                                                                                  ]
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  ])
-                                                                ]
-                                                              )
-                                                            }
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c("br"),
-                                                          _vm._v(" "),
-                                                          _c("b", [
-                                                            _vm._v("Feedback")
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "ul",
-                                                            {
-                                                              staticClass:
-                                                                "bg-white ui-sortable todo-list"
-                                                            },
-                                                            [
-                                                              _vm._l(
-                                                                task.feedback,
-                                                                function(
-                                                                  feedback
-                                                                ) {
-                                                                  return _c(
-                                                                    "p",
-                                                                    {
-                                                                      key:
-                                                                        feedback.id
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          feedback.feedback
-                                                                        )
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                }
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c("li", [
-                                                                _c(
-                                                                  "form",
-                                                                  {
-                                                                    on: {
-                                                                      submit: function(
-                                                                        $event
-                                                                      ) {
-                                                                        $event.preventDefault()
-                                                                        return _vm.addFeedback(
-                                                                          task
-                                                                        )
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _c(
-                                                                      "div",
-                                                                      {},
-                                                                      [
-                                                                        _c(
-                                                                          "span",
-                                                                          [
-                                                                            _c(
-                                                                              "input",
-                                                                              {
-                                                                                directives: [
-                                                                                  {
-                                                                                    name:
-                                                                                      "model",
-                                                                                    rawName:
-                                                                                      "v-model",
-                                                                                    value:
-                                                                                      task.id,
-                                                                                    expression:
-                                                                                      "task.id"
-                                                                                  }
-                                                                                ],
-                                                                                attrs: {
-                                                                                  type:
-                                                                                    "hidden",
-                                                                                  name:
-                                                                                    "task_id",
-                                                                                  value:
-                                                                                    "task.id"
-                                                                                },
-                                                                                domProps: {
-                                                                                  value:
-                                                                                    task.id
-                                                                                },
-                                                                                on: {
-                                                                                  input: function(
-                                                                                    $event
-                                                                                  ) {
-                                                                                    if (
-                                                                                      $event
-                                                                                        .target
-                                                                                        .composing
-                                                                                    ) {
-                                                                                      return
-                                                                                    }
-                                                                                    _vm.$set(
-                                                                                      task,
-                                                                                      "id",
-                                                                                      $event
-                                                                                        .target
-                                                                                        .value
-                                                                                    )
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            ),
-                                                                            _vm._v(
-                                                                              " "
-                                                                            ),
-                                                                            _c(
-                                                                              "div",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "form-group"
-                                                                              },
-                                                                              [
-                                                                                _c(
-                                                                                  "textarea",
-                                                                                  {
-                                                                                    directives: [
-                                                                                      {
-                                                                                        name:
-                                                                                          "model",
-                                                                                        rawName:
-                                                                                          "v-model",
-                                                                                        value:
-                                                                                          _vm.feedback,
-                                                                                        expression:
-                                                                                          "feedback"
-                                                                                      }
-                                                                                    ],
-                                                                                    staticClass:
-                                                                                      "form-control",
-                                                                                    attrs: {
-                                                                                      name:
-                                                                                        "feedback",
-                                                                                      placeholder:
-                                                                                        "Add Feedback"
-                                                                                    },
-                                                                                    domProps: {
-                                                                                      value:
-                                                                                        _vm.feedback
-                                                                                    },
-                                                                                    on: {
-                                                                                      keyup: function(
-                                                                                        $event
-                                                                                      ) {
-                                                                                        if (
-                                                                                          !$event.type.indexOf(
-                                                                                            "key"
-                                                                                          ) &&
-                                                                                          _vm._k(
-                                                                                            $event.keyCode,
-                                                                                            "enter",
-                                                                                            13,
-                                                                                            $event.key,
-                                                                                            "Enter"
-                                                                                          )
-                                                                                        ) {
-                                                                                          return null
-                                                                                        }
-                                                                                        return _vm.addFeedback(
-                                                                                          task
-                                                                                        )
-                                                                                      },
-                                                                                      input: function(
-                                                                                        $event
-                                                                                      ) {
-                                                                                        if (
-                                                                                          $event
-                                                                                            .target
-                                                                                            .composing
-                                                                                        ) {
-                                                                                          return
-                                                                                        }
-                                                                                        _vm.feedback =
-                                                                                          $event.target.value
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      ]
-                                                                    ),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "button",
-                                                                      {
-                                                                        staticClass:
-                                                                          "btn btn-sm btn-primary",
-                                                                        attrs: {
-                                                                          type:
-                                                                            "submit"
-                                                                        }
-                                                                      },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "\n                                        Add\n                                      "
-                                                                        )
-                                                                      ]
-                                                                    )
-                                                                  ]
-                                                                )
-                                                              ])
-                                                            ],
-                                                            2
-                                                          )
-                                                        ],
-                                                        2
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-md-3"
-                                                        },
-                                                        [
-                                                          _c("label", [
-                                                            _vm._v(
-                                                              "Task Actions"
-                                                            )
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "checkboxes mb-1"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "a",
-                                                                {
-                                                                  staticClass:
-                                                                    "btn btn-block btn-md btn-default"
-                                                                },
-                                                                [
-                                                                  _c("input", {
-                                                                    directives: [
-                                                                      {
-                                                                        name:
-                                                                          "model",
-                                                                        rawName:
-                                                                          "v-model",
-                                                                        value:
-                                                                          task.completed,
-                                                                        expression:
-                                                                          "task.completed"
-                                                                      }
-                                                                    ],
-                                                                    attrs: {
-                                                                      type:
-                                                                        "checkbox",
-                                                                      name:
-                                                                        "completed"
-                                                                    },
-                                                                    domProps: {
-                                                                      checked: Array.isArray(
-                                                                        task.completed
-                                                                      )
-                                                                        ? _vm._i(
-                                                                            task.completed,
-                                                                            null
-                                                                          ) > -1
-                                                                        : task.completed
-                                                                    },
-                                                                    on: {
-                                                                      change: [
-                                                                        function(
-                                                                          $event
-                                                                        ) {
-                                                                          var $$a =
-                                                                              task.completed,
-                                                                            $$el =
-                                                                              $event.target,
-                                                                            $$c = $$el.checked
-                                                                              ? true
-                                                                              : false
-                                                                          if (
-                                                                            Array.isArray(
-                                                                              $$a
-                                                                            )
-                                                                          ) {
-                                                                            var $$v = null,
-                                                                              $$i = _vm._i(
-                                                                                $$a,
-                                                                                $$v
-                                                                              )
-                                                                            if (
-                                                                              $$el.checked
-                                                                            ) {
-                                                                              $$i <
-                                                                                0 &&
-                                                                                _vm.$set(
-                                                                                  task,
-                                                                                  "completed",
-                                                                                  $$a.concat(
-                                                                                    [
-                                                                                      $$v
-                                                                                    ]
-                                                                                  )
-                                                                                )
-                                                                            } else {
-                                                                              $$i >
-                                                                                -1 &&
-                                                                                _vm.$set(
-                                                                                  task,
-                                                                                  "completed",
-                                                                                  $$a
-                                                                                    .slice(
-                                                                                      0,
-                                                                                      $$i
-                                                                                    )
-                                                                                    .concat(
-                                                                                      $$a.slice(
-                                                                                        $$i +
-                                                                                          1
-                                                                                      )
-                                                                                    )
-                                                                                )
-                                                                            }
-                                                                          } else {
-                                                                            _vm.$set(
-                                                                              task,
-                                                                              "completed",
-                                                                              $$c
-                                                                            )
-                                                                          }
-                                                                        },
-                                                                        function(
-                                                                          $event
-                                                                        ) {
-                                                                          return _vm.completeTask(
-                                                                            task
-                                                                          )
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  }),
-                                                                  _vm._v(" "),
-                                                                  _c("strong", [
-                                                                    _vm._v(
-                                                                      "Complete:"
-                                                                    )
-                                                                  ]),
-                                                                  _vm._v(" "),
-                                                                  _c("span", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        task.task_name
-                                                                      )
-                                                                    )
-                                                                  ])
-                                                                ]
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "dropright mb-1"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "button",
-                                                                {
-                                                                  staticClass:
-                                                                    "btn btn-block btn-md btn-default dropdown",
-                                                                  attrs: {
-                                                                    "data-toggle":
-                                                                      "dropdown"
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _c("i", {
-                                                                    staticClass:
-                                                                      "fa fa-check-square"
-                                                                  }),
-                                                                  _vm._v(
-                                                                    " Add Todo List\n                                  "
-                                                                  )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "dropdown-menu"
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "form",
-                                                                    {
-                                                                      staticClass:
-                                                                        "px-4 py-3",
-                                                                      on: {
-                                                                        submit: function(
-                                                                          $event
-                                                                        ) {
-                                                                          $event.preventDefault()
-                                                                          return _vm.addTodo(
-                                                                            task
-                                                                          )
-                                                                        }
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "input",
-                                                                        {
-                                                                          directives: [
-                                                                            {
-                                                                              name:
-                                                                                "model",
-                                                                              rawName:
-                                                                                "v-model",
-                                                                              value:
-                                                                                _vm.taskId,
-                                                                              expression:
-                                                                                "taskId"
-                                                                            }
-                                                                          ],
-                                                                          attrs: {
-                                                                            type:
-                                                                              "hidden",
-                                                                            name:
-                                                                              "task_id"
-                                                                          },
-                                                                          domProps: {
-                                                                            value:
-                                                                              _vm.taskId
-                                                                          },
-                                                                          on: {
-                                                                            input: function(
-                                                                              $event
-                                                                            ) {
-                                                                              if (
-                                                                                $event
-                                                                                  .target
-                                                                                  .composing
-                                                                              ) {
-                                                                                return
-                                                                              }
-                                                                              _vm.taskId =
-                                                                                $event.target.value
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "form-group"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "label",
-                                                                            {
-                                                                              staticClass:
-                                                                                "col-form-label",
-                                                                              attrs: {
-                                                                                for:
-                                                                                  "todo_name"
-                                                                              }
-                                                                            },
-                                                                            [
-                                                                              _vm._v(
-                                                                                "Name"
-                                                                              )
-                                                                            ]
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _c(
-                                                                            "input",
-                                                                            {
-                                                                              directives: [
-                                                                                {
-                                                                                  name:
-                                                                                    "model",
-                                                                                  rawName:
-                                                                                    "v-model",
-                                                                                  value:
-                                                                                    _vm.todo_name,
-                                                                                  expression:
-                                                                                    "todo_name"
-                                                                                }
-                                                                              ],
-                                                                              staticClass:
-                                                                                "form-control",
-                                                                              attrs: {
-                                                                                type:
-                                                                                  "text",
-                                                                                name:
-                                                                                  "todo_name",
-                                                                                id:
-                                                                                  "todo_name"
-                                                                              },
-                                                                              domProps: {
-                                                                                value:
-                                                                                  _vm.todo_name
-                                                                              },
-                                                                              on: {
-                                                                                input: function(
-                                                                                  $event
-                                                                                ) {
-                                                                                  if (
-                                                                                    $event
-                                                                                      .target
-                                                                                      .composing
-                                                                                  ) {
-                                                                                    return
-                                                                                  }
-                                                                                  _vm.todo_name =
-                                                                                    $event.target.value
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          )
-                                                                        ]
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "dropdown-divider"
-                                                                        }
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "button",
-                                                                        {
-                                                                          staticClass:
-                                                                            "btn btn-primary btn-sm",
-                                                                          attrs: {
-                                                                            type:
-                                                                              "submit"
-                                                                          }
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "\n                                        Add\n                                      "
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                ]
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "dropdown mb-1"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "button",
-                                                                {
-                                                                  staticClass:
-                                                                    "btn btn-block btn-md btn-default dropdown",
-                                                                  attrs: {
-                                                                    "data-toggle":
-                                                                      "dropdown"
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _c("i", {
-                                                                    staticClass:
-                                                                      "fa fa-arrow-right"
-                                                                  }),
-                                                                  _vm._v(
-                                                                    " Move Task\n                                  "
-                                                                  )
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "dropdown-menu"
-                                                                },
-                                                                [
-                                                                  _c(
-                                                                    "form",
-                                                                    {
-                                                                      staticClass:
-                                                                        "px-4 py-3",
-                                                                      on: {
-                                                                        submit: function(
-                                                                          $event
-                                                                        ) {
-                                                                          $event.preventDefault()
-                                                                          return _vm.moveTask(
-                                                                            task
-                                                                          )
-                                                                        }
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "form-group"
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "label",
-                                                                            {
-                                                                              staticClass:
-                                                                                "col-form-label"
-                                                                            },
-                                                                            [
-                                                                              _vm._v(
-                                                                                "Move To"
-                                                                              )
-                                                                            ]
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          _c(
-                                                                            "select",
-                                                                            {
-                                                                              directives: [
-                                                                                {
-                                                                                  name:
-                                                                                    "model",
-                                                                                  rawName:
-                                                                                    "v-model",
-                                                                                  value:
-                                                                                    _vm.card_id,
-                                                                                  expression:
-                                                                                    "card_id"
-                                                                                }
-                                                                              ],
-                                                                              staticClass:
-                                                                                "form-control",
-                                                                              attrs: {
-                                                                                name:
-                                                                                  "card_id"
-                                                                              },
-                                                                              on: {
-                                                                                change: function(
-                                                                                  $event
-                                                                                ) {
-                                                                                  var $$selectedVal = Array.prototype.filter
-                                                                                    .call(
-                                                                                      $event
-                                                                                        .target
-                                                                                        .options,
-                                                                                      function(
-                                                                                        o
-                                                                                      ) {
-                                                                                        return o.selected
-                                                                                      }
-                                                                                    )
-                                                                                    .map(
-                                                                                      function(
-                                                                                        o
-                                                                                      ) {
-                                                                                        var val =
-                                                                                          "_value" in
-                                                                                          o
-                                                                                            ? o._value
-                                                                                            : o.value
-                                                                                        return val
-                                                                                      }
-                                                                                    )
-                                                                                  _vm.card_id = $event
-                                                                                    .target
-                                                                                    .multiple
-                                                                                    ? $$selectedVal
-                                                                                    : $$selectedVal[0]
-                                                                                }
-                                                                              }
-                                                                            },
-                                                                            [
-                                                                              _c(
-                                                                                "option",
-                                                                                {
-                                                                                  attrs: {
-                                                                                    disabled:
-                                                                                      "",
-                                                                                    value:
-                                                                                      ""
-                                                                                  }
-                                                                                },
-                                                                                [
-                                                                                  _vm._v(
-                                                                                    "Select Card"
-                                                                                  )
-                                                                                ]
-                                                                              ),
-                                                                              _vm._v(
-                                                                                " "
-                                                                              ),
-                                                                              _vm._l(
-                                                                                _vm
-                                                                                  .project
-                                                                                  .card,
-                                                                                function(
-                                                                                  card
-                                                                                ) {
-                                                                                  return _c(
-                                                                                    "option",
-                                                                                    {
-                                                                                      key:
-                                                                                        card.id,
-                                                                                      domProps: {
-                                                                                        value:
-                                                                                          card.id
-                                                                                      }
-                                                                                    },
-                                                                                    [
-                                                                                      _vm._v(
-                                                                                        _vm._s(
-                                                                                          card.name
-                                                                                        )
-                                                                                      )
-                                                                                    ]
-                                                                                  )
-                                                                                }
-                                                                              )
-                                                                            ],
-                                                                            2
-                                                                          )
-                                                                        ]
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "div",
-                                                                        {
-                                                                          staticClass:
-                                                                            "dropdown-divider"
-                                                                        }
-                                                                      ),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "button",
-                                                                        {
-                                                                          staticClass:
-                                                                            "btn btn-primary btn-sm",
-                                                                          attrs: {
-                                                                            type:
-                                                                              "submit"
-                                                                          }
-                                                                        },
-                                                                        [
-                                                                          _vm._v(
-                                                                            "\n                                        Move\n                                      "
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            }),
-                            0
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer bg-white" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-sm text",
-                        on: {
-                          click: function($event) {
-                            return _vm.openTaskForm(card.id)
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-plus" }),
-                        _vm._v(" Add Task\n              ")
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            }),
-            0
-          )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "modal fade", attrs: { id: "addCard" } }, [
-      _c("div", { staticClass: "modal-dialog modal-md" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.submitCard($event)
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.project_id,
-                        expression: "project_id"
-                      }
-                    ],
-                    attrs: {
-                      type: "hidden",
-                      name: "project_id",
-                      value: "this.project.id"
-                    },
-                    domProps: { value: _vm.project_id },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.project_id = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12 form-group" }, [
-                    _c(
-                      "label",
-                      { staticClass: "col-form-label", attrs: { for: "name" } },
-                      [_vm._v("Card Name")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", name: "name", id: "name" },
-                      domProps: { value: _vm.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.name = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(1)
-            ]
-          )
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h6", { staticClass: "modal-title" }, [_vm._v("Add Card")]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_vm._v("\n            ×\n          ")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer justify-content-between" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
-        [_vm._v("\n              Close\n            ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
-        [_vm._v("\n              Add Card\n            ")]
-      )
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&scoped=true&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&scoped=true& ***!
@@ -87834,10 +85875,288 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProjectsTable.vue?vue&type=template&id=72d7b119&":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ProjectsTable.vue?vue&type=template&id=72d7b119& ***!
-  \****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ListsComponent.vue?vue&type=template&id=001c8088&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/ListsComponent.vue?vue&type=template&id=001c8088& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card card-outline card-warning" }, [
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-primary",
+              on: { click: _vm.addCards }
+            },
+            [
+              _c("i", { staticClass: "fa fa-plus" }),
+              _vm._v(" Add Card\n            ")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "draggable",
+            {
+              staticClass: "row mt-2 mr-3",
+              attrs: { element: "div" },
+              model: {
+                value: _vm.cards,
+                callback: function($$v) {
+                  _vm.cards = $$v
+                },
+                expression: "cards"
+              }
+            },
+            _vm._l(_vm.project.card, function(card) {
+              return _c("div", { key: card.id, staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "card p-lg-2" }, [
+                  _c("div", { staticClass: "card-header" }, [
+                    _c("h3", { staticClass: "card-title text-bold" }, [
+                      _vm._v(_vm._s(card.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "dropright" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm float-right dropdown",
+                          attrs: { "data-toggle": "dropdown" }
+                        },
+                        [_c("i", { staticClass: "fa fa-ellipsis-v" })]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "dropdown-menu" }, [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "dropdown-item dropdown-header text-center text-bold text-dark"
+                          },
+                          [_vm._v("Card Action")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "dropdown-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.openTaskForm(card.id)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-plus" }),
+                            _vm._v(
+                              " Add Task\n                                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("a", { staticClass: "dropdown-item" }, [
+                          _c("i", { staticClass: "fa fa-check" }),
+                          _vm._v(
+                            " Move Card\n                                    "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "dropdown-divider" }),
+                        _vm._v(" "),
+                        _c("a", { staticClass: "dropdown-item" }, [
+                          _c("i", { staticClass: "fa fa-tasks" }),
+                          _vm._v(
+                            " Move All Task Here\n                                    "
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _vm.newTaskForStatus === card.id
+                        ? _c("ProjectsTable", {
+                            attrs: {
+                              "card-id": card.id,
+                              "project-id": _vm.project.id
+                            },
+                            on: {
+                              "task-added": _vm.handleTaskAdded,
+                              "task-canceled": _vm.closeAddTaskForm
+                            }
+                          })
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal fade", attrs: { id: "addCard" } }, [
+      _c("div", { staticClass: "modal-dialog modal-md" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submitCard($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.project_id,
+                        expression: "project_id"
+                      }
+                    ],
+                    attrs: {
+                      type: "hidden",
+                      name: "project_id",
+                      value: "this.project.id"
+                    },
+                    domProps: { value: _vm.project_id },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.project_id = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-12 form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "col-form-label", attrs: { for: "name" } },
+                      [_vm._v("Card Name")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.name,
+                          expression: "name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "name", id: "name" },
+                      domProps: { value: _vm.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.name = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h6", { staticClass: "modal-title" }, [_vm._v("Add Card")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_vm._v("\n                        ×\n                    ")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer justify-content-between" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-default", attrs: { "data-dismiss": "modal" } },
+        [
+          _vm._v(
+            "\n                            Close\n                        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
+        [
+          _vm._v(
+            "\n                            Add Card\n                        "
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050& ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -87850,7 +86169,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card card-outline card-warning" }, [
+    _c("div", { staticClass: "card" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -107571,7 +105890,7 @@ Vue.use(__webpack_require__(/*! vue-moment */ "./node_modules/vue-moment/dist/vu
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('project-component', __webpack_require__(/*! ./components/ProjectComponent.vue */ "./resources/js/components/ProjectComponent.vue")["default"]);
-Vue.component('card-component', __webpack_require__(/*! ./components/CardComponent.vue */ "./resources/js/components/CardComponent.vue")["default"]);
+Vue.component('lists-component', __webpack_require__(/*! ./project/ListsComponent */ "./resources/js/project/ListsComponent.vue")["default"]);
 Vue.component('index-component', __webpack_require__(/*! ./assets/IndexComponent.vue */ "./resources/js/assets/IndexComponent.vue")["default"]);
 Vue.component('dashboard-component', __webpack_require__(/*! ./assets/DashboardComponent.vue */ "./resources/js/assets/DashboardComponent.vue")["default"]);
 Vue.component('assets-component', __webpack_require__(/*! ./assets/AssetsComponents.vue */ "./resources/js/assets/AssetsComponents.vue")["default"]);
@@ -108050,93 +106369,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/CardComponent.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/CardComponent.vue ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CardComponent_vue_vue_type_template_id_6e4da0f2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true& */ "./resources/js/components/CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true&");
-/* harmony import */ var _CardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CardComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _CardComponent_vue_vue_type_style_index_0_id_6e4da0f2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css& */ "./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _CardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CardComponent_vue_vue_type_template_id_6e4da0f2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CardComponent_vue_vue_type_template_id_6e4da0f2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "6e4da0f2",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/CardComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/CardComponent.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/CardComponent.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CardComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css&":
-/*!************************************************************************************************************!*\
-  !*** ./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css& ***!
-  \************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_id_6e4da0f2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=style&index=0&id=6e4da0f2&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_id_6e4da0f2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_id_6e4da0f2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_id_6e4da0f2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_id_6e4da0f2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_style_index_0_id_6e4da0f2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true& ***!
-  \**********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_template_id_6e4da0f2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CardComponent.vue?vue&type=template&id=6e4da0f2&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_template_id_6e4da0f2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardComponent_vue_vue_type_template_id_6e4da0f2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -108293,17 +106525,86 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ProjectsTable.vue":
-/*!***************************************************!*\
-  !*** ./resources/js/components/ProjectsTable.vue ***!
-  \***************************************************/
+/***/ "./resources/js/project/ListsComponent.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/project/ListsComponent.vue ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProjectsTable_vue_vue_type_template_id_72d7b119___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectsTable.vue?vue&type=template&id=72d7b119& */ "./resources/js/components/ProjectsTable.vue?vue&type=template&id=72d7b119&");
-/* harmony import */ var _ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectsTable.vue?vue&type=script&lang=js& */ "./resources/js/components/ProjectsTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ListsComponent_vue_vue_type_template_id_001c8088___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListsComponent.vue?vue&type=template&id=001c8088& */ "./resources/js/project/ListsComponent.vue?vue&type=template&id=001c8088&");
+/* harmony import */ var _ListsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListsComponent.vue?vue&type=script&lang=js& */ "./resources/js/project/ListsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListsComponent_vue_vue_type_template_id_001c8088___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ListsComponent_vue_vue_type_template_id_001c8088___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/project/ListsComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/project/ListsComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/project/ListsComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ListsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ListsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/project/ListsComponent.vue?vue&type=template&id=001c8088&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/project/ListsComponent.vue?vue&type=template&id=001c8088& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListsComponent_vue_vue_type_template_id_001c8088___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ListsComponent.vue?vue&type=template&id=001c8088& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ListsComponent.vue?vue&type=template&id=001c8088&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListsComponent_vue_vue_type_template_id_001c8088___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListsComponent_vue_vue_type_template_id_001c8088___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/project/ProjectsTable.vue":
+/*!************************************************!*\
+  !*** ./resources/js/project/ProjectsTable.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectsTable.vue?vue&type=template&id=2665a050& */ "./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&");
+/* harmony import */ var _ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectsTable.vue?vue&type=script&lang=js& */ "./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -108314,8 +106615,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProjectsTable_vue_vue_type_template_id_72d7b119___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ProjectsTable_vue_vue_type_template_id_72d7b119___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -108325,38 +106626,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ProjectsTable.vue"
+component.options.__file = "resources/js/project/ProjectsTable.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/ProjectsTable.vue?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/ProjectsTable.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************/
+/***/ "./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectsTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProjectsTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectsTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/ProjectsTable.vue?vue&type=template&id=72d7b119&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/ProjectsTable.vue?vue&type=template&id=72d7b119& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050& ***!
+  \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_72d7b119___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectsTable.vue?vue&type=template&id=72d7b119& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ProjectsTable.vue?vue&type=template&id=72d7b119&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_72d7b119___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectsTable.vue?vue&type=template&id=2665a050& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_72d7b119___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

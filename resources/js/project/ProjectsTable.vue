@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="card card-outline card-warning">
+        <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Add Task</h4>
             </div>

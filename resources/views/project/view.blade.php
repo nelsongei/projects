@@ -61,7 +61,7 @@
                             @endforeach
                         @endforeach
                         <div id="app">
-                            <card-component :project="{{$project}}"></card-component>
+                            <lists-component :project="{{$project}}"></lists-component>
                         </div>
                     </div>
                 </div>

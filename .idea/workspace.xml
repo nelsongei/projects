@@ -27,10 +27,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/project/ListsComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/assets/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CardComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ProjectsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/project/ProjectsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/TaskModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/TaskModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/project/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/project/view.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +219,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/project" />
       <recent name="$PROJECT_DIR$/public/assets/images" />
     </key>
   </component>
@@ -364,7 +369,8 @@
       <workItem from="1610507447302" duration="44087000" />
       <workItem from="1610598500908" duration="6725000" />
       <workItem from="1610711827797" duration="1926000" />
-      <workItem from="1610771793319" duration="3330000" />
+      <workItem from="1610771793319" duration="4593000" />
+      <workItem from="1610836544142" duration="3783000" />
     </task>
     <task id="LOCAL-00001" summary="chanegs">
       <created>1610700060474</created>
@@ -373,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610700060474</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changes">
+      <created>1610788195001</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610788195001</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,7 +424,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="chanegs" />
-    <option name="LAST_COMMIT_MESSAGE" value="chanegs" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
