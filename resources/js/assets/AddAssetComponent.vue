@@ -264,7 +264,7 @@ import Vue from 'vue'
                 $('#addSupplier').modal('show')
             },
             getSuppliers(){
-                axios.get(`${this.baseURL}api/suppliers`)
+                axios.get(`http://127.0.0.1/projects/public/api/suppliers`)
                 .then(response=>{
                     this.data = response.data
                 })
@@ -277,7 +277,7 @@ import Vue from 'vue'
                     Vue.$toast.warning('All form inputs are required',{position:'top-right'});
                 }
                 else{
-                    fetch(`${this.baseURL}api/asset/store`,{
+                    fetch(`http://127.0.0.1/projects/public/api/asset/store`,{
                         method:'post',
                         body:JSON.stringify({
                             "asset_name":this.asset_name,"category_id":this.category_id,"supplier_id":this.supplier_id,"asset_serial_no":this.asset_serial_no,"department":this.department,"location":this.location,"receipt_no":this.receipt_no,"quantity":this.quantity,"amount":this.amount,"purchase_date":this.purchase_date,"total_amount":this.total_amount

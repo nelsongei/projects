@@ -27,9 +27,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Inventory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_18_072109_create_inventories_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_12_151820_create_purchases_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_12_151820_create_purchases_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_15_071717_create_asset_moves_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_15_071717_create_asset_moves_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DepartmentsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DepartmentsTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/project/ListsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/project/ListsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/assets/AddAssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/AddAssetComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assets/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,7 +378,7 @@
       <workItem from="1610771793319" duration="4593000" />
       <workItem from="1610836544142" duration="6683000" />
       <workItem from="1610860118446" duration="1976000" />
-      <workItem from="1610944252794" duration="2482000" />
+      <workItem from="1610944252794" duration="9869000" />
     </task>
     <task id="LOCAL-00001" summary="chanegs">
       <created>1610700060474</created>

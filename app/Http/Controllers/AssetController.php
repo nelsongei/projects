@@ -6,6 +6,7 @@ use App\Charts\DataChart;
 use App\Models\Asset;
 use App\Models\Category;
 use App\Models\Department;
+use App\Models\Inventory;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class AssetController extends Controller
         $finalChart = new DataChart();
         $finalChart->labels(['Initial Price','Final After Depreciation']);
         $finalChart->dataset('Asset Depreciation Rate(5 YRS)','line',[$depreciation,$straight_line_depreciation])
-            ->color('#dc3545')
+            ->color('#f96f34')
             ->backgroundColor('#f96f34')
             ->fill(false);
 
@@ -64,6 +65,12 @@ class AssetController extends Controller
         $purchase->purchase_date = $request->purchase_date;
         $purchase->total_amount = $request->total_amount;
         $purchase->save();
+        //
+        $assetQuatity = $purchase->quantity;
+        $inventory = new Inventory();
+        $inventory->asset_id = $assetId;
+        $inventory->remaining = $assetQuatity;
+        $inventory->save();
         if ($assets && $purchase){
             return response()->json(['status'=>0]);
         }

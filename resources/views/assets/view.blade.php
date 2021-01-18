@@ -70,7 +70,7 @@
                                     {{$asset->purchase->receipt_no}}
                                 </p>
                                 <strong>Asset Serial No:</strong>
-                                {!! DNS1D::getBarcodeHTML($asset->asset_serial_no, 'C39',2,33,'green') !!}
+                                {!! DNS1D::getBarcodeHTML($asset->asset_serial_no, 'C39',2,33,'#f96f34') !!}
                             </div>
                         </div>
                     </div>

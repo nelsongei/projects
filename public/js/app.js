@@ -2220,7 +2220,7 @@ __webpack_require__.r(__webpack_exports__);
     getSuppliers: function getSuppliers() {
       var _this = this;
 
-      axios.get("".concat(this.baseURL, "api/suppliers")).then(function (response) {
+      axios.get("http://127.0.0.1/projects/public/api/suppliers").then(function (response) {
         _this.data = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -2234,7 +2234,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch("".concat(this.baseURL, "api/asset/store"), {
+        fetch("http://127.0.0.1/projects/public/api/asset/store", {
           method: 'post',
           body: JSON.stringify({
             "asset_name": this.asset_name,

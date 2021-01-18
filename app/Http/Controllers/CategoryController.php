@@ -24,12 +24,11 @@ class CategoryController extends Controller
         //
         $assetName = Asset::all();
         foreach ($assetName as $asset){
-            echo $asset->asset_name;
             $assetChart = new DataChart();
             $assetChart->labels([$asset->asset_name,'Depreciation Value']);
             $assetChart->dataset('Assets','bar',[$asset->purchase->total_amount,$asset->purchase->total_amount])
-                ->color('#dc3545')
-                ->backgroundColor('#dc3545')
+                ->color('#f96f34')
+                ->backgroundColor('#f96f34')
                 ->fill(false);
         }
         return view('assets.dashboard',compact('assets','assetValue','maintenance','assetChart'));

@@ -10,7 +10,7 @@
         <form class="login100-form validate-form w3-content" method="POST" action="{{ route('login') }}" onsubmit="loader('email')">
             @csrf
             <span class="login100-form-title p-b-20">
-                        <h1 class="ml13 p-l-16 p-t-30"><strong>Zalego HR System<hr></strong></h1>
+                        <h1 class="ml13 p-l-16 p-t-30"><strong>Zalego | Project Management Tool<hr></strong></h1>
 
                         Get Started With Us
 

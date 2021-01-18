@@ -16,7 +16,7 @@ class DepartmentsTableSeeder extends Seeder
     {
         //
         Department::create([
-            'name'=>'Human Resource'
+            'name'=>'Marketing'
         ]);
     }
 }
