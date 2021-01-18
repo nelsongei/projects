@@ -127,7 +127,7 @@
                                                                 <label>Task Actions</label>
                                                                 <div class="checkboxes mb-1">
                                                                     <a class="btn btn-block btn-md btn-default">
-                                                                        <input type="checkbox" name="completed" @change="completeTask(task)" v-model="task.completed">&nbsp;<strong>Complete:</strong> <span>{{task.task_name}}</span>
+                                                                        <input type="checkbox" name="completed" @change="taskComplete(task)" v-model="task.completed">&nbsp;<strong>Complete:</strong> <span>{{task.task_name}}</span>
                                                                     </a>
                                                                 </div>
                                                                 <div class="dropright mb-1">
@@ -401,6 +401,57 @@ import draggable from 'vuedraggable';
                             this.getCards();
                             window.location.reload()
                             Vue.$toast.success('Feedback added',{position:'top-right'})
+                        }
+                    })
+                    .catch(error=>{
+                        console.log(error)
+                    })
+                }
+            },
+            taskComplete(task){
+                fetch(`${this.baseURL}complete/${this.taskId}`,{
+                    method:'put',
+                    body:JSON.stringify({
+                        "completed":this.completed
+                    }),
+                    headers:{
+                        'Accept':'application/json',
+                        'Content-Type':'application/json',
+                        'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                    }
+                })
+                .then(response=>response.json())
+                .then(response=>{
+                    if(response.status===200){
+                        Vue.$toast.info('Task completed',{position:'top-right'})
+                    }
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
+            },
+            addTodo(task){
+                if(this.todo_name===''){
+                    Vue.$toast.warning('Todo name is required',{position:'top-right'})
+                }
+                else{
+                    fetch(`${this.baseURL}api/checklist/store`,{
+                        method:'post',
+                        body:JSON.stringify({
+                            "todo_name":this.todo_name,"task_id":this.taskId,
+                        }),
+                        headers:{
+                            'Accept':'application/json',
+                            'Content-Type':'application/json',
+                            'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                        }
+                    })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        if(response.status===0){
+                            this.getCards();
+                            window.location.reload()
+                            Vue.$toast.info('You have added a new checklist',{position:'top-right'})
                         }
                     })
                     .catch(error=>{

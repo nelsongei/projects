@@ -4260,6 +4260,64 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
       }
+    },
+    taskComplete: function taskComplete(task) {
+      fetch("".concat(this.baseURL, "complete/").concat(this.taskId), {
+        method: 'put',
+        body: JSON.stringify({
+          "completed": this.completed
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+        }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response.status === 200) {
+          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.info('Task completed', {
+            position: 'top-right'
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    addTodo: function addTodo(task) {
+      var _this4 = this;
+
+      if (this.todo_name === '') {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('Todo name is required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch("".concat(this.baseURL, "api/checklist/store"), {
+          method: 'post',
+          body: JSON.stringify({
+            "todo_name": this.todo_name,
+            "task_id": this.taskId
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            _this4.getCards();
+
+            window.location.reload();
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.info('You have added a new checklist', {
+              position: 'top-right'
+            });
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     }
   }
 });
@@ -87041,7 +87099,7 @@ var render = function() {
                                                                     function(
                                                                       $event
                                                                     ) {
-                                                                      return _vm.completeTask(
+                                                                      return _vm.taskComplete(
                                                                         task
                                                                       )
                                                                     }
