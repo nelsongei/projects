@@ -3836,9 +3836,150 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectsTable */ "./resources/js/project/ProjectsTable.vue");
+/* harmony import */ var _TaskComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TaskComponent */ "./resources/js/project/TaskComponent.vue");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3927,7 +4068,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['project'],
   components: {
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_2___default.a,
-    ProjectsTable: _ProjectsTable__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Task: _TaskComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -3936,7 +4077,14 @@ __webpack_require__.r(__webpack_exports__);
       project_id: '',
       newTaskForStatus: 0,
       baseURL: '',
-      projectId: this.project.id
+      projectId: this.project.id,
+      editingTask: null,
+      task_description: '',
+      feedback: '',
+      taskId: '',
+      todo_name: '',
+      card_id: '',
+      completed: [true, false]
     };
   },
   created: function created() {
@@ -3944,6 +4092,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getCards();
+  },
+  computed: {
+    dragOptions: function dragOptions() {
+      return {
+        animation: 1,
+        group: 'cards',
+        ghostClass: 'ghost'
+      };
+    }
   },
   methods: {
     getBaseURL: function getBaseURL() {
@@ -4013,15 +4170,105 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
       }
+    },
+    addFeedbackModal: function addFeedbackModal(task) {
+      this.taskId = task.id;
+      this.task_description = task.task_description;
+      $('#addFeedbackModal').modal('show');
+    },
+    endEditing: function endEditing(task) {
+      this.editingTask = null;
+      fetch("".concat(this.baseURL, "api/task/").concat(this.taskId), {
+        method: 'put',
+        body: JSON.stringify({
+          "task_description": this.task_description
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+        }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response.status === 0) {
+          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Description Updated successfully', {
+            position: 'top-right'
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    editTask: function editTask(task) {
+      this.editingTask = task;
+    },
+    moveTask: function moveTask(task) {
+      fetch("".concat(this.baseURL, "move/").concat(this.taskId), {
+        method: 'post',
+        body: JSON.stringify({
+          "card_id": this.card_id
+        }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+        }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response.status === 0) {
+          $('#addFeedbackModal').modal('hide');
+          window.location.reload();
+          vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Task Moved Successfully', {
+            position: 'top-right'
+          });
+        }
+      });
+    },
+    addFeedback: function addFeedback(task) {
+      var _this3 = this;
+
+      if (this.feedback === '') {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('This field is required', {
+          position: 'top-right'
+        });
+      } else {
+        fetch("".concat(this.baseURL, "api/feedback/store"), {
+          method: 'post',
+          body: JSON.stringify({
+            "feedback": this.feedback,
+            "task_id": this.taskId
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')
+          }
+        }).then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          if (response.status === 0) {
+            _this3.getCards();
+
+            window.location.reload();
+            vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.success('Feedback added', {
+              position: 'top-right'
+            });
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     }
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/TaskComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/TaskComponent.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -4030,8 +4277,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
 //
 //
 //
@@ -4078,22 +4323,26 @@ __webpack_require__.r(__webpack_exports__);
       task_description: '',
       card_id: this.cardId,
       project_id: this.projectId,
-      due_date: ''
+      due_date: '',
+      baseURL: ''
     };
+  },
+  created: function created() {
+    this.getBaseURL();
   },
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
     },
-    addTask: function addTask() {
+    submitTask: function submitTask() {
       if (this.task_name === '' || this.task_description === '') {
-        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.error('All Fields are required', {
+        vue__WEBPACK_IMPORTED_MODULE_0___default.a.$toast.warning('All Fields are required', {
           position: 'top-right'
         });
       } else {
-        fetch("".concat(this.baseURL, "/api/task/store"), {
-          method: 'POST',
+        fetch("".concat(this.baseURL, "api/task/store"), {
+          method: 'post',
           body: JSON.stringify({
             "project_id": this.projectId,
             "card_id": this.cardId,
@@ -85912,7 +86161,7 @@ var render = function() {
             "draggable",
             {
               staticClass: "row mt-2 mr-3",
-              attrs: { element: "div" },
+              attrs: { element: "div", dragOptions: _vm.dragOptions },
               model: {
                 value: _vm.cards,
                 callback: function($$v) {
@@ -85991,7 +86240,7 @@ var render = function() {
                     { staticClass: "card-body" },
                     [
                       _vm.newTaskForStatus === card.id
-                        ? _c("ProjectsTable", {
+                        ? _c("Task", {
                             attrs: {
                               "card-id": card.id,
                               "project-id": _vm.project.id
@@ -86001,10 +86250,1266 @@ var render = function() {
                               "task-canceled": _vm.closeAddTaskForm
                             }
                           })
-                        : _vm._e()
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "draggable",
+                        _vm._l(card.tasks, function(task) {
+                          return _c(
+                            "div",
+                            { key: task.id, staticClass: "mb-2" },
+                            [
+                              _c("div", { staticClass: "list-group" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "list-group-item",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.addFeedbackModal(task)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(task.task_name) +
+                                        "\n                                        "
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "modal fade",
+                                  attrs: { id: "addFeedbackModal" }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "modal-dialog modal-lg modal-dialog-scrollable"
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "modal-content" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "modal-header" },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass: "close",
+                                                  attrs: {
+                                                    type: "button",
+                                                    "data-dismiss": "modal",
+                                                    "aria-label": "Close"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                        ×\n                                                    "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "modal-body" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-9" },
+                                                    [
+                                                      _c(
+                                                        "form",
+                                                        {
+                                                          on: {
+                                                            submit: function(
+                                                              $event
+                                                            ) {
+                                                              $event.preventDefault()
+                                                              return _vm.endEditing(
+                                                                task
+                                                              )
+                                                            }
+                                                          }
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "form-group"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "label",
+                                                                {
+                                                                  staticClass:
+                                                                    "col-form-group",
+                                                                  attrs: {
+                                                                    for:
+                                                                      "task_description"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Task Description"
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              task ===
+                                                              _vm.editingTask
+                                                                ? _c(
+                                                                    "textarea",
+                                                                    {
+                                                                      directives: [
+                                                                        {
+                                                                          name:
+                                                                            "model",
+                                                                          rawName:
+                                                                            "v-model",
+                                                                          value:
+                                                                            _vm.task_description,
+                                                                          expression:
+                                                                            "task_description"
+                                                                        }
+                                                                      ],
+                                                                      staticClass:
+                                                                        "form-control",
+                                                                      attrs: {
+                                                                        rows:
+                                                                          "2",
+                                                                        id:
+                                                                          "task_description",
+                                                                        name:
+                                                                          "task_description"
+                                                                      },
+                                                                      domProps: {
+                                                                        value:
+                                                                          _vm.task_description
+                                                                      },
+                                                                      on: {
+                                                                        keyup: function(
+                                                                          $event
+                                                                        ) {
+                                                                          if (
+                                                                            !$event.type.indexOf(
+                                                                              "key"
+                                                                            ) &&
+                                                                            _vm._k(
+                                                                              $event.keyCode,
+                                                                              "enter",
+                                                                              13,
+                                                                              $event.key,
+                                                                              "Enter"
+                                                                            )
+                                                                          ) {
+                                                                            return null
+                                                                          }
+                                                                          return _vm.endEditing(
+                                                                            task
+                                                                          )
+                                                                        },
+                                                                        blur: function(
+                                                                          $event
+                                                                        ) {
+                                                                          return _vm.endEditing(
+                                                                            task
+                                                                          )
+                                                                        },
+                                                                        input: function(
+                                                                          $event
+                                                                        ) {
+                                                                          if (
+                                                                            $event
+                                                                              .target
+                                                                              .composing
+                                                                          ) {
+                                                                            return
+                                                                          }
+                                                                          _vm.task_description =
+                                                                            $event.target.value
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  )
+                                                                : _vm._e()
+                                                            ]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      task !== _vm.editingTask
+                                                        ? _c(
+                                                            "p",
+                                                            {
+                                                              on: {
+                                                                dblclick: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.editTask(
+                                                                    task
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.task_description
+                                                                )
+                                                              )
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      _c("b", [
+                                                        _vm._v("Task Todo List")
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _vm._l(
+                                                        task.checklists,
+                                                        function(checklist) {
+                                                          return _c(
+                                                            "ul",
+                                                            {
+                                                              key: checklist.id,
+                                                              staticClass:
+                                                                "bg-white ui-sortable todo-list"
+                                                            },
+                                                            [
+                                                              _c("li", [
+                                                                _c("input", {
+                                                                  attrs: {
+                                                                    type:
+                                                                      "checkbox"
+                                                                  }
+                                                                }),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "span",
+                                                                  {
+                                                                    staticClass:
+                                                                      "text"
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        checklist.todo_name
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "small",
+                                                                  {
+                                                                    staticClass:
+                                                                      "badge badge-success badge-pill"
+                                                                  },
+                                                                  [
+                                                                    _c("i", {
+                                                                      staticClass:
+                                                                        "fa fa-clock"
+                                                                    }),
+                                                                    _vm._v(
+                                                                      "\n                                                                        2 Mins Ago\n                                                                    "
+                                                                    )
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "tools"
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "div",
+                                                                      {},
+                                                                      [
+                                                                        _c(
+                                                                          "button",
+                                                                          {
+                                                                            staticClass:
+                                                                              "btn btn-sm dropdown",
+                                                                            attrs: {
+                                                                              type:
+                                                                                "button",
+                                                                              "data-toggle":
+                                                                                "dropdown"
+                                                                            }
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "i",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "fa fa-ellipsis-v"
+                                                                              }
+                                                                            )
+                                                                          ]
+                                                                        ),
+                                                                        _vm._v(
+                                                                          " "
+                                                                        ),
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "dropdown-menu"
+                                                                          },
+                                                                          [
+                                                                            _c(
+                                                                              "span",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "dropdown-item dropdown-header text-center text-bold text-dark"
+                                                                              },
+                                                                              [
+                                                                                _vm._v(
+                                                                                  "Checklist Action"
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "div",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "dropdown-divider"
+                                                                              }
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "dropdown-item"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "i",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "fa fa-plus"
+                                                                                  }
+                                                                                ),
+                                                                                _vm._v(
+                                                                                  "Add Todo\n                                                                                "
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "dropdown-item"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "i",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "fa fa-clock"
+                                                                                  }
+                                                                                ),
+                                                                                _vm._v(
+                                                                                  " Due Date\n                                                                                "
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "dropdown-item"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "i",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "fa fa-user-plus"
+                                                                                  }
+                                                                                ),
+                                                                                _vm._v(
+                                                                                  " Assign To\n                                                                                "
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "dropdown-item"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "i",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "fa fa-edit"
+                                                                                  }
+                                                                                ),
+                                                                                _vm._v(
+                                                                                  " Edit\n                                                                                "
+                                                                                )
+                                                                              ]
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            _c(
+                                                                              "a",
+                                                                              {
+                                                                                staticClass:
+                                                                                  "dropdown-item"
+                                                                              },
+                                                                              [
+                                                                                _c(
+                                                                                  "i",
+                                                                                  {
+                                                                                    staticClass:
+                                                                                      "fa fa-trash"
+                                                                                  }
+                                                                                ),
+                                                                                _vm._v(
+                                                                                  " Delete\n                                                                                "
+                                                                                )
+                                                                              ]
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ])
+                                                            ]
+                                                          )
+                                                        }
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("br"),
+                                                      _vm._v(" "),
+                                                      _c("b", [
+                                                        _vm._v("Feedback")
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "ul",
+                                                        {
+                                                          staticClass:
+                                                            "bg-white ui-sortable todo-list"
+                                                        },
+                                                        [
+                                                          _vm._l(
+                                                            task.feedback,
+                                                            function(feedback) {
+                                                              return _c(
+                                                                "p",
+                                                                {
+                                                                  key:
+                                                                    feedback.id
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      feedback.feedback
+                                                                    )
+                                                                  )
+                                                                ]
+                                                              )
+                                                            }
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c("li", [
+                                                            _c(
+                                                              "form",
+                                                              {
+                                                                on: {
+                                                                  submit: function(
+                                                                    $event
+                                                                  ) {
+                                                                    $event.preventDefault()
+                                                                    return _vm.addFeedback(
+                                                                      task
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _c("div", {}, [
+                                                                  _c("span", [
+                                                                    _c(
+                                                                      "input",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "model",
+                                                                            rawName:
+                                                                              "v-model",
+                                                                            value:
+                                                                              task.id,
+                                                                            expression:
+                                                                              "task.id"
+                                                                          }
+                                                                        ],
+                                                                        attrs: {
+                                                                          type:
+                                                                            "hidden",
+                                                                          name:
+                                                                            "task_id",
+                                                                          value:
+                                                                            "task.id"
+                                                                        },
+                                                                        domProps: {
+                                                                          value:
+                                                                            task.id
+                                                                        },
+                                                                        on: {
+                                                                          input: function(
+                                                                            $event
+                                                                          ) {
+                                                                            if (
+                                                                              $event
+                                                                                .target
+                                                                                .composing
+                                                                            ) {
+                                                                              return
+                                                                            }
+                                                                            _vm.$set(
+                                                                              task,
+                                                                              "id",
+                                                                              $event
+                                                                                .target
+                                                                                .value
+                                                                            )
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "div",
+                                                                      {
+                                                                        staticClass:
+                                                                          "form-group"
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "textarea",
+                                                                          {
+                                                                            directives: [
+                                                                              {
+                                                                                name:
+                                                                                  "model",
+                                                                                rawName:
+                                                                                  "v-model",
+                                                                                value:
+                                                                                  _vm.feedback,
+                                                                                expression:
+                                                                                  "feedback"
+                                                                              }
+                                                                            ],
+                                                                            staticClass:
+                                                                              "form-control",
+                                                                            attrs: {
+                                                                              name:
+                                                                                "feedback",
+                                                                              placeholder:
+                                                                                "Add Feedback"
+                                                                            },
+                                                                            domProps: {
+                                                                              value:
+                                                                                _vm.feedback
+                                                                            },
+                                                                            on: {
+                                                                              keyup: function(
+                                                                                $event
+                                                                              ) {
+                                                                                if (
+                                                                                  !$event.type.indexOf(
+                                                                                    "key"
+                                                                                  ) &&
+                                                                                  _vm._k(
+                                                                                    $event.keyCode,
+                                                                                    "enter",
+                                                                                    13,
+                                                                                    $event.key,
+                                                                                    "Enter"
+                                                                                  )
+                                                                                ) {
+                                                                                  return null
+                                                                                }
+                                                                                return _vm.addFeedback(
+                                                                                  task
+                                                                                )
+                                                                              },
+                                                                              input: function(
+                                                                                $event
+                                                                              ) {
+                                                                                if (
+                                                                                  $event
+                                                                                    .target
+                                                                                    .composing
+                                                                                ) {
+                                                                                  return
+                                                                                }
+                                                                                _vm.feedback =
+                                                                                  $event.target.value
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ])
+                                                                ]),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "btn btn-sm btn-primary",
+                                                                    attrs: {
+                                                                      type:
+                                                                        "submit"
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "\n                                                                            Add\n                                                                        "
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ]
+                                                            )
+                                                          ])
+                                                        ],
+                                                        2
+                                                      )
+                                                    ],
+                                                    2
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-3" },
+                                                    [
+                                                      _c("label", [
+                                                        _vm._v("Task Actions")
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "checkboxes mb-1"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "a",
+                                                            {
+                                                              staticClass:
+                                                                "btn btn-block btn-md btn-default"
+                                                            },
+                                                            [
+                                                              _c("input", {
+                                                                directives: [
+                                                                  {
+                                                                    name:
+                                                                      "model",
+                                                                    rawName:
+                                                                      "v-model",
+                                                                    value:
+                                                                      task.completed,
+                                                                    expression:
+                                                                      "task.completed"
+                                                                  }
+                                                                ],
+                                                                attrs: {
+                                                                  type:
+                                                                    "checkbox",
+                                                                  name:
+                                                                    "completed"
+                                                                },
+                                                                domProps: {
+                                                                  checked: Array.isArray(
+                                                                    task.completed
+                                                                  )
+                                                                    ? _vm._i(
+                                                                        task.completed,
+                                                                        null
+                                                                      ) > -1
+                                                                    : task.completed
+                                                                },
+                                                                on: {
+                                                                  change: [
+                                                                    function(
+                                                                      $event
+                                                                    ) {
+                                                                      var $$a =
+                                                                          task.completed,
+                                                                        $$el =
+                                                                          $event.target,
+                                                                        $$c = $$el.checked
+                                                                          ? true
+                                                                          : false
+                                                                      if (
+                                                                        Array.isArray(
+                                                                          $$a
+                                                                        )
+                                                                      ) {
+                                                                        var $$v = null,
+                                                                          $$i = _vm._i(
+                                                                            $$a,
+                                                                            $$v
+                                                                          )
+                                                                        if (
+                                                                          $$el.checked
+                                                                        ) {
+                                                                          $$i <
+                                                                            0 &&
+                                                                            _vm.$set(
+                                                                              task,
+                                                                              "completed",
+                                                                              $$a.concat(
+                                                                                [
+                                                                                  $$v
+                                                                                ]
+                                                                              )
+                                                                            )
+                                                                        } else {
+                                                                          $$i >
+                                                                            -1 &&
+                                                                            _vm.$set(
+                                                                              task,
+                                                                              "completed",
+                                                                              $$a
+                                                                                .slice(
+                                                                                  0,
+                                                                                  $$i
+                                                                                )
+                                                                                .concat(
+                                                                                  $$a.slice(
+                                                                                    $$i +
+                                                                                      1
+                                                                                  )
+                                                                                )
+                                                                            )
+                                                                        }
+                                                                      } else {
+                                                                        _vm.$set(
+                                                                          task,
+                                                                          "completed",
+                                                                          $$c
+                                                                        )
+                                                                      }
+                                                                    },
+                                                                    function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.completeTask(
+                                                                        task
+                                                                      )
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              }),
+                                                              _vm._v(" "),
+                                                              _c("strong", [
+                                                                _vm._v(
+                                                                  "Complete:"
+                                                                )
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("span", [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    task.task_name
+                                                                  )
+                                                                )
+                                                              ])
+                                                            ]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "dropright mb-1"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "btn btn-block btn-md btn-default dropdown",
+                                                              attrs: {
+                                                                "data-toggle":
+                                                                  "dropdown"
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "fa fa-check-square"
+                                                              }),
+                                                              _vm._v(
+                                                                " Add Todo List\n                                                                "
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "dropdown-menu"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "form",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-4 py-3",
+                                                                  on: {
+                                                                    submit: function(
+                                                                      $event
+                                                                    ) {
+                                                                      $event.preventDefault()
+                                                                      return _vm.addTodo(
+                                                                        task
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c("input", {
+                                                                    directives: [
+                                                                      {
+                                                                        name:
+                                                                          "model",
+                                                                        rawName:
+                                                                          "v-model",
+                                                                        value:
+                                                                          _vm.taskId,
+                                                                        expression:
+                                                                          "taskId"
+                                                                      }
+                                                                    ],
+                                                                    attrs: {
+                                                                      type:
+                                                                        "hidden",
+                                                                      name:
+                                                                        "task_id"
+                                                                    },
+                                                                    domProps: {
+                                                                      value:
+                                                                        _vm.taskId
+                                                                    },
+                                                                    on: {
+                                                                      input: function(
+                                                                        $event
+                                                                      ) {
+                                                                        if (
+                                                                          $event
+                                                                            .target
+                                                                            .composing
+                                                                        ) {
+                                                                          return
+                                                                        }
+                                                                        _vm.taskId =
+                                                                          $event.target.value
+                                                                      }
+                                                                    }
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "form-group"
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "label",
+                                                                        {
+                                                                          staticClass:
+                                                                            "col-form-label",
+                                                                          attrs: {
+                                                                            for:
+                                                                              "todo_name"
+                                                                          }
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            "Name"
+                                                                          )
+                                                                        ]
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c(
+                                                                        "input",
+                                                                        {
+                                                                          directives: [
+                                                                            {
+                                                                              name:
+                                                                                "model",
+                                                                              rawName:
+                                                                                "v-model",
+                                                                              value:
+                                                                                _vm.todo_name,
+                                                                              expression:
+                                                                                "todo_name"
+                                                                            }
+                                                                          ],
+                                                                          staticClass:
+                                                                            "form-control",
+                                                                          attrs: {
+                                                                            type:
+                                                                              "text",
+                                                                            name:
+                                                                              "todo_name",
+                                                                            id:
+                                                                              "todo_name"
+                                                                          },
+                                                                          domProps: {
+                                                                            value:
+                                                                              _vm.todo_name
+                                                                          },
+                                                                          on: {
+                                                                            input: function(
+                                                                              $event
+                                                                            ) {
+                                                                              if (
+                                                                                $event
+                                                                                  .target
+                                                                                  .composing
+                                                                              ) {
+                                                                                return
+                                                                              }
+                                                                              _vm.todo_name =
+                                                                                $event.target.value
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c("div", {
+                                                                    staticClass:
+                                                                      "dropdown-divider"
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "button",
+                                                                    {
+                                                                      staticClass:
+                                                                        "btn btn-primary btn-sm",
+                                                                      attrs: {
+                                                                        type:
+                                                                          "submit"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                                                                            Add\n                                                                        "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "dropdown mb-1"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "btn btn-block btn-md btn-default dropdown",
+                                                              attrs: {
+                                                                "data-toggle":
+                                                                  "dropdown"
+                                                              }
+                                                            },
+                                                            [
+                                                              _c("i", {
+                                                                staticClass:
+                                                                  "fa fa-arrow-right"
+                                                              }),
+                                                              _vm._v(
+                                                                " Move Task\n                                                                "
+                                                              )
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "dropdown-menu"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "form",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-4 py-3",
+                                                                  on: {
+                                                                    submit: function(
+                                                                      $event
+                                                                    ) {
+                                                                      $event.preventDefault()
+                                                                      return _vm.moveTask(
+                                                                        task
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "form-group"
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "label",
+                                                                        {
+                                                                          staticClass:
+                                                                            "col-form-label"
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            "Move To"
+                                                                          )
+                                                                        ]
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c(
+                                                                        "select",
+                                                                        {
+                                                                          directives: [
+                                                                            {
+                                                                              name:
+                                                                                "model",
+                                                                              rawName:
+                                                                                "v-model",
+                                                                              value:
+                                                                                _vm.card_id,
+                                                                              expression:
+                                                                                "card_id"
+                                                                            }
+                                                                          ],
+                                                                          staticClass:
+                                                                            "form-control",
+                                                                          attrs: {
+                                                                            name:
+                                                                              "card_id"
+                                                                          },
+                                                                          on: {
+                                                                            change: function(
+                                                                              $event
+                                                                            ) {
+                                                                              var $$selectedVal = Array.prototype.filter
+                                                                                .call(
+                                                                                  $event
+                                                                                    .target
+                                                                                    .options,
+                                                                                  function(
+                                                                                    o
+                                                                                  ) {
+                                                                                    return o.selected
+                                                                                  }
+                                                                                )
+                                                                                .map(
+                                                                                  function(
+                                                                                    o
+                                                                                  ) {
+                                                                                    var val =
+                                                                                      "_value" in
+                                                                                      o
+                                                                                        ? o._value
+                                                                                        : o.value
+                                                                                    return val
+                                                                                  }
+                                                                                )
+                                                                              _vm.card_id = $event
+                                                                                .target
+                                                                                .multiple
+                                                                                ? $$selectedVal
+                                                                                : $$selectedVal[0]
+                                                                            }
+                                                                          }
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "option",
+                                                                            {
+                                                                              attrs: {
+                                                                                disabled:
+                                                                                  "",
+                                                                                value:
+                                                                                  ""
+                                                                              }
+                                                                            },
+                                                                            [
+                                                                              _vm._v(
+                                                                                "Select Card"
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _vm._l(
+                                                                            _vm
+                                                                              .project
+                                                                              .card,
+                                                                            function(
+                                                                              card
+                                                                            ) {
+                                                                              return _c(
+                                                                                "option",
+                                                                                {
+                                                                                  key:
+                                                                                    card.id,
+                                                                                  domProps: {
+                                                                                    value:
+                                                                                      card.id
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      card.name
+                                                                                    )
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            }
+                                                                          )
+                                                                        ],
+                                                                        2
+                                                                      )
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c("div", {
+                                                                    staticClass:
+                                                                      "dropdown-divider"
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "button",
+                                                                    {
+                                                                      staticClass:
+                                                                        "btn btn-primary btn-sm",
+                                                                      attrs: {
+                                                                        type:
+                                                                          "submit"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n                                                                            Move\n                                                                        "
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer bg-white" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm text",
+                        on: {
+                          click: function($event) {
+                            return _vm.openTaskForm(card.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-plus" }),
+                        _vm._v(" Add Task\n                            ")
+                      ]
+                    )
+                  ])
                 ])
               ])
             }),
@@ -86153,9 +87658,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/TaskComponent.vue?vue&type=template&id=040f3bd4&":
 /*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/project/TaskComponent.vue?vue&type=template&id=040f3bd4& ***!
   \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -86169,175 +87674,173 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass: "form-horizontal",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.addTask($event)
-            }
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        staticClass: "form-horizontal",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submitTask($event)
           }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
+        }
+      },
+      [
+        _c("div", { staticClass: "card-body" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.project_id,
+                expression: "project_id"
+              }
+            ],
+            attrs: {
+              type: "hidden",
+              name: "project_id",
+              value: "this.projectId"
+            },
+            domProps: { value: _vm.project_id },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.project_id = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.card_id,
+                expression: "card_id"
+              }
+            ],
+            attrs: { type: "hidden", name: "card_id", value: "this.cardId" },
+            domProps: { value: _vm.card_id },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.card_id = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.project_id,
-                  expression: "project_id"
+                  value: _vm.task_name,
+                  expression: "task_name"
                 }
               ],
+              staticClass: "form-control",
               attrs: {
-                type: "hidden",
-                name: "project_id",
-                value: "this.projectId"
+                type: "text",
+                name: "task_name",
+                placeholder: "Enter Task Name"
               },
-              domProps: { value: _vm.project_id },
+              domProps: { value: _vm.task_name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.project_id = $event.target.value
+                  _vm.task_name = $event.target.value
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.card_id,
-                  expression: "card_id"
-                }
-              ],
-              attrs: { type: "hidden", name: "card_id", value: "this.cardId" },
-              domProps: { value: _vm.card_id },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.card_id = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.task_name,
-                    expression: "task_name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  name: "task_name",
-                  placeholder: "Enter Task Name"
-                },
-                domProps: { value: _vm.task_name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.task_name = $event.target.value
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.task_description,
-                    expression: "task_description"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  name: "task_description",
-                  placeholder: "Task Description"
-                },
-                domProps: { value: _vm.task_description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.task_description = $event.target.value
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.due_date,
-                    expression: "due_date"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "date", name: "due_date" },
-                domProps: { value: _vm.due_date },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.due_date = $event.target.value
-                  }
-                }
-              })
-            ])
+            })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-footer bg-white" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn bg-info btn-sm py-1",
-                attrs: { type: "reset" },
-                on: {
-                  click: function($event) {
-                    return _vm.$emit("task-canceled")
-                  }
+          _c("div", { staticClass: "form-group" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.task_description,
+                  expression: "task_description"
                 }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                name: "task_description",
+                placeholder: "Task Description"
               },
-              [_vm._v("\n                    × Close\n                ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-sm float-right",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("\n                    Save\n                ")]
-            )
+              domProps: { value: _vm.task_description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.task_description = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.due_date,
+                  expression: "due_date"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "date", name: "due_date" },
+              domProps: { value: _vm.due_date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.due_date = $event.target.value
+                }
+              }
+            })
           ])
-        ]
-      )
-    ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer bg-white" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn bg-info btn-sm py-1",
+              attrs: { type: "reset" },
+              on: {
+                click: function($event) {
+                  return _vm.$emit("task-canceled")
+                }
+              }
+            },
+            [_vm._v("\n                × Close\n            ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-sm float-right",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n                Save\n            ")]
+          )
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -106594,17 +108097,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/project/ProjectsTable.vue":
+/***/ "./resources/js/project/TaskComponent.vue":
 /*!************************************************!*\
-  !*** ./resources/js/project/ProjectsTable.vue ***!
+  !*** ./resources/js/project/TaskComponent.vue ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProjectsTable.vue?vue&type=template&id=2665a050& */ "./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&");
-/* harmony import */ var _ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProjectsTable.vue?vue&type=script&lang=js& */ "./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&");
+/* harmony import */ var _TaskComponent_vue_vue_type_template_id_040f3bd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TaskComponent.vue?vue&type=template&id=040f3bd4& */ "./resources/js/project/TaskComponent.vue?vue&type=template&id=040f3bd4&");
+/* harmony import */ var _TaskComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TaskComponent.vue?vue&type=script&lang=js& */ "./resources/js/project/TaskComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -106614,9 +108117,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _TaskComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TaskComponent_vue_vue_type_template_id_040f3bd4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TaskComponent_vue_vue_type_template_id_040f3bd4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -106626,38 +108129,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/project/ProjectsTable.vue"
+component.options.__file = "resources/js/project/TaskComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/project/TaskComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************!*\
-  !*** ./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/project/TaskComponent.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectsTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TaskComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TaskComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/TaskComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TaskComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&":
+/***/ "./resources/js/project/TaskComponent.vue?vue&type=template&id=040f3bd4&":
 /*!*******************************************************************************!*\
-  !*** ./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050& ***!
+  !*** ./resources/js/project/TaskComponent.vue?vue&type=template&id=040f3bd4& ***!
   \*******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ProjectsTable.vue?vue&type=template&id=2665a050& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/ProjectsTable.vue?vue&type=template&id=2665a050&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TaskComponent_vue_vue_type_template_id_040f3bd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TaskComponent.vue?vue&type=template&id=040f3bd4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/project/TaskComponent.vue?vue&type=template&id=040f3bd4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TaskComponent_vue_vue_type_template_id_040f3bd4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProjectsTable_vue_vue_type_template_id_2665a050___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TaskComponent_vue_vue_type_template_id_040f3bd4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

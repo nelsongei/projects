@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h4 class="card-title">Add Task</h4>
             </div>
-            <form class="form-horizontal" @submit.prevent="addTask">
+            <form class="form-horizontal" @submit.prevent="submitTask">
                 <div class="card-body">
                     <input type="hidden" name="project_id" v-model="project_id" value="this.projectId">
                     <input type="hidden" name="card_id" v-model="card_id" value="this.cardId">
@@ -47,20 +47,50 @@ export default {
             task_description:'',
             card_id:this.cardId,
             project_id:this.projectId,
-            due_date:''
+            due_date:'',
+            baseURL:'',
         }
+    },
+    created() {
+        this.getBaseURL();
     },
     methods: {
         getBaseURL: function(){
             var getUrl = window.location
-            this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
+            this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/public/";
+        },
+        submitTask(){
+            if(this.task_name===''||this.task_description===''){
+                Vue.$toast.warning('All Fields are required',{position:'top-right'});
+            }
+            else{
+                fetch(`api/task/store`,{
+                    method:'post',
+                    body:JSON.stringify({
+                        "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date
+                    }),
+                    headers:{
+                        'Accept':'application/json',
+                        'Content-Type':'application/json',
+                        'X-CSRF-Token':$('meta[name=csrf-token]').attr('content')
+                    }
+                })
+                .then(response=>response.json())
+                .then(response=>{
+                    if(response.status===0){
+                        window.location.reload()
+                        Vue.$toast.success('Task Added',{position:'top-right'})
+                    }
+                })
+            }
         },
         addTask(){
             if(this.task_name===''||this.task_description===''){
                 Vue.$toast.error('All Fields are required',{position:'top-right'});
             }
             else{
-                fetch(`${this.baseURL}/api/task/store`,{
+                // fetch(`api/task/store`,{
+                fetch(`api/task/store`,{
                     method:'POST',
                     body:JSON.stringify({
                         "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date

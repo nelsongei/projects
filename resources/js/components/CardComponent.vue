@@ -225,7 +225,7 @@
 <script>
 import Vue from 'vue'
 import draggable from 'vuedraggable'
-import ProjectsTable from '../project/ProjectsTable'
+import ProjectsTable from './ProjectsTable'
 import ExampleComponent from "./ExampleComponent";
 export default {
   props:[
