@@ -2196,7 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
     },
     addSupplierModal: function addSupplierModal() {
       this.edit = false;
@@ -2220,7 +2220,7 @@ __webpack_require__.r(__webpack_exports__);
     getSuppliers: function getSuppliers() {
       var _this = this;
 
-      axios.get("http://127.0.0.1/projects/public/api/suppliers").then(function (response) {
+      axios.get("".concat(this.baseURL, "api/suppliers")).then(function (response) {
         _this.data = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -2234,7 +2234,7 @@ __webpack_require__.r(__webpack_exports__);
           position: 'top-right'
         });
       } else {
-        fetch("http://127.0.0.1/projects/public/api/asset/store", {
+        fetch("".concat(this.baseURL, "api/asset/store"), {
           method: 'post',
           body: JSON.stringify({
             "asset_name": this.asset_name,
@@ -2779,7 +2779,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getBaseURL: function getBaseURL() {
       var getUrl = window.location;
-      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
+      this.baseURL = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/public/";
     },
     getCategories: function getCategories() {
       var _this = this;
@@ -3121,6 +3121,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users', 'departments', 'assets'],
@@ -3132,7 +3136,8 @@ __webpack_require__.r(__webpack_exports__);
       asset_id: '',
       maintenance: '',
       created_at: '',
-      notes: ''
+      notes: '',
+      moved: 1
     };
   },
   created: function created() {
@@ -84854,7 +84859,48 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "form-group col-sm-12" },
+                                  { staticClass: "form-group col-sm-6" },
+                                  [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "col-form-label",
+                                        attrs: { for: "moved" }
+                                      },
+                                      [_vm._v("Assets Moved")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.moved,
+                                          expression: "moved"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "number",
+                                        id: "moved",
+                                        min: "1"
+                                      },
+                                      domProps: { value: _vm.moved },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.moved = $event.target.value
+                                        }
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group col-sm-6" },
                                   [
                                     _c(
                                       "label",

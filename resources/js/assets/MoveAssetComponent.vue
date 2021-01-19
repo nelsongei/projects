@@ -83,7 +83,11 @@
                                                         <option v-for="user in users" :key="user.id" :value="user.id">{{user.name+' '+user.lastName}}</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-sm-12">
+                                                <div class="form-group col-sm-6">
+                                                    <label class="col-form-label" for="moved">Assets Moved</label>
+                                                    <input type="number" v-model="moved" class="form-control" id="moved" min="1">
+                                                </div>
+                                                <div class="form-group col-sm-6">
                                                     <label class="col-form-label" for="department_id">Department</label>
                                                     <select v-model="department_id" id="department_id" name="department_id" class="form-control">
                                                         <option disabled value="">Select</option>
@@ -131,6 +135,7 @@ export default{
             maintenance:'',
             created_at:'',
             notes:'',
+            moved:1
 
         }
     },

@@ -17,7 +17,9 @@ class CreateInventoriesTable extends Migration
             $table->id();
             $table->bigInteger('asset_id')->unsigned();
             $table->foreign('asset_id')->references('id')->on('assets')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('quantity');
             $table->integer('remaining');
+            $table->integer('moved');
             $table->timestamps();
             $table->index('asset_id');
         });

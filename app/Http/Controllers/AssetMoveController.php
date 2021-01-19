@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asset;
 use App\Models\AssetMove;
 use App\Models\Department;
+use App\Models\Inventory;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,13 +23,15 @@ class AssetMoveController extends Controller
         return view('assets.moveAsset',compact('departments','assets','users'));
     }
     //
-    public function store(Request $request) {
+    public function store(Request $request,$id) {
         $moveAsset = new AssetMove();
         $moveAsset->asset_id = $request->asset_id;
         $moveAsset->user_id = $request->user_id;
         $moveAsset->department_id = $request->department_id;
         $moveAsset->notes = $request->notes;
+        $moveAsset->moved  = $request->moved;
         $moveAsset->save();
+        //
         //
         if($moveAsset){
             return response()->json(['status'=>0]);

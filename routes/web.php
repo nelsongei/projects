@@ -65,5 +65,7 @@ Route::get('/assetForm',[App\Http\Controllers\AssetController::class,'addAssetFo
 Route::get('/asset/{asset}',[App\Http\Controllers\AssetController::class,'show']);
 //Move Assets
 Route::get('/move',[App\Http\Controllers\AssetMoveController::class,'show']);
+//
+Route::get('/get',[App\Http\Controllers\InventoryController::class,'index']);
 //Logout
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');

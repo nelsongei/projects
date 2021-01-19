@@ -118,7 +118,7 @@ export default {
   methods:{
     getBaseURL: function(){
       var getUrl = window.location
-      this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/";
+      this.baseURL = getUrl.protocol +"//"+getUrl.host+"/"+getUrl.pathname.split('/')[1]+"/public/";
     },
     getCategories(){
       axios.get(`api/categories`)

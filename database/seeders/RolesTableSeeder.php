@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
     {
         //
         Role::create([
-           'role'=>'Marketer'
+           'role'=>'Super Admin'
         ]);
 
     }

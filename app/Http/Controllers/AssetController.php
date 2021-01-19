@@ -69,7 +69,9 @@ class AssetController extends Controller
         $assetQuatity = $purchase->quantity;
         $inventory = new Inventory();
         $inventory->asset_id = $assetId;
+        $inventory->quantity = $assetQuatity;
         $inventory->remaining = $assetQuatity;
+        $inventory->moved = 0;
         $inventory->save();
         if ($assets && $purchase){
             return response()->json(['status'=>0]);

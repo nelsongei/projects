@@ -23,6 +23,7 @@ class CreateAssetMovesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('maintenance')->default(false);
             $table->integer('moved');
+            $table->integer('remaining');
             $table->text('notes');
             $table->timestamps();
             $table->index('asset_id');
