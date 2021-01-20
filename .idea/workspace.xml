@@ -27,20 +27,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b57b9a3-e552-4a12-93ea-a8220be8e945" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_18_072217_create_asset_moves_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/project/DraggableComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/project/project.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssetMoveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssetMoveController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_15_071717_create_asset_moves_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Asset.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Asset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inventory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_18_072109_create_inventories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_18_072109_create_inventories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DepartmentsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DepartmentsTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/RolesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/RolesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/assets/AddAssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/AddAssetComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/assets/CategoryComponents.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/CategoryComponents.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/assets/AssetsComponents.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/AssetsComponents.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/assets/MoveAssetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/assets/MoveAssetComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/project/ListsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/project/ListsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assets/moveAsset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets/moveAsset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/assets/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/assets/view.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,7 +383,8 @@
       <workItem from="1610836544142" duration="6683000" />
       <workItem from="1610860118446" duration="1976000" />
       <workItem from="1610944252794" duration="17639000" />
-      <workItem from="1611029340559" duration="1801000" />
+      <workItem from="1611029340559" duration="11984000" />
+      <workItem from="1611123494558" duration="8473000" />
     </task>
     <task id="LOCAL-00001" summary="chanegs">
       <created>1610700060474</created>

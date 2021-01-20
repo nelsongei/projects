@@ -88,6 +88,10 @@
                                                     <input type="number" v-model="moved" class="form-control" id="moved" min="1">
                                                 </div>
                                                 <div class="form-group col-sm-6">
+                                                    <label class="col-form-label" for="quantity">Quantity</label>
+                                                    <input type="number" v-model="quantity" class="form-control" id="quantity" min="1">
+                                                </div>
+                                                <div class="form-group col-sm-12">
                                                     <label class="col-form-label" for="department_id">Department</label>
                                                     <select v-model="department_id" id="department_id" name="department_id" class="form-control">
                                                         <option disabled value="">Select</option>
@@ -124,7 +128,8 @@ export default{
     props:[
         'users',
         'departments',
-        'assets'
+        'assets',
+        'purchases'
     ],
     data(){
         return{
@@ -135,7 +140,8 @@ export default{
             maintenance:'',
             created_at:'',
             notes:'',
-            moved:1
+            moved:1,
+            quantity:assets.purchase.quantity,
 
         }
     },
@@ -153,14 +159,14 @@ export default{
             })
         },
         storeAssetMoved(){
-            if(this.user_id===''||this.department_id===''||this.asset_id===''||this.notes===''){
+            if(this.user_id===''||this.department_id===''||this.asset_id===''||this.notes===''||this.models===''){
                 Vue.$toast.error('All Input fields are required',{position:'top-right'});
             }
             else{
                 fetch(`api/move/store`,{
                     method:'post',
                     body:JSON.stringify({
-                        "user_id":this.user_id,"department_id":this.department_id,"asset_id":this.asset_id,"notes":this.notes
+                        "user_id":this.user_id,"department_id":this.department_id,"asset_id":this.asset_id,"notes":this.notes,"moved":this.moved
                     }),
                     headers: {
                         'Accept':'application/json',

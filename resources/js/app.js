@@ -53,6 +53,7 @@ Vue.component('assets-component', require('./assets/AssetsComponents.vue').defau
 Vue.component('category-component', require('./assets/CategoryComponents.vue').default);
 Vue.component('move-component', require('./assets/MoveAssetComponent.vue').default);
 Vue.component('add-component', require('./assets/AddAssetComponent.vue').default);
+Vue.component('draggable-component', require('./project/DraggableComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

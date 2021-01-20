@@ -27,6 +27,7 @@ class AssetController extends Controller
     }
     //
     public function show(Asset $asset,Request $request){
+        $departments = Department::all();
         $depreciation = $asset->purchase->total_amount;
         $salvage_value = (0.375*$depreciation);
         $straight_line_depreciation = (($depreciation-$salvage_value)/5);
@@ -41,7 +42,7 @@ class AssetController extends Controller
         //
 //        $id = $request->get('id');
 //        $asset = Asset::find($id);
-        return view('assets.view',compact('asset','finalChart'));
+        return view('assets.view',compact('asset','finalChart','departments'));
     }
     //
     public function store(Request $request){
@@ -68,6 +69,8 @@ class AssetController extends Controller
         //
         $assetQuatity = $purchase->quantity;
         $inventory = new Inventory();
+        $inventory->user_id = 1;
+        $inventory->department_id = 1;
         $inventory->asset_id = $assetId;
         $inventory->quantity = $assetQuatity;
         $inventory->remaining = $assetQuatity;

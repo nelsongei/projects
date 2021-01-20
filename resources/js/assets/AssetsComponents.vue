@@ -44,7 +44,7 @@
                                 <td>{{asset.asset_serial_no}}</td>
                                 <td>{{asset.department}}</td>
                                 <td>{{asset.location}}</td>
-                                <td>{{asset.purchase.total_amount}}</td>
+                                <td>{{asset.location}}</td>
                                 <td v-if="asset.maintenance===0">No</td>
                                 <td v-else>
                                     Yes

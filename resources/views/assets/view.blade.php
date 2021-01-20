@@ -89,6 +89,11 @@
                                                 Update Asset Icon
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="#moveAsset" class="nav-link text-warning" id="custom-move-tab" data-toggle="pill" role="tab" aria-controls="custom-activity-tab" aria-selected="false">
+                                                Move Asset
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
@@ -120,6 +125,70 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="tab-pane fade show" id="moveAsset" role="tabpanel" aria-labelledby="custom-move-tab">
+                                            <div class="card card-white">
+                                                <div class="card-header">
+                                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalMove">
+                                                        Move Assets
+                                                    </button>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Department</th>
+                                                                <th>Custodian</th>
+                                                                <th>Asset Moved</th>
+                                                                <th>Remaining</th>
+                                                                <th>Date Moved</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="modalMove">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">{{$asset->asset_name}}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                &times;
+                                                            </button>
+                                                        </div>
+                                                        <form method="post" action="{{url('api/move/store')}}">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <input type="hidden" name="asset_id" value="{{$asset->id}}">
+                                                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                                                    <div class="form-group col-sm-6">
+                                                                        <label class="col-form-label">Department</label>
+                                                                        <select name="department_id" class="form-control">
+                                                                            @foreach($departments as $department)
+                                                                                <option value="{{$department->id}}">{{$department->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-sm-6">
+                                                                        <label class="col-form-label" for="quantity">Assets Available</label>
+                                                                        <input type="text" value="{{$asset->inventory->quantity}}" name="quantity" id="quantity" class="form-control" readonly>
+                                                                    </div>
+                                                                    <div class="form-group col-sm-6">
+                                                                        <label class="col-form-label" for="moved">Assets Moved</label>
+                                                                        <input type="text" class="form-control" value="{{$asset->inventory->moved}}" id="moved" name="moved" min="1">
+                                                                    </div>
+                                                                    <div class="form-group col-sm-6">
+                                                                        <label class="col-form-label" for="remaining">Assets remaining</label>
+                                                                        <input type="number" class="form-control" id="remaining" value="{{$asset->inventory->remaining}}" name="remaining" min="1" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -129,4 +198,23 @@
             </div>
         </section>
     </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //this calculates values automatically
+            minus();
+            $("#quantity, #moved").on("keydown keyup", function() {
+                minus();
+            });
+        });
+
+        function minus() {
+            var num1 = document.getElementById('quantity').value;
+            var num2 = document.getElementById('moved').value;
+            var result1 = parseInt(num1) - parseInt(num2);
+            if (!isNaN(result1)) {
+                document.getElementById('remaining').value = result1;
+            }
+        }
+    </script>
 @endsection

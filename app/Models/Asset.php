@@ -19,4 +19,7 @@ class Asset extends Model
     public function purchase(){
         return $this->hasOne(Purchase::class);
     }
+    public function inventory(){
+        return $this->hasOne(Inventory::class);
+    }
 }
