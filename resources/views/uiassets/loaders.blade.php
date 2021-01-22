@@ -6,7 +6,7 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('assets/images/shots/facebook.gif')}}" width="90px" height="90px">
+							<img src="{{asset('public/assets/images/shots/facebook.gif')}}" width="90px" height="90px">
 							<br>
 							<h5 class="text-muted"> Authenticating using facebook...</h5>
 						</center>
@@ -22,7 +22,7 @@
 				<div class="modal-content">
 					<div class="modal-body bg-light">
 						<center>
-							<img src="{{asset('images/log2.gif')}}" class="rounded-circle" width="90px" height="90px">
+							<img src="{{asset('public/images/log2.gif')}}" class="rounded-circle" width="90px" height="90px">
 							<br>
 							<h6 class="text-muted" id="logText"> System logging  out due to inactivity in the last 5 minutes...</h6>
 							<button class="btn btn-success" onclick="reloaderr()"><i class="fas fa-redo"></i> Refresh my Session</button>&nbsp<button class="btn btn-danger" onclick="
@@ -40,8 +40,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('assets/images/shots/twitter.gif')}}" width="70px" height="60px">
-							<br><br> 
+							<img src="{{asset('public/assets/images/shots/twitter.gif')}}" width="70px" height="60px">
+							<br><br>
 							<h5 class="text-muted"> Authenticating using twitter...</h5>
 						</center>
 					</div>
@@ -56,7 +56,7 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('assets/images/shots/google.gif')}}" width="90px" height="90px">
+							<img src="{{asset('public/assets/images/shots/google.gif')}}" width="90px" height="90px">
 							<br>
 							<h5 class="text-muted"> Authenticating using google...</h5>
 						</center>
@@ -72,8 +72,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('assets/images/shots/email3.gif')}}" width="70px" height="80px">
-							<br><br> 
+							<img src="{{asset('public/assets/images/shots/email3.gif')}}" width="70px" height="80px">
+							<br><br>
 							<h5 class="text-muted"> Authenticating using email...</h5>
 						</center>
 					</div>
@@ -88,8 +88,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('assets/images/shots/reset.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/assets/images/shots/reset.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted"> Sending a password reset link...</h5>
 						</center>
 					</div>
@@ -107,10 +107,10 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/shots/18.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/shots/18.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted">
-							<strong>Alert!</strong> 
+							<strong>Alert!</strong>
 							{{session('recordAdd')}}</h5>
 
 							<br>
@@ -129,10 +129,10 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/shots/18.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/shots/18.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted">
-							<strong>Alert!</strong> 
+							<strong>Alert!</strong>
 							{{session('recordApproved')}}</h5>
 
 							<br>
@@ -151,10 +151,10 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/shots/18.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/shots/18.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted">
-							<strong>Alert!</strong> 
+							<strong>Alert!</strong>
 							{{session('recordRejected')}}</h5>
 
 							<br>
@@ -173,10 +173,10 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/shots/18.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/shots/18.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted">
-							<strong>Alert!</strong> 
+							<strong>Alert!</strong>
 							{{session('recordEdit')}}</h5>
 
 							<br>
@@ -195,10 +195,10 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/shots/18.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/shots/18.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted">
-							<strong>Alert!</strong> 
+							<strong>Alert!</strong>
 							{{session('recordDelete')}}</h5>
 
 							<br>
@@ -217,10 +217,10 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/shots/18.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/shots/18.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted">
-							<strong>Alert!</strong> 
+							<strong>Alert!</strong>
 							{{session('emailSent')}}</h5>
 
 							<br>
@@ -239,10 +239,10 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/shots/18.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/shots/18.gif')}}" width="90px" height="90px">
+							<br><br>
 							<h5 class="text-muted">
-							<strong>Alert!</strong> 
+							<strong>Alert!</strong>
 							{{session('emailFailed')}}</h5>
 
 							<br>
@@ -264,8 +264,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/email2.gif')}}" width="90px" height="90px">
-							<br><br> 
+							<img src="{{asset('public/images/email2.gif')}}" width="90px" height="90px">
+							<br><br>
 							<strong class="text-muted"> Preparing recipients emails, just a moment...</strong>
 						</center>
 					</div>
@@ -281,8 +281,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/sms4.gif')}}" width="120px" height="120px">
-							<br><br> 
+							<img src="{{asset('public/images/sms4.gif')}}" width="120px" height="120px">
+							<br><br>
 							<strong class="text-muted"> Preparing and verifying recipients contacts, just a moment...</strong>
 						</center>
 					</div>
@@ -297,8 +297,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/excel.gif')}}" width="120px" height="120px">
-							<br><br> 
+							<img src="{{asset('public/images/excel.gif')}}" width="120px" height="120px">
+							<br><br>
 							<strong class="text-muted"> Preparing employees content for export, just a moment...</strong>
 						</center>
 					</div>
@@ -313,8 +313,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/excel.gif')}}" width="120px" height="120px">
-							<br><br> 
+							<img src="{{asset('public/images/excel.gif')}}" width="120px" height="120px">
+							<br><br>
 							<strong class="text-muted"> Preparing payroll,please wait this may take a moment...</strong>
 						</center>
 					</div>
@@ -329,8 +329,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/print.gif')}}" width="120px" height="120px">
-							<br><br> 
+							<img src="{{asset('public/images/print.gif')}}" width="120px" height="120px">
+							<br><br>
 							<strong class="text-muted"> Preparing employees content for printing, just a moment...</strong>
 						</center>
 					</div>
@@ -345,8 +345,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/trash.gif')}}" width="120px" height="120px">
-							<br><br> 
+							<img src="{{asset('public/images/trash.gif')}}" width="120px" height="120px">
+							<br><br>
 							<strong class="text-muted"> Preparing employees content for archiving, just a moment...</strong>
 						</center>
 					</div>
@@ -361,8 +361,8 @@
 				<div class="modal-content">
 					<div class="modal-body">
 						<center>
-							<img src="{{asset('images/loader3.gif')}}" width="80px" height="80px">
-							<br><br> 
+							<img src="{{asset('public/images/loader3.gif')}}" width="80px" height="80px">
+							<br><br>
 							<strong class="text-muted" id="loaderText"></strong>
 						</center>
 					</div>
@@ -408,7 +408,7 @@
 	</span>
 
 	<br><br>
-	
+
 </div>
 
 </div>

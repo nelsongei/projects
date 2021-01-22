@@ -5,49 +5,49 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{config('app_name','Project Management Tool')}}</title>
-    <link rel="shortcut icon" href="{{asset('resources/settings/fav-icon.PNG')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('public/resources/settings/fav-icon.PNG')}}" type="image/png">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
     <!-- <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script> -->
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/jqvmap/jqvmap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/toastr/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/jqvmap/jqvmap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/toastr/toastr.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/dist/css/zalegohrstyles.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/dist/css/zalegohrstyles.css')}}">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/daterangepicker/daterangepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/daterangepicker/daterangepicker.css')}}">
 
     <!-- summernote -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/summernote/summernote-bs4.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/summernote/summernote-bs4.css')}}">
     <!--Select2 CSS-->
-    <link rel="stylesheet" href="{{asset('resources/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('resources/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/resources/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/resources/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/w3v3.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/w3v3.css')}}">
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- Select2 -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
 {{--    <script src="{{asset('tinymce/tinymce.min.js')}}"></script>--}}
-    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/css/app.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -140,7 +140,7 @@
         <!-- Brand Logo -->
         <a href="{{url('/home')}}" class="brand-link" style=" padding-top: 1.4rem !important; padding-bottom: 1.25rem !important; background-color:rgb(75, 71, 109) !important;">
 
-      <center><img src="{{asset('resources/settings/logo.png')}}" width="33px" height="33px" alt="Zalego Smart Hr Logo" class="imgWrapper"></center>
+      <center><img src="{{asset('public/resources/settings/logo.png')}}" width="33px" height="33px" alt="Zalego Smart Hr Logo" class="imgWrapper"></center>
         </a>
         <!-- Sidebar -->
         <div class="sidebar" style=" background-color:rgb(75, 71, 109) !important; ">
@@ -298,30 +298,30 @@
 {{--</script>--}}
 <!-- jQuery UI 1.11.4 -->
 {{--<script src="{{asset('assets/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>--}}
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('public/js/app.js') }}" defer></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
 <!-- DataTables -->
-<script src="{{asset('assets/dashboard/plugins/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{asset('assets/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset('resources/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('public/resources/dist/js/adminlte.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="{{asset('assets/dashboard/plugins/sparklines/sparkline.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
-<script src="{{asset('assets/dashboard/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{asset('assets/dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
-<script src="{{asset('assets/dashboard/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
-<script src="{{asset('assets/dashboard/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('assets/dashboard/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Summernote -->
-<script src="{{asset('assets/dashboard/plugins/summernote/summernote-bs4.min.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
-<script src="{{asset('assets/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 {{--<script src="https://js.cx/libs/animate.js"></script>--}}
 {{--<!-- AdminLTE App -->--}}
 {{--<script src="{{asset('assets/dashboard/dist/js/adminlte.js')}}"></script>--}}
@@ -331,9 +331,9 @@
 <!-- AdminLTE for demo purposes -->
 {{--<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>--}}
 {{--<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>--}}
-<script src="{{asset('assets/dashboard/dist/js/demo.js')}}"></script>
-<script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
-<script src="{{asset('resources/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('public/assets/dashboard/dist/js/demo.js')}}"></script>
+<script src="{{asset('public/resources/select2/js/select2.full.js')}}"></script>
+<script src="{{asset('public/resources/sweetalert2/sweetalert2.min.js')}}"></script>
 @include('sweetalert::alert')
 <script type="text/javascript">
     $('.select2').select2()
@@ -426,49 +426,49 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{{config('app_name','Project Management Tool')}}</title>
-        <link rel="shortcut icon" href="{{asset('resources/settings/fav-icon.PNG')}}" type="image/png">
+        <link rel="shortcut icon" href="{{asset('public/resources/settings/fav-icon.PNG')}}" type="image/png">
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/fontawesome-free/css/all.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/fontawesome-free/css/all.min.css')}}">
         <!-- Ionicons -->
         <!-- <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script> -->
         <!-- Tempusdominus Bbootstrap 4 -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
         <!-- iCheck -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
         <!-- JQVMap -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/jqvmap/jqvmap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/toastr/toastr.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/jqvmap/jqvmap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/toastr/toastr.min.css')}}">
         <!-- Theme style -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/dist/css/zalegohrstyles.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/dist/css/zalegohrstyles.css')}}">
         <!-- overlayScrollbars -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
         <!-- Daterange picker -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/daterangepicker/daterangepicker.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/daterangepicker/daterangepicker.css')}}">
 
         <!-- summernote -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/summernote/summernote-bs4.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/summernote/summernote-bs4.css')}}">
         <!--Select2 CSS-->
-        <link rel="stylesheet" href="{{asset('resources/select2/css/select2.min.css')}}">
-        <link rel="stylesheet" href="{{asset('resources/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/resources/select2/css/select2.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/resources/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/w3v3.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/w3v3.css')}}">
         <!-- Tempusdominus Bbootstrap 4 -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
         <!-- Select2 -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/select2/css/select2.min.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/select2/css/select2.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
         <!-- Bootstrap4 Duallistbox -->
-        <link rel="stylesheet" href="{{asset('assets/dashboard/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/dashboard/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
         {{--    <script src="{{asset('tinymce/tinymce.min.js')}}"></script>--}}
-        <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('public/assets/css/app.css')}}">
     </head>
 
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -561,7 +561,7 @@
             <!-- Brand Logo -->
             <a href="{{url('/home')}}" class="brand-link" style=" padding-top: 1.4rem !important; padding-bottom: 1.25rem !important; background-color:rgb(75, 71, 109) !important;">
 
-                <center><img src="{{asset('resources/settings/logo.png')}}" width="33px" height="33px" alt="Zalego Smart Hr Logo" class="imgWrapper"></center>
+                <center><img src="{{asset('public/resources/settings/logo.png')}}" width="33px" height="33px" alt="Zalego Smart Hr Logo" class="imgWrapper"></center>
             </a>
             <!-- Sidebar -->
             <div class="sidebar" style=" background-color:rgb(75, 71, 109) !important; ">
@@ -700,30 +700,30 @@
     {{--</script>--}}
     <!-- jQuery UI 1.11.4 -->
     {{--<script src="{{asset('assets/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>--}}
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('public/js/app.js') }}" defer></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
     <!-- DataTables -->
 {{--    <script src="{{asset('assets/dashboard/plugins/datatables/jquery.dataTables.js')}}"></script>--}}
 {{--    <script src="{{asset('assets/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>--}}
     <!-- AdminLTE App -->
-    <script src="{{asset('resources/dist/js/adminlte.min.js')}}"></script>
+    <script src="{{asset('public/resources/dist/js/adminlte.min.js')}}"></script>
     <!-- Sparkline -->
-    <script src="{{asset('assets/dashboard/plugins/sparklines/sparkline.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/sparklines/sparkline.js')}}"></script>
     <!-- JQVMap -->
-    <script src="{{asset('assets/dashboard/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-    <script src="{{asset('assets/dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
     <!-- jQuery Knob Chart -->
-    <script src="{{asset('assets/dashboard/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
     <!-- daterangepicker -->
-    <script src="{{asset('assets/dashboard/plugins/moment/moment.min.js')}}"></script>
-    <script src="{{asset('assets/dashboard/plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/moment/moment.min.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/daterangepicker/daterangepicker.js')}}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
     <!-- Summernote -->
-    <script src="{{asset('assets/dashboard/plugins/summernote/summernote-bs4.min.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/summernote/summernote-bs4.min.js')}}"></script>
     <!-- overlayScrollbars -->
-    <script src="{{asset('assets/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
     {{--<script src="https://js.cx/libs/animate.js"></script>--}}
     {{--<!-- AdminLTE App -->--}}
     {{--<script src="{{asset('assets/dashboard/dist/js/adminlte.js')}}"></script>--}}
@@ -733,9 +733,9 @@
     <!-- AdminLTE for demo purposes -->
 {{--    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>--}}
 {{--    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>--}}
-    <script src="{{asset('assets/dashboard/dist/js/demo.js')}}"></script>
-    <script src="{{asset('resources/select2/js/select2.full.js')}}"></script>
-    <script src="{{asset('resources/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('public/assets/dashboard/dist/js/demo.js')}}"></script>
+    <script src="{{asset('public/resources/select2/js/select2.full.js')}}"></script>
+    <script src="{{asset('public/resources/sweetalert2/sweetalert2.min.js')}}"></script>
     @include('sweetalert::alert')
     <script type="text/javascript">
         $('.select2').select2()

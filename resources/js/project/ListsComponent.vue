@@ -287,7 +287,7 @@ import draggable from 'vuedraggable';
         methods:{
             getBaseURL: function(){
                 var getUrl = window.location
-                this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/public/";
+                this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/";
             },
             addCards(){
                 this.project_id=this.project.id;

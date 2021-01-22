@@ -7,32 +7,32 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="{{asset('resources/settings/fav-icon.PNG')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('public/resources/settings/fav-icon.PNG')}}" type="image/png">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/fonts/iconic/css/material-design-iconic-font.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/animate/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/animate/animate.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/css-hamburgers/hamburgers.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/animsition/css/animsition.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/animsition/css/animsition.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/select2/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/select2/select2.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendor/daterangepicker/daterangepicker.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/vendor/daterangepicker/daterangepicker.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/util.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/mainlrs2.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/mainlrs2.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/w3v3.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/w3v3.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/css/animate.css')}}">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
 
@@ -112,18 +112,18 @@
                     <div class="carousel-item active">
                         <div class="carousel-caption d-md-block">
 
-                            <img data-animation="animated bounceInLeft" src="{{asset('assets/images/shots/14.JPG')}}" class="d-block w-100" alt="...">
+                            <img data-animation="animated bounceInLeft" src="{{asset('public/assets/images/shots/14.JPG')}}" class="d-block w-100" alt="...">
                             <h3 data-animation="animated bounceInRight">
-                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Project Management Tool
+                                <img src="{{asset('public/assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Project Management Tool
                             </h3>
                         </div>
                     </div>
                     <!-- second slide -->
                     <div class="carousel-item skyblue">
                         <div class="carousel-caption d-md-block">
-                            <img data-animation="animated bounceInLeft" src="{{asset('assets/images/shots/5.JPG')}}" class="d-block w-100" alt="...">
+                            <img data-animation="animated bounceInLeft" src="{{asset('public/assets/images/shots/5.JPG')}}" class="d-block w-100" alt="...">
                             <h3 data-animation="animated bounceInRight">
-                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Testing/Assessment Management
+                                <img src="{{asset('public/assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Testing/Assessment Management
                             </h3>
 
                         </div>
@@ -131,9 +131,9 @@
                     <!-- third slide -->
                     <div class="carousel-item skyblue">
                         <div class="carousel-caption d-md-block">
-                            <img data-animation="animated bounceInRight" src="{{asset('assets/images/shots/15.JPG')}}" class="d-block w-100" alt="...">
+                            <img data-animation="animated bounceInRight" src="{{asset('public/assets/images/shots/15.JPG')}}" class="d-block w-100" alt="...">
                             <h3 data-animation="animated bounceInLeft">
-                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Reporting & Tracking
+                                <img src="{{asset('public/assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Reporting & Tracking
                             </h3>
 
                         </div>
@@ -141,9 +141,9 @@
                     <!-- fifth slide -->
                     <div class="carousel-item skyblue">
                         <div class="carousel-caption d-md-block">
-                            <img data-animation="animated bounceInRight" src="{{asset('assets/images/11.JPG')}}" class="d-block w-100" alt="...">
+                            <img data-animation="animated bounceInRight" src="{{asset('public/assets/images/11.JPG')}}" class="d-block w-100" alt="...">
                             <h3 data-animation="animated bounceInUp">
-                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> User Management
+                                <img src="{{asset('public/assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> User Management
                             </h3>
 
                         </div>
@@ -152,9 +152,9 @@
                     <!-- sixth slide -->
                     <div class="carousel-item skyblue">
                         <div class="carousel-caption d-md-block">
-                            <img data-animation="animated bounceInUp" src="{{asset('assets/images/shots/2.JPG')}}" class="d-block w-100" alt="...">
+                            <img data-animation="animated bounceInUp" src="{{asset('public/assets/images/shots/2.JPG')}}" class="d-block w-100" alt="...">
                             <h3 data-animation="animated bounceInLeft">
-                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Account Management
+                                <img src="{{asset('public/assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Account Management
                             </h3>
 
                         </div>
@@ -163,9 +163,9 @@
                     <!-- seventh slide -->
                     <div class="carousel-item skyblue">
                         <div class="carousel-caption d-md-block">
-                            <img data-animation="animated flipInY" src="{{asset('assets/images/shots/17.JPG')}}" class="d-block w-100" alt="...">
+                            <img data-animation="animated flipInY" src="{{asset('public/assets/images/shots/17.JPG')}}" class="d-block w-100" alt="...">
                             <h3 data-animation="animated bounceInUp">
-                                <img src="{{asset('assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Email/Chats/Calls
+                                <img src="{{asset('public/assets/images/shots/16.gif')}}" width="15px" height="15px" class="shadow-lg" style="margin-top: -10px;" alt="..."> Email/Chats/Calls
                             </h3>
 
                         </div>
@@ -279,21 +279,21 @@
                 });
             })(jQuery);
         </script>
-        <script src="{{asset('assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
         <!--===============================================================================================-->
-        <script src="{{asset('assets/vendor/animsition/js/animsition.min.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/animsition/js/animsition.min.js')}}"></script>
         <!--===============================================================================================-->
-        <script src="{{asset('assets/vendor/bootstrap/js/popper.js')}}"></script>
-        <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/bootstrap/js/popper.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
         <!--===============================================================================================-->
-        <script src="{{asset('assets/vendor/select2/select2.min.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/select2/select2.min.js')}}"></script>
         <!--===============================================================================================-->
-        <script src="{{asset('assets/vendor/daterangepicker/moment.min.js')}}"></script>
-        <script src="{{asset('assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/daterangepicker/moment.min.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
         <!--===============================================================================================-->
-        <script src="{{asset('assets/vendor/countdowntime/countdowntime.js')}}"></script>
+        <script src="{{asset('public/assets/vendor/countdowntime/countdowntime.js')}}"></script>
         <!--===============================================================================================-->
-        <script src="{{asset('assets/js/main.js')}}"></script>
+        <script src="{{asset('public/assets/js/main.js')}}"></script>
 
         <!--Start of Tawk.to Script-->
         <script type="text/javascript">
