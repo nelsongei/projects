@@ -40,7 +40,7 @@ Route::prefix('/task')->group(function(){
     Route::post('/store',[TaskController::class,'store']);
     Route::put('/{id}',[TaskController::class,'update']);
     Route::put('/complete/{id}',[TaskController::class,'completeTask']);
-//    Route::put('/move/{id}',[TaskController::class,'moveTask']);
+    Route::patch('/sync/{task}',[TaskController::class,'sync']);
 });
 Route::get('/checklists',[ChecklistController::class,'index']);
 Route::prefix('/checklist')->group(function(){

@@ -12,6 +12,9 @@
                         <input type="text" name="task_name" v-model="task_name" class="form-control" placeholder="Enter Task Name">
                     </div>
                     <div class="form-group">
+                        <input type="number" class="form-control" name="order" v-model="order" placeholder="Task Order">
+                    </div>
+                    <div class="form-group">
                         <textarea name="task_description" v-model="task_description" class="form-control" placeholder="Task Description"/>
                     </div>
                     <div class="form-group">
@@ -49,6 +52,7 @@ export default {
             project_id:this.projectId,
             due_date:'',
             baseURL:'',
+            order:''
         }
     },
     created() {
@@ -93,7 +97,7 @@ export default {
                 fetch(`api/task/store`,{
                     method:'POST',
                     body:JSON.stringify({
-                        "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date
+                        "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date,"order":this.order
                     }),
                     headers:{
                         'Accept':'application/json',

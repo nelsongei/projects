@@ -9,7 +9,7 @@
                     <div class="col-md-3" v-for="card in project.card" :key="card.id">
                         <div class="card p-lg-2">
                             <div class="card-header">
-                                <h3 class="card-title text-bold">{{card.name}}</h3>
+                                <p class="card-title text-bold">{{card.name}}</p>
                                 <div class=dropright>
                                     <button
                                         class="btn btn-sm float-right dropdown"
@@ -46,13 +46,10 @@
                                     tag="v-layout"
                                     :group="{name: 'card'}"
                                     v-bind="taskDragOptions"
-                                    @end="handleTaskMoved"
+                                    @add="update($event,false)"
                                 >
-                                    <transition-group
-                                        class="mb-2"
-                                        tag="div"
-                                    >
-                                        <div v-for="task in card.tasks" :key="task.id" class="mb-2">
+                                    <transition-group class="mb-2" tag="div">
+                                        <div v-for="task in card.tasks" :key="task.id" class="mb-2" :data-id="task.id" :card-id="card.id">
                                             <div class="list-group">
                                                 <div class="list-group-item" @click="addFeedbackModal(task)">
                                                     {{task.task_name}}
@@ -61,11 +58,6 @@
                                             <div class="modal fade" id="addFeedbackModal">
                                                 <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                &times;
-                                                            </button>
-                                                        </div>
                                                         <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-md-9">
@@ -136,10 +128,25 @@
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <label>Task Actions</label>
-                                                                    <div class="checkboxes mb-1">
-                                                                        <a class="btn btn-block btn-md btn-default">
-                                                                            <input type="checkbox" name="completed" @change="taskComplete(task)" v-model="task.completed">&nbsp;<strong>Complete:</strong> <span>{{task.task_name}}</span>
-                                                                        </a>
+                                                                    <div class="dropdown mb-1">
+                                                                        <button class="btn btn-default btn-md btn-sm btn-block dropdown" data-toggle="dropdown">
+                                                                            <i class="fa fa-check"></i>Complete Task
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                            <form class="px-4 py-3" @submit.prevent="taskComplete(task)">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Complete</label>
+                                                                                    <select name="completed" v-model="completed" class="form-control">
+                                                                                        <option :value="1">Complete</option>
+                                                                                        <option :value="0">Not Complete</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                                                    Complete
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="dropright mb-1">
                                                                         <button class="btn btn-block btn-md btn-default dropdown" data-toggle="dropdown">
@@ -246,7 +253,7 @@ import draggable from 'vuedraggable';
         },
         data(){
             return{
-                cards:[],
+                cards:{},
                 name:'',
                 project_id:'',
                 newTaskForStatus:0,
@@ -258,7 +265,8 @@ import draggable from 'vuedraggable';
                 taskId:'',
                 todo_name:'',
                 card_id:'',
-                completed:[true,false],
+                completed:'',
+                tasks:[],
             }
         },
         created() {
@@ -471,18 +479,30 @@ import draggable from 'vuedraggable';
                     })
                 }
             },
-            handleTaskMoved(event){
-                console.log('moving',event.target.value)
+            update(event){
+                let toTask = event.to;
+                let fromTask = event.from;
+                let task_id = event.item.getAttribute('data-id');
+                let card_id = fromTask.id === toTask.id ? null: toTask.id;
+                let order  = event.newIndex === event.oldIndex ? false : event.newIndex;
+                if(order!==false){
+                    axios.patch(`http://127.0.0.1/projects/public/api/task/sync/${task_id}`,{
+                        order,card_id
+                    })
+                    .then(response=>{
+                        Vue.$toast.info('Moved',{position:'top-right'})
+                    })
+                }
+            },
+            getTasks(){
+                axios.get(`http://127.0.0.1/projects/public/api/tasks/${this.projectId}`)
+                .then(response=>{
+                    this.tasks=response.data
+                })
+                .catch(error=>{
+                    console.log(error)
+                })
             }
         }
     }
 </script>
-<style scoped>
-.status-drag {
-    transition: transform 0.5s;
-    transition-property: all;
-}
-.list-group{
-    display:inline;
-}
-</style>

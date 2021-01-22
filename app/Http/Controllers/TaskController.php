@@ -14,19 +14,28 @@ class TaskController extends Controller
 {
     //
     public function index($id){
-        $tasks = Card::find($id);
+        $tasks = Project::find($id);
         return $tasks->tasks;
     }
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $data =request()->validate([
-            'project_id'=>'required',
-            'card_id'=>'required',
-            'task_name'=>'required',
-            'task_description'=>'required',
-            'due_date'=>'required'
-        ]);
-        $tasks = Task::create($data);
+        $tasks = new Task();
+        $tasks->project_id = $request->project_id;
+        $tasks->card_id  = $request->card_id;
+        $tasks->task_name = $request->task_name;
+        $tasks->task_description  = $request->task_description;
+        $tasks->due_date = $request->due_date;
+        $tasks->order = $request->order;
+        $tasks->save();
+//        $data =request()->validate([
+//            'project_id'=>'required',
+//            'card_id'=>'required',
+//            'task_name'=>'required',
+//            'task_description'=>'required',
+//            'due_date'=>'required',
+//            'order'=>'required'
+//        ]);
+//        $tasks = Task::create($data);
         if ($tasks){
             return response()->json(['status' => 0]);
         }
@@ -59,21 +68,18 @@ class TaskController extends Controller
         }
     }
     public function completeTask(Task $task,Request $request,$id){
-//        $task=Task::find($id);
-//        $task->update([
-//            'completed'=>$request->has('completed')
-//        ]);
-//        return $task;
         $complete = Task::find($id);
         if ($complete){
-            $complete->completed = $request->completed ? true : false;
+            $complete->completed = $request->completed;
             $complete->push();
             return $complete;
         }
-//        if ($complete){
-//            return response()->json(['status'=>0]);
-//        }
-//        return response()->json(['status'=>1]);
-
+        return  $complete;
+    }
+    public function sync(Request $request,Task $task){
+        $tasks = Task::find($task);
+        $tasks->card_id = $request->card_id;
+        $tasks->push();
+        return $tasks;
     }
 }

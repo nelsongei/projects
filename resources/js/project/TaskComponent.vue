@@ -14,6 +14,9 @@
                     <textarea name="task_description" v-model="task_description" class="form-control" placeholder="Task Description"/>
                 </div>
                 <div class="form-group">
+                    <input type="text" name="order" class="form-control" min="1" placeholder="Task Order" v-model="order">
+                </div>
+                <div class="form-group">
                     <input type="date" class="form-control" name="due_date" v-model="due_date">
                 </div>
             </div>
@@ -47,6 +50,7 @@ import Vue from 'vue'
                 project_id:this.projectId,
                 due_date:'',
                 baseURL:'',
+                order:'',
             }
         },
         created(){
@@ -58,14 +62,14 @@ import Vue from 'vue'
                 this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/public/";
             },
             submitTask(){
-                if(this.task_name===''||this.task_description===''){
+                if(this.task_name===''||this.task_description===''||this.order===''){
                     Vue.$toast.warning('All Fields are required',{position:'top-right'});
                 }
                 else{
                     fetch(`${this.baseURL}api/task/store`,{
                         method:'post',
                         body:JSON.stringify({
-                            "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date
+                            "project_id":this.projectId,"card_id":this.cardId,"task_name":this.task_name,"task_description":this.task_description,"due_date":this.due_date,"order":this.order
                         }),
                         headers:{
                             'Accept':'application/json',

@@ -15,8 +15,11 @@ class DepartmentsTableSeeder extends Seeder
     public function run()
     {
         //
+        $departments = ['Finance','Human Resource','Marketing'];
+        foreach($departments  as $department){
         Department::create([
-            'name'=>'Finance'
+            'name'=>$department
         ]);
+    }
     }
 }

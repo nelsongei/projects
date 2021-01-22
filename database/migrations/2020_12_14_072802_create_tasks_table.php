@@ -21,6 +21,7 @@ class CreateTasksTable extends Migration
             $table->foreign('card_id')->references('id')->on('cards')->onUpdate('cascade')->onDelete('cascade');
             $table->string('task_name')->nullable();
             $table->text('task_description');
+            $table->integer('order');
             $table->string('due_date')->nullable();
             $table->boolean('completed')->default(false);
             $table->timestamps();
