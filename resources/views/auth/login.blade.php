@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <small> I don't have an account? <a href="{{url('/register')}}">Sign up here</a></small></h3>
+    <small> Login and Manage  <a href="{{url('/')}}">Your Tasks</a></small></h3>
     </div>
     </div>
 
@@ -11,14 +11,10 @@
             @csrf
             <span class="login100-form-title p-b-20">
                         <h1 class="ml13 p-l-16 p-t-30"><strong>Zalego | Project Management Tool<hr></strong></h1>
-
                         Get Started With Us
-
                         <br>
                         <span class="small">By signing in to your account</span>
                     </span>
-
-
             @if($errors->any())
                 @foreach ($errors->all() as $error)
 

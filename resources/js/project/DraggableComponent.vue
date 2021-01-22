@@ -67,7 +67,7 @@ Vue.use(Vuetify)
         methods: {
             getBaseURL: function(){
                 var getUrl = window.location
-                this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/public/";
+                this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/";
             },
             handleTaskMoved(event){
                 console.log(event.target.value)

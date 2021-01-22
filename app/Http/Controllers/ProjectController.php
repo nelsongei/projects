@@ -37,7 +37,7 @@ class ProjectController extends Controller
     {
         //
         $all = Task::all()->count();
-        $notComplete = Task::where('completed',false)->count();
+        $notComplete = Task::where('completed',true)->count();
 
         $complete = ($notComplete/$all)*100;
         $projects = Project::all()->where('user_id',Auth::user()->id);

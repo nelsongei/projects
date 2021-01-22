@@ -59,7 +59,7 @@ import Vue from 'vue'
         methods:{
             getBaseURL: function(){
                 var getUrl = window.location
-                this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/public/";
+                this.baseURL= getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1]+"/";
             },
             submitTask(){
                 if(this.task_name===''||this.task_description===''||this.order===''){

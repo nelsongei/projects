@@ -27,15 +27,6 @@ class TaskController extends Controller
         $tasks->due_date = $request->due_date;
         $tasks->order = $request->order;
         $tasks->save();
-//        $data =request()->validate([
-//            'project_id'=>'required',
-//            'card_id'=>'required',
-//            'task_name'=>'required',
-//            'task_description'=>'required',
-//            'due_date'=>'required',
-//            'order'=>'required'
-//        ]);
-//        $tasks = Task::create($data);
         if ($tasks){
             return response()->json(['status' => 0]);
         }

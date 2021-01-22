@@ -443,7 +443,7 @@ import draggable from 'vuedraggable';
                 .then(response=>response.json())
                 .then(response=>{
                     if(response.status===0){
-                        Vue.$toast.info('Task completed',{position:'top-right'})
+                        Vue.$toast.info('Task Status Updated',{position:'top-right'})
                     }
                 })
                 .catch(error=>{
