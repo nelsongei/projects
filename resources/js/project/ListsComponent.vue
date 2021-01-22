@@ -442,7 +442,7 @@ import draggable from 'vuedraggable';
                 })
                 .then(response=>response.json())
                 .then(response=>{
-                    if(response.status===200){
+                    if(response.status===0){
                         Vue.$toast.info('Task completed',{position:'top-right'})
                     }
                 })

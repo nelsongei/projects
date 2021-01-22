@@ -72,9 +72,9 @@ class TaskController extends Controller
         if ($complete){
             $complete->completed = $request->completed;
             $complete->push();
-            return $complete;
+            return response()->json(['status'=>0]);
         }
-        return  $complete;
+        return response()->json(['status'=>1]);
     }
     public function sync(Request $request,Task $task){
         $tasks = Task::find($task);
